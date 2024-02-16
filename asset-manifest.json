@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/railexplore/static/css/main.2d261419.css",
+    "main.js": "/railexplore/static/js/main.f67d3e31.js",
+    "static/js/592.69394a4a.chunk.js": "/railexplore/static/js/592.69394a4a.chunk.js",
+    "static/media/station.png": "/railexplore/static/media/station.f0e73f71d696b23b01c7.png",
+    "static/media/train.png": "/railexplore/static/media/train.e0651f0b578f71d6445f.png",
+    "static/media/bus.png": "/railexplore/static/media/bus.c0fcbe26c1ecb88d1374.png",
+    "static/media/busstop.png": "/railexplore/static/media/busstop.197e03b186e8fa0e7063.png",
+    "static/media/no-shelter.png": "/railexplore/static/media/no-shelter.4b4b891ee102d16ad968.png",
+    "static/media/has-shelter.png": "/railexplore/static/media/has-shelter.b14dad6857fc02447cbe.png",
+    "static/media/platform.png": "/railexplore/static/media/platform.8b74fc91f71c8e808c46.png",
+    "index.html": "/railexplore/index.html",
+    "main.2d261419.css.map": "/railexplore/static/css/main.2d261419.css.map",
+    "main.f67d3e31.js.map": "/railexplore/static/js/main.f67d3e31.js.map",
+    "592.69394a4a.chunk.js.map": "/railexplore/static/js/592.69394a4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d261419.css",
+    "static/js/main.f67d3e31.js"
+  ]
+}
