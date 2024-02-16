@@ -1,0 +1,55 @@
+.left-nav {
+    width: 150px;
+    transition: width 0.3s;
+    position: relative; /* For absolute positioning of the collapse button */
+    overflow: hidden;
+    height: 100%; /* Adjust as needed */
+    border-right: 1px solid #ddd; /* Adjust as needed */
+  }
+  
+  .left-nav.collapsed {
+    width: 50px;
+  }
+  
+  .collapse-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 10; /* Ensures button is above nav items */
+  }
+  
+  .nav-items-container {
+    margin-top: 50px; /* Adjust this value to ensure there's no overlap with the collapse button */
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  .nav-item:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+  }
+  
+  .nav-item .nav-icon {
+    margin-right: 10px;
+  }
+
+
+.nav-item.active {
+    background-color: #f0f0f0; /* The grey background color for the active page */
+  }
+  
+  
+  
+  .nav-item .nav-text {
+    display: inline;
+  }
+  
+  .nav-item.selected {
+    background-color: #f0f0f0; /* Your grey background color */
+  }
+  

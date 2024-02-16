@@ -1,5 +1,5 @@
 // InfoPanel.js
-import React from "react";
+import React, { useState } from "react";
 import Routes from "./routes.jsx"; // Make sure to import the Routes component
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
@@ -9,15 +9,51 @@ import noshelterImage from "./images/no-shelter.png"; // Adjust the path as need
 import trainImage from "./images/train.png"; // Adjust the path as needed
 import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./tool-tip.css";
+import "./InfoPanel.css";
 
 const InfoPanel = ({
-  station,
-  onClose,
   originStation,
+  station,
+  setIsPanelOpen,
   routes,
   calculatedRoutes,
   calculatedRoutesWT,
+  selectedStationDestinations,
 }) => {
+
+  // Add a state to keep track of the current image index
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Find the specific destination data for this station
+  const destination = selectedStationDestinations?.destinations.find(
+    (d) => d.destination_station === station.code
+  );
+
+   // Function to handle image toggle
+   const handleImageClick = (event) => {
+    const { clientX, currentTarget } = event;
+    const { left, width } = currentTarget.getBoundingClientRect();
+    const isRightSide = clientX > left + width / 2;
+
+    if (isRightSide) {
+      // Move to the next image or wrap to the first
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % station.image_paths.length);
+    } else {
+      // Move to the previous image or wrap to the last
+      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + station.image_paths.length) % station.image_paths.length);
+    }
+  };
+
+  // Function to format and display the minimum time to the destination
+  const formatMinTime = (stationCode) => {
+    if (!destination) return "N/A";
+
+    const hours = Math.floor(destination.min_time / 3600);
+    const minutes = Math.floor((destination.min_time % 3600) / 60);
+    return `${hours}h ${minutes}m`;
+  };
+
+
   // Function to check if a route includes the selected station
   const doesRouteIncludeStation = (route, stationCode) => {
     return route.trains.some((train) =>
@@ -67,16 +103,20 @@ const InfoPanel = ({
     }
   };
 
+  const closeInfoPanel = () => {
+    setIsPanelOpen(false); // Close the panel
+  };
+
   return (
     <div className="info-panel">
       <div className="info-header">
-        <div className="collapse-button" onClick={onClose}>
+        <div className="collapse-button" onClick={closeInfoPanel}>
           ﹥
         </div>
         <div className="station-info">
           <h2>{station.name}</h2>
           <div className="station-details">
-            2.5 hr • 75 mi
+          {formatMinTime(station.code)}
             <div className="tooltip">
               <img
                 src={getImageForStationType(station.station_type)}
@@ -107,8 +147,8 @@ const InfoPanel = ({
         </div>
       </div>
 
-      <div className="image-container">
-        <img src="https://picsum.photos/300/200" alt="Random image" />
+      <div className="image-container" onClick={handleImageClick}>
+      <img src={station.image_paths[currentImageIndex]} alt="Station" />
         <a
           href="https://www.amtrak.com"
           target="_blank"
@@ -118,7 +158,9 @@ const InfoPanel = ({
           Book on Amtrak
         </a>
       </div>
-      
+      <div>
+        {station.description}
+      </div>
 
       <Routes
         originStation={originStation}

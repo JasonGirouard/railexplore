@@ -1,0 +1,1315 @@
+[{
+  "origin_station": "WNL",
+  "destinations": [
+    {
+      "destination_station": "BWI",
+      "min_time": 19140.0,
+      "time_25": 19245.0,
+      "time_50": 19605.0,
+      "time_75": 19950.0
+    },
+    {
+      "destination_station": "NWK",
+      "min_time": 10560.0,
+      "time_25": 11340.0,
+      "time_50": 12255.0,
+      "time_75": 13320.0
+    },
+    {
+      "destination_station": "PVD",
+      "min_time": 9990.0,
+      "time_25": 10035.0,
+      "time_50": 10620.0,
+      "time_75": 11205.0
+    },
+    {
+      "destination_station": "RTE",
+      "min_time": 12030.0,
+      "time_25": 12075.0,
+      "time_50": 12360.0,
+      "time_75": 12645.0
+    },
+    {
+      "destination_station": "BOS",
+      "min_time": 13200.0,
+      "time_25": 13290.0,
+      "time_50": 13755.0,
+      "time_75": 17520.0
+    },
+    {
+      "destination_station": "SLQ",
+      "min_time": 50520.0,
+      "time_25": 50520.0,
+      "time_50": 51615.0,
+      "time_75": 52710.0
+    },
+    {
+      "destination_station": "RSP",
+      "min_time": 40740.0,
+      "time_25": 40740.0,
+      "time_50": 41835.0,
+      "time_75": 42930.0
+    },
+    {
+      "destination_station": "PLB",
+      "min_time": 38760.0,
+      "time_25": 38760.0,
+      "time_50": 39855.0,
+      "time_75": 40950.0
+    },
+    {
+      "destination_station": "POH",
+      "min_time": 32520.0,
+      "time_25": 32520.0,
+      "time_50": 33615.0,
+      "time_75": 34710.0
+    },
+    {
+      "destination_station": "FTC",
+      "min_time": 31260.0,
+      "time_25": 31260.0,
+      "time_50": 32355.0,
+      "time_75": 33450.0
+    },
+    {
+      "destination_station": "WHL",
+      "min_time": 29340.0,
+      "time_25": 29340.0,
+      "time_50": 30435.0,
+      "time_75": 31530.0
+    },
+    {
+      "destination_station": "FED",
+      "min_time": 28020.0,
+      "time_25": 28860.0,
+      "time_50": 29955.0,
+      "time_75": 31050.0
+    },
+    {
+      "destination_station": "ALB",
+      "min_time": 23760.0,
+      "time_25": 24360.0,
+      "time_50": 26100.0,
+      "time_75": 26970.0
+    },
+    {
+      "destination_station": "CRT",
+      "min_time": 17370.0,
+      "time_25": 20910.0,
+      "time_50": 23190.0,
+      "time_75": 26070.0
+    },
+    {
+      "destination_station": "YNY",
+      "min_time": 16290.0,
+      "time_25": 19125.0,
+      "time_50": 20925.0,
+      "time_75": 23280.0
+    },
+    {
+      "destination_station": "CLP",
+      "min_time": 26430.0,
+      "time_25": 26970.0,
+      "time_50": 28020.0,
+      "time_75": 103650.0
+    },
+    {
+      "destination_station": "ALX",
+      "min_time": 21600.0,
+      "time_25": 22140.0,
+      "time_50": 23160.0,
+      "time_75": 24510.0
+    },
+    {
+      "destination_station": "CLT",
+      "min_time": 50250.0,
+      "time_25": 50520.0,
+      "time_50": 53505.0,
+      "time_75": 56490.0
+    },
+    {
+      "destination_station": "KAN",
+      "min_time": 54240.0,
+      "time_25": 54240.0,
+      "time_50": 54510.0,
+      "time_75": 54780.0
+    },
+    {
+      "destination_station": "SAL",
+      "min_time": 46470.0,
+      "time_25": 46740.0,
+      "time_50": 50145.0,
+      "time_75": 53550.0
+    },
+    {
+      "destination_station": "SSM",
+      "min_time": 38970.0,
+      "time_25": 39510.0,
+      "time_50": 42330.0,
+      "time_75": 44370.0
+    },
+    {
+      "destination_station": "WLN",
+      "min_time": 36960.0,
+      "time_25": 37290.0,
+      "time_50": 37665.0,
+      "time_75": 45900.0
+    },
+    {
+      "destination_station": "QAN",
+      "min_time": 23280.0,
+      "time_25": 23520.0,
+      "time_50": 23790.0,
+      "time_75": 24060.0
+    },
+    {
+      "destination_station": "TRE",
+      "min_time": 12540.0,
+      "time_25": 13290.0,
+      "time_50": 14205.0,
+      "time_75": 15000.0
+    },
+    {
+      "destination_station": "RGH",
+      "min_time": 41910.0,
+      "time_25": 42180.0,
+      "time_50": 43575.0,
+      "time_75": 44970.0
+    },
+    {
+      "destination_station": "CYN",
+      "min_time": 42630.0,
+      "time_25": 42900.0,
+      "time_50": 44265.0,
+      "time_75": 45630.0
+    },
+    {
+      "destination_station": "LYH",
+      "min_time": 33990.0,
+      "time_25": 34260.0,
+      "time_50": 34740.0,
+      "time_75": 35220.0
+    },
+    {
+      "destination_station": "GAS",
+      "min_time": 51870.0,
+      "time_25": 51870.0,
+      "time_50": 52140.0,
+      "time_75": 52410.0
+    },
+    {
+      "destination_station": "CSN",
+      "min_time": 61170.0,
+      "time_25": 61170.0,
+      "time_50": 61440.0,
+      "time_75": 61710.0
+    },
+    {
+      "destination_station": "GNS",
+      "min_time": 65730.0,
+      "time_25": 65730.0,
+      "time_50": 66000.0,
+      "time_75": 66270.0
+    },
+    {
+      "destination_station": "ATN",
+      "min_time": 78630.0,
+      "time_25": 78630.0,
+      "time_50": 78900.0,
+      "time_75": 79170.0
+    },
+    {
+      "destination_station": "TCL",
+      "min_time": 90030.0,
+      "time_25": 90030.0,
+      "time_50": 90300.0,
+      "time_75": 90570.0
+    },
+    {
+      "destination_station": "LAU",
+      "min_time": 101190.0,
+      "time_25": 101190.0,
+      "time_50": 101460.0,
+      "time_75": 101730.0
+    },
+    {
+      "destination_station": "PIC",
+      "min_time": 106890.0,
+      "time_25": 106890.0,
+      "time_50": 107160.0,
+      "time_75": 107430.0
+    },
+    {
+      "destination_station": "UCA",
+      "min_time": 29580.0,
+      "time_25": 30000.0,
+      "time_50": 30915.0,
+      "time_75": 32190.0
+    },
+    {
+      "destination_station": "BUF",
+      "min_time": 41940.0,
+      "time_25": 42060.0,
+      "time_50": 43905.0,
+      "time_75": 44250.0
+    },
+    {
+      "destination_station": "CNV",
+      "min_time": 33240.0,
+      "time_25": 33240.0,
+      "time_50": 34335.0,
+      "time_75": 35430.0
+    },
+    {
+      "destination_station": "RUD",
+      "min_time": 34980.0,
+      "time_25": 34980.0,
+      "time_50": 36075.0,
+      "time_75": 37170.0
+    },
+    {
+      "destination_station": "BTN",
+      "min_time": 41880.0,
+      "time_25": 41880.0,
+      "time_50": 42975.0,
+      "time_75": 44070.0
+    },
+    {
+      "destination_station": "MID",
+      "min_time": 21090.0,
+      "time_25": 21090.0,
+      "time_50": 21630.0,
+      "time_75": 22170.0
+    },
+    {
+      "destination_station": "MJY",
+      "min_time": 20250.0,
+      "time_25": 20250.0,
+      "time_50": 20790.0,
+      "time_75": 21330.0
+    },
+    {
+      "destination_station": "LNC",
+      "min_time": 18840.0,
+      "time_25": 19275.0,
+      "time_50": 19890.0,
+      "time_75": 20430.0
+    },
+    {
+      "destination_station": "EXT",
+      "min_time": 16830.0,
+      "time_25": 16830.0,
+      "time_50": 17370.0,
+      "time_75": 17910.0
+    },
+    {
+      "destination_station": "PAO",
+      "min_time": 16320.0,
+      "time_25": 16440.0,
+      "time_50": 16980.0,
+      "time_75": 17595.0
+    },
+    {
+      "destination_station": "ARD",
+      "min_time": 15510.0,
+      "time_25": 15510.0,
+      "time_50": 16050.0,
+      "time_75": 16590.0
+    },
+    {
+      "destination_station": "CWH",
+      "min_time": 15120.0,
+      "time_25": 15120.0,
+      "time_50": 15390.0,
+      "time_75": 15660.0
+    },
+    {
+      "destination_station": "PHN",
+      "min_time": 15840.0,
+      "time_25": 15840.0,
+      "time_50": 16110.0,
+      "time_75": 16380.0
+    },
+    {
+      "destination_station": "PIT",
+      "min_time": 28980.0,
+      "time_25": 28980.0,
+      "time_50": 30075.0,
+      "time_75": 31170.0
+    },
+    {
+      "destination_station": "SPG",
+      "min_time": 1620.0,
+      "time_25": 1980.0,
+      "time_50": 11940.0,
+      "time_75": 16680.0
+    },
+    {
+      "destination_station": "FRA",
+      "min_time": 20640.0,
+      "time_25": 20640.0,
+      "time_50": 27990.0,
+      "time_75": 35340.0
+    },
+    {
+      "destination_station": "ERI",
+      "min_time": 47400.0,
+      "time_25": 47400.0,
+      "time_50": 48495.0,
+      "time_75": 49590.0
+    },
+    {
+      "destination_station": "ELY",
+      "min_time": 54960.0,
+      "time_25": 54960.0,
+      "time_50": 56055.0,
+      "time_75": 57150.0
+    },
+    {
+      "destination_station": "BRP",
+      "min_time": 4560.0,
+      "time_25": 5040.0,
+      "time_50": 5565.0,
+      "time_75": 7590.0
+    },
+    {
+      "destination_station": "ABE",
+      "min_time": 17280.0,
+      "time_25": 17280.0,
+      "time_50": 17550.0,
+      "time_75": 17820.0
+    },
+    {
+      "destination_station": "NCR",
+      "min_time": 20040.0,
+      "time_25": 20070.0,
+      "time_50": 21015.0,
+      "time_75": 22470.0
+    },
+    {
+      "destination_station": "WDB",
+      "min_time": 23100.0,
+      "time_25": 23100.0,
+      "time_50": 23370.0,
+      "time_75": 23640.0
+    },
+    {
+      "destination_station": "ASD",
+      "min_time": 27330.0,
+      "time_25": 27330.0,
+      "time_50": 27600.0,
+      "time_75": 27870.0
+    },
+    {
+      "destination_station": "RVM",
+      "min_time": 30210.0,
+      "time_25": 30210.0,
+      "time_50": 30480.0,
+      "time_75": 30750.0
+    },
+    {
+      "destination_station": "EWR",
+      "min_time": 10920.0,
+      "time_25": 10920.0,
+      "time_50": 11190.0,
+      "time_75": 11460.0
+    },
+    {
+      "destination_station": "WLY",
+      "min_time": 8190.0,
+      "time_25": 8190.0,
+      "time_50": 8235.0,
+      "time_75": 8280.0
+    },
+    {
+      "destination_station": "KIN",
+      "min_time": 8910.0,
+      "time_25": 8910.0,
+      "time_50": 8955.0,
+      "time_75": 9000.0
+    },
+    {
+      "destination_station": "NRK",
+      "min_time": 16260.0,
+      "time_25": 16260.0,
+      "time_50": 16530.0,
+      "time_75": 16800.0
+    },
+    {
+      "destination_station": "KTR",
+      "min_time": 49590.0,
+      "time_25": 49710.0,
+      "time_50": 49980.0,
+      "time_75": 50250.0
+    },
+    {
+      "destination_station": "YEM",
+      "min_time": 55770.0,
+      "time_25": 55800.0,
+      "time_50": 56070.0,
+      "time_75": 56340.0
+    },
+    {
+      "destination_station": "WNL",
+      "min_time": 0.0,
+      "time_25": 0.0,
+      "time_50": 4170.0,
+      "time_75": 11520.0
+    },
+    {
+      "destination_station": "WND",
+      "min_time": 330.0,
+      "time_25": 330.0,
+      "time_50": 4035.0,
+      "time_75": 7740.0
+    },
+    {
+      "destination_station": "HFD",
+      "min_time": 720.0,
+      "time_25": 795.0,
+      "time_50": 4035.0,
+      "time_75": 10080.0
+    },
+    {
+      "destination_station": "BER",
+      "min_time": 1680.0,
+      "time_25": 1680.0,
+      "time_50": 4050.0,
+      "time_75": 6420.0
+    },
+    {
+      "destination_station": "STS",
+      "min_time": 4050.0,
+      "time_25": 4050.0,
+      "time_50": 4215.0,
+      "time_75": 4380.0
+    },
+    {
+      "destination_station": "NRO",
+      "min_time": 8190.0,
+      "time_25": 8190.0,
+      "time_50": 8235.0,
+      "time_75": 8280.0
+    },
+    {
+      "destination_station": "MDN",
+      "min_time": 1740.0,
+      "time_25": 2070.0,
+      "time_50": 4050.0,
+      "time_75": 8790.0
+    },
+    {
+      "destination_station": "NHT",
+      "min_time": 4920.0,
+      "time_25": 5430.0,
+      "time_50": 10110.0,
+      "time_75": 16950.0
+    },
+    {
+      "destination_station": "LEW",
+      "min_time": 24960.0,
+      "time_25": 24960.0,
+      "time_50": 25575.0,
+      "time_75": 26190.0
+    },
+    {
+      "destination_station": "TYR",
+      "min_time": 28620.0,
+      "time_25": 28620.0,
+      "time_50": 29235.0,
+      "time_75": 29850.0
+    },
+    {
+      "destination_station": "ALT",
+      "min_time": 29880.0,
+      "time_25": 29880.0,
+      "time_50": 30495.0,
+      "time_75": 31110.0
+    },
+    {
+      "destination_station": "GNB",
+      "min_time": 36240.0,
+      "time_25": 36240.0,
+      "time_50": 36855.0,
+      "time_75": 37470.0
+    },
+    {
+      "destination_station": "PGH",
+      "min_time": 39660.0,
+      "time_25": 39660.0,
+      "time_50": 40275.0,
+      "time_75": 40890.0
+    },
+    {
+      "destination_station": "SOP",
+      "min_time": 46830.0,
+      "time_25": 46830.0,
+      "time_50": 47100.0,
+      "time_75": 47370.0
+    },
+    {
+      "destination_station": "CAM",
+      "min_time": 54390.0,
+      "time_25": 54390.0,
+      "time_50": 54660.0,
+      "time_75": 54930.0
+    },
+    {
+      "destination_station": "CLB",
+      "min_time": 56970.0,
+      "time_25": 56970.0,
+      "time_50": 57240.0,
+      "time_75": 57510.0
+    },
+    {
+      "destination_station": "SAV",
+      "min_time": 59130.0,
+      "time_25": 59220.0,
+      "time_50": 59490.0,
+      "time_75": 59760.0
+    },
+    {
+      "destination_station": "JAX",
+      "min_time": 68070.0,
+      "time_25": 68070.0,
+      "time_50": 68340.0,
+      "time_75": 68610.0
+    },
+    {
+      "destination_station": "TPA",
+      "min_time": 86280.0,
+      "time_25": 86280.0,
+      "time_50": 86550.0,
+      "time_75": 86820.0
+    },
+    {
+      "destination_station": "SBG",
+      "min_time": 85410.0,
+      "time_25": 85410.0,
+      "time_50": 85680.0,
+      "time_75": 85950.0
+    },
+    {
+      "destination_station": "PAK",
+      "min_time": 71790.0,
+      "time_25": 71790.0,
+      "time_50": 72060.0,
+      "time_75": 72330.0
+    },
+    {
+      "destination_station": "HLK",
+      "min_time": 3780.0,
+      "time_25": 3930.0,
+      "time_50": 8250.0,
+      "time_75": 15450.0
+    },
+    {
+      "destination_station": "BRA",
+      "min_time": 9000.0,
+      "time_25": 9000.0,
+      "time_50": 16350.0,
+      "time_75": 23700.0
+    },
+    {
+      "destination_station": "WNM",
+      "min_time": 13980.0,
+      "time_25": 13980.0,
+      "time_50": 21330.0,
+      "time_75": 28680.0
+    },
+    {
+      "destination_station": "WRJ",
+      "min_time": 15120.0,
+      "time_25": 15120.0,
+      "time_50": 22470.0,
+      "time_75": 29820.0
+    },
+    {
+      "destination_station": "MPR",
+      "min_time": 20940.0,
+      "time_25": 20940.0,
+      "time_50": 28290.0,
+      "time_75": 35640.0
+    },
+    {
+      "destination_station": "ATL",
+      "min_time": 70230.0,
+      "time_25": 70230.0,
+      "time_50": 70500.0,
+      "time_75": 70770.0
+    },
+    {
+      "destination_station": "MEI",
+      "min_time": 97890.0,
+      "time_25": 97890.0,
+      "time_50": 98160.0,
+      "time_75": 98430.0
+    },
+    {
+      "destination_station": "SDL",
+      "min_time": 108210.0,
+      "time_25": 108210.0,
+      "time_50": 108480.0,
+      "time_75": 108750.0
+    },
+    {
+      "destination_station": "NOL",
+      "min_time": 114210.0,
+      "time_25": 114210.0,
+      "time_50": 114480.0,
+      "time_75": 114750.0
+    },
+    {
+      "destination_station": "MBY",
+      "min_time": 38100.0,
+      "time_25": 38100.0,
+      "time_50": 39195.0,
+      "time_75": 40290.0
+    },
+    {
+      "destination_station": "BYN",
+      "min_time": 63540.0,
+      "time_25": 63540.0,
+      "time_50": 64635.0,
+      "time_75": 65730.0
+    },
+    {
+      "destination_station": "CHI",
+      "min_time": 77100.0,
+      "time_25": 77100.0,
+      "time_50": 78195.0,
+      "time_75": 79290.0
+    },
+    {
+      "destination_station": "TWO",
+      "min_time": 54360.0,
+      "time_25": 54360.0,
+      "time_50": 55455.0,
+      "time_75": 56550.0
+    },
+    {
+      "destination_station": "NFK",
+      "min_time": 36690.0,
+      "time_25": 36690.0,
+      "time_50": 36960.0,
+      "time_75": 37230.0
+    },
+    {
+      "destination_station": "WBG",
+      "min_time": 33390.0,
+      "time_25": 33390.0,
+      "time_50": 33660.0,
+      "time_75": 33930.0
+    },
+    {
+      "destination_station": "NPN",
+      "min_time": 35250.0,
+      "time_25": 35250.0,
+      "time_50": 35520.0,
+      "time_75": 35790.0
+    },
+    {
+      "destination_station": "LAB",
+      "min_time": 35640.0,
+      "time_25": 35640.0,
+      "time_50": 36255.0,
+      "time_75": 36870.0
+    },
+    {
+      "destination_station": "WPK",
+      "min_time": 77640.0,
+      "time_25": 77640.0,
+      "time_50": 77910.0,
+      "time_75": 78180.0
+    },
+    {
+      "destination_station": "WAS",
+      "min_time": 20400.0,
+      "time_25": 20940.0,
+      "time_50": 21750.0,
+      "time_75": 23160.0
+    },
+    {
+      "destination_station": "BAL",
+      "min_time": 18480.0,
+      "time_25": 18630.0,
+      "time_50": 19350.0,
+      "time_75": 20280.0
+    },
+    {
+      "destination_station": "NYP",
+      "min_time": 9540.0,
+      "time_25": 12000.0,
+      "time_50": 14040.0,
+      "time_75": 23205.0
+    },
+    {
+      "destination_station": "STM",
+      "min_time": 6120.0,
+      "time_25": 6990.0,
+      "time_50": 7290.0,
+      "time_75": 8970.0
+    },
+    {
+      "destination_station": "NHV",
+      "min_time": 3300.0,
+      "time_25": 4260.0,
+      "time_50": 5325.0,
+      "time_75": 6390.0
+    },
+    {
+      "destination_station": "BBY",
+      "min_time": 12900.0,
+      "time_25": 12990.0,
+      "time_50": 13335.0,
+      "time_75": 17160.0
+    },
+    {
+      "destination_station": "PHL",
+      "min_time": 14340.0,
+      "time_25": 14760.0,
+      "time_50": 15480.0,
+      "time_75": 16110.0
+    },
+    {
+      "destination_station": "MET",
+      "min_time": 11460.0,
+      "time_25": 12000.0,
+      "time_50": 12270.0,
+      "time_75": 14880.0
+    },
+    {
+      "destination_station": "WIL",
+      "min_time": 15540.0,
+      "time_25": 15960.0,
+      "time_50": 16620.0,
+      "time_75": 17340.0
+    },
+    {
+      "destination_station": "WSP",
+      "min_time": 33840.0,
+      "time_25": 33840.0,
+      "time_50": 34935.0,
+      "time_75": 36030.0
+    },
+    {
+      "destination_station": "SAR",
+      "min_time": 26820.0,
+      "time_25": 27660.0,
+      "time_50": 28755.0,
+      "time_75": 29850.0
+    },
+    {
+      "destination_station": "SDY",
+      "min_time": 25080.0,
+      "time_25": 25680.0,
+      "time_50": 27105.0,
+      "time_75": 27870.0
+    },
+    {
+      "destination_station": "HUD",
+      "min_time": 22020.0,
+      "time_25": 22710.0,
+      "time_50": 24390.0,
+      "time_75": 25260.0
+    },
+    {
+      "destination_station": "POU",
+      "min_time": 20100.0,
+      "time_25": 22290.0,
+      "time_50": 23865.0,
+      "time_75": 26610.0
+    },
+    {
+      "destination_station": "CVS",
+      "min_time": 29790.0,
+      "time_25": 30330.0,
+      "time_50": 31140.0,
+      "time_75": 99090.0
+    },
+    {
+      "destination_station": "MSS",
+      "min_time": 24210.0,
+      "time_25": 24750.0,
+      "time_50": 26100.0,
+      "time_75": 100230.0
+    },
+    {
+      "destination_station": "RMT",
+      "min_time": 36060.0,
+      "time_25": 36270.0,
+      "time_50": 36615.0,
+      "time_75": 36810.0
+    },
+    {
+      "destination_station": "PTB",
+      "min_time": 30690.0,
+      "time_25": 30720.0,
+      "time_50": 31245.0,
+      "time_75": 31350.0
+    },
+    {
+      "destination_station": "RVR",
+      "min_time": 28620.0,
+      "time_25": 28650.0,
+      "time_50": 29175.0,
+      "time_75": 29370.0
+    },
+    {
+      "destination_station": "FBG",
+      "min_time": 24540.0,
+      "time_25": 24870.0,
+      "time_50": 25245.0,
+      "time_75": 25710.0
+    },
+    {
+      "destination_station": "DNC",
+      "min_time": 46440.0,
+      "time_25": 46440.0,
+      "time_50": 46710.0,
+      "time_75": 46980.0
+    },
+    {
+      "destination_station": "BNC",
+      "min_time": 48600.0,
+      "time_25": 48600.0,
+      "time_50": 48870.0,
+      "time_75": 49140.0
+    },
+    {
+      "destination_station": "HPT",
+      "min_time": 44310.0,
+      "time_25": 44580.0,
+      "time_50": 48105.0,
+      "time_75": 51630.0
+    },
+    {
+      "destination_station": "DAN",
+      "min_time": 38910.0,
+      "time_25": 38910.0,
+      "time_50": 39180.0,
+      "time_75": 39450.0
+    },
+    {
+      "destination_station": "GRO",
+      "min_time": 42570.0,
+      "time_25": 42840.0,
+      "time_50": 46785.0,
+      "time_75": 50730.0
+    },
+    {
+      "destination_station": "SPB",
+      "min_time": 55410.0,
+      "time_25": 55410.0,
+      "time_50": 55680.0,
+      "time_75": 55950.0
+    },
+    {
+      "destination_station": "GRV",
+      "min_time": 59010.0,
+      "time_25": 59010.0,
+      "time_50": 59280.0,
+      "time_75": 59550.0
+    },
+    {
+      "destination_station": "TCA",
+      "min_time": 63330.0,
+      "time_25": 63330.0,
+      "time_50": 63600.0,
+      "time_75": 63870.0
+    },
+    {
+      "destination_station": "BHM",
+      "min_time": 86730.0,
+      "time_25": 86730.0,
+      "time_50": 87000.0,
+      "time_75": 87270.0
+    },
+    {
+      "destination_station": "HBG",
+      "min_time": 103170.0,
+      "time_25": 103170.0,
+      "time_50": 103440.0,
+      "time_75": 103710.0
+    },
+    {
+      "destination_station": "RHI",
+      "min_time": 20880.0,
+      "time_25": 23070.0,
+      "time_50": 24090.0,
+      "time_75": 26340.0
+    },
+    {
+      "destination_station": "ROM",
+      "min_time": 30540.0,
+      "time_25": 30900.0,
+      "time_50": 31995.0,
+      "time_75": 33090.0
+    },
+    {
+      "destination_station": "ROC",
+      "min_time": 38340.0,
+      "time_25": 38880.0,
+      "time_50": 40125.0,
+      "time_75": 41070.0
+    },
+    {
+      "destination_station": "VRN",
+      "min_time": 39180.0,
+      "time_25": 39180.0,
+      "time_50": 40275.0,
+      "time_75": 41370.0
+    },
+    {
+      "destination_station": "ELT",
+      "min_time": 19620.0,
+      "time_25": 20145.0,
+      "time_50": 20760.0,
+      "time_75": 21300.0
+    },
+    {
+      "destination_station": "DOW",
+      "min_time": 17310.0,
+      "time_25": 17310.0,
+      "time_50": 17850.0,
+      "time_75": 18390.0
+    },
+    {
+      "destination_station": "COT",
+      "min_time": 17850.0,
+      "time_25": 17850.0,
+      "time_50": 18390.0,
+      "time_75": 18930.0
+    },
+    {
+      "destination_station": "PAR",
+      "min_time": 18360.0,
+      "time_25": 18360.0,
+      "time_50": 18900.0,
+      "time_75": 19440.0
+    },
+    {
+      "destination_station": "HAR",
+      "min_time": 20820.0,
+      "time_25": 21285.0,
+      "time_50": 21900.0,
+      "time_75": 22440.0
+    },
+    {
+      "destination_station": "WOR",
+      "min_time": 19080.0,
+      "time_25": 19080.0,
+      "time_50": 26430.0,
+      "time_75": 33780.0
+    },
+    {
+      "destination_station": "CLE",
+      "min_time": 53220.0,
+      "time_25": 53220.0,
+      "time_50": 54315.0,
+      "time_75": 55410.0
+    },
+    {
+      "destination_station": "SKY",
+      "min_time": 56940.0,
+      "time_25": 56940.0,
+      "time_50": 58035.0,
+      "time_75": 59130.0
+    },
+    {
+      "destination_station": "TOL",
+      "min_time": 60540.0,
+      "time_25": 60540.0,
+      "time_50": 61635.0,
+      "time_75": 62730.0
+    },
+    {
+      "destination_station": "WTI",
+      "min_time": 65220.0,
+      "time_25": 65220.0,
+      "time_50": 66315.0,
+      "time_75": 67410.0
+    },
+    {
+      "destination_station": "EKH",
+      "min_time": 68340.0,
+      "time_25": 68340.0,
+      "time_50": 69435.0,
+      "time_75": 70530.0
+    },
+    {
+      "destination_station": "AMS",
+      "min_time": 26160.0,
+      "time_25": 26250.0,
+      "time_50": 27345.0,
+      "time_75": 28440.0
+    },
+    {
+      "destination_station": "SYR",
+      "min_time": 33660.0,
+      "time_25": 34260.0,
+      "time_50": 35055.0,
+      "time_75": 36450.0
+    },
+    {
+      "destination_station": "NFS",
+      "min_time": 47280.0,
+      "time_25": 47280.0,
+      "time_50": 48375.0,
+      "time_75": 49470.0
+    },
+    {
+      "destination_station": "NFL",
+      "min_time": 46980.0,
+      "time_25": 47340.0,
+      "time_50": 48435.0,
+      "time_75": 49530.0
+    },
+    {
+      "destination_station": "BFX",
+      "min_time": 42780.0,
+      "time_25": 43860.0,
+      "time_50": 44955.0,
+      "time_75": 46050.0
+    },
+    {
+      "destination_station": "OSB",
+      "min_time": 5940.0,
+      "time_25": 5940.0,
+      "time_50": 5985.0,
+      "time_75": 6030.0
+    },
+    {
+      "destination_station": "NLC",
+      "min_time": 7050.0,
+      "time_25": 7050.0,
+      "time_50": 7095.0,
+      "time_75": 7140.0
+    },
+    {
+      "destination_station": "MYS",
+      "min_time": 7740.0,
+      "time_25": 7740.0,
+      "time_50": 7785.0,
+      "time_75": 7830.0
+    },
+    {
+      "destination_station": "FAY",
+      "min_time": 41550.0,
+      "time_25": 41760.0,
+      "time_50": 42030.0,
+      "time_75": 42300.0
+    },
+    {
+      "destination_station": "DIL",
+      "min_time": 45030.0,
+      "time_25": 45300.0,
+      "time_50": 47640.0,
+      "time_75": 49980.0
+    },
+    {
+      "destination_station": "CHS",
+      "min_time": 52950.0,
+      "time_25": 52980.0,
+      "time_50": 53250.0,
+      "time_75": 53520.0
+    },
+    {
+      "destination_station": "BCV",
+      "min_time": 23190.0,
+      "time_25": 23190.0,
+      "time_50": 23460.0,
+      "time_75": 23730.0
+    },
+    {
+      "destination_station": "NBK",
+      "min_time": 11760.0,
+      "time_25": 11760.0,
+      "time_50": 12030.0,
+      "time_75": 12300.0
+    },
+    {
+      "destination_station": "PJC",
+      "min_time": 12540.0,
+      "time_25": 12540.0,
+      "time_50": 12810.0,
+      "time_75": 13080.0
+    },
+    {
+      "destination_station": "WFD",
+      "min_time": 3030.0,
+      "time_25": 3030.0,
+      "time_50": 4125.0,
+      "time_75": 5220.0
+    },
+    {
+      "destination_station": "GFD",
+      "min_time": 6780.0,
+      "time_25": 7140.0,
+      "time_50": 11670.0,
+      "time_75": 18660.0
+    },
+    {
+      "destination_station": "HGD",
+      "min_time": 27060.0,
+      "time_25": 27060.0,
+      "time_50": 27675.0,
+      "time_75": 28290.0
+    },
+    {
+      "destination_station": "JST",
+      "min_time": 33180.0,
+      "time_25": 33180.0,
+      "time_50": 33795.0,
+      "time_75": 34410.0
+    },
+    {
+      "destination_station": "DNK",
+      "min_time": 60270.0,
+      "time_25": 60270.0,
+      "time_50": 60540.0,
+      "time_75": 60810.0
+    },
+    {
+      "destination_station": "ORL",
+      "min_time": 79020.0,
+      "time_25": 79020.0,
+      "time_50": 79290.0,
+      "time_75": 79560.0
+    },
+    {
+      "destination_station": "KIS",
+      "min_time": 80160.0,
+      "time_25": 80160.0,
+      "time_50": 80430.0,
+      "time_75": 80700.0
+    },
+    {
+      "destination_station": "LAK",
+      "min_time": 83460.0,
+      "time_25": 83460.0,
+      "time_50": 83730.0,
+      "time_75": 84000.0
+    },
+    {
+      "destination_station": "LKL",
+      "min_time": 85920.0,
+      "time_25": 85920.0,
+      "time_50": 86190.0,
+      "time_75": 86460.0
+    },
+    {
+      "destination_station": "WTH",
+      "min_time": 83100.0,
+      "time_25": 83100.0,
+      "time_50": 83370.0,
+      "time_75": 83640.0
+    },
+    {
+      "destination_station": "OKE",
+      "min_time": 87870.0,
+      "time_25": 87870.0,
+      "time_50": 88140.0,
+      "time_75": 88410.0
+    },
+    {
+      "destination_station": "WPB",
+      "min_time": 90510.0,
+      "time_25": 90510.0,
+      "time_50": 90780.0,
+      "time_75": 91050.0
+    },
+    {
+      "destination_station": "FLO",
+      "min_time": 47610.0,
+      "time_25": 47670.0,
+      "time_50": 47940.0,
+      "time_75": 48210.0
+    },
+    {
+      "destination_station": "JSP",
+      "min_time": 62370.0,
+      "time_25": 62370.0,
+      "time_50": 62640.0,
+      "time_75": 62910.0
+    },
+    {
+      "destination_station": "BLF",
+      "min_time": 11220.0,
+      "time_25": 11220.0,
+      "time_50": 18570.0,
+      "time_75": 25920.0
+    },
+    {
+      "destination_station": "CLA",
+      "min_time": 12900.0,
+      "time_25": 12900.0,
+      "time_50": 20250.0,
+      "time_75": 27600.0
+    },
+    {
+      "destination_station": "ESX",
+      "min_time": 24300.0,
+      "time_25": 24300.0,
+      "time_50": 31650.0,
+      "time_75": 39000.0
+    },
+    {
+      "destination_station": "SAB",
+      "min_time": 26220.0,
+      "time_25": 26220.0,
+      "time_50": 33570.0,
+      "time_75": 40920.0
+    },
+    {
+      "destination_station": "WAB",
+      "min_time": 22380.0,
+      "time_25": 22380.0,
+      "time_50": 29730.0,
+      "time_75": 37080.0
+    },
+    {
+      "destination_station": "MTR",
+      "min_time": 51300.0,
+      "time_25": 51300.0,
+      "time_50": 52395.0,
+      "time_75": 53490.0
+    },
+    {
+      "destination_station": "SOB",
+      "min_time": 69600.0,
+      "time_25": 69600.0,
+      "time_50": 70695.0,
+      "time_75": 71790.0
+    },
+    {
+      "destination_station": "RNK",
+      "min_time": 38550.0,
+      "time_25": 38550.0,
+      "time_50": 38820.0,
+      "time_75": 39090.0
+    },
+    {
+      "destination_station": "HAM",
+      "min_time": 49170.0,
+      "time_25": 49170.0,
+      "time_50": 49440.0,
+      "time_75": 49710.0
+    },
+    {
+      "destination_station": "DLD",
+      "min_time": 75000.0,
+      "time_25": 75000.0,
+      "time_50": 75270.0,
+      "time_75": 75540.0
+    },
+    {
+      "destination_station": "RPH",
+      "min_time": 18000.0,
+      "time_25": 18000.0,
+      "time_50": 25350.0,
+      "time_75": 32700.0
+    }
+  ]
+}
+]

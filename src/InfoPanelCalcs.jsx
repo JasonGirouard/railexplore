@@ -20,8 +20,3 @@ export const openInfoPanel = (station, originStation, routes, setCalculatedRoute
     setIsPanelOpen(true); // Open the panel
  
   };
-  
-  export const closeInfoPanel = (setIsPanelOpen) => {
-    setIsPanelOpen(false); // Close the panel
-
-  };

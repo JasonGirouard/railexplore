@@ -41,9 +41,31 @@
   position: absolute;
   z-index: 1000; /* Ensures the button stays on top of the map */
   top: 10px; /* Adjust the top position as needed */
-  left: 10px; /* Adjust the left position as needed */
-  margin: 0;
+  padding: 10px;
+  width: 250px; /* Example width - adjust as needed */
+  height: 50px; /* Example height - adjust as needed */
+  border-radius: 0;   /* Remove border-radius to eliminate rounded corners */
+   /* Additional styles to vertically center the form */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+} 
+
+
+
+/* Make the AutoComplete input wider, taller, and without rounded corners */
+.ant-form-item-control-input-content .ant-input-affix-wrapper, .ant-select, .ant-select-outlined, .ant-select-auto-complete, .ant-select-in-form-item, .ant-select-single, .ant-select-show-search,
+.ant-form-item-control-input-content .ant-input-affix-wrapper .ant-input, .ant-form, .ant-form-horizontal, .ant-select-selector,
+.ant-form-item-control-input-content .ant-input-affix-wrapper:focus, .ant-select-selection-search-input,
+.ant-form-item-control-input-content .ant-input-affix-wrapper-focused, .ant-form-item, .ant-auto-complete {
+  width: 100%; /* Set to 100% to fill the form item */
+  height: 100%; /* Example height, adjust as needed */
+  border-radius: 0; /* Remove rounded corners */
+  padding: 0px
 }
+
+
+
 
 .App {
   position: relative; /* This makes sure that the button is positioned relative to the App container */
@@ -108,200 +130,12 @@
   display: none; /* or you can remove it if you don't need the 'Set as Origin' link */
 }
 
-/* INFO PANEL INFO PANEL INFO PANEL INFO PANEL INFO PANEL INFO PANEL INFO PANEL INFO PANEL INFO PANEL */ 
-
-/* Style for the close button */
-.info-panel button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  /* More button styles... */
-}
-
-.info-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 100%;
-  background-color: white;
-  z-index: 1000;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  padding: 0; 
-  overflow: hidden;
-  overflow-y: auto;
-
-  /* display: flex;
-  flex-direction: column; */
-
-}
-
-.info-header {
+.flex-container {
   display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  justify-content: flex-start; /* If you want to space out children elements */
-  width: 100%; /* Ensure the header takes full width of its parent */
-  padding: 10px;
-  box-sizing: border-box; /* Include padding and borders in the element's total width */
+  height: 100vh; /* Adjust the height as necessary */
 }
 
-.collapse-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 1.5em;
-  margin-right: 10px;
-}
-
-
-
-.station-info h2,
-.station-info p {
-  margin: 0;
-  padding: 0;
-  text-align: left;
-}
-
-.image-container {
-  position: relative;
-  width: auto;
-  max-width: 100%;
-  margin: 10px;
-  padding: 10px;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto; /* Adjust as needed */
-  border-radius: 8px 8px 0 0; /* Rounded corners at the top */
-  display: block; /* Eliminates any space below the image */
-}
-
-.book-button {
-  position: absolute;
-  bottom: 20px; /* Adjust as needed for exact positioning from the bottom */
-  right: 20px; /* Adjust as needed for exact positioning from the right */
-  background-color: #007bff; /* Amtrak's brand color or any color you prefer */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer; /* Indicates that the element is clickable */
-  z-index: 10; 
-  font-weight: bold; /* Optional: makes the text bold */
-}
-
-.book-button:hover {
-  background-color: #0056b3; /* Darker shade for hover state */
-}
-
-
-.station-icon {
-  width: 30px;  /* Adjust the size as needed */
-  height: 30px; /* Adjust the size as needed */
-}
-
-.station-details {
-  display: flex;
-  align-items: center; /* This will vertically center align the items */
-  gap: 4px; /* Adjust the space between items if necessary */
-  margin: 0px;
-  padding: 0px;
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  
-  /* Position the tooltip text */
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -60px; /* Use half of the width (120px/2) to center the tooltip */
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-.routes-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-
-.route-card {
-  background-color: #F5F5F5;
-  border-radius: 8px;
-  margin: 20px;
-  margin-bottom: 16px;
-  padding: 10px;
-  border: 1px solid #DFDEDE;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-}
-.route-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px;
-  padding: 0px;
-  border: 0px;
-}
-
-.route-upper-level {
-  font-style: italic;
-  display: flex;
-  align-items: left;
-  margin-bottom: 5px; /* Adjust as necessary */
-}
-
-.route-lower-level {
-  display: flex;
-  justify-content: space-evenly; 
-  align-items: center;
-}
-
-.route-details {
-  display: flex;
-  align-items: center;
-  gap: 25px; /* Adjust the space between elements */
-}
-
-.route-details {
-  margin: 0px;
-  padding: 0px;
-  font-weight: bold;
-}
-
-.route-title {
-  font-size: 1em;
-  margin: 0;
-  font-weight: normal;
-  font-style: italic;
-}
-
-.route-time, .route-nonstop, .route-stops, .route-duration {
-  font-size: 0.9em;
-}
-
-.route-travel-time {
-  margin: 5px 0;
-  font-weight: bold;
+.main-content {
+  flex-grow: 1; /* Take up the remaining space */
+  overflow: auto;
 }

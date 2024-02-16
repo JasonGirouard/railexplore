@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, GeoJSON, useMap } from "react-leaflet";
+import { MapContainer, GeoJSON, useMap, ZoomControl  } from "react-leaflet";
 import TileComponent from "./TileComponent";
 import StationCircleComponent from "./StationCircleComponent";
-import stations from "./stations.json";
+import stations from "./data/stations.json";
+import Legend from "./Legend";
 
 function CenterMap({ coords }) {
   const map = useMap();
@@ -12,15 +13,24 @@ function CenterMap({ coords }) {
   return null;
 }
 
-const Map = ({ coords, onSeeMoreClicked, originStation, setOriginStation , isPanelOpen}) => {
-  const [geoJsonData, setGeoJsonData] = useState(null);
-  const [selectedStation, setSelectedStation] = useState(null);
+const Map = ({
+  coords,
+  onSeeMoreClicked,
+  originStation,
+  setOriginStation,
+  isPanelOpen,
+  setIsPanelOpen,
+  activeStation,
+  setActiveStation,
+  selectedStationDestinations,
+}) => {
 
-  const clearSelectedStation = () => setSelectedStation(null);
+  const [geoJsonData, setGeoJsonData] = useState(null); 
 
-  const handleClose = () => {
-    setSelectedStation(null);
-  };
+  //const clearSelectedStation = () => setSelectedStation(null);
+  // const handleClose = () => {
+  //   setSelectedStation(null);
+  // };
 
   useEffect(() => {
     fetch(
@@ -30,12 +40,11 @@ const Map = ({ coords, onSeeMoreClicked, originStation, setOriginStation , isPan
       .then((data) => setGeoJsonData(data));
   }, []);
 
+ 
+
   const onMarkerClick = (station) => {
-    
-    setSelectedStation(station);
-    if (isPanelOpen) {
-      onSeeMoreClicked(station);
-    }
+    setActiveStation(station);
+    //update the panel here, or use state updates of station to drive info panel updates
   };
 
   const northAmericaBounds = [
@@ -50,19 +59,33 @@ const Map = ({ coords, onSeeMoreClicked, originStation, setOriginStation , isPan
       style={{ height: "100vh", width: "100%" }}
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
+      zoomControl={false} // Disable default zoom control
     >
-      {stations.map((station) => (
-        <StationCircleComponent
-          key={station.code}
-          station={station}
-          onMarkerClick={onMarkerClick}
-         // onSeeMoreClicked={onSeeMoreClicked(station)}
-          onSeeMoreClicked={() => onSeeMoreClicked(station)}
-          setOriginStation={setOriginStation}
-          isSelected={selectedStation && station.code === selectedStation.code}
-          originStation={originStation}
-        />
-      ))}
+      <ZoomControl position="bottomright" /> 
+      {stations
+        .filter((station) => station.mode === "TRAIN")
+        .map((station) => {
+
+        // Find the specific destination data for this station
+        const destination = selectedStationDestinations?.destinations.find(
+          (d) => d.destination_station === station.code
+        );
+       return (
+          <StationCircleComponent
+            key={station.code}
+            station={station}
+            onMarkerClick={onMarkerClick}
+            // onSeeMoreClicked={onSeeMoreClicked(station)}
+            onSeeMoreClicked={() => setIsPanelOpen(true)}
+            activeStation={activeStation}
+            setActiveStation={setActiveStation}
+            isSelected={activeStation && station.code === activeStation.code}
+            originStation={originStation}
+            destination={destination} // Pass specific destination data
+          />
+        );
+      })
+        }
 
       {geoJsonData && (
         <GeoJSON
@@ -78,6 +101,7 @@ const Map = ({ coords, onSeeMoreClicked, originStation, setOriginStation , isPan
 
       <TileComponent />
       <CenterMap coords={coords} />
+      <Legend />
     </MapContainer>
   );
 };
