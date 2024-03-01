@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/railexplore/static/css/main.0c5010b1.css",
-    "main.js": "/railexplore/static/js/main.e9fba9fa.js",
+    "main.css": "/railexplore/static/css/main.06841fd1.css",
+    "main.js": "/railexplore/static/js/main.a032c80b.js",
     "static/js/592.69394a4a.chunk.js": "/railexplore/static/js/592.69394a4a.chunk.js",
     "static/media/station.png": "/railexplore/static/media/station.f0e73f71d696b23b01c7.png",
     "static/media/train.png": "/railexplore/static/media/train.e0651f0b578f71d6445f.png",
@@ -12,12 +12,12 @@
     "static/media/has-shelter.png": "/railexplore/static/media/has-shelter.b14dad6857fc02447cbe.png",
     "static/media/platform.png": "/railexplore/static/media/platform.8b74fc91f71c8e808c46.png",
     "index.html": "/railexplore/index.html",
-    "main.0c5010b1.css.map": "/railexplore/static/css/main.0c5010b1.css.map",
-    "main.e9fba9fa.js.map": "/railexplore/static/js/main.e9fba9fa.js.map",
+    "main.06841fd1.css.map": "/railexplore/static/css/main.06841fd1.css.map",
+    "main.a032c80b.js.map": "/railexplore/static/js/main.a032c80b.js.map",
     "592.69394a4a.chunk.js.map": "/railexplore/static/js/592.69394a4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c5010b1.css",
-    "static/js/main.e9fba9fa.js"
+    "static/css/main.06841fd1.css",
+    "static/js/main.a032c80b.js"
   ]
 }
