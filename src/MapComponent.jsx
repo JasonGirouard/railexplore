@@ -5,9 +5,11 @@ import StationCircleComponent from "./StationCircleComponent";
 import stations from "./data/stations.json";
 import Legend from "./Legend";
 
+
 function CenterMap({ coords }) {
   const map = useMap();
   useEffect(() => {
+    console.log(map.getZoom())
     map.setView(coords, map.getZoom());
   }, [coords, map]);
   return null;
@@ -27,6 +29,7 @@ const Map = ({
 
   const [geoJsonData, setGeoJsonData] = useState(null); 
 
+
   //const clearSelectedStation = () => setSelectedStation(null);
   // const handleClose = () => {
   //   setSelectedStation(null);
@@ -41,9 +44,19 @@ const Map = ({
   }, []);
 
  
+  useEffect(() => {
+
+    if (activeStation ) {
+   //   console.log('activeStation=',activeStation.code)
+    }
+ 
+  }, [activeStation]);
 
   const onMarkerClick = (station) => {
     setActiveStation(station);
+  //  console.log(activeStation)
+   // console.log(station)
+
     //update the panel here, or use state updates of station to drive info panel updates
   };
 
@@ -55,10 +68,11 @@ const Map = ({
   return (
     <MapContainer
       center={coords}
-      zoom={13}
+      zoom={7}
       style={{ height: "100vh", width: "100%" }}
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
+      scrollWheelZoom={false} // Disable scroll-to-zoom
       zoomControl={false} // Disable default zoom control
     >
       <ZoomControl position="bottomright" /> 
@@ -82,10 +96,13 @@ const Map = ({
             isSelected={activeStation && station.code === activeStation.code}
             originStation={originStation}
             destination={destination} // Pass specific destination data
+
           />
         );
       })
         }
+
+        
 
       {geoJsonData && (
         <GeoJSON

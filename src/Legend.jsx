@@ -48,7 +48,7 @@ const Legend = () => {
     <>
       <style>
         {`.custom-legend.leaflet-control {
-            margin-bottom: 40px !important; /* Move up by 10px */
+            margin-bottom: 60px !important; /* Move up by 60px */
           }`}
       </style>
       null

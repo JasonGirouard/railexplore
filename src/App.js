@@ -10,7 +10,8 @@ import { openInfoPanel } from "./InfoPanelCalcs";
 import stationSummary from "./data/all_stations_paths.json";
 import stations from "./data/stations.json";
 import LocationDetector from "./LocationDetector";
-import LeftNav from "./LeftNav"; // Make sure the path is correct
+import LeftNav from "./LeftNav"; 
+import Explore from "./Explore";
 
 function App() {
   const defaultStation = {
@@ -49,49 +50,10 @@ function App() {
     setOriginStation
   );
 
-  //this is necessary to re-render the map
-  useEffect(() => {
-    setSelectedStationDestinations(
-      stationSummary.find(
-        (entry) => entry.origin_station === originStation.code
-      )
-    );
-    setInputValue(defaultStation.name);
-    console.log("originSetAgain");
-  }, [originStation]);
-
-  //select the chosen origin station from the dropdown
-  const handleSelect = (value, option) => {
-    const selectedOption = stations.find(
-      (station) => station.name === value || station.code === value
-    );
-    if (selectedOption) {
-      setOriginStation(selectedOption);
-      setInputValue(selectedOption.name);
-      setHasLocationBeenDetected(true);
-      setCoords([selectedOption.lat, selectedOption.long]);
-      setSelectedStationDestinations(
-        stationSummary.find(
-          (entry) => entry.origin_station === originStation.code
-        )
-      );
-    }
-  };
-
   return (
     <div className="App">
-      {/* Conditionally render LocationDetector based on hasLocationBeenDetected */}
-      {!hasLocationBeenDetected && (
-        <LocationDetector
-          stations={stations}
-          onNearestStationFound={(nearestStation) => {
-            setOriginStation(nearestStation);
-            setInputValue(nearestStation.name);
-            setCoords([nearestStation.lat, nearestStation.long]);
-            setHasLocationBeenDetected(true); // Ensure this runs only once
-          }}
-        />
-      )}
+     
+
       <div className="flex-container">
         <LeftNav
           onDistanceChange={(value) => console.log(value)}
@@ -100,47 +62,31 @@ function App() {
           collapsed={collapsed}
           setCollapsed={setCollapsed}
         />
-
-        <div className="main-content">
-          <div className="origin-button">
-            <Form autoComplete="off">
-              <Form.Item name="station" className = "originSelector"
-              style={{ width: '100%' }}>
-                <AutoComplete
-                  options={options}
-                  value={inputValue}
-                  onSelect={handleSelect}
-                  onSearch={handleSearch}
-                  placeholder="Type your local station name"
-                  style={{ width: '100%' }}
-                />
-              </Form.Item>
-            </Form>
-          </div>
-
-          <MapComponent
-            coords={coords}
-            onSeeMoreClicked={() => setIsPanelOpen(true)}
-            originStation={originStation}
-            setOriginStation={setOriginStation}
-            isPanelOpen={isPanelOpen}
-            setIsPanelOpen={setIsPanelOpen}
-            activeStation={activeStation}
-            setActiveStation={setActiveStation}
-            selectedStationDestinations={selectedStationDestinations}
-          />
-          {isPanelOpen && (
-            <InfoPanel
-              originStation={originStation}
-              station={activeStation}
-              setIsPanelOpen={setIsPanelOpen}
-              routes={routes}
-              calculatedRoutes={calculatedRoutes}
-              calculatedRoutesWT={calculatedRoutesWT}
-              selectedStationDestinations={selectedStationDestinations}
-            />
-          )}
-        </div>
+        <Explore
+        defaultStation = {defaultStation}
+        originStation = {originStation}
+        setOriginStation = {setOriginStation}
+        coords = {coords}
+        setCoords = {setCoords}
+        collapsed = {collapsed}
+        setCollapsed = {setCollapsed}
+        isPanelOpen = {isPanelOpen}
+        setIsPanelOpen = {setIsPanelOpen}
+        activeStation = {activeStation}
+        setActiveStation = {setActiveStation}
+        calculatedRoutes = {calculatedRoutes}
+        setCalculatedRoutes = {setCalculatedRoutes}
+        calculatedRoutesWT = {calculatedRoutesWT}
+        setCalculatedRoutesWT = {setCalculatedRoutesWT}
+        inputValue = {inputValue}
+        setInputValue = {setInputValue}
+        selectedStationDestinations = {selectedStationDestinations}
+        setSelectedStationDestinations = {setSelectedStationDestinations}
+        options = {options}
+        handleSearch = {handleSearch}
+        hasLocationBeenDetected = {hasLocationBeenDetected}
+        setHasLocationBeenDetected = {setHasLocationBeenDetected}
+        />
       </div>
     </div>
   );

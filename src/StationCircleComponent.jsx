@@ -1,5 +1,6 @@
 import React from "react";
 import { CircleMarker, Popup } from "react-leaflet";
+import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
 const StationCircleComponent = ({
   station,
@@ -46,6 +47,11 @@ const StationCircleComponent = ({
   }
 
   const getFillColor = (stationCode) => {
+    // If this station is the active station, make it gray
+    if (activeStation && stationCode === activeStation.code) {
+      return "#8D6B94"; // purple color for active station
+    }
+
     let color = "#FFFFFF"; // Default color
 
     if (destination) {
@@ -82,13 +88,18 @@ const StationCircleComponent = ({
     }
 
     if (originStation && originStation.code === stationCode) {
-      color = "#030303"; // Override color for the origin station
+      color = "#353535"; // Override color for the origin station
     }
 
     return color;
   };
 
   const getOutlineColor = (stationCode) => {
+    // If this station is the active station, make it gray
+    if (activeStation && stationCode === activeStation.code) {
+      return "#8D6B94"; // purple color for active station
+    }
+
     let color = "#AFDDFF"; // Default color
 
     if (destination) {
@@ -125,7 +136,7 @@ const StationCircleComponent = ({
     }
 
     if (originStation && originStation.code === stationCode) {
-      color = "#030303"; // Override color for the origin station
+      color = "#353535"; // Override color for the origin station
     }
 
     return color;
@@ -140,32 +151,52 @@ const StationCircleComponent = ({
     return `${hours}h ${minutes}m`;
   };
 
+  // Function to handle image load error
+  const handleImageError = (e) => {
+    e.target.src = placeholderImage; // Replace with placeholder image
+  };
+
+  const interactionRadius = 8; // Larger radius for interaction
+  const visualRadius = 8; // Visual radius of the marker
+
   return (
-    <CircleMarker
-      key={`${station.code}-${getFillColor(station.code)}`}
-      //  key={originStation.code == station.code ? "origin" : station.code}
-      center={[station.lat, station.long]}
-      fillColor={getFillColor(station.code)}
-      color={getOutlineColor(station.code)}
-      fillOpacity={originStation.code == station.code ? 0.9 : 0.6}
-      radius={8}
-      weight={2}
-      eventHandlers={{
-        click: () => {
-          onMarkerClick(station); // This should call the function passed as prop
-        },
-      }}
-    >
-      <Popup>
-        <div className="custom-popup">
-          <div className="popup-image-container">
-            <img src={station.image_paths[1]} alt="Random Image" />
-          </div>
-          <div className="popup-content">
-            <h2>{station.name}</h2>
-            <div className="popup-info">
-              <span>{formatMinTime(station.code)}</span>
-              <a
+    <>
+      {/* Visual Marker */}
+      <CircleMarker
+        key={`${station.code}-${getFillColor(station.code)}`}
+        center={[station.lat, station.long]}
+        fillColor={getFillColor(station.code)}
+        color={getOutlineColor(station.code)}
+        fillOpacity={originStation.code === station.code ? 0.9 : 0.6}
+        radius={visualRadius}
+        weight={2}
+        eventHandlers={{
+          click: () => {
+            onMarkerClick(station);
+            onSeeMoreClicked();
+          },
+          mouseover: (event) => {
+            event.target.openPopup();
+          },
+          mouseout: (event) => {
+            event.target.closePopup();
+          },
+        }}
+      >
+        <Popup>
+          <div className="custom-popup">
+            <div className="popup-image-container">
+              <img
+                src={station.image_urls[0]}
+                alt="Image of the city"
+                onError={(e) => (e.target.src = placeholderImage)} // Fallback to placeholder image on error
+              />
+            </div>
+            <div className="popup-content">
+              <h2>{station.name}</h2>
+              <div className="popup-info">
+                <span>{formatMinTime(station.code)}</span>
+                <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -175,11 +206,12 @@ const StationCircleComponent = ({
               >
                 see more
               </a>
+              </div>
             </div>
           </div>
-        </div>
-      </Popup>
-    </CircleMarker>
+        </Popup>
+      </CircleMarker>
+    </>
   );
 };
 

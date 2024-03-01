@@ -42,6 +42,7 @@
   z-index: 1000; /* Ensures the button stays on top of the map */
   top: 10px; /* Adjust the top position as needed */
   padding: 10px;
+  font-size: 16px;
   width: 250px; /* Example width - adjust as needed */
   height: 50px; /* Example height - adjust as needed */
   border-radius: 0;   /* Remove border-radius to eliminate rounded corners */
@@ -50,6 +51,10 @@
    align-items: center;
    justify-content: center;
 } 
+
+input, select, textarea {
+  font-size: 16px; /* Adjusting font size to 16px or larger can prevent zooming */
+}
 
 
 
@@ -61,7 +66,8 @@
   width: 100%; /* Set to 100% to fill the form item */
   height: 100%; /* Example height, adjust as needed */
   border-radius: 0; /* Remove rounded corners */
-  padding: 0px
+  padding: 0px;
+  font-size: 16px;
 }
 
 
@@ -81,28 +87,33 @@
 }
 
 .popup-image-container img {
-  width: calc(100% + 46px);
-  height: auto;
+  width: calc(100% + 46px); /* Adjusted width */
+  height: 145px; /* Set a fixed height */
+  object-fit: cover; /* Cover the box without distorting the aspect ratio */
+  object-position: center; /* Align the image to the center */
   display: block; /* Ensures there's no extra space under the image */
   border-radius: 8px 8px 0 0; /* Rounded corners at the top */
-  margin-left: -21px; 
+  margin-left: -21px;
   margin-top: -14px;
   
-  /* margin: -14px -22px 0 0; /* Adjust this value based on the Popup's padding to reach the edges */
 }
+
 .popup-content {
   display: flex;
   flex-direction: column;
   padding: 0px;
   margin-left: -10px;
   margin-right: -10px;
+
+  
 }
 
 
 .popup-content h2 {
   margin: 8px 0px 0px 0px; /* Adds margin at the top to separate from the image */
-  color: #333; /* Title color */
+ 
   font-size: 1.2em; /* Title size */
+  
 }
 
 /* this gets a little wonky */
@@ -111,6 +122,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0;
+  
 }
 
 .popup-link {
@@ -139,3 +151,29 @@
   flex-grow: 1; /* Take up the remaining space */
   overflow: auto;
 }
+
+/* Custom zoom control buttons */
+.leaflet-control-zoom a {
+  width: 50px; /* Default is 30px */
+  height: 50px; /* Default is 30px */
+  line-height: 50px; /* Adjust line height to vertically center the '+' and '-' */
+  background-color: white; /* Optional: change the background color */
+  border-radius: 4px; /* Optional: add border-radius for rounded corners */
+ 
+  color: black; /* Optional: change the '+' and '-' color */
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #f4f4f4; /* Optional: change the background color on hover */
+}
+
+/* Adjust the size of the '+' and '-' text */
+.leaflet-control-zoom a::after {
+  font-size: 22px; /* Adjust the font size as needed */
+}
+
+/* If you also want to increase the size of the icons ('+' and '-') */
+.leaflet-touch .leaflet-bar a {
+  font-size: 22px; /* Increase font size for touch devices */
+}
+

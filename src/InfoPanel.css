@@ -61,7 +61,9 @@
 
 .image-container img {
   width: 100%;
-  height: auto; /* Adjust as needed */
+  height: 270px; /* Set a fixed height for the image */
+  object-fit: cover; /* Cover the container without distorting the image */
+  object-position: center; /* Align the image in the center, useful for cropping */
   border-radius: 8px 8px 0 0; /* Rounded corners at the top */
   display: block; /* Eliminates any space below the image */
 }
@@ -167,3 +169,25 @@
   font-weight: bold;
 }
 
+.arrow {
+    position: absolute;
+    background-color: #333; /* Adjust color as needed */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    cursor: pointer;
+    font-size: 20px; /* Adjust arrow size as needed */
+    z-index: 10;
+  }
+
+  .left-arrow {
+    left: 280px; /* Keep the horizontal position as is */
+
+}
+  
+  .right-arrow {
+    left: 325px; /* Keep this to position the right arrow 20px from the right edge */
+    bottom: 20px;
+}

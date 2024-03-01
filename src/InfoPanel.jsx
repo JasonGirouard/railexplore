@@ -11,6 +11,8 @@ import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./tool-tip.css";
 import "./InfoPanel.css";
 
+import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
+
 const InfoPanel = ({
   originStation,
   station,
@@ -29,20 +31,17 @@ const InfoPanel = ({
     (d) => d.destination_station === station.code
   );
 
-   // Function to handle image toggle
-   const handleImageClick = (event) => {
-    const { clientX, currentTarget } = event;
-    const { left, width } = currentTarget.getBoundingClientRect();
-    const isRightSide = clientX > left + width / 2;
+   
 
-    if (isRightSide) {
-      // Move to the next image or wrap to the first
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % station.image_paths.length);
-    } else {
-      // Move to the previous image or wrap to the last
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + station.image_paths.length) % station.image_paths.length);
-    }
-  };
+    // Function to navigate to the previous image
+    const goToPreviousImage = () => {
+      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + station.image_urls.length) % station.image_urls.length);
+    };
+  
+    // Function to navigate to the next image
+    const goToNextImage = () => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % station.image_urls.length);
+    };
 
   // Function to format and display the minimum time to the destination
   const formatMinTime = (stationCode) => {
@@ -107,6 +106,12 @@ const InfoPanel = ({
     setIsPanelOpen(false); // Close the panel
   };
 
+  // Function to handle image load error
+  const handleImageError = (e) => {
+    e.target.src = placeholderImage; // Replace with placeholder image
+  };
+
+
   return (
     <div className="info-panel">
       <div className="info-header">
@@ -147,8 +152,28 @@ const InfoPanel = ({
         </div>
       </div>
 
-      <div className="image-container" onClick={handleImageClick}>
-      <img src={station.image_paths[currentImageIndex]} alt="Station" />
+      <div className="image-container">
+        {station.image_urls && station.image_urls.length > 0 && (
+          <>
+            <img
+              src={station.image_urls[currentImageIndex]}
+              alt="Station"
+              className="station-image"
+              onError={handleImageError} // Error handling here
+            />
+            
+          </>
+        )}
+        <div className = "arrow-container">
+           <button className="arrow left-arrow" onClick={goToPreviousImage}>
+              &#10094; {/* This is a Unicode left-pointing angle bracket */}
+            </button>
+            
+            <button className="arrow right-arrow" onClick={goToNextImage}>
+              &#10095; {/* This is a Unicode right-pointing angle bracket */}
+            </button>
+        </div>
+       
         <a
           href="https://www.amtrak.com"
           target="_blank"
@@ -162,12 +187,12 @@ const InfoPanel = ({
         {station.description}
       </div>
 
-      <Routes
+      {/* <Routes
         originStation={originStation}
         destinationStation={station}
         calculatedRoutes={calculatedRoutes}
         calculatedRoutesWT={calculatedRoutesWT}
-      />
+      /> */}
     </div>
   );
 };
