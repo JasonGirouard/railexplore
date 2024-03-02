@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/railexplore/static/css/main.53de24eb.css",
-    "main.js": "/railexplore/static/js/main.5b4a1f3e.js",
+    "main.css": "/railexplore/static/css/main.a34090a4.css",
+    "main.js": "/railexplore/static/js/main.e141971c.js",
     "static/js/592.69394a4a.chunk.js": "/railexplore/static/js/592.69394a4a.chunk.js",
     "static/media/womanReadingImage.png": "/railexplore/static/media/womanReadingImage.a1b4ff911327169c1fde.png",
     "static/media/station.png": "/railexplore/static/media/station.f0e73f71d696b23b01c7.png",
@@ -13,12 +13,12 @@
     "static/media/platform.png": "/railexplore/static/media/platform.8b74fc91f71c8e808c46.png",
     "static/media/placeholder.png": "/railexplore/static/media/placeholder.8fb645fe8455c83d6997.png",
     "index.html": "/railexplore/index.html",
-    "main.53de24eb.css.map": "/railexplore/static/css/main.53de24eb.css.map",
-    "main.5b4a1f3e.js.map": "/railexplore/static/js/main.5b4a1f3e.js.map",
+    "main.a34090a4.css.map": "/railexplore/static/css/main.a34090a4.css.map",
+    "main.e141971c.js.map": "/railexplore/static/js/main.e141971c.js.map",
     "592.69394a4a.chunk.js.map": "/railexplore/static/js/592.69394a4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.53de24eb.css",
-    "static/js/main.5b4a1f3e.js"
+    "static/css/main.a34090a4.css",
+    "static/js/main.e141971c.js"
   ]
 }
