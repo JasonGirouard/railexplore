@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { AutoComplete, Form } from "antd"; 
+import "./origin-button.css";
+import { AutoComplete, Form } from "antd";
 
 import MapComponent from "./MapComponent";
 import routes from "./data/routes.json";
@@ -12,34 +12,34 @@ import stationSummary from "./data/all_stations_paths.json";
 import stations from "./data/stations.json";
 import LocationDetector from "./LocationDetector";
 import LeftNav from "./LeftNav"; // Make sure the path is correct
+import CustomAutoComplete from "./CustomAutoComplete";
 
 const Explore = ({
-   defaultStation,
-    originStation,
-    setOriginStation,
-    coords,
-    setCoords, 
-    collapsed,
-    setCollapsed,
-    isPanelOpen,
-    setIsPanelOpen,
-    activeStation,
-    setActiveStation,
-    calculatedRoutes,
-    setCalculatedRoutes,
-    calculatedRoutesWT,
-    setCalculatedRoutesWT,
-    inputValue,
-    setInputValue,
-    selectedStationDestinations,
-    setSelectedStationDestinations,
-    options,
-    handleSearch,
-    hasLocationBeenDetected,
-    setHasLocationBeenDetected,
-  }) => {
-
-     //this is necessary to re-render the map
+  defaultStation,
+  originStation,
+  setOriginStation,
+  coords,
+  setCoords,
+  collapsed,
+  setCollapsed,
+  isPanelOpen,
+  setIsPanelOpen,
+  activeStation,
+  setActiveStation,
+  calculatedRoutes,
+  setCalculatedRoutes,
+  calculatedRoutesWT,
+  setCalculatedRoutesWT,
+  inputValue,
+  setInputValue,
+  selectedStationDestinations,
+  setSelectedStationDestinations,
+  options,
+  handleSearch,
+  hasLocationBeenDetected,
+  setHasLocationBeenDetected,
+}) => {
+  //this is necessary to re-render the map
   useEffect(() => {
     setSelectedStationDestinations(
       stationSummary.find(
@@ -50,7 +50,7 @@ const Explore = ({
     console.log("originSetAgain");
   }, [originStation]);
 
-     //select the chosen origin station from the dropdown
+  //select the chosen origin station from the dropdown
   const handleSelect = (value, option) => {
     const selectedOption = stations.find(
       (station) => station.name === value || station.code === value
@@ -68,14 +68,9 @@ const Explore = ({
     }
   };
 
-
-
-
-return (
-
-        <div className="main-content">
-
-{!hasLocationBeenDetected && (
+  return (
+    <div className="main-content">
+      {!hasLocationBeenDetected && (
         <LocationDetector
           stations={stations}
           onNearestStationFound={(nearestStation) => {
@@ -86,50 +81,51 @@ return (
           }}
         />
       )}
-            
-          <div className="origin-button">
-            <Form autoComplete="off">
-              <Form.Item name="station" className = "originSelector"
-              style={{ width: '100%' }}>
-                <AutoComplete
-                  options={options}
-                  value={inputValue}
-                  onSelect={handleSelect}
-                  onSearch={handleSearch}
-                  placeholder="Type your local station name"
-                  style={{ width: '100%' }}
-                />
-              </Form.Item>
-            </Form>
-          </div>
 
-          <MapComponent
-            coords={coords}
-            onSeeMoreClicked={() => setIsPanelOpen(true)}
-            originStation={originStation}
-            setOriginStation={setOriginStation}
-            isPanelOpen={isPanelOpen}
-            setIsPanelOpen={setIsPanelOpen}
-            activeStation={activeStation}
-            setActiveStation={setActiveStation}
-            selectedStationDestinations={selectedStationDestinations}
+      <Form autoComplete="off" className = "origin-button">
+        <Form.Item name="station" 
+        style={{ width: "100%" }}>
+
+
+
+
+
+          <AutoComplete className = "originAutoComplete"
+            options={options}
+            value={inputValue}
+            onSelect={handleSelect}
+            onSearch={handleSearch}
+            placeholder="Type your local station name"
+            style={{ width: "100%" }}
           />
-          {isPanelOpen && (
-            <InfoPanel
-              originStation={originStation}
-              station={activeStation}
-              setIsPanelOpen={setIsPanelOpen}
-              routes={routes}
-              calculatedRoutes={calculatedRoutes}
-              calculatedRoutesWT={calculatedRoutesWT}
-              selectedStationDestinations={selectedStationDestinations}
-            />
-          )}
 
-        </div>
-     
+
+        </Form.Item>
+      </Form>
+
+      <MapComponent
+        coords={coords}
+        onSeeMoreClicked={() => setIsPanelOpen(true)}
+        originStation={originStation}
+        setOriginStation={setOriginStation}
+        isPanelOpen={isPanelOpen}
+        setIsPanelOpen={setIsPanelOpen}
+        activeStation={activeStation}
+        setActiveStation={setActiveStation}
+        selectedStationDestinations={selectedStationDestinations}
+      />
+
+      <InfoPanel
+        originStation={originStation}
+        station={activeStation}
+        isPanelOpen={isPanelOpen}
+        setIsPanelOpen={setIsPanelOpen}
+        routes={routes}
+        calculatedRoutes={calculatedRoutes}
+        calculatedRoutesWT={calculatedRoutesWT}
+        selectedStationDestinations={selectedStationDestinations}
+      />
+    </div>
   );
-
-
 };
 export default Explore;

@@ -42,7 +42,7 @@ function App() {
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const [hasLocationBeenDetected, setHasLocationBeenDetected] = useState(false); // New state to track if location has been detected
   const [isPanelOpen, setIsPanelOpen] = useState(false);
-  const [activeStation, setActiveStation] = useState(null);
+  const [activeStation, setActiveStation] = useState(defaultStation);
   const [calculatedRoutes, setCalculatedRoutes] = useState([]);
   const [calculatedRoutesWT, setCalculatedRoutesWT] = useState([]);
   const [inputValue, setInputValue] = useState(defaultStation.name); // Local state for managing input value

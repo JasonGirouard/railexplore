@@ -18,11 +18,38 @@
   padding: 0; 
   overflow: hidden;
   overflow-y: auto;
-
   /* display: flex;
   flex-direction: column; */
 
 }
+
+/* Slide-in animation */
+.info-panel.open {
+    animation: slideIn 0.5s forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      right: -400px;
+    }
+    to {
+      right: 0;
+    }
+  }
+  
+  /* Slide-out animation */
+  .info-panel.close {
+    animation: slideOut 0.5s forwards;
+  }
+  
+  @keyframes slideOut {
+    from {
+      right: 0;
+    }
+    to {
+      right: -400px;
+    }
+  }
 
 .info-header {
   display: flex;
@@ -55,8 +82,8 @@
   position: relative;
   width: auto;
   max-width: 100%;
-  margin: 10px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
 }
 
 .image-container img {
@@ -190,4 +217,16 @@
   .right-arrow {
     left: 325px; /* Keep this to position the right arrow 20px from the right edge */
     bottom: 20px;
+}
+
+.station-description {
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    margin: 10px;
+    padding: 10px;
+    font-size: 15px;
+    text-align: left;
+    border: 1px solid #D3D3D3; /* Light gray border */
+    border-radius: 5px;
 }

@@ -1,5 +1,5 @@
 // InfoPanel.js
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Routes from "./routes.jsx"; // Make sure to import the Routes component
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
@@ -16,12 +16,14 @@ import placeholderImage from "./images/placeholder.png"; // Adjust the path as n
 const InfoPanel = ({
   originStation,
   station,
+  isPanelOpen,
   setIsPanelOpen,
   routes,
   calculatedRoutes,
   calculatedRoutesWT,
   selectedStationDestinations,
 }) => {
+
 
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -102,8 +104,9 @@ const InfoPanel = ({
     }
   };
 
-  const closeInfoPanel = () => {
-    setIsPanelOpen(false); // Close the panel
+  const handleInfoPanel = () => {
+    console.log('setting')
+    setIsPanelOpen(!isPanelOpen); // Close the panel
   };
 
   // Function to handle image load error
@@ -113,9 +116,9 @@ const InfoPanel = ({
 
 
   return (
-    <div className="info-panel">
+    <div className={`info-panel ${isPanelOpen ? 'open' : 'close'}`}>
       <div className="info-header">
-        <div className="collapse-button" onClick={closeInfoPanel}>
+        <div className="collapse-button" onClick={handleInfoPanel}>
           ﹥
         </div>
         <div className="station-info">
@@ -183,16 +186,16 @@ const InfoPanel = ({
           Book on Amtrak
         </a>
       </div>
-      <div>
+      <div className = "station-description">
         {station.description}
       </div>
 
-      {/* <Routes
+      <Routes
         originStation={originStation}
         destinationStation={station}
         calculatedRoutes={calculatedRoutes}
         calculatedRoutesWT={calculatedRoutesWT}
-      /> */}
+      />
     </div>
   );
 };

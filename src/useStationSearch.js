@@ -33,8 +33,14 @@ export const useStationSearch = (originStation, setOriginStation) => {
         value: station.name, // Assuming you use `name` as the unique identifier
         label: (
           <div className="autocomplete-option">
-            <span>{station.name}</span> {/* Display the station name */}
-          </div>
+  <div className="top-row">
+    <span className="station-name">{station.name}</span> {/* Bold 16px font for the station name */}
+    <span className="station-code">{station.code}</span> {/* Normal 14px font for the station code */}
+  </div>
+  <div className="bottom-row">
+    {station.city}, {station.state} {/* Display city and state */}
+  </div>
+</div>
         ),
       }));
   

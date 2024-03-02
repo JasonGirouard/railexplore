@@ -1,0 +1,106 @@
+/* select */
+/* text area */
+/* ant-select-item */
+/* .ant-input-affix-wrapper,.ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused */
+/* ant-form-item is the second inner most form but still outside the actual input */
+/* ant-auto-complete  doesnt seem to do anything */
+
+/* this controls width given its the outer most container, but that's all */
+.origin-button {
+  position: absolute;
+  z-index: 1000; /* Ensures the button stays on top of the map */
+  top: 0px; /* Adjust the top position as needed */
+  padding: 0px;
+  width: 350px; /* Example width - adjust as needed */
+  margin: 25px;
+}
+
+.originAutoComplete {
+    
+    
+}
+
+/* this adjusts the positioning of the actual text inside the input */
+input {
+  font-size: 16px; /* Adjusting font size to 16px or larger can prevent zooming */
+  padding-left: 40px !important; /* Make room for the emoji */
+
+  
+}
+
+/* this is for each individual item returned */
+.ant-select-item-option {
+  padding: 0px;
+  margin: 0px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><text y="32" font-size="32">🏠</text></svg>')
+      no-repeat 10px center / 20px 20px,
+    white;
+  padding-left: 40px !important; /* Make room for the emoji */
+}
+
+/* this also styles each individual option, I'm not sure if theres an advantage to use this one */
+.autocomplete-option {
+    
+}
+
+/* this seems like its across *all* the options */
+.ant-select-dropdown {
+  border-radius: 4px; /* Rounded corners for the dropdown */
+  border: 1px solid #ccc; /* Light gray border */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  
+}
+
+/* this is the actual input and select box controlling the drop shadow*/
+.ant-select-selector {
+  border: 1px solid gray !important; /* Black border */
+  box-shadow: 0px 4px 6px gray; /* Example shadow */
+    
+  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Ctext y='32' font-size='32' font-family='Segoe UI Emoji' %3E🏠%3C/text%3E%3C/svg%3E") no-repeat 10px center / 20px 20px, white;
+  padding-left: 40px !important; /* Adjust padding to ensure text does not overlap the emoji */
+ 
+  
+  /* I feel like I need to put the emoji here */ 
+    
+  
+}
+
+.ant-select-selection-placeholder {
+
+/* I had aded margin here...padding didnt seem to work */ 
+
+}
+
+/* this mostly affects the placeholder text ... i likely need to padd this by 40 as well but will come back here*/
+.ant-select {
+  text-align: left;
+
+  
+}
+/* Style the item on hover */
+.ant-select-item-option-active {
+  /*  background-color: #e6f7ff !important; /* Light blue background on hover */
+}
+
+/* this styles the individual option components */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px; /* Space between top and bottom rows */
+  padding: 0px;
+}
+
+.station-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.station-code {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.bottom-row {
+  font-size: 14px; /* Matching the font size of the station code for consistency */
+}

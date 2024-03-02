@@ -6,6 +6,7 @@ import stations from "./data/stations.json";
 import Legend from "./Legend";
 
 
+
 function CenterMap({ coords }) {
   const map = useMap();
   useEffect(() => {
@@ -27,7 +28,7 @@ const Map = ({
   selectedStationDestinations,
 }) => {
 
-  const [geoJsonData, setGeoJsonData] = useState(null); 
+  const [geoJsonData, setGeoJsonData] = useState(); 
 
 
   //const clearSelectedStation = () => setSelectedStation(null);
