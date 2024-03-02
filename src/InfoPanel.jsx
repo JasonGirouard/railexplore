@@ -1,5 +1,5 @@
 // InfoPanel.js
-import React, { useState , useEffect} from "react";
+import React, { useState , useEffect, useRef} from "react";
 import Routes from "./routes.jsx"; // Make sure to import the Routes component
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
@@ -23,6 +23,27 @@ const InfoPanel = ({
   calculatedRoutesWT,
   selectedStationDestinations,
 }) => {
+  const [everOpened, setEverOpened] = useState(false);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isPanelOpen && isFirstRender.current) {
+      isFirstRender.current = false;
+      setEverOpened(true);
+    } else if (isPanelOpen) {
+      setEverOpened(true);
+    }
+  }, [isPanelOpen]);
+
+ 
+   // Define CSS classes based on state
+   let panelClass = "info-panel";
+   if (isPanelOpen) {
+     panelClass += " open";
+   } else if (everOpened && !isFirstRender.current) {
+     panelClass += " close";
+   }
+
 
 
   // Add a state to keep track of the current image index
@@ -114,9 +135,15 @@ const InfoPanel = ({
     e.target.src = placeholderImage; // Replace with placeholder image
   };
 
+   // If the panel has never been opened, don't render it
+   if (!everOpened) {
+    return null;
+  }
+
+
 
   return (
-    <div className={`info-panel ${isPanelOpen ? 'open' : 'close'}`}>
+    <div className={panelClass}>
       <div className="info-header">
         <div className="collapse-button" onClick={handleInfoPanel}>
           ﹥

@@ -37,8 +37,6 @@ const Explore = ({
   hasLocationBeenDetected,
   setHasLocationBeenDetected,
 }) => {
- 
-
   //this is necessary to re-render the map
   useEffect(() => {
     setSelectedStationDestinations(
@@ -46,30 +44,26 @@ const Explore = ({
         (entry) => entry.origin_station === originStation.code
       )
     );
-  
+
     console.log("originSetAgain");
   }, [originStation]);
 
-
   return (
     <div className="main-content">
-      {!hasLocationBeenDetected && (
-        <LocationDetector
-          stations={stations}
-          onNearestStationFound={(nearestStation) => {
-            setOriginStation(nearestStation);
-            setInputValue(nearestStation.name);
-            setCoords([nearestStation.lat, nearestStation.long]);
-            setHasLocationBeenDetected(true); // Ensure this runs only once
-          }}
-        />
-      )}
-
-      <Search stations={stations} 
-      setOriginStation={setOriginStation}
-      setCoords={setCoords}
+      <Search
+        stations={stations}
+        originStation={originStation}
+        setOriginStation={setOriginStation}
+        setCoords={setCoords}
       />
-     
+
+      <LocationDetector
+        stations={stations}
+        setOriginStation={setOriginStation}
+        setCoords={setCoords}
+        setHasLocationBeenDetected={setHasLocationBeenDetected}
+      />
+
       <MapComponent
         coords={coords}
         onSeeMoreClicked={() => setIsPanelOpen(true)}

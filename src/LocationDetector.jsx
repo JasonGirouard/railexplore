@@ -1,49 +1,64 @@
+
+
+// LocationDetector.js
 import React, { useEffect } from 'react';
 
-const LocationDetector = ({ stations, onNearestStationFound }) => {
-    useEffect(() => {
-        const findNearestStation = (latitude, longitude) => {
-            let nearestDistance = Infinity;
-            let nearestStation = null;
+const IPGEOLOCATION_API_KEY = 'a15c0cedd5334e90a383368e3358572b';
 
-            stations.forEach(station => {
-                const distance = getDistanceFromLatLonInKm(latitude, longitude, parseFloat(station.lat), parseFloat(station.long));
-                if (distance < nearestDistance) {
-                    nearestDistance = distance;
-                    nearestStation = station;
-                }
-            });
+const LocationDetector = ({ stations, setOriginStation, setCoords }) => {
+  useEffect(() => {
+    const fetchUserLocation = async () => {
+      try {
+        const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${IPGEOLOCATION_API_KEY}`);
+        const data = await response.json();
+        const { latitude, longitude } = data;
+        findNearestStation(latitude, longitude);
+      } catch (error) {
+        console.error('Error fetching user location:', error);
+      }
+    };
 
-            if (nearestStation) {
-                onNearestStationFound(nearestStation);
-            }
-        };
+    const findNearestStation = (lat, lon) => {
+      let nearestStation = null;
+      let shortestDistance = Infinity;
 
-        const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
-            var R = 6371; // Radius of the earth in kilometers
-            var dLat = deg2rad(lat2-lat1);  
-            var dLon = deg2rad(lon2-lon1); 
-            var a = 
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-                Math.sin(dLon/2) * Math.sin(dLon/2)
-                ; 
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-            var distance = R * c; // Distance in km
-            return distance;
-        };
+      stations.forEach(station => {
+        const distance = calculateDistance(lat, lon, station.lat, station.long);
+        if (distance < shortestDistance) {
+          shortestDistance = distance;
+          nearestStation = station;
+        }
+      });
 
-        const deg2rad = (deg) => {
-            return deg * (Math.PI/180)
-        };
+      if (nearestStation) {
+          console.log('nearest station found: ',nearestStation.name)
+        setOriginStation(nearestStation);
+        setCoords([parseFloat(nearestStation.lat), parseFloat(nearestStation.long)]);
+      }
+    };
 
-        navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords;
-            findNearestStation(latitude, longitude);
-        }, error => {});
-    }, [stations, onNearestStationFound]);
+    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+      // Haversine formula to calculate distance between two points on the Earth
+      const R = 6371; // Earth's radius in km
+      const dLat = deg2rad(lat2-lat1);
+      const dLon = deg2rad(lon2-lon1); 
+      const a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2); 
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      const distance = R * c; // Distance in km
+      return distance;
+    };
 
-    return null; // This component doesn't render anything
+    const deg2rad = (deg) => {
+      return deg * (Math.PI/180);
+    };
+
+    fetchUserLocation();
+  }, [stations, setOriginStation, setCoords]);
+
+  return null; // This component doesn't render anything itself
 };
 
 export default LocationDetector;
