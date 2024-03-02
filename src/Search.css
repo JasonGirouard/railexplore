@@ -1,0 +1,98 @@
+.search {
+  position: absolute;
+  z-index: 1000; /* Ensures the button stays on top of the map */
+  top: 0px; /* Adjust the top position as needed */
+  padding: 0px;
+  width: 300px; /* Example width - adjust as needed */
+  margin: 25px;
+}
+
+.search-form {
+    
+}
+
+.search-results {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  width: 115%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.autocomplete-option {
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+
+  display: flex;
+  flex-direction: row;
+  align-content: start;
+  justify-content: space-between;
+  align-items: center; /* vertical */ 
+  justify-items: left;
+  width: 90%;
+}
+
+.autocomplete-option:hover {
+  background-color: #f0f0f0;
+}
+.result-icon {
+    display: flex;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    padding: 1px;
+}
+
+.station-set {
+    display: flex;
+    flex-direction: column;
+    align-content: start;
+    justify-content: start;
+    width: 100%;
+    padding-left: 5px;
+
+}
+
+/* Continue with styling for .top-row, .station-name, .station-code, and .bottom-row */
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* this styles the individual option components */
+.top-row {
+  display: flex;
+ 
+  
+  margin: 0px; /* Space between top and bottom rows */
+  padding: 0px;
+}
+
+.station-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.station-code {
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.bottom-row {
+  display: flex;
+  font-size: 14px; /* Matching the font size of the station code for consistency */
+}

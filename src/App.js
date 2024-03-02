@@ -8,7 +8,7 @@ import Donate from "./Donate";
 import MapComponent from "./MapComponent";
 import routes from "./data/routes.json";
 import InfoPanel from "./InfoPanel";
-import { useStationSearch } from "./useStationSearch";
+
 import { openInfoPanel } from "./InfoPanelCalcs";
 import stationSummary from "./data/all_stations_paths.json";
 import stations from "./data/stations.json";
@@ -48,10 +48,7 @@ function App() {
   const [inputValue, setInputValue] = useState(defaultStation.name); // Local state for managing input value
   const [selectedStationDestinations, setSelectedStationDestinations] =
     useState(null);
-  const { options, handleSearch } = useStationSearch(
-    originStation,
-    setOriginStation
-  );
+ // const { options, handleSearch } = useStationSearch(originStation,setOriginStation);
 
   return (
     <Router>
@@ -87,8 +84,6 @@ function App() {
                 setInputValue={setInputValue}
                 selectedStationDestinations={selectedStationDestinations}
                 setSelectedStationDestinations={setSelectedStationDestinations}
-                options={options}
-                handleSearch={handleSearch}
                 hasLocationBeenDetected={hasLocationBeenDetected}
                 setHasLocationBeenDetected={setHasLocationBeenDetected}
               />
@@ -117,8 +112,7 @@ function App() {
                 setInputValue={setInputValue}
                 selectedStationDestinations={selectedStationDestinations}
                 setSelectedStationDestinations={setSelectedStationDestinations}
-                options={options}
-                handleSearch={handleSearch}
+ 
                 hasLocationBeenDetected={hasLocationBeenDetected}
                 setHasLocationBeenDetected={setHasLocationBeenDetected}
               />
