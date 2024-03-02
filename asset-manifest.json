@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/railexplore/static/css/main.a34090a4.css",
-    "main.js": "/railexplore/static/js/main.e141971c.js",
+    "main.js": "/railexplore/static/js/main.ca4441b9.js",
     "static/js/592.69394a4a.chunk.js": "/railexplore/static/js/592.69394a4a.chunk.js",
     "static/media/womanReadingImage.png": "/railexplore/static/media/womanReadingImage.a1b4ff911327169c1fde.png",
     "static/media/station.png": "/railexplore/static/media/station.f0e73f71d696b23b01c7.png",
@@ -14,11 +14,11 @@
     "static/media/placeholder.png": "/railexplore/static/media/placeholder.8fb645fe8455c83d6997.png",
     "index.html": "/railexplore/index.html",
     "main.a34090a4.css.map": "/railexplore/static/css/main.a34090a4.css.map",
-    "main.e141971c.js.map": "/railexplore/static/js/main.e141971c.js.map",
+    "main.ca4441b9.js.map": "/railexplore/static/js/main.ca4441b9.js.map",
     "592.69394a4a.chunk.js.map": "/railexplore/static/js/592.69394a4a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a34090a4.css",
-    "static/js/main.e141971c.js"
+    "static/js/main.ca4441b9.js"
   ]
 }
