@@ -88,7 +88,7 @@ input, select, textarea {
 
 .popup-image-container img {
   width: calc(100% + 46px); /* Adjusted width */
-  height: 145px; /* Set a fixed height */
+  height: 145px; /* Set a fixed height I NEED TO ADD A MAX WIDTH */
   object-fit: cover; /* Cover the box without distorting the aspect ratio */
   object-position: center; /* Align the image to the center */
   display: block; /* Ensures there's no extra space under the image */

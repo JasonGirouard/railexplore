@@ -1,0 +1,145 @@
+.about-page {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  padding-top: 50px;
+  margin-top: 100px;
+
+}
+
+.about-container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding-top: 100px;
+  max-width: 800px;
+}
+
+.about-text {
+  flex: 1;
+  max-width: 50%;
+  text-align: left; /* Ensure text is left-aligned */
+  padding-right: 10px;
+}
+
+.about-text h4 {
+  font-size: 14px;
+  margin-bottom: 0.5em;
+  margin-left: 8px;
+  font-weight: normal; /* This makes the font not bold */
+}
+
+.about-text h1 {
+  font-size: 48px;
+  margin-bottom: 0.5em;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.about-text p {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.about-image {
+  flex: 1;
+  max-width: 50%;
+  padding-left: 10px;
+  padding: 10px;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  max-width: 400px; /* Maximum width for the image */
+  max-height: 400px; /* Maximum height for the image */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* This will cover the area, potentially cropping the image */
+  border-radius: 50%; /* This creates a circular shape */
+  
+}
+
+.value-section {
+  background-color: #EEF8FF;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.value-top {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+
+  max-width: 800px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left; /* Ensure text is left-aligned */
+}
+
+.value-bottom{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+  
+    max-width: 800px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: right; /* Ensure text is left-aligned */
+  }
+
+  .value-bottom h2 {
+    text-align: left; /* Ensure text is left-aligned */
+  }
+
+
+.value-top .value-left h2,
+.value-bottom .value-right h2 {
+  font-size: 40px;
+  color: #000;
+  margin: 50px;
+}
+
+.value-top .value-right p,
+.value-bottom .value-left p {
+  font-size: 16px;
+  color: #000;
+}
+
+.value-divider {
+    height: 2px;
+    background-color: #DDE1F0;
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .value-bottom img {
+    width: 60%;
+    height: auto;
+    max-width: 300px; /* Maximum width for the image */
+    max-height: 300px; /* Maximum height for the image */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* This will cover the area, potentially cropping the image */
+    
+    
+  }

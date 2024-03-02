@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { AutoComplete, Form } from "antd"; 
+import { AutoComplete, Form } from "antd";
+import About from "./About";
+import Donate from "./Donate";
 
 import MapComponent from "./MapComponent";
 import routes from "./data/routes.json";
@@ -10,7 +13,7 @@ import { openInfoPanel } from "./InfoPanelCalcs";
 import stationSummary from "./data/all_stations_paths.json";
 import stations from "./data/stations.json";
 import LocationDetector from "./LocationDetector";
-import LeftNav from "./LeftNav"; 
+import LeftNav from "./LeftNav";
 import Explore from "./Explore";
 
 function App() {
@@ -34,8 +37,8 @@ function App() {
     defaultStation.lat,
     defaultStation.long,
   ]);
- 
-  const [collapsed, setCollapsed] = useState(window.innerWidth < 600); // State for nav collapsed note that I could add more dynamic setting of the inner width using a handler 
+
+  const [collapsed, setCollapsed] = useState(window.innerWidth < 600); // State for nav collapsed note that I could add more dynamic setting of the inner width using a handler
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const [hasLocationBeenDetected, setHasLocationBeenDetected] = useState(false); // New state to track if location has been detected
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -51,44 +54,82 @@ function App() {
   );
 
   return (
+    <Router>
     <div className="App">
-     
-
       <div className="flex-container">
-        <LeftNav
-          onDistanceChange={(value) => console.log(value)}
+        <LeftNav    onDistanceChange={(value) => console.log(value)}
           activePage={activePage}
           setActivePage={setActivePage}
           collapsed={collapsed}
-          setCollapsed={setCollapsed}
-        />
-        <Explore
-        defaultStation = {defaultStation}
-        originStation = {originStation}
-        setOriginStation = {setOriginStation}
-        coords = {coords}
-        setCoords = {setCoords}
-        collapsed = {collapsed}
-        setCollapsed = {setCollapsed}
-        isPanelOpen = {isPanelOpen}
-        setIsPanelOpen = {setIsPanelOpen}
-        activeStation = {activeStation}
-        setActiveStation = {setActiveStation}
-        calculatedRoutes = {calculatedRoutes}
-        setCalculatedRoutes = {setCalculatedRoutes}
-        calculatedRoutesWT = {calculatedRoutesWT}
-        setCalculatedRoutesWT = {setCalculatedRoutesWT}
-        inputValue = {inputValue}
-        setInputValue = {setInputValue}
-        selectedStationDestinations = {selectedStationDestinations}
-        setSelectedStationDestinations = {setSelectedStationDestinations}
-        options = {options}
-        handleSearch = {handleSearch}
-        hasLocationBeenDetected = {hasLocationBeenDetected}
-        setHasLocationBeenDetected = {setHasLocationBeenDetected}
-        />
+          setCollapsed={setCollapsed} />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Explore
+                defaultStation={defaultStation}
+                originStation={originStation}
+                setOriginStation={setOriginStation}
+                coords={coords}
+                setCoords={setCoords}
+                collapsed={collapsed}
+                setCollapsed={setCollapsed}
+                isPanelOpen={isPanelOpen}
+                setIsPanelOpen={setIsPanelOpen}
+                activeStation={activeStation}
+                setActiveStation={setActiveStation}
+                calculatedRoutes={calculatedRoutes}
+                setCalculatedRoutes={setCalculatedRoutes}
+                calculatedRoutesWT={calculatedRoutesWT}
+                setCalculatedRoutesWT={setCalculatedRoutesWT}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                selectedStationDestinations={selectedStationDestinations}
+                setSelectedStationDestinations={setSelectedStationDestinations}
+                options={options}
+                handleSearch={handleSearch}
+                hasLocationBeenDetected={hasLocationBeenDetected}
+                setHasLocationBeenDetected={setHasLocationBeenDetected}
+              />
+            }
+          />
+          <Route
+            path="/explore"
+            element={
+              <Explore
+                defaultStation={defaultStation}
+                originStation={originStation}
+                setOriginStation={setOriginStation}
+                coords={coords}
+                setCoords={setCoords}
+                collapsed={collapsed}
+                setCollapsed={setCollapsed}
+                isPanelOpen={isPanelOpen}
+                setIsPanelOpen={setIsPanelOpen}
+                activeStation={activeStation}
+                setActiveStation={setActiveStation}
+                calculatedRoutes={calculatedRoutes}
+                setCalculatedRoutes={setCalculatedRoutes}
+                calculatedRoutesWT={calculatedRoutesWT}
+                setCalculatedRoutesWT={setCalculatedRoutesWT}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                selectedStationDestinations={selectedStationDestinations}
+                setSelectedStationDestinations={setSelectedStationDestinations}
+                options={options}
+                handleSearch={handleSearch}
+                hasLocationBeenDetected={hasLocationBeenDetected}
+                setHasLocationBeenDetected={setHasLocationBeenDetected}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/donate" element={<Donate />} />
+        </Routes>
       </div>
     </div>
+    </Router>
   );
 }
 export default App;
