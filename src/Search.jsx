@@ -5,11 +5,12 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiamFzb250Z2lyb3VhcmQiLCJhIjoiY2xzNWc3Njc3MWp1OTJpbzloMHJxZW81MyJ9.QDgWPxx_rkmp3LALwpvuGg';
 
-function Search({ stations, originStation, setOriginStation, setCoords }) {
+function Search({ stations, originStation, setOriginStation }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredStations, setFilteredStations] = useState([]);
 
   useEffect(() => {
+      
     setSearchTerm(originStation.name);
   }, [originStation]);
 
@@ -77,10 +78,11 @@ function Search({ stations, originStation, setOriginStation, setCoords }) {
 
 
   const handleSelect = (station) => {
+    
     setOriginStation(station);
     setSearchTerm(station.name); // Update input to show the name of the selected station
     setFilteredStations([]); // Clear the search results
-    setCoords([station.lat, station.long]);
+    //setCoords([station.lat, station.long]);
   };
 
   return (

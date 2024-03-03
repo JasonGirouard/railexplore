@@ -1,6 +1,6 @@
 // InfoPanel.js
 import React, { useState , useEffect, useRef} from "react";
-import Routes from "./routes.jsx"; // Make sure to import the Routes component
+
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
 import platformImage from "./images/platform.png"; // Adjust the path as needed
@@ -14,19 +14,18 @@ import "./InfoPanel.css";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
 const InfoPanel = ({
-  originStation,
+  
   station,
   isPanelOpen,
   setIsPanelOpen,
-  routes,
-  calculatedRoutes,
-  calculatedRoutesWT,
+
   selectedStationDestinations,
 }) => {
   const [everOpened, setEverOpened] = useState(false);
   const isFirstRender = useRef(true);
 
   useEffect(() => {
+    
     if (isPanelOpen && isFirstRender.current) {
       isFirstRender.current = false;
       setEverOpened(true);
@@ -76,18 +75,7 @@ const InfoPanel = ({
   };
 
 
-  // Function to check if a route includes the selected station
-  const doesRouteIncludeStation = (route, stationCode) => {
-    return route.trains.some((train) =>
-      train.stations.some((st) => st.code === stationCode)
-    );
-  };
-
-  // Filter routes that include the selected station
-  const filteredRoutes = routes.filter((route) =>
-    doesRouteIncludeStation(route, station.code)
-  );
-
+  
   // Determine the image to display based on station type
   const getImageForStationType = (stationType) => {
     switch (stationType) {
@@ -126,7 +114,7 @@ const InfoPanel = ({
   };
 
   const handleInfoPanel = () => {
-    console.log('setting')
+    console.log('setting if panel is open')
     setIsPanelOpen(!isPanelOpen); // Close the panel
   };
 
@@ -217,12 +205,7 @@ const InfoPanel = ({
         {station.description}
       </div>
 
-      <Routes
-        originStation={originStation}
-        destinationStation={station}
-        calculatedRoutes={calculatedRoutes}
-        calculatedRoutesWT={calculatedRoutesWT}
-      />
+     
     </div>
   );
 };

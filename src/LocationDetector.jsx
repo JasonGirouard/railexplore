@@ -3,12 +3,14 @@
 // LocationDetector.js
 import React, { useEffect } from 'react';
 
-const IPGEOLOCATION_API_KEY = 'a15c0cedd5334e90a383368e3358572b';
+const IPGEOLOCATION_API_KEY = '2c8154a0b3bc4ac0a27c1a91b700fd41';
 
-const LocationDetector = ({ stations, setOriginStation, setCoords }) => {
+const LocationDetector = ({ stations, setOriginStation, onLocationDetected }) => {
+   
   useEffect(() => {
     const fetchUserLocation = async () => {
       try {
+          console.log('pinging ip api')
         const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${IPGEOLOCATION_API_KEY}`);
         const data = await response.json();
         const { latitude, longitude } = data;
@@ -31,9 +33,11 @@ const LocationDetector = ({ stations, setOriginStation, setCoords }) => {
       });
 
       if (nearestStation) {
-          console.log('nearest station found: ',nearestStation.name)
+          console.log('nearest station found, setting origin & coords ',nearestStation.name)
         setOriginStation(nearestStation);
-        setCoords([parseFloat(nearestStation.lat), parseFloat(nearestStation.long)]);
+        // note that I might need to set the searchTerm here -- e.g. setSearchTerm(station.name). But then again, the search.jsx listens to changes in originStation on its own. 
+      //  setCoords([parseFloat(nearestStation.lat), parseFloat(nearestStation.long)]);
+        onLocationDetected();
       }
     };
 
@@ -56,7 +60,7 @@ const LocationDetector = ({ stations, setOriginStation, setCoords }) => {
     };
 
     fetchUserLocation();
-  }, [stations, setOriginStation, setCoords]);
+  }, [stations, setOriginStation]);
 
   return null; // This component doesn't render anything itself
 };

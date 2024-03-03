@@ -8,7 +8,9 @@ import {
 } from "@ant-design/icons";
 import "./LeftNav.css";
 
-const LeftNav = ({ onDistanceChange, collapsed, setCollapsed }) => {
+const LeftNav = ({  }) => {
+
+const [collapsed, setCollapsed] = useState(window.innerWidth < 600); // State for nav collapsed note that I could add more dynamic setting of the inner width using a handler
   const navigate = useNavigate();
 
   const handleCollapseClick = () => {
