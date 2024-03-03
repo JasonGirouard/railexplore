@@ -7,36 +7,32 @@ import Legend from "./Legend";
 
 
 
-function CenterMap({ coords }) {
+// note there is some werid behavior when you hover near the top, it moves up. this is because the pop-up begins to open, but is outside the view of the screen. I'll need to fix that. 
+
+
+const CenterMap = ({ originStation }) => {
   const map = useMap();
+
   useEffect(() => {
-    console.log(map.getZoom())
-    map.setView(coords, map.getZoom());
-  }, [coords, map]);
+    if (originStation && originStation.lat && originStation.long) {
+      map.setView([originStation.lat, originStation.long], map.getZoom());
+    }
+  }, [originStation, map]);
+
   return null;
-}
+};
 
 const Map = ({
-  coords,
-  onSeeMoreClicked,
   originStation,
-  setOriginStation,
-  isPanelOpen,
   setIsPanelOpen,
   activeStation,
   setActiveStation,
   selectedStationDestinations,
 }) => {
-
   const [geoJsonData, setGeoJsonData] = useState(); 
 
-
-  //const clearSelectedStation = () => setSelectedStation(null);
-  // const handleClose = () => {
-  //   setSelectedStation(null);
-  // };
-
   useEffect(() => {
+    console.log('pinging geojson api')
     fetch(
       "https://geo.dot.gov/server/rest/services/Hosted/Amtrak_Routes_DS/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
     )
@@ -44,21 +40,8 @@ const Map = ({
       .then((data) => setGeoJsonData(data));
   }, []);
 
- 
-  useEffect(() => {
-
-    if (activeStation ) {
-   //   console.log('activeStation=',activeStation.code)
-    }
- 
-  }, [activeStation]);
-
   const onMarkerClick = (station) => {
     setActiveStation(station);
-  //  console.log(activeStation)
-   // console.log(station)
-
-    //update the panel here, or use state updates of station to drive info panel updates
   };
 
   const northAmericaBounds = [
@@ -68,7 +51,7 @@ const Map = ({
 
   return (
     <MapContainer
-      center={coords}
+      center={[originStation.lat,originStation.long]}
       zoom={7}
       style={{ height: "100vh", width: "100%" }}
       maxBounds={northAmericaBounds}
@@ -102,9 +85,6 @@ const Map = ({
         );
       })
         }
-
-        
-
       {geoJsonData && (
         <GeoJSON
           data={geoJsonData}
@@ -118,7 +98,7 @@ const Map = ({
       )}
 
       <TileComponent />
-      <CenterMap coords={coords} />
+      <CenterMap originStation={originStation} />
       <Legend />
     </MapContainer>
   );
