@@ -4,11 +4,9 @@ import TileComponent from "./TileComponent";
 import StationCircleComponent from "./StationCircleComponent";
 import stations from "./data/stations.json";
 import Legend from "./Legend";
-
-
+import amtrakSimplifiedData from "./data/amtrak_simplified.json"; // Import the GeoJSON data
 
 // note there is some werid behavior when you hover near the top, it moves up. this is because the pop-up begins to open, but is outside the view of the screen. I'll need to fix that. 
-
 
 const CenterMap = ({ originStation }) => {
   const map = useMap();
@@ -29,16 +27,9 @@ const Map = ({
   setActiveStation,
   selectedStationDestinations,
 }) => {
-  const [geoJsonData, setGeoJsonData] = useState(); 
-
-  useEffect(() => {
-    console.log('pinging geojson api')
-    fetch(
-      "https://geo.dot.gov/server/rest/services/Hosted/Amtrak_Routes_DS/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson"
-    )
-      .then((response) => response.json())
-      .then((data) => setGeoJsonData(data));
-  }, []);
+  console.log('in the map')
+  
+  const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData); 
 
   const onMarkerClick = (station) => {
     setActiveStation(station);

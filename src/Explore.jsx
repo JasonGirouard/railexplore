@@ -11,21 +11,26 @@ import Search from "./Search"; // Adjust the path as needed
 const Explore = ({
   originStation,
   setOriginStation,
-
-  activeStation,
-  setActiveStation,
-  selectedStationDestinations,
-  setSelectedStationDestinations,
-  
 }) => {
-    const [hasLocationBeenDetected, setHasLocationBeenDetected] = useState(false); // New state to track if location has been detected
+    const defaultStation = {
+        name: "New York, NY",
+        is_recommended: true,
+        code: "NYP",
+        city: "New York",
+        state: "NY",
+        address1: "351 West 31st Street",
+        zipcode: "10001",
+        lat: "40.7503352640001",
+        long: "-73.9944604469999",
+        Shelter: true,
+        station_type: "Station Building",
+        mode: "TRAIN",
+        description: "",
+      };
+
     const [isPanelOpen, setIsPanelOpen] = useState(false);
-
-    // this is necessary to re-render the map
-  useEffect(() => {
-
-    console.log("isPanelOpen change");
-  }, [isPanelOpen]);
+    const [selectedStationDestinations, setSelectedStationDestinations] = useState(null);
+    const [activeStation, setActiveStation] = useState(defaultStation);
 
  // this is necessary to re-render the map
   useEffect(() => {
@@ -47,16 +52,6 @@ const Explore = ({
        
       />
 
-      {/* Only render LocationDetector if location hasn't been detected yet */}
-      {!hasLocationBeenDetected && (
-        <LocationDetector
-          stations={stations}
-          setOriginStation={setOriginStation}
-      
-          onLocationDetected={() => setHasLocationBeenDetected(true)}
-        />
-      )}
-
       <MapComponent
         originStation={originStation}
         setIsPanelOpen={setIsPanelOpen}
@@ -69,7 +64,7 @@ const Explore = ({
         station={activeStation}
         isPanelOpen={isPanelOpen}
         setIsPanelOpen={setIsPanelOpen}
-        selectedStationDestinations={selectedStationDestinations}
+        selectedStationDestinations={selectedStationDestinations} 
       />
     </div>
   );
