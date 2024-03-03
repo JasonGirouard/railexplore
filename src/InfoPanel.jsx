@@ -14,11 +14,9 @@ import "./InfoPanel.css";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
 const InfoPanel = ({
-  
   station,
   isPanelOpen,
   setIsPanelOpen,
-
   selectedStationDestinations,
 }) => {
   const [everOpened, setEverOpened] = useState(false);
