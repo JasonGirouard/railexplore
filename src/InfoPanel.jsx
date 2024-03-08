@@ -23,7 +23,6 @@ const InfoPanel = ({
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    
     if (isPanelOpen && isFirstRender.current) {
       isFirstRender.current = false;
       setEverOpened(true);
@@ -31,8 +30,6 @@ const InfoPanel = ({
       setEverOpened(true);
     }
   }, [isPanelOpen]);
-
- 
    // Define CSS classes based on state
    let panelClass = "info-panel";
    if (isPanelOpen) {
@@ -40,29 +37,20 @@ const InfoPanel = ({
    } else if (everOpened && !isFirstRender.current) {
      panelClass += " close";
    }
-
-
-
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   // Find the specific destination data for this station
   const destination = selectedStationDestinations?.destinations.find(
     (d) => d.destination_station === station.code
   );
-
-   
-
     // Function to navigate to the previous image
     const goToPreviousImage = () => {
       setCurrentImageIndex((prevIndex) => (prevIndex - 1 + station.image_urls.length) % station.image_urls.length);
     };
-  
     // Function to navigate to the next image
     const goToNextImage = () => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % station.image_urls.length);
     };
-
   // Function to format and display the minimum time to the destination
   const formatMinTime = (stationCode) => {
     if (!destination) return "N/A";
@@ -71,9 +59,6 @@ const InfoPanel = ({
     const minutes = Math.floor((destination.min_time % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
-
-
-  
   // Determine the image to display based on station type
   const getImageForStationType = (stationType) => {
     switch (stationType) {
