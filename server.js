@@ -8,21 +8,26 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'build')));
 
 // API endpoint for path calculation
-app.get('/api/paths', (req, res) => {
-  const { origin, destination } = req.query;
-
-  // Execute the Python script
-  const pythonProcess = spawn('python', ['scripts/path_calculation.py', origin, destination]);
-
-  let pythonOutput = '';
-  pythonProcess.stdout.on('data', (data) => {
-    pythonOutput += data.toString();
+app.get('/api/paths/:origin/:destination', (req, res) => {
+    const { origin, destination } = req.params;
+  
+    // Validate the origin and destination parameters
+    if (!origin || !destination || origin.length !== 3 || destination.length !== 3) {
+      return res.status(400).json({ error: 'Invalid origin or destination' });
+    }
+  
+    // Execute the Python script
+    const pythonProcess = spawn('python3', ['scripts/path_calculation.py', origin, destination]);
+  
+    let pythonOutput = '';
+    pythonProcess.stdout.on('data', (data) => {
+      pythonOutput += data.toString();
+    });
+  
+    pythonProcess.on('close', (code) => {
+      res.json(JSON.parse(pythonOutput));
+    });
   });
-
-  pythonProcess.on('close', (code) => {
-    res.json(JSON.parse(pythonOutput));
-  });
-});
 
 // Catch-all route to serve the React app
 app.get('*', (req, res) => {
