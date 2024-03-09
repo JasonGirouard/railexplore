@@ -1,6 +1,6 @@
 {
   "name": "my-origin-app",
-  "homepage": "https://JasonGirouard.github.io/railexplore",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,6 +29,9 @@
     "start:react": "react-scripts start",
     "start:server": "node server.js",
     "start": "npm-run-all --parallel start:react start:server",
+    "stop:react": "pkill -f react-scripts",
+    "stop:server": "pkill -f node",
+    "stop": "npm-run-all --parallel stop:react stop:server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

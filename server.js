@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { spawn } = require('child_process');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -13,7 +14,14 @@ app.get('/api/paths', (req, res) => {
   // Execute the Python script
   const pythonProcess = spawn('python', ['scripts/path_calculation.py', origin, destination]);
 
-  // ... (rest of the code remains the same)
+  let pythonOutput = '';
+  pythonProcess.stdout.on('data', (data) => {
+    pythonOutput += data.toString();
+  });
+
+  pythonProcess.on('close', (code) => {
+    res.json(JSON.parse(pythonOutput));
+  });
 });
 
 // Catch-all route to serve the React app
