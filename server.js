@@ -21,13 +21,15 @@ app.get('/api/paths/:origin/:destination', async (req, res) => {
   
     // opt 1 - wait for this to finish, then write this to a file and then read it. 
     // the problem is that the pythonProcess doesn't get a result. I need to need for pythonProcess.stdout to finish before finishing the rest. 
-    let pythonOutput = '';
+    let pythonOutput = [];
     pythonProcess.stdout.on('data', (data) => {
       console.log('pythonOutput1: ',data)
       pythonOutput += data.toString();
     });
   
     pythonProcess.on('close', (code) => {
+
+      
       console.log('pythonOutput2: ',code)
       console.log('pythonOutput3: ',res)
       console.log('pythonOutput4:', pythonOutput)
