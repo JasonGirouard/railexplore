@@ -4,6 +4,7 @@ import sys
 import pandas as pd
 import heapq
 import logging
+import datetime
 
 # Configure logging
 logging.basicConfig(level=logging.ERROR)
@@ -26,8 +27,17 @@ filtered_df = df[df['to_station'] == 'NYP'].copy()
 filtered_json = filtered_df.to_json()
 
 def calculate_elapsed_time(start_time, end_time):
-    elapsed_time = end_time - start_time
-    return int(elapsed_time.total_seconds())
+    try:
+        # Parse the start_time and end_time as datetime objects
+        start_datetime = datetime.fromisoformat(start_time)
+        end_datetime = datetime.fromisoformat(end_time)
+
+        # Calculate the elapsed time
+        elapsed_time = end_datetime - start_datetime
+        return int(elapsed_time.total_seconds())
+    except (TypeError, ValueError) as e:
+        print(f"Error calculating elapsed time: {str(e)}")
+        return None
 
 def dijkstra(origin_station, destination_station):
     try:
