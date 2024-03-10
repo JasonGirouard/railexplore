@@ -29,6 +29,8 @@ app.get('/api/paths/:origin/:destination', (req, res) => {
     pythonProcess.on('close', (code) => {
       console.log('pythonOutput2: ',code)
       console.log('pythonOutput3: ',res)
+      console.log('pythonOutput4:', pythonOutput)
+      console.log('pythonOutput5:',JSON.parse(pythonOutput) )
       res.json(JSON.parse(pythonOutput));
     });
   });
