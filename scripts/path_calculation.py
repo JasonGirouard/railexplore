@@ -130,7 +130,7 @@ def dijkstra(origin_station, destination_station):
 
         filtered_paths = [path_info['path'] for path_info in start_time_dict.values()]
 
-        return json.dumps(filtered_paths, default=str)
+        return json.dumps(filtered_paths)
 
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}")
