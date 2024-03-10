@@ -23,16 +23,12 @@ app.get('/api/paths/:origin/:destination', (req, res) => {
     let pythonOutput = '';
     pythonProcess.stdout.on('data', (data) => {
       console.log('pythonOutput1: ',data)
-      print('output1',data)
       pythonOutput += data.toString();
     });
   
     pythonProcess.on('close', (code) => {
       console.log('pythonOutput2: ',code)
-      print('output2',code)
-
       console.log('pythonOutput3: ',res)
-      print('output3',res)
       res.json(JSON.parse(pythonOutput));
     });
   });
