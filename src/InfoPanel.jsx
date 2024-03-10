@@ -1,6 +1,6 @@
 // InfoPanel.js
 import React, { useState , useEffect, useRef} from "react";
-
+import axios from "axios";
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
 import platformImage from "./images/platform.png"; // Adjust the path as needed
@@ -10,10 +10,17 @@ import trainImage from "./images/train.png"; // Adjust the path as needed
 import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./tool-tip.css";
 import "./InfoPanel.css";
+import stations from "./data/stations.json";
 
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
+const getStationName = (stationCode) => {
+  const station = stations.find((station) => station.code === stationCode);
+  return station ? station.name : "";
+};
+
 const InfoPanel = ({
+  originStation,
   station,
   isPanelOpen,
   setIsPanelOpen,
@@ -21,6 +28,23 @@ const InfoPanel = ({
 }) => {
   const [everOpened, setEverOpened] = useState(false);
   const isFirstRender = useRef(true);
+  const [paths, setPaths] = useState(null);
+
+  useEffect(() => {
+    const fetchPaths = async () => {
+      setPaths(null)
+        try {
+            const response = await axios.get(`/api/paths/${originStation.code}/${station.code}`);
+            console.log(response.data);
+            setPaths(response.data);
+        } catch (error) {
+            console.error("Error fetching paths:", error);
+        }
+    };
+
+    fetchPaths();
+}, [station]);
+
 
   useEffect(() => {
     if (isPanelOpen && isFirstRender.current) {
@@ -30,6 +54,7 @@ const InfoPanel = ({
       setEverOpened(true);
     }
   }, [isPanelOpen]);
+
    // Define CSS classes based on state
    let panelClass = "info-panel";
    if (isPanelOpen) {
@@ -59,6 +84,24 @@ const InfoPanel = ({
     const minutes = Math.floor((destination.min_time % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
+
+  // Function to format the time in the cards
+  const formatTime = (timeString) => {
+    const date = new Date(timeString);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
+  };
+  // Function to format the elapsed time
+const formatElapsedTime = (totalSeconds) => {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  return `${hours}h ${minutes}m`;
+};
+
   // Determine the image to display based on station type
   const getImageForStationType = (stationType) => {
     switch (stationType) {
@@ -186,7 +229,60 @@ const InfoPanel = ({
       </div>
       <div className = "station-description">
         {station.description}
+      </div> 
+
+
+
+
+
+      {originStation.code !== station.code &&  ( <div className = "trains-container"> 
+     
+      
+      <div className="trains-title">Today's trains</div>
+
+{paths ? (
+  paths.length > 0 ? (
+    paths.sort((a, b) => a.elapsed_time - b.elapsed_time).map((path, index) => (
+      <div key={index} className="card">
+        <div className="card-header">
+          <span className="route-names">
+            {path.route_names.join(", ")}
+          </span>
+        </div>
+        <div className="card-body">
+          <div className="time-range">
+            {formatTime(path.start_time)} - {formatTime(path.end_time)}
+          </div>
+          <div className="transfers">
+            {path.transfers.length === 0 ? (
+              "nonstop"
+            ) : (
+              <span className="tooltip">
+                {path.transfers.length} stop
+                <span className="tooltiptext">
+                  {path.transfers.map((transfer) => (
+                    <div key={transfer.station}>
+                      {formatElapsedTime(transfer.layover_time)} at{" "}
+                      {getStationName(transfer.station)}
+                    </div>
+                  ))}
+                </span>
+              </span>
+            )}
+          </div>
+          <div className="elapsed-time">
+            {formatElapsedTime(path.elapsed_time)}
+          </div>
+        </div>
       </div>
+    ))
+  ) : (
+    <p>No trains scheduled today</p>
+  )
+) : (
+  <p>Loading paths...</p>
+)}
+      </div> )}
 
      
     </div>

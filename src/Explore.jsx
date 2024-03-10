@@ -61,6 +61,7 @@ const Explore = ({
       />
 
       <InfoPanel
+        originStation={originStation}
         station={activeStation}
         isPanelOpen={isPanelOpen}
         setIsPanelOpen={setIsPanelOpen}
