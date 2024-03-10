@@ -1,5 +1,5 @@
 // InfoPanel.js
-import React, { useState , useEffect, useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
@@ -32,19 +32,35 @@ const InfoPanel = ({
 
   useEffect(() => {
     const fetchPaths = async () => {
-      setPaths(null)
-        try {
-            const response = await axios.get(`/api/paths/${originStation.code}/${station.code}`);
-            console.log(response.data);
-            setPaths(response.data);
-        } catch (error) {
-            console.error("Error fetching paths:", error);
+      setPaths(null);
+      try {
+        const response = await axios.get(`/api/paths/${originStation.code}/${station.code}`);
+        if (response.status === 200) {
+          console.log(response.data);
+          setPaths(response.data);
+        } else {
+          console.error("Error fetching paths:", response.status);
+          // Handle specific error status codes or display a user-friendly error message
         }
+      } catch (error) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          console.error("Error fetching paths:", error.response.status);
+          // Handle specific error status codes or display a user-friendly error message
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error("No response received from the server");
+          // Display a user-friendly error message or retry the request
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error("Error setting up the request:", error.message);
+          // Display a user-friendly error message
+        }
+      }
     };
-
+  
     fetchPaths();
-}, [station]);
-
+  }, [station]);
 
   useEffect(() => {
     if (isPanelOpen && isFirstRender.current) {
@@ -55,27 +71,32 @@ const InfoPanel = ({
     }
   }, [isPanelOpen]);
 
-   // Define CSS classes based on state
-   let panelClass = "info-panel";
-   if (isPanelOpen) {
-     panelClass += " open";
-   } else if (everOpened && !isFirstRender.current) {
-     panelClass += " close";
-   }
+  // Define CSS classes based on state
+  let panelClass = "info-panel";
+  if (isPanelOpen) {
+    panelClass += " open";
+  } else if (everOpened && !isFirstRender.current) {
+    panelClass += " close";
+  }
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // Find the specific destination data for this station
   const destination = selectedStationDestinations?.destinations.find(
     (d) => d.destination_station === station.code
   );
-    // Function to navigate to the previous image
-    const goToPreviousImage = () => {
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + station.image_urls.length) % station.image_urls.length);
-    };
-    // Function to navigate to the next image
-    const goToNextImage = () => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % station.image_urls.length);
-    };
+  // Function to navigate to the previous image
+  const goToPreviousImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + station.image_urls.length) % station.image_urls.length
+    );
+  };
+  // Function to navigate to the next image
+  const goToNextImage = () => {
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % station.image_urls.length
+    );
+  };
   // Function to format and display the minimum time to the destination
   const formatMinTime = (stationCode) => {
     if (!destination) return "N/A";
@@ -87,6 +108,11 @@ const InfoPanel = ({
 
   // Function to format the time in the cards
   const formatTime = (timeString) => {
+    if (typeof timeString !== "string") {
+      console.error("Invalid timeString:", timeString);
+      return "";
+    }
+
     const date = new Date(timeString);
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -95,12 +121,13 @@ const InfoPanel = ({
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
+  
   // Function to format the elapsed time
-const formatElapsedTime = (totalSeconds) => {
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  return `${hours}h ${minutes}m`;
-};
+  const formatElapsedTime = (totalSeconds) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    return `${hours}h ${minutes}m`;
+  };
 
   // Determine the image to display based on station type
   const getImageForStationType = (stationType) => {
@@ -140,7 +167,7 @@ const formatElapsedTime = (totalSeconds) => {
   };
 
   const handleInfoPanel = () => {
-    console.log('setting if panel is open')
+    console.log("setting if panel is open");
     setIsPanelOpen(!isPanelOpen); // Close the panel
   };
 
@@ -149,12 +176,10 @@ const formatElapsedTime = (totalSeconds) => {
     e.target.src = placeholderImage; // Replace with placeholder image
   };
 
-   // If the panel has never been opened, don't render it
-   if (!everOpened) {
+  // If the panel has never been opened, don't render it
+  if (!everOpened) {
     return null;
   }
-
-
 
   return (
     <div className={panelClass}>
@@ -165,7 +190,7 @@ const formatElapsedTime = (totalSeconds) => {
         <div className="station-info">
           <h2>{station.name}</h2>
           <div className="station-details">
-          {formatMinTime(station.code)}
+            {formatMinTime(station.code)}
             <div className="tooltip">
               <img
                 src={getImageForStationType(station.station_type)}
@@ -205,19 +230,18 @@ const formatElapsedTime = (totalSeconds) => {
               className="station-image"
               onError={handleImageError} // Error handling here
             />
-            
           </>
         )}
-        <div className = "arrow-container">
-           <button className="arrow left-arrow" onClick={goToPreviousImage}>
-              &#10094; {/* This is a Unicode left-pointing angle bracket */}
-            </button>
-            
-            <button className="arrow right-arrow" onClick={goToNextImage}>
-              &#10095; {/* This is a Unicode right-pointing angle bracket */}
-            </button>
+        <div className="arrow-container">
+          <button className="arrow left-arrow" onClick={goToPreviousImage}>
+            &#10094; {/* This is a Unicode left-pointing angle bracket */}
+          </button>
+
+          <button className="arrow right-arrow" onClick={goToNextImage}>
+            &#10095; {/* This is a Unicode right-pointing angle bracket */}
+          </button>
         </div>
-       
+
         <a
           href="https://www.amtrak.com"
           target="_blank"
@@ -227,64 +251,59 @@ const formatElapsedTime = (totalSeconds) => {
           Book on Amtrak
         </a>
       </div>
-      <div className = "station-description">
-        {station.description}
-      </div> 
+      <div className="station-description">{station.description}</div>
 
+      {originStation.code !== station.code && (
+        <div className="trains-container">
+          <div className="trains-title">Today's trains</div>
 
-
-
-
-      {originStation.code !== station.code &&  ( <div className = "trains-container"> 
-     
-      
-      <div className="trains-title">Today's trains</div>
-
-{paths ? (
-  paths.length > 0 ? (
-    paths.sort((a, b) => a.elapsed_time - b.elapsed_time).map((path, index) => (
-      <div key={index} className="card">
-        <div className="card-header">
-          <span className="route-names">
-            {path.route_names.join(", ")}
-          </span>
-        </div>
-        <div className="card-body">
-          <div className="time-range">
-            {formatTime(path.start_time)} - {formatTime(path.end_time)}
-          </div>
-          <div className="transfers">
-            {path.transfers.length === 0 ? (
-              "nonstop"
-            ) : (
-              <span className="tooltip">
-                {path.transfers.length} stop
-                <span className="tooltiptext">
-                  {path.transfers.map((transfer) => (
-                    <div key={transfer.station}>
-                      {formatElapsedTime(transfer.layover_time)} at{" "}
-                      {getStationName(transfer.station)}
+          {paths ? (
+            paths.length > 0 ? (
+              paths
+                .sort((a, b) => a.elapsed_time - b.elapsed_time)
+                .map((path, index) => (
+                  <div key={index} className="card">
+                    <div className="card-header">
+                      <span className="route-names">
+                        {path.route_names.join(", ")}
+                      </span>
                     </div>
-                  ))}
-                </span>
-              </span>
-            )}
-          </div>
-          <div className="elapsed-time">
-            {formatElapsedTime(path.elapsed_time)}
-          </div>
+                    <div className="card-body">
+                      <div className="time-range">
+                        {formatTime(path.start_time)} -{" "}
+                        {formatTime(path.end_time)}
+                      </div>
+                      <div className="transfers">
+                        {path.transfers.length === 0 ? (
+                          "nonstop"
+                        ) : (
+                          <span className="tooltip">
+                            {path.transfers.length} stop
+                            <span className="tooltiptext">
+                              {path.transfers.map((transfer) => (
+                                <div key={transfer.station}>
+                                  {formatElapsedTime(transfer.layover_time)} at{" "}
+                                  {getStationName(transfer.station)}
+                                </div>
+                              ))}
+                            </span>
+                          </span>
+                        )}
+                      </div>
+                      <div className="elapsed-time">
+                        {formatElapsedTime(path.elapsed_time)}
+                      </div>
+                    </div>
+                  </div>
+                ))
+            ) : (
+              <p>No trains scheduled today</p>
+            )
+          ) : (
+            <p>Loading paths...</p>
+          )}
         </div>
-      </div>
-    ))
-  ) : (
-    <p>No trains scheduled today</p>
-  )
-) : (
-  <p>Loading paths...</p>
-)}
-      </div> )}
-
-     
+      )}
     </div>
   );
 };

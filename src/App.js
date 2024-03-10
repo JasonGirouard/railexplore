@@ -45,6 +45,15 @@ function App() {
           )}
 
           <Routes>
+          <Route
+              path="/"
+              element={
+                <Explore
+                  originStation={originStation}
+                  setOriginStation={setOriginStation}
+                />
+              }
+            />
             <Route
               path="/explore"
               element={
