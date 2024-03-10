@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'build')));
 
 // API endpoint for path calculation
-app.get('/api/paths/:origin/:destination', (req, res) => {
+app.get('/api/paths/:origin/:destination', async (req, res) => {
     const { origin, destination } = req.params;
   
     // Validate the origin and destination parameters
@@ -17,9 +17,10 @@ app.get('/api/paths/:origin/:destination', (req, res) => {
     }
   
     // Execute the Python script
-    const pythonProcess = spawn('python3', ['scripts/path_calculation.py', origin, destination]);
+    const pythonProcess = await spawn('python3', ['scripts/path_calculation.py', origin, destination]);
   
-    
+    // opt 1 - wait for this to finish, then write this to a file and then read it. 
+    // the problem is that the pythonProcess doesn't get a result. I need to need for pythonProcess.stdout to finish before finishing the rest. 
     let pythonOutput = '';
     pythonProcess.stdout.on('data', (data) => {
       console.log('pythonOutput1: ',data)
@@ -31,6 +32,7 @@ app.get('/api/paths/:origin/:destination', (req, res) => {
       console.log('pythonOutput3: ',res)
       console.log('pythonOutput4:', pythonOutput)
       console.log('pythonOutput5:',JSON.parse(pythonOutput) )
+  
       res.json(JSON.parse(pythonOutput));
     });
   });
