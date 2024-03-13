@@ -1,6 +1,6 @@
 // InfoPanel.js
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+//import axios from "axios";
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
 import platformImage from "./images/platform.png"; // Adjust the path as needed
@@ -11,6 +11,7 @@ import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./tool-tip.css";
 import "./InfoPanel.css";
 import stations from "./data/stations.json";
+import TrainPathFinder from './TrainPathFinder';
 
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
@@ -28,39 +29,7 @@ const InfoPanel = ({
 }) => {
   const [everOpened, setEverOpened] = useState(false);
   const isFirstRender = useRef(true);
-  const [paths, setPaths] = useState(null);
 
-  useEffect(() => {
-    const fetchPaths = async () => {
-      setPaths(null);
-      try {
-        const response = await axios.get(`/api/paths/${originStation.code}/${station.code}`);
-        if (response.status === 200) {
-          console.log(response.data);
-          setPaths(response.data);
-        } else {
-          console.error("Error fetching paths:", response.status);
-          // Handle specific error status codes or display a user-friendly error message
-        }
-      } catch (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          console.error("Error fetching paths:", error.response.status);
-          // Handle specific error status codes or display a user-friendly error message
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error("No response received from the server");
-          // Display a user-friendly error message or retry the request
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error("Error setting up the request:", error.message);
-          // Display a user-friendly error message
-        }
-      }
-    };
-  
-    fetchPaths();
-  }, [station]);
 
   useEffect(() => {
     if (isPanelOpen && isFirstRender.current) {
@@ -121,7 +90,7 @@ const InfoPanel = ({
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
-  
+
   // Function to format the elapsed time
   const formatElapsedTime = (totalSeconds) => {
     const hours = Math.floor(totalSeconds / 3600);
@@ -253,57 +222,19 @@ const InfoPanel = ({
       </div>
       <div className="station-description">{station.description}</div>
 
-      {originStation.code !== station.code && (
+      <div> 
+      <TrainPathFinder originStation={originStation.code} destinationStation={station.code} />
+      </div>
+
+
+    {originStation.code !== station.code && (
         <div className="trains-container">
           <div className="trains-title">Today's trains</div>
 
-          {paths ? (
-            paths.length > 0 ? (
-              paths
-                .sort((a, b) => a.elapsed_time - b.elapsed_time)
-                .map((path, index) => (
-                  <div key={index} className="card">
-                    <div className="card-header">
-                      <span className="route-names">
-                        {path.route_names.join(", ")}
-                      </span>
-                    </div>
-                    <div className="card-body">
-                      <div className="time-range">
-                        {formatTime(path.start_time)} -{" "}
-                        {formatTime(path.end_time)}
-                      </div>
-                      <div className="transfers">
-                        {path.transfers.length === 0 ? (
-                          "nonstop"
-                        ) : (
-                          <span className="tooltip">
-                            {path.transfers.length} stop
-                            <span className="tooltiptext">
-                              {path.transfers.map((transfer) => (
-                                <div key={transfer.station}>
-                                  {formatElapsedTime(transfer.layover_time)} at{" "}
-                                  {getStationName(transfer.station)}
-                                </div>
-                              ))}
-                            </span>
-                          </span>
-                        )}
-                      </div>
-                      <div className="elapsed-time">
-                        {formatElapsedTime(path.elapsed_time)}
-                      </div>
-                    </div>
-                  </div>
-                ))
-            ) : (
-              <p>No trains scheduled today</p>
-            )
-          ) : (
-            <p>Loading paths...</p>
-          )}
+          
         </div>
-      )}
+      )} 
+     
     </div>
   );
 };
