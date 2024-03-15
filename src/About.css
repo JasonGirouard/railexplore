@@ -2,40 +2,34 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  justify-items: center;
   width: 100%;
-  padding-top: 20px;
-  padding-top: 50px;
-  margin-top: 100px;
+  padding-top: 40px;
+  margin-top: 0px;
 
 }
 
 .about-container {
   display: flex;
-  align-content: center;
-  align-items: center;
+  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
   justify-content: center;
-  justify-items: center;
-  /* margin-top: 100px;
-  margin-bottom: 50px;
-  padding-top: 100px; */
+  align-items: center;
   max-width: 800px;
+  padding: 20px;
 }
 
 .about-text {
   flex: 1;
-  max-width: 50%;
-  text-align: left; /* Ensure text is left-aligned */
-  padding-right: 10px;
+  min-width: 300px; /* Maintain a minimum width for text content */
+  text-align: left;
+  padding-right: 20px;
 }
 
 .about-text h4 {
   font-size: 14px;
   margin-bottom: 0.5em;
   margin-left: 8px;
-  font-weight: normal; /* This makes the font not bold */
+  font-weight: normal;
 }
 
 .about-text h1 {
@@ -53,21 +47,36 @@
 
 .about-image {
   flex: 1;
-  max-width: 50%;
-  padding-left: 10px;
-  padding: 10px;
+  min-width: 300px; /* Maintain a minimum width for image content */
+  text-align: center; /* Center the image horizontally */
+  padding: 20px;
 }
 
 .about-image img {
   width: 100%;
-  height: auto;
-  max-width: 400px; /* Maximum width for the image */
-  max-height: 400px; /* Maximum height for the image */
-  width: auto; /* Maintain aspect ratio */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* This will cover the area, potentially cropping the image */
-  border-radius: 50%; /* This creates a circular shape */
-  
+  max-width: 400px;
+  max-height: 400px;
+  object-fit: cover; /* Fill the available space while maintaining aspect ratio */
+  border-radius: 50%;
+}
+
+@media (max-width: 770px) {
+
+  .about-image {
+    flex: 1;
+    min-width: 300px; /* Maintain a minimum width for image content */
+    text-align: center; /* Center the image horizontally */
+    padding: 10px;
+    padding-bottom: 0px;
+  }
+ 
+  .about-image img {
+    width: 100%;
+    max-width: 320px;
+    max-height: 320px;
+    object-fit: cover; /* Fill the available space while maintaining aspect ratio */
+    border-radius: 50%;
+  }
 }
 
 .value-section {
@@ -75,71 +84,56 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  justify-content: center;
   align-items: center;
-  justify-items: center;
 }
 
-.value-top {
+.value-row {
   display: flex;
-  align-content: center;
-  align-items: center;
+  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
   justify-content: center;
-  justify-items: center;
-
+  align-items: center;
   max-width: 800px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: left; /* Ensure text is left-aligned */
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-.value-bottom{
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-  
-    max-width: 800px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: right; /* Ensure text is left-aligned */
-  }
+.value-column {
+  flex: 1;
+  min-width: 300px; /* Maintain a minimum width for columns */
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+}
 
-  .value-bottom h2 {
-    text-align: left; /* Ensure text is left-aligned */
-  }
-
-
-.value-top .value-left h2,
-.value-bottom .value-right h2 {
+.value-column h2 {
   font-size: 40px;
   color: #000;
-  margin: 50px;
+  margin: 20px 0;
 }
 
-.value-top .value-right p,
-.value-bottom .value-left p {
+.value-column p {
   font-size: 16px;
   color: #000;
 }
 
 .value-divider {
-    height: 2px;
-    background-color: #DDE1F0;
-    margin: 20px auto;
-    width: 90%;
-  }
+  height: 2px;
+  background-color: #DDE1F0;
+  margin: 20px auto;
+  width: 90%;
+}
 
-  .value-bottom img {
-    width: 60%;
-    height: auto;
-    max-width: 300px; /* Maximum width for the image */
-    max-height: 300px; /* Maximum height for the image */
-    width: auto; /* Maintain aspect ratio */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* This will cover the area, potentially cropping the image */
-    
-    
-  }
+.value-column img {
+  width: 100%;
+  max-width: 300px; /* Limit the maximum width of the image */
+  max-height: 300px; /* Limit the maximum height of the image */
+  object-fit: cover; /* Fill the available space while maintaining aspect ratio */
+}
+
+.trainy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -13,6 +13,7 @@
     margin: 0px;
     padding: 0px;
     border: 0px;
+  
 }
 
 .top-nav-header{
@@ -128,9 +129,10 @@ align-items: center;
     height: 100vh;
 
     background-color: #fff;
-    border-right: 1px solid #ddd;
+    
     transition: width 0.3s;
     z-index: 1001;
+   
 }
 
 .collapsed-left {

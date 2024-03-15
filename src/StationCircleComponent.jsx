@@ -1,6 +1,7 @@
 import React from "react";
 import { CircleMarker, Popup } from "react-leaflet";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
+import "./StationCircleComponent.css";
 
 const StationCircleComponent = ({
   station,

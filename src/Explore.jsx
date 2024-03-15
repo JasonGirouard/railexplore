@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./Explore.css";
 import "./origin-button.css";
 import MapComponent from "./MapComponent";
 import InfoPanel from "./InfoPanel";

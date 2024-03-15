@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css"; 
+import "./App.css";
 import stations from "./data/stations.json";
-import About from "./About"; // 
+import About from "./About"; //
 import Donate from "./Donate";
 import TopNav from "./TopNav";
 // import LeftNav from "./LeftNav";
@@ -29,50 +29,44 @@ function App() {
   };
   const [originStation, setOriginStation] = useState(defaultStation);
   const [activePage, setActivePage] = useState("Explore"); // Default active page
-  // Check if location has been detected
-  const locationDetected = localStorage.getItem('locationDetected');
+  const locationDetected = localStorage.getItem("locationDetected");
 
   return (
-
-
     <Router>
       <div className="App">
         <div className="flex-container">
-        {/* <TopNav activePage={activePage} setActivePage={setActivePage} /> */}
-          {/* <LeftNav activePage={activePage} setActivePage={setActivePage} /> */}
           <Navigation activePage={activePage} setActivePage={setActivePage} />
-         
-       
-          {!locationDetected && (
-            <LocationDetector
-              stations={stations}
-              setOriginStation={setOriginStation}
-            />
-          )}
-       
-          <Routes>
-          <Route
-              path="/"
-              element={
-                <Explore
-                  originStation={originStation}
-                  setOriginStation={setOriginStation}
-                />
-              }
-            />
-            <Route
-              path="/explore"
-              element={
-                <Explore
-                  originStation={originStation}
-                  setOriginStation={setOriginStation}
-                />
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/donate" element={<Donate />} />
-          </Routes>
-       
+
+          <div className="content">
+            {!locationDetected && (
+              <LocationDetector
+                stations={stations}
+                setOriginStation={setOriginStation}
+              />
+            )}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Explore
+                    originStation={originStation}
+                    setOriginStation={setOriginStation}
+                  />
+                }
+              />
+              <Route
+                path="/explore"
+                element={
+                  <Explore
+                    originStation={originStation}
+                    setOriginStation={setOriginStation}
+                  />
+                }
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="/donate" element={<Donate />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </Router>
