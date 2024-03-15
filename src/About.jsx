@@ -54,16 +54,15 @@ const About = () => {
             </div>
             
             <p>
-              This site is free to use, but not free to operate. Please
-              <Link
-                to="/donate"
-                style={{ textDecoration: "underline", color: "inherit" }}
-              >
-                {" "}
-                donate
-              </Link>
-              if you can.
-            </p>
+  This site is free to use, but not free to operate. Please{" "}
+  <Link
+    to="/donate"
+    style={{ textDecoration: "underline", color: "inherit" }}
+  >
+    donate
+  </Link>{" "}
+  if you can.
+</p>
           </div>
           <div className="value-column">
             <h2>Please donate if you can.</h2>
