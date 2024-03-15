@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { MenuOutlined, GlobalOutlined, InfoCircleOutlined, HeartOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  GlobalOutlined,
+  InfoCircleOutlined,
+  HeartOutlined,
+} from "@ant-design/icons";
 import "./Navigation.css";
 import logo from "./images/Trainy2.png";
 
 const Navigation = ({ activePage, setActivePage }) => {
-  const [collapsedTop, setCollapsedTop] = useState(false);
+  const [collapsedTop, setCollapsedTop] = useState(true);
   const [collapsedLeft, setCollapsedLeft] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
   const navigate = useNavigate();
@@ -41,74 +46,148 @@ const Navigation = ({ activePage, setActivePage }) => {
   };
 
   return (
+
+
+    
     <>
       {isMobile ? (
-        <div className="top-nav">
+        //   if mobile then use the top-nav
+        <div className={`top-nav ${collapsedTop ? "collapsed-top" : "open-top"}`}>
           <div className="nav-container">
-            <MenuOutlined className="menu-icon" onClick={handleCollapseClickTop} />
+            <div className = "top-nav-header">
+              
+            <MenuOutlined
+              className="menu-icon-top"
+              onClick={handleCollapseClickTop}
+            />
+
             <div className="logo-container" onClick={handleLogoClick}>
               <span className="logo-text">TrainGang</span>
               <img src={logo} alt="Logo" className="logo-image" />
             </div>
-            <div className={`nav-items ${collapsedTop ? "open" : ""}`}>
+
+            </div>
+
+            <div className={"nav-items-container-top"}>
               <div
-                className={`nav-item top-nav-item ${activePage === "Explore" ? "active" : ""}`}
-                onClick={() => handleNavItemClick("Explore")}
+                className={`nav-item-top ${
+                  activePage === "Explore" ? "active" : ""
+                }`}
+                onClick={() => {
+                  handleNavItemClick("Explore");
+                  handleCollapseClickTop();
+                }}
               >
                 <GlobalOutlined className="nav-icon" />
-                <span className={`nav-text ${activePage === "Explore" ? "active" : ""}`}>Explore</span>
+                <span
+                  className={`nav-text ${
+                    activePage === "Explore" ? "active" : ""
+                  }`}
+                >
+                  Explore
+                </span>
               </div>
               <div
-                className={`nav-item top-nav-item ${activePage === "About" ? "active" : ""}`}
-                onClick={() => handleNavItemClick("About")}
+                className={`nav-item-top ${
+                  activePage === "About" ? "active" : ""
+                }`}
+                onClick={() => {
+                  handleNavItemClick("About");
+                  handleCollapseClickTop();
+                }}
               >
                 <InfoCircleOutlined className="nav-icon" />
-                <span className={`nav-text ${activePage === "About" ? "active" : ""}`}>About</span>
+                <span
+                  className={`nav-text ${
+                    activePage === "About" ? "active" : ""
+                  }`}
+                >
+                  About
+                </span>
               </div>
               <div
-                className={`nav-item top-nav-item ${activePage === "Donate" ? "active" : ""}`}
-                onClick={() => handleNavItemClick("Donate")}
+                className={`nav-item-top ${
+                  activePage === "Donate" ? "active" : ""
+                }`}
+                onClick={() => {
+                  handleNavItemClick("Donate");
+                  handleCollapseClickTop();
+                }}
               >
                 <HeartOutlined className="nav-icon" />
-                <span className={`nav-text ${activePage === "Donate" ? "active" : ""}`}>Donate</span>
+                <span
+                  className={`nav-text ${
+                    activePage === "Donate" ? "active" : ""
+                  }`}
+                >
+                  Donate
+                </span>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className={`left-nav ${collapsedLeft ? "collapsed" : ""}`}>
-          <div className="nav-header">
-            <MenuOutlined className="collapse-button" onClick={handleCollapseClickLeft} />
+        // otherwise its not mobile and use the left nav
+        <div className={`left-nav ${collapsedLeft ? "collapsed-left" : "open-left"}`}>
+          <div className="left-nav-header">
+            <MenuOutlined
+              className="menu-icon-left"
+              onClick={handleCollapseClickLeft}
+            />
             {!collapsedLeft && (
               <div className="logo-container" onClick={handleLogoClick}>
                 <img src={logo} alt="Logo" className="logo-image" />
               </div>
             )}
           </div>
-          <div className="nav-items-container">
+          <div className="nav-items-container-left">
             <div
-              className={`nav-item ${activePage === "Explore" ? "active" : ""}`}
+              className={`nav-item-left ${activePage === "Explore" ? "active" : ""}`}
               onClick={() => handleNavItemClick("Explore")}
             >
               &nbsp;
               <GlobalOutlined className="nav-icon" />
-              {!collapsedLeft && <span className={`nav-text ${activePage === "Explore" ? "active" : ""}`}>Explore</span>}
+              {!collapsedLeft && (
+                <span
+                  className={`nav-text ${
+                    activePage === "Explore" ? "active" : ""
+                  }`}
+                >
+                  Explore
+                </span>
+              )}
             </div>
             <div
-              className={`nav-item ${activePage === "About" ? "active" : ""}`}
+              className={`nav-item-left ${activePage === "About" ? "active" : ""}`}
               onClick={() => handleNavItemClick("About")}
             >
               &nbsp;
               <InfoCircleOutlined className="nav-icon" />
-              {!collapsedLeft && <span className={`nav-text ${activePage === "About" ? "active" : ""}`}>About</span>}
+              {!collapsedLeft && (
+                <span
+                  className={`nav-text ${
+                    activePage === "About" ? "active" : ""
+                  }`}
+                >
+                  About
+                </span>
+              )}
             </div>
             <div
-              className={`nav-item ${activePage === "Donate" ? "active" : ""}`}
+              className={`nav-item-left ${activePage === "Donate" ? "active" : ""}`}
               onClick={() => handleNavItemClick("Donate")}
             >
               &nbsp;
               <HeartOutlined className="nav-icon" />
-              {!collapsedLeft && <span className={`nav-text ${activePage === "Donate" ? "active" : ""}`}>Donate</span>}
+              {!collapsedLeft && (
+                <span
+                  className={`nav-text ${
+                    activePage === "Donate" ? "active" : ""
+                  }`}
+                >
+                  Donate
+                </span>
+              )}
             </div>
           </div>
         </div>

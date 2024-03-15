@@ -135,11 +135,13 @@
   font-size: 22px; /* Increase font size for touch devices */
 }
 
-/* 
 body {
-  padding-top: 60px; 
   margin: 0;
   font-family: sans-serif;
-} 
+}
 
-*/
+@media (max-width: 770px) {
+  body {
+    padding-top: 60px;
+  }
+}
