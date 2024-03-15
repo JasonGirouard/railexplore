@@ -70,6 +70,7 @@ const Map = ({
               isSelected={activeStation && station.code === activeStation.code}
               originStation={originStation}
               destination={destination} // Pass specific destination data
+              setIsPanelOpen={setIsPanelOpen}
             />
           );
         })}

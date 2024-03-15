@@ -1,0 +1,156 @@
+.left-nav {
+    width: 240px;
+    height: 100vh;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s;
+  }
+  
+  .left-nav.collapsed {
+    width: 70px;
+  }
+  
+  .nav-header {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    padding-top: 30px;
+  }
+  
+  .collapse-button {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-image {
+    height: 24px;
+  }
+  
+  .nav-items-container {
+     
+    margin-top: 20px;
+  }
+  
+  /* .nav-item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+
+  } */
+  
+  .nav-item:hover,
+  .nav-item.active {
+    background-color: #f0f0f0;
+  }
+  
+  .nav-text.active {
+    font-weight: bold;
+  }
+  
+  .nav-icon {
+    margin-right: 10px;
+  }
+  
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+   
+  }
+
+  .nav-header.open {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+
+
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-text {
+    margin-right: 5px;
+  }
+  
+  .logo-image {
+    height: 24px;
+  }
+  
+  .nav-items {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    animation: slideIn 0.3s ease-in-out;
+  }
+  
+  .nav-items.open {
+    display: flex;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 40px;
+    
+    /* border-bottom: 1px solid #c4c4c4; */
+    margin: 8px 16px 8px 16px;
+    /* top right bottom left */
+    padding: 0px 08px 0px 8px;
+    border-radius: 4px;
+  }
+
+  .top-nav-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 60px;
+    
+    /* border-bottom: 1px solid #c4c4c4; */
+    margin: 0 0 0 20px;
+    /* top right bottom left */
+    padding: 0 0 0 20px;
+    border-radius: 4px;
+  }
+  
+  .menu-icon {
+    position: absolute;
+    left: 25px;
+    cursor: pointer;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }

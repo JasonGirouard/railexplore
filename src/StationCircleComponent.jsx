@@ -11,6 +11,7 @@ const StationCircleComponent = ({
   isSelected,
   originStation,
   destination,
+  setIsPanelOpen
 }) => {
   // Utility function to interpolate between two colors
   function interpolateColor(color1, color2, factor) {
@@ -200,6 +201,7 @@ const StationCircleComponent = ({
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
+                  setIsPanelOpen(true)
                   onSeeMoreClicked();
                 }}
                 className="popup-link see-more"

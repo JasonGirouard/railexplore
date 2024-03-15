@@ -2,7 +2,7 @@ import React from "react";
 import "./About.css"; // Make sure to create an About.css file in your project
 import womanReadingImage from "./images/womanReadingImage.png"; // Replace with the path to your image
 import Trainy2 from "./images/Trainy2.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -49,18 +49,21 @@ const About = () => {
 
         <div className="value-bottom">
           <div className="value-left">
-          <img src={Trainy2} alt="Train Logo" />
-          <p>
-  This site is free to use, but not free to operate. Please
-  <Link to="/donate" style={{ textDecoration: 'underline', color: 'inherit' }}> donate</Link>
-  if you can.
-</p>
-            
+            <img src={Trainy2} alt="Train Logo" />
+            <p>
+              This site is free to use, but not free to operate. Please
+              <Link
+                to="/donate"
+                style={{ textDecoration: "underline", color: "inherit" }}
+              >
+                {" "}
+                donate
+              </Link>
+              if you can.
+            </p>
           </div>
           <div className="value-right">
-            
             <h2>Please donate if you can.</h2>
-           
           </div>
         </div>
       </div>

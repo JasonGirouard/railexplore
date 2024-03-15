@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"; 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import "./App.css"; 
 import stations from "./data/stations.json";
 import About from "./About"; // 
 import Donate from "./Donate";
-import LeftNav from "./LeftNav";
+import TopNav from "./TopNav";
+// import LeftNav from "./LeftNav";
 import Explore from "./Explore";
+import Navigation from "./Navigation";
 import LocationDetector from "./LocationDetector";
 
 function App() {
@@ -36,14 +38,18 @@ function App() {
     <Router>
       <div className="App">
         <div className="flex-container">
-          <LeftNav activePage={activePage} setActivePage={setActivePage} />
+        {/* <TopNav activePage={activePage} setActivePage={setActivePage} /> */}
+          {/* <LeftNav activePage={activePage} setActivePage={setActivePage} /> */}
+          <Navigation activePage={activePage} setActivePage={setActivePage} />
+         
+       
           {!locationDetected && (
             <LocationDetector
               stations={stations}
               setOriginStation={setOriginStation}
             />
           )}
-
+       
           <Routes>
           <Route
               path="/"
@@ -66,6 +72,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/donate" element={<Donate />} />
           </Routes>
+       
         </div>
       </div>
     </Router>

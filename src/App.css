@@ -37,9 +37,6 @@
   }
 }
 
-
-
-
 .App {
   position: relative; /* This makes sure that the button is positioned relative to the App container */
 }
@@ -62,7 +59,6 @@
   border-radius: 8px 8px 0 0; /* Rounded corners at the top */
   margin-left: -21px;
   margin-top: -14px;
-  
 }
 
 .popup-content {
@@ -71,16 +67,12 @@
   padding: 0px;
   margin-left: -10px;
   margin-right: -10px;
-
-  
 }
-
 
 .popup-content h2 {
   margin: 8px 0px 0px 0px; /* Adds margin at the top to separate from the image */
- 
+
   font-size: 1.2em; /* Title size */
-  
 }
 
 /* this gets a little wonky */
@@ -89,7 +81,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 0;
-  
 }
 
 .popup-link {
@@ -97,7 +88,7 @@
   padding-left: 0;
   color: #0078d7; /* Link color */
   text-decoration: none; /* No underline */
-  font-size: 01.0em; /* Link text size */
+  font-size: 01em; /* Link text size */
   white-space: nowrap; /* Prevents the link from wrapping and ensures it stays aligned */
 }
 
@@ -126,7 +117,7 @@
   line-height: 50px; /* Adjust line height to vertically center the '+' and '-' */
   background-color: white; /* Optional: change the background color */
   border-radius: 4px; /* Optional: add border-radius for rounded corners */
- 
+
   color: black; /* Optional: change the '+' and '-' color */
 }
 
@@ -144,3 +135,11 @@
   font-size: 22px; /* Increase font size for touch devices */
 }
 
+/* 
+body {
+  padding-top: 60px; 
+  margin: 0;
+  font-family: sans-serif;
+} 
+
+*/
