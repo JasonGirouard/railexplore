@@ -61,7 +61,7 @@ const Navigation = ({ activePage, setActivePage }) => {
               onClick={handleCollapseClickTop}
             />
 
-            <div className="logo-container" onClick={handleLogoClick}>
+            <div className="logo-container-top" onClick={handleLogoClick}>
               <span className="logo-text">TrainGang</span>
               <img src={logo} alt="Logo" className="logo-image" />
             </div>
@@ -135,7 +135,7 @@ const Navigation = ({ activePage, setActivePage }) => {
               onClick={handleCollapseClickLeft}
             />
             {!collapsedLeft && (
-              <div className="logo-container" onClick={handleLogoClick}>
+              <div className="logo-container-left" onClick={handleLogoClick}>
                 <img src={logo} alt="Logo" className="logo-image" />
               </div>
             )}

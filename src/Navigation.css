@@ -6,10 +6,13 @@
 
 .top-nav{
     width: 100vw;
-    height: 55px;
+    height: 60px;
     background-color: #fff;
-    border-right: 1px solid #ddd;
+
     z-index: 1001;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
 }
 
 .top-nav-header{
@@ -25,13 +28,21 @@ align-items: center;
     left: 27px; /* Align to the left of the parent element */
   }
 
-  .logo-container  {
 
+  .logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
+
+ 
 
 .top-nav.open-top {
   /* Horizontal offset, Vertical offset, Blur radius, Spread radius, Color */
   /* box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.6); */
+  margin: 0px;
+    padding: 0px;
+    border: 0px;
 }
 
 .nav-items-container-top {
@@ -39,7 +50,7 @@ align-items: center;
   flex-direction: column;
   margin-top: 0px;
   position: absolute;
-  top: 60px;
+   top: 60px; 
   left: 0;
   width: 100%;
   background-color: #fff;
@@ -87,12 +98,12 @@ align-items: center;
     margin: 0px;
 
 }
-
+/* 
 .logo-container {
   display: flex;
   align-items: center;
   cursor: pointer;
-}
+} */
 
 .logo-text {
   margin-right: 5px;
@@ -130,7 +141,16 @@ align-items: center;
 .left-nav-header {
     display: flex;
     align-items: center;
-    padding: 27px;
+    padding: 20px;
+    padding-left: 27px;
+    height: 15px
+  }
+
+  .logo-container-left  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
 
   /* menu icon is always shown in the left-nav */ 
