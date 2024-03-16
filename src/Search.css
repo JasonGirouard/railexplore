@@ -1,33 +1,21 @@
 .search {
   position: absolute;
-  z-index: 1000; /* Ensures the button stays on top of the map */
+  z-index: 10010; /* Ensures the button stays on top of the map */
   padding: 0px;
   width: 300px; /* Example width - adjust as needed */
   margin: 25px;
   box-sizing: border-box;
-  
 }
 
 @media (max-width: 770px) {
-
    .search {
-    /* width: calc(100% - 100px); */
-    /* padding instead of margin */
     position: absolute;
-    z-index: 1000;
+    z-index: 10010;
     width: calc(100% - 20px);
     margin: 10px;
     box-sizing: border-box;
-    
-    
   }
-   
-
-  
- 
 }
-
-
 .search-form {
     width: 100%;
 }
@@ -49,14 +37,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border: 1px solid #ccc;
-  
 }
 
 .autocomplete-option {
   cursor: pointer;
   padding: 10px;
   margin: 0px;
-
   display: flex;
   flex-direction: row;
   align-content: start;
@@ -65,7 +51,6 @@
   justify-items: left;
   box-sizing: border-box;
   width: 100%;
- 
 }
 
 .autocomplete-option:hover {
@@ -90,7 +75,6 @@
 }
 
 /* Continue with styling for .top-row, .station-name, .station-code, and .bottom-row */
-
 .search-icon {
   position: absolute;
   top: 50%;
@@ -99,13 +83,9 @@
   width: 20px;
   height: 20px;
 }
-
-
 /* this styles the individual option components */
 .top-row {
   display: flex;
- 
-  
   margin: 0px; /* Space between top and bottom rows */
   padding: 0px;
 }
