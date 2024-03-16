@@ -86,6 +86,9 @@ function Search({ stations, originStation, setOriginStation }) {
   };
 
   return (
+    <div className = "search-container">
+
+    
     <div className="search">
       <FontAwesomeIcon icon={faHouse} className="search-icon" />
       <form className="search-form">
@@ -124,6 +127,7 @@ function Search({ stations, originStation, setOriginStation }) {
           )}
         </div>
       </form>
+    </div>
     </div>
   );
 }

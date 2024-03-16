@@ -1,6 +1,7 @@
 import React from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
+import "./Legend.css"; // Import the CSS file
 
 const Legend = () => {
   const map = useMap();
@@ -10,27 +11,23 @@ const Legend = () => {
 
     legend.onAdd = function () {
       var div = L.DomUtil.create("div", "info legend custom-legend");
-      div.style.backgroundColor = 'white'; // Set the background color to white
-      div.style.padding = '6px'; // Add some padding
-      div.style.borderRadius = '4px'; // Optionally round the corners
-      div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.4)'; // Optional shadow for better visibility
       div.innerHTML = `
         <div><strong>Travel Time</strong></div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-          <i style="background: #008DF3; width: 15px; height: 15px; border-radius: 50%;"></i>
-          <span style="margin-left: 8px;">0 - 2.9 hrs</span>
+        <div class="legend-item">
+          <i class="legend-icon" style="background: #008DF3;"></i>
+          <span class="legend-text">0 - 2.9 hrs</span>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-          <i style="background: #AFDDFF; width: 15px; height: 15px; border-radius: 50%;"></i>
-          <span style="margin-left: 8px;">3 - 6.9 hrs</span>
+        <div class="legend-item">
+          <i class="legend-icon" style="background: #AFDDFF;"></i>
+          <span class="legend-text">3 - 6.9 hrs</span>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-          <i style="background: #BFBFBF; width: 15px; height: 15px; border-radius: 50%;"></i>
-          <span style="margin-left: 8px;">7 + hrs</span>
+        <div class="legend-item">
+          <i class="legend-icon" style="background: #BFBFBF;"></i>
+          <span class="legend-text">7 + hrs</span>
         </div>
-        <div style="display: flex; align-items: center; margin-bottom: 5px;">
-          <i style="background: #FFFFFF; border: 2px solid #AFDDFF; width: 12px; height: 12px; border-radius: 50%;"></i>
-          <span style="margin-left: 8px;">Unknown</span>
+        <div class="legend-item">
+          <i class="legend-icon unknown"></i>
+          <span class="legend-text">Unknown</span>
         </div>
       `;
       return div;
@@ -44,16 +41,7 @@ const Legend = () => {
     };
   }, [map]);
 
-  return (
-    <>
-      <style>
-        {`.custom-legend.leaflet-control {
-            margin-bottom: 60px !important; /* Move up by 60px */
-          }`}
-      </style>
-      null
-    </>
-  );
+  return null;
 };
 
 export default Legend;

@@ -1,0 +1,75 @@
+/* zoom control */
+  .leaflet-control-zoom {
+    position: relative;
+    padding: 5px;
+    bottom: 25px;
+    left: 10px;
+    z-index: 3; /* Ensure it's above other elements */
+   
+  }
+  .leaflet-control-zoom.leaflet-bar.leaflet-control {
+      border: none;
+  }
+
+.leaflet-control-zoom a {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 24px;
+    background-color: white;
+    
+    border-radius: 0px;
+    color: #333;
+
+    /* Apply a box shadow to the element with the following properties:
+   - Horizontal offset: 0
+   - Vertical offset: 1px
+   - Blur radius: 5px
+   - Color: Black with an opacity of 0.4 */
+
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3); 
+    transition: background-color 0.3s;
+  }
+  .leaflet-control-zoom a:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    font-weight: bold;
+    border-color: 1px solid #ccc;
+  }
+  
+  .leaflet-control-zoom-in {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .leaflet-touch .leaflet-control-zoom a {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    border-color: 1px solid #ccc;
+  }
+
+ /* mobile */
+ @media (max-width: 770px) {
+    .map-container {
+      flex: 1;
+     height: 100%;
+      z-index: 1;
+    } 
+}
+
+/* desktop */
+@media (min-width: 770px) {
+    .map-container {
+      flex: 1;
+      height: 100%;
+      z-index: 1;
+    } 
+}
+
+
+  
+  
+

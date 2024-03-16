@@ -42,21 +42,24 @@ const Explore = ({ originStation, setOriginStation }) => {
   }, [originStation]);
 
   return (
-    <div className="main-content">
+    <div className="main-content-explore">
       <Search
         stations={stations}
         originStation={originStation}
         setOriginStation={setOriginStation}
       />
 
-      <div className="map-container">
-        <MapComponent
-          originStation={originStation}
-          setIsPanelOpen={setIsPanelOpen}
-          activeStation={activeStation}
-          setActiveStation={setActiveStation}
-          selectedStationDestinations={selectedStationDestinations}
-        />
+      <div className="map-container-explore">
+        <div className="map-div">
+          <MapComponent
+            originStation={originStation}
+            setIsPanelOpen={setIsPanelOpen}
+            activeStation={activeStation}
+            setActiveStation={setActiveStation}
+            selectedStationDestinations={selectedStationDestinations}
+          />
+        </div>
+
         <InfoPanel
           originStation={originStation}
           station={activeStation}

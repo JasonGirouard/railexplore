@@ -20,34 +20,55 @@
 
 .flex-container {
   display: flex;
-  flex-direction: column;
+  height: 100vh;
+  
 }
 
 .content {
-  flex: 1;
+  
+  /* note that removing flex 1 makes it not show up on desktop */
+  flex: 1; 
+  /* flex: 1; grow (fill any avialable space) */
+  /* flex: 2, shrink */
+  /* flex: 3 basis e.g. auto is just the regular size */
   padding: 0px;
-  border-left: 1px solid #ddd;
-  border-top: 1px solid #ddd;
+ /* Add this to hide any overflowing content */
+  /* overflow: hidden;  */
 }
 
 /* target devices with a minimum width of 768 aka desktop*/
-@media (min-width: 768px) {
+@media (min-width: 770px) {
   .flex-container {
     flex-direction: row;
+    
   }
 
   .content {
-    margin-left: 0px; 
+    margin: 0px; 
+    border: 0px;
+    border-left: 1px solid #ddd;
+    flex: 1;
   }
 }
 
-
+/* mobile */
 @media (max-width: 770px) {
- 
 
+  .flex-container {
+    flex-direction: column;
+   
+  }
   .content {
-    margin-top: 60px; /* Adjust this value based on the width of your left navigation */
-    /* this works, but the search button refuses to adjust ... because its not relative!! */
+    border: none;
+    padding: 0px;
+    flex: 1;
+    margin-top: 60px;
+    
+    /* Adjust this value based on the width of the top navigation */
+    /* margin-top: 60px; */
+     /* overflow: hidden;  */
+     
+    /* height: calc(100vh - 60px); */
   }
 }
 /* 

@@ -1,0 +1,55 @@
+/* Legend.css */
+.info.legend.custom-legend {
+    background-color: white;
+    padding: 6px;
+    border-radius: 4px;
+   
+    /* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4); */
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .legend-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  
+  .legend-icon.unknown {
+    background-color: #FFFFFF;
+    border: 2px solid #AFDDFF;
+    width: 12px;
+    height: 12px;
+  }
+  
+  .legend-text {
+    margin-left: 8px;
+  }
+
+  /* desktop */
+  .custom-legend.leaflet-control {
+    /* margin-bottom: 60px  */
+    position: relative; /* Position the element relative to the viewport */
+   /* Distance from the bottom edge of the viewport */
+    bottom: 20px; 
+   /* Distance from the left edge of the viewport */
+    left: 15px; 
+  }
+
+
+/* mobile */
+  @media (max-width: 770px) {
+
+     .custom-legend.leaflet-control {
+    /* margin-bottom: 60px  */
+    position: fixed; /* Position the element relative to the viewport */
+    bottom: 20px; /* Distance from the bottom edge of the viewport */
+    left: 20px; /* Distance from the left edge of the viewport */
+  }
+  }
+  
+  

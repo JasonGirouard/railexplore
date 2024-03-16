@@ -1,35 +1,121 @@
-/* Custom zoom control buttons */
-.leaflet-control-zoom a {
-    width: 50px; /* Default is 30px */
-    height: 50px; /* Default is 30px */
-    line-height: 50px; /* Adjust line height to vertically center the '+' and '-' */
-    background-color: white; /* Optional: change the background color */
-    border-radius: 4px; /* Optional: add border-radius for rounded corners */
-  
-    color: black; /* Optional: change the '+' and '-' color */
-  }
-  
-  .leaflet-control-zoom a:hover {
-    background-color: #f4f4f4; /* Optional: change the background color on hover */
-  }
-  
-  /* Adjust the size of the '+' and '-' text */
-  .leaflet-control-zoom a::after {
-    font-size: 22px; /* Adjust the font size as needed */
-  }
-  
-  /* If you also want to increase the size of the icons ('+' and '-') */
-  .leaflet-touch .leaflet-bar a {
-    font-size: 22px; /* Increase font size for touch devices */
+
+
+
+.map-container-explore {
+    flex: 1;
+}
+
+.map-div {
+    /*  it inherits 16 margin somehow */
+      flex: 1;
+      /* z-index: 1; */
+      /* flex-grow: 1; */
+      margin: 0px 0px 0px 0px;
+      border: 0px 0px 0px 0px;
+
   }
 
-  .main-content {
-    flex-grow: 1; /* Take up the remaining space */
-    overflow: auto;
-    position: relative;
+  .map-div p{
+      padding: 00px;
+      margin: 0px;
   }
 
-  .map-container {
-    position: relative;
-    z-index: 1; /* Set a lower z-index value */
+
+/* mobile */
+  @media (max-width: 770px) {
+    .main-content-explore {
+      
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      height: 100%;
+    } 
+
+    .map-container-explore {
+        display: flex;
+        flex: 1;
+      } 
+
+      .map-div {
+          flex: 1;
+      }
+
+}
+
+/* desktop */
+@media (min-width: 770px) {
+    .main-content-explore {
+      
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      height: 100%;
+    } 
+
+    .map-container-explore {
+        display: flex;
+        flex: 1;
+      } 
+
+      .map-div {
+          flex: 1;
+      }
+
+}
+
+/* 
+  .main-content-explore {
+    /* Allow the main content to grow to fill available space */
+
+     /* I need flex grow */
+    /* flex-grow: 1; */
+    /* Enable vertical scrolling when content overflows */
+    /* overflow: auto; */
+    /* display: flex; */
+    /* flex: 1;  */
+    /* flex: 1; */
+    /* display: flex; */
+    /* Enable vertical scrolling when content overflows */
+    /* overflow: hidden; */
+    /* Position the main content relative to its normal position */
+    /* position: relative; */
+
+
+
+
+
+
+
+/* desktop */
+/* @media (min-width: 770px) {
+    .main-content-explore {
+      flex-direction: row;
+    }
+  
+  } */
+
+  /* mobile */
+
+/* @media (max-width: 770px) {
+    .main-content-explore {
+      flex-direction: column;
+    } 
+
+ 
+.leaflet-touch {
+    height: 80vh;
+    border: 1px solid blue;
+    padding-left: 50px;
+    margin-left: 500px;
+    box-sizing: border-box;
+    left: 5px;
+}
+  
   }
+ */
+  
+  
+  
+
+
+  

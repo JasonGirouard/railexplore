@@ -5,10 +5,15 @@ import StationCircleComponent from "./StationCircleComponent";
 import stations from "./data/stations.json";
 import Legend from "./Legend";
 import amtrakSimplifiedData from "./data/amtrak_simplified.json"; // Import the GeoJSON data
+import "./MapComponent.css";
 
 // note there is some werid behavior when you hover near the top, it moves up. this is because the pop-up begins to open, but is outside the view of the screen. I'll need to fix that.
 
+
+
+
 const CenterMap = ({ originStation }) => {
+  
   const map = useMap();
 
   useEffect(() => {
@@ -28,8 +33,20 @@ const Map = ({
   selectedStationDestinations,
 }) => {
   console.log("in the map");
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 770);
+    };
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const onMarkerClick = (station) => {
     setActiveStation(station);
@@ -44,13 +61,15 @@ const Map = ({
     <MapContainer
       center={[originStation.lat, originStation.long]}
       zoom={7}
-      style={{ height: "100vh", width: "100%" }}
+  //    style={{ height: "100vh", width: "100%" }} // note that 100% height breaks the map, but that might be my kew to fixing this bug. 
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
       scrollWheelZoom={false} // Disable scroll-to-zoom
       zoomControl={false} // Disable default zoom control
+      className="map-container"
     >
-      <ZoomControl position="bottomright" />
+      
+
       {stations
         .filter((station) => station.mode === "TRAIN")
         .map((station) => {
@@ -89,6 +108,8 @@ const Map = ({
       <TileComponent />
       <CenterMap originStation={originStation} />
       <Legend />
+      {!isMobile && <ZoomControl position="bottomleft" />}
+      
     </MapContainer>
   );
 };

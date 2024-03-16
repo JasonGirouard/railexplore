@@ -8,12 +8,11 @@
     width: 100vw;
     height: 60px;
     background-color: #fff;
-
-    z-index: 1001;
+    z-index: 3; /* just above the search */
     margin: 0px;
     padding: 0px;
     border: 0px;
-  
+    border-bottom: 1px solid #ddd;
 }
 
 .top-nav-header{
@@ -50,13 +49,15 @@ align-items: center;
   display: flex;
   flex-direction: column;
   margin-top: 0px;
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
    top: 60px; 
   left: 0;
   width: 100%;
   background-color: #fff;
   border-top: 1px solid #ddd;
   animation: slideIn 0.3s ease-in-out;
+  z-index: 3;
   
 
 }
@@ -80,6 +81,7 @@ align-items: center;
     margin: 0px 0px;
     padding: 0px 24px;
     border-bottom: 1px solid #ddd;
+    z-index: 3;
   }
 
   .nav-item-top:hover,
@@ -131,7 +133,7 @@ align-items: center;
     background-color: #fff;
     
     transition: width 0.3s;
-    z-index: 1001;
+    z-index: 3;
    
 }
 
