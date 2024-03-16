@@ -1,56 +1,55 @@
 
-.info-panel button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  /* More button styles... */
-}
 
 .info-panel {
+  flex: 1;
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 100%;
+  right: -600px; /* Start the panel off-screen to the right */
   background-color: white;
-  z-index: 1000;
+  z-index: 3;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  padding: 0; 
-  overflow: hidden;
+  padding: 0;
+  height: 100%;
+  width: 600px;
   overflow-y: auto;
-  /* display: flex;
-  flex-direction: column; */
-
+  transition: right 0.3s ease-in-out; /* Add a smooth transition effect */
 }
 
-/* Slide-in animation */
 .info-panel.open {
-    animation: slideIn 0.5s forwards;
-  }
-  
-  @keyframes slideIn {
-    from {
-      right: -400px;
-    }
-    to {
-      right: 0;
-    }
-  }
-  
-  /* Slide-out animation */
-  .info-panel.close {
-    animation: slideOut 0.5s forwards;
-  }
-  
-  @keyframes slideOut {
-    from {
-      right: 0;
-    }
-    to {
-      right: -400px;
-    }
-  }
+  right: 0; /* Slide the panel in from the right when the "open" class is added */
+}
 
+.info-panel.close {
+  right: -600px; /* Slide the panel out to the right when the "close" class is added */
+}
+
+/* mobile */
+@media (max-width: 770px) {
+  .info-panel {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    right: -100%; /* Start the panel off-screen to the right on mobile */
+  }
+  
+  .info-panel.open {
+    right: 0; /* Slide the panel in from the right on mobile */
+  }
+  
+  .info-panel.close {
+    right: -100%; /* Slide the panel out to the right on mobile */
+  }
+}
+
+/* desktop */
+@media (min-width: 770px) {
+  .info-panel {
+    max-width: 600px;
+    height: 100%;
+    overflow-y: scroll;
+  }
+}
+
+/* HEADER */ 
 .info-header {
   display: flex;
   align-items: center;
@@ -68,16 +67,15 @@
   font-size: 1.5em;
 }
 
-
-
 .station-info h2,
 .station-info p {
-    margin: 0;
+  margin: 0;
   margin-left: 25px;
   padding: 0;
   text-align: left;
 }
 
+/* BODY INFO */
 .image-container {
   position: relative;
   width: auto;
@@ -85,6 +83,16 @@
   margin: 5px;
   padding: 5px;
 }
+
+/* these are the buttons to change the image */ 
+
+.info-panel button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+ 
+}
+ 
 
 .image-container img {
   width: 100%;
@@ -103,10 +111,9 @@
   padding: 10px;
   font-size: 15px;
   text-align: left;
-  border: 1px solid #D3D3D3; /* Light gray border */
+  border: 1px solid #d3d3d3; /* Light gray border */
   border-radius: 5px;
 }
-
 
 .book-button {
   position: absolute;
@@ -120,7 +127,7 @@
   text-decoration: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer; /* Indicates that the element is clickable */
-  z-index: 10; 
+  z-index: 10;
   font-weight: bold; /* Optional: makes the text bold */
 }
 
@@ -128,9 +135,8 @@
   background-color: #0056b3; /* Darker shade for hover state */
 }
 
-
 .station-icon {
-  width: 30px;  /* Adjust the size as needed */
+  width: 30px; /* Adjust the size as needed */
   height: 30px; /* Adjust the size as needed */
 }
 
@@ -142,97 +148,32 @@
   padding: 0px;
 }
 
-
-/* below is the route details */
-.routes-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.route-card {
-  background-color: #F5F5F5;
-  border-radius: 8px;
-  margin: 20px;
-  margin-bottom: 16px;
-  padding: 10px;
-  border: 1px solid #DFDEDE;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-}
-.route-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px;
-  padding: 0px;
-  border: 0px;
-}
-
-.route-upper-level {
-  font-style: italic;
-  display: flex;
-  align-items: left;
-  margin-bottom: 5px; /* Adjust as necessary */
-}
-
-.route-lower-level {
-  display: flex;
-  justify-content: space-evenly; 
-  align-items: center;
-}
-
-.route-details {
-  display: flex;
-  align-items: center;
-  gap: 25px; /* Adjust the space between elements */
-}
-
-.route-details {
-  margin: 0px;
-  padding: 0px;
-  font-weight: bold;
-}
-
-.route-title {
-  font-size: 1em;
-  margin: 0;
-  font-weight: normal;
-  font-style: italic;
-}
-
-.route-time, .route-nonstop, .route-stops, .route-duration {
-  font-size: 0.9em;
-}
-
-.route-travel-time {
-  margin: 5px 0;
-  font-weight: bold;
-}
-
+/* ARROW SELECTORS ON IMAGE */
 .arrow {
-    position: absolute;
-    background-color: #333; /* Adjust color as needed */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px; /* Adjust size as needed */
-    height: 40px; /* Adjust size as needed */
-    cursor: pointer;
-    font-size: 20px; /* Adjust arrow size as needed */
-    z-index: 10;
-  }
-
-  .left-arrow {
-    left: 280px; /* Keep the horizontal position as is */
-
-}
-  
-  .right-arrow {
-    left: 325px; /* Keep this to position the right arrow 20px from the right edge */
-    bottom: 20px;
+  position: absolute;
+  background-color: #333; /* Adjust color as needed */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  cursor: pointer;
+  font-size: 20px; /* Adjust arrow size as needed */
+  z-index: 10;
 }
 
-/* trains  */
+.left-arrow {
+  left: 280px; /* Keep the horizontal position as is */
+}
+
+.right-arrow {
+  left: 325px; /* Keep this to position the right arrow 20px from the right edge */
+  bottom: 20px;
+}
+
+
+
+/* TRAINS  */
 .trains-container {
   position: relative;
   width: auto;
@@ -242,95 +183,9 @@
   text-align: left;
   border-radius: 5px;
   font-size: 14px;
- /* font-weight: bold; */
+  /* font-weight: bold; */
 }
-
-.card {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  margin-top: 5px;
- /*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
- /*  border: 1px solid #D3D3D3; /* Light gray border */ 
-  margin-bottom: 16px;
-  overflow: hidden;
-}
-
-.card-header {
-  background-color: #f5f5f5;
-  padding-top: 10px;
-  padding-bottom: 2px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-size: 14px;
-
-}
-
-.route-names {
-  font-style: italic;
-  font-weight: normal; 
-}
-
-.card-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 5px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-
-
-.time-range {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.transfers {
-  font-size: 14px;
-  font-weight: bold;
-  position: relative;
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.tooltiptext {
-  visibility: hidden;
-  min-width: 200px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-  font-weight: normal;
-  font-size: 12px;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
-
-.elapsed-time {
-  font-size: 14px;
-  font-weight: bold;
-}
-
 .trains-title {
   font-size: 14px;
   font-weight: bold;
-  
 }

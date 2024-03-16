@@ -11,7 +11,7 @@ import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./tool-tip.css";
 import "./InfoPanel.css";
 import stations from "./data/stations.json";
-import TrainPathFinder from './TrainPathFinder';
+import TrainPathFinder from "./TrainPathFinder";
 
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
@@ -27,26 +27,30 @@ const InfoPanel = ({
   setIsPanelOpen,
   selectedStationDestinations,
 }) => {
-  const [everOpened, setEverOpened] = useState(false);
-  const isFirstRender = useRef(true);
+ // const [everOpened, setEverOpened] = useState(false);
+ // const isFirstRender = useRef(true);
 
+  // useEffect(() => {
+  //   if (isPanelOpen && isFirstRender.current) {
+  //     isFirstRender.current = false;
+  //     setEverOpened(true);
+  //   } else if (isPanelOpen) {
+  //     setEverOpened(true);
+  //   }
+  // }, [isPanelOpen]);
 
-  useEffect(() => {
-    if (isPanelOpen && isFirstRender.current) {
-      isFirstRender.current = false;
-      setEverOpened(true);
-    } else if (isPanelOpen) {
-      setEverOpened(true);
-    }
-  }, [isPanelOpen]);
+  
 
   // Define CSS classes based on state
   let panelClass = "info-panel";
   if (isPanelOpen) {
     panelClass += " open";
-  } else if (everOpened && !isFirstRender.current) {
+  } else {
     panelClass += " close";
   }
+
+
+
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // Find the specific destination data for this station
@@ -146,9 +150,9 @@ const InfoPanel = ({
   };
 
   // If the panel has never been opened, don't render it
-  if (!everOpened) {
-    return null;
-  }
+  // if (!everOpened) {
+  //   return null;
+  // }
 
   return (
     <div className={panelClass}>
@@ -222,19 +226,25 @@ const InfoPanel = ({
       </div>
       <div className="station-description">{station.description}</div>
 
-      <div> 
-      <TrainPathFinder originStation={originStation.code} destinationStation={station.code} />
+      <div>
+        <TrainPathFinder
+          originStation={originStation.code}
+          destinationStation={station.code}
+        />
       </div>
-
-
-    {originStation.code !== station.code && (
-        <div className="trains-container">
-          <div className="trains-title">Today's trains</div>
-
-          
-        </div>
-      )} 
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      
+      
      
+     
+    
     </div>
   );
 };

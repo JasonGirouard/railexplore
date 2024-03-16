@@ -50,6 +50,14 @@ const Explore = ({ originStation, setOriginStation }) => {
       />
 
       <div className="map-container-explore">
+        <InfoPanel
+          originStation={originStation}
+          station={activeStation}
+          isPanelOpen={isPanelOpen}
+          setIsPanelOpen={setIsPanelOpen}
+          selectedStationDestinations={selectedStationDestinations}
+        />
+
         <div className="map-div">
           <MapComponent
             originStation={originStation}
@@ -59,14 +67,6 @@ const Explore = ({ originStation, setOriginStation }) => {
             selectedStationDestinations={selectedStationDestinations}
           />
         </div>
-
-        <InfoPanel
-          originStation={originStation}
-          station={activeStation}
-          isPanelOpen={isPanelOpen}
-          setIsPanelOpen={setIsPanelOpen}
-          selectedStationDestinations={selectedStationDestinations}
-        />
       </div>
     </div>
   );

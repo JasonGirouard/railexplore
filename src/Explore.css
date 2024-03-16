@@ -3,6 +3,7 @@
 
 .map-container-explore {
     flex: 1;
+    overflow: hidden; /* Prevent scrolling on the map container */
 }
 
 .map-div {
@@ -33,7 +34,9 @@
 
     .map-container-explore {
         display: flex;
+        overflow: hidden; /* Prevent scrolling on the map container */
         flex: 1;
+      
       } 
 
       .map-div {
@@ -54,7 +57,9 @@
 
     .map-container-explore {
         display: flex;
+        overflow: hidden; /* Prevent scrolling on the map container */
         flex: 1;
+       
       } 
 
       .map-div {
@@ -62,60 +67,3 @@
       }
 
 }
-
-/* 
-  .main-content-explore {
-    /* Allow the main content to grow to fill available space */
-
-     /* I need flex grow */
-    /* flex-grow: 1; */
-    /* Enable vertical scrolling when content overflows */
-    /* overflow: auto; */
-    /* display: flex; */
-    /* flex: 1;  */
-    /* flex: 1; */
-    /* display: flex; */
-    /* Enable vertical scrolling when content overflows */
-    /* overflow: hidden; */
-    /* Position the main content relative to its normal position */
-    /* position: relative; */
-
-
-
-
-
-
-
-/* desktop */
-/* @media (min-width: 770px) {
-    .main-content-explore {
-      flex-direction: row;
-    }
-  
-  } */
-
-  /* mobile */
-
-/* @media (max-width: 770px) {
-    .main-content-explore {
-      flex-direction: column;
-    } 
-
- 
-.leaflet-touch {
-    height: 80vh;
-    border: 1px solid blue;
-    padding-left: 50px;
-    margin-left: 500px;
-    box-sizing: border-box;
-    left: 5px;
-}
-  
-  }
- */
-  
-  
-  
-
-
-  

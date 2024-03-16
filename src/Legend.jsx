@@ -15,11 +15,11 @@ const Legend = () => {
         <div><strong>Travel Time</strong></div>
         <div class="legend-item">
           <i class="legend-icon" style="background: #008DF3;"></i>
-          <span class="legend-text">0 - 2.9 hrs</span>
+          <span class="legend-text">0 - 3 hrs</span>
         </div>
         <div class="legend-item">
           <i class="legend-icon" style="background: #AFDDFF;"></i>
-          <span class="legend-text">3 - 6.9 hrs</span>
+          <span class="legend-text">3 - 7 hrs</span>
         </div>
         <div class="legend-item">
           <i class="legend-icon" style="background: #BFBFBF;"></i>

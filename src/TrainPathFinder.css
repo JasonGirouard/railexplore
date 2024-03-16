@@ -1,16 +1,19 @@
 
 /* trains  */
+
+
 .trains-container {
-    position: relative;
+     position: relative;
     width: auto;
     max-width: 100%;
     margin: 10px;
     padding: 10px;
     text-align: left;
     border-radius: 5px;
-    font-size: 14px;
-   /* font-weight: bold; */
+    font-size: 14px; 
+  
   }
+  
   
   .card {
     background-color: #f5f5f5;
