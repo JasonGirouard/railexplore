@@ -13,6 +13,8 @@
    .search {
     /* width: calc(100% - 100px); */
     /* padding instead of margin */
+    position: absolute;
+    z-index: 1000;
     width: calc(100% - 20px);
     margin: 10px;
     box-sizing: border-box;
