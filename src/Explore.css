@@ -26,4 +26,10 @@
   .main-content {
     flex-grow: 1; /* Take up the remaining space */
     overflow: auto;
+    position: relative;
+  }
+
+  .map-container {
+    position: relative;
+    z-index: 1; /* Set a lower z-index value */
   }
