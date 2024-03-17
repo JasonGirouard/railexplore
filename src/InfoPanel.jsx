@@ -8,7 +8,6 @@ import shelterImage from "./images/has-shelter.png"; // Adjust the path as neede
 import noshelterImage from "./images/no-shelter.png"; // Adjust the path as needed
 import trainImage from "./images/train.png"; // Adjust the path as needed
 import busImage from "./images/bus.png"; // Adjust the path as needed
-import "./tool-tip.css";
 import "./InfoPanel.css";
 import TrainPathFinder from "./TrainPathFinder";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
@@ -130,31 +129,31 @@ const InfoPanel = ({
           <h2>{activeStation.name}</h2>
           <div className="station-details">
             {formatMinTime(activeStation.code)}
-            <div className="tooltip">
+            <div className="tooltip-header">
               <img
                 src={getImageForStationType(activeStation.station_type)}
                 alt={activeStation.station_type}
                 className="station-icon"
               />
-              <span className="tooltiptext">{activeStation.station_type}</span>
+              <span className="tooltiptext-header">{activeStation.station_type}</span>
             </div>
-            <div className="tooltip">
+            <div className="tooltip-header">
               <img
                 src={getImageForShelterType(activeStation.Shelter)}
                 alt={activeStation.shelter}
                 className="station-icon"
               />
-              <span className="tooltiptext">
+              <span className="tooltiptext-header">
                 {activeStation.Shelter ? "Has shelter" : "No shelter"}
               </span>
             </div>
-            <div className="tooltip">
+            <div className="tooltip-header">
               <img
                 src={getImageForMode(activeStation.mode)}
                 alt={activeStation.mode}
                 className="station-icon"
               />
-              <span className="tooltiptext">{activeStation.mode}</span>
+              <span className="tooltiptext-header">{activeStation.mode === 'TRAIN' ? 'Train' : 'Bus'}</span>
             </div>
           </div>
         </div>
