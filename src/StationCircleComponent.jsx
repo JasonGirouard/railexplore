@@ -173,9 +173,11 @@ const StationCircleComponent = ({
         radius={visualRadius}
         weight={2}
         eventHandlers={{
-          click: () => {
+          click: (event) => {
+            
             onMarkerClick(station);
             onSeeMoreClicked();
+            event.target.openPopup();
           },
           mouseover: (event) => {
             event.target.openPopup();
