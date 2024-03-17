@@ -1,10 +1,11 @@
 import React from "react";
-import { CircleMarker, Popup } from "react-leaflet";
+import { CircleMarker, Popup, useMap } from "react-leaflet";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 import "./StationCircleComponent.css";
 
 const StationCircleComponent = ({
   station,
+  radius,
   onMarkerClick,
   onSeeMoreClicked,
   activeStation,
@@ -14,6 +15,9 @@ const StationCircleComponent = ({
   destination,
   setIsPanelOpen
 }) => {
+
+  // const map = useMap();
+
   // Utility function to interpolate between two colors
   function interpolateColor(color1, color2, factor) {
     if (arguments.length < 3) {
@@ -158,23 +162,23 @@ const StationCircleComponent = ({
     e.target.src = placeholderImage; // Replace with placeholder image
   };
 
-  const interactionRadius = 8; // Larger radius for interaction
+ 
   const visualRadius = 8; // Visual radius of the marker
 
   return (
     <>
-      {/* Visual Marker */}
+  
       <CircleMarker
         key={`${station.code}-${getFillColor(station.code)}`}
         center={[station.lat, station.long]}
         fillColor={getFillColor(station.code)}
         color={getOutlineColor(station.code)}
         fillOpacity={originStation.code === station.code ? 0.9 : 0.6}
-        radius={visualRadius}
+        radius={radius} // Use the getRadius function to set the radius
+        //radius={visualRadius}
         weight={2}
         eventHandlers={{
           click: (event) => {
-            
             onMarkerClick(station);
             onSeeMoreClicked();
             event.target.openPopup();

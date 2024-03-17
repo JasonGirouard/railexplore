@@ -11,7 +11,7 @@ import "./MapComponent.css";
 
 
 
-
+// separate  handler so that useMap can be used
 const CenterMap = ({ originStation }) => {
   
   const map = useMap();
@@ -24,6 +24,27 @@ const CenterMap = ({ originStation }) => {
 
   return null;
 };
+// separate handler so that useMap can be used
+const ZoomHandler = ({ onZoomLevelChange }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    const handleZoomEnd = () => {
+      onZoomLevelChange(map.getZoom());
+    };
+
+    map.on("zoomend", handleZoomEnd);
+
+    return () => {
+      map.off("zoomend", handleZoomEnd);
+    };
+  }, [map, onZoomLevelChange]);
+
+  return null;
+};
+
+
+
 
 const Map = ({
   originStation,
@@ -35,6 +56,25 @@ const Map = ({
   console.log("in the map");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData);
+
+  // note that one optimization could be logging the users zoom level in localStorage to reduce their need to zoom in to their desired level each time
+  const [zoomLevel, setZoomLevel] = useState(7);
+
+   // Function to calculate the radius based on the zoom level
+   const getRadius = () => {
+    if (zoomLevel <= 6) {
+      return 8;
+    } else if (zoomLevel === 7) {
+      return 11;
+    } else if (zoomLevel === 8) {
+      return 14;
+    } else if (zoomLevel === 9) {
+      return 16;
+    } else {
+      return 18;
+    }
+  };
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,6 +92,8 @@ const Map = ({
     setActiveStation(station);
   };
 
+  
+
   const northAmericaBounds = [
     [5, -167], // Southwest coordinates
     [83, -52], // Northeast coordinates
@@ -67,8 +109,9 @@ const Map = ({
       scrollWheelZoom={false} // Disable scroll-to-zoom
       zoomControl={false} // Disable default zoom control
       className="map-container"
-    >
       
+    >
+      <ZoomHandler onZoomLevelChange={setZoomLevel} />
 
       {stations
         .filter((station) => station.mode === "TRAIN")
@@ -81,6 +124,7 @@ const Map = ({
             <StationCircleComponent
               key={station.code}
               station={station}
+              radius={getRadius()} // Pass the calculated radius as a prop
               onMarkerClick={onMarkerClick}
               // onSeeMoreClicked={onSeeMoreClicked(station)}
               onSeeMoreClicked={() => setIsPanelOpen(true)}
