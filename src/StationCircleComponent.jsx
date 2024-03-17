@@ -16,7 +16,7 @@ const StationCircleComponent = ({
   setIsPanelOpen
 }) => {
 
-  // const map = useMap();
+  const map = useMap();
 
   // Utility function to interpolate between two colors
   function interpolateColor(color1, color2, factor) {
@@ -172,13 +172,27 @@ const StationCircleComponent = ({
         key={`${station.code}-${getFillColor(station.code)}`}
         center={[station.lat, station.long]}
         fillColor={getFillColor(station.code)}
-        color={getOutlineColor(station.code)}
-        fillOpacity={originStation.code === station.code ? 0.9 : 0.6}
+    
+    //    stroke={false} another way to remove the outline
+       // color={null}
+        // color={getOutlineColor(station.code)}
+
+        // outline
+       // color={destination  ? null : '#AFDDFF'} // if destination is not found then set the color to blue
+       // weight={destination  ? 0 : 2} // if destination is not found then set weight to two
+
+       color={(station.code === originStation.code || destination)  ? null : '#AFDDFF'}
+       weight={(station.code === originStation.code || destination) ? 0 : 2}
+
+
+        fillOpacity={originStation.code === station.code ? 0.9 : 0.8} // for the home station set it to .9, otherwise set it to .6
         radius={radius} // Use the getRadius function to set the radius
         //radius={visualRadius}
-        weight={2}
+       // weight={2}
         eventHandlers={{
           click: (event) => {
+            console.log('station: ', station)
+            console.log('destination: ', destination)
             onMarkerClick(station);
             onSeeMoreClicked();
             event.target.openPopup();
