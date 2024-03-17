@@ -7,15 +7,9 @@ import Legend from "./Legend";
 import amtrakSimplifiedData from "./data/amtrak_simplified.json"; // Import the GeoJSON data
 import "./MapComponent.css";
 
-// note there is some werid behavior when you hover near the top, it moves up. this is because the pop-up begins to open, but is outside the view of the screen. I'll need to fix that.
-
-
-
 // separate  handler so that useMap can be used
 const CenterMap = ({ originStation }) => {
-  
   const map = useMap();
-
   useEffect(() => {
     if (originStation && originStation.lat && originStation.long) {
       map.setView([originStation.lat, originStation.long], map.getZoom());
@@ -42,9 +36,6 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
 
   return null;
 };
-
-
-
 
 const Map = ({
   originStation,
@@ -88,9 +79,7 @@ const Map = ({
     };
   }, []);
 
-  const onMarkerClick = (station) => {
-    setActiveStation(station);
-  };
+ 
 
   
 
@@ -125,7 +114,6 @@ const Map = ({
               key={station.code}
               station={station}
               radius={getRadius()} // Pass the calculated radius as a prop
-              onMarkerClick={onMarkerClick}
               // onSeeMoreClicked={onSeeMoreClicked(station)}
               onSeeMoreClicked={() => setIsPanelOpen(true)}
               activeStation={activeStation}
