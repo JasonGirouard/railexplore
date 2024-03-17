@@ -14,7 +14,7 @@ const CenterMap = ({ originStation }) => {
     if (originStation && originStation.lat && originStation.long) {
       map.setView([originStation.lat, originStation.long], map.getZoom());
     }
-  }, [originStation, map]);
+  }, [originStation]);
 
   return null;
 };
@@ -26,25 +26,21 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
     const handleZoomEnd = () => {
       onZoomLevelChange(map.getZoom());
     };
-
-    map.on("zoomend", handleZoomEnd);
-
+     map.on("zoomend", handleZoomEnd);
     return () => {
       map.off("zoomend", handleZoomEnd);
     };
-  }, [map, onZoomLevelChange]);
+  }, [onZoomLevelChange]);
 
   return null;
 };
 
 const Map = ({
   originStation,
-  setIsPanelOpen,
-  activeStation,
-  setActiveStation,
-  selectedStationDestinations,
+  selectedStationDestinations
 }) => {
   console.log("in the map");
+
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData);
 
@@ -65,8 +61,6 @@ const Map = ({
       return 18;
     }
   };
-
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 770);
@@ -78,11 +72,6 @@ const Map = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
- 
-
-  
-
   const northAmericaBounds = [
     [5, -167], // Southwest coordinates
     [83, -52], // Northeast coordinates
@@ -92,7 +81,6 @@ const Map = ({
     <MapContainer
       center={[originStation.lat, originStation.long]}
       zoom={7}
-  //    style={{ height: "100vh", width: "100%" }} // note that 100% height breaks the map, but that might be my kew to fixing this bug. 
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
       scrollWheelZoom={false} // Disable scroll-to-zoom
@@ -105,23 +93,13 @@ const Map = ({
       {stations
         .filter((station) => station.mode === "TRAIN")
         .map((station) => {
-          // Find the specific destination data for this station
-          const destination = selectedStationDestinations?.destinations.find(
-            (d) => d.destination_station === station.code
-          );
           return (
             <StationCircleComponent
               key={station.code}
               station={station}
-              radius={getRadius()} // Pass the calculated radius as a prop
-              // onSeeMoreClicked={onSeeMoreClicked(station)}
-              onSeeMoreClicked={() => setIsPanelOpen(true)}
-              activeStation={activeStation}
-              setActiveStation={setActiveStation}
-              isSelected={activeStation && station.code === activeStation.code}
+              radius={getRadius()} 
               originStation={originStation}
-              destination={destination} // Pass specific destination data
-              setIsPanelOpen={setIsPanelOpen}
+              selectedStationDestinations={selectedStationDestinations}
             />
           );
         })}
@@ -136,12 +114,10 @@ const Map = ({
           })}
         />
       )}
-
       <TileComponent />
       <CenterMap originStation={originStation} />
       <Legend />
       {!isMobile && <ZoomControl position="bottomleft" />}
-      
     </MapContainer>
   );
 };

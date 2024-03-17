@@ -1,20 +1,70 @@
-import React from "react";
-import { CircleMarker, Popup, useMap } from "react-leaflet";
+import React, { useContext, useEffect, useState } from 'react';
+import { StationContext } from "./StationContext";
+import { CircleMarker, Popup , useMap} from "react-leaflet";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 import "./StationCircleComponent.css";
 
 const StationCircleComponent = ({
   station,
   radius,
-  onSeeMoreClicked,
-  activeStation,
-  setActiveStation,
-  isSelected,
   originStation,
-  destination,
-  setIsPanelOpen,
+  selectedStationDestinations
+
 }) => {
+  // note that, here, station is just the individual station from the stations.json 
+  const { activeStation, setActiveStation, setIsPanelOpen } = useContext(StationContext);
   const map = useMap();
+
+
+  // find the distance associated with this specific station. 
+  const destination = selectedStationDestinations?.destinations.find(
+    (d) => d.destination_station === station.code
+  );
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
+
+    useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 770);
+    };
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+const handleMarkerClick = (station, event) => {
+        event.target.openPopup();
+        // desktop only
+        if (!isMobile) {
+         // open the info panel
+         setActiveStation(station)
+         setIsPanelOpen(true)
+        }
+  };
+
+const handleMarkerMouseOver = (station, event) => {
+    // only for desktop
+    if (!isMobile) {
+      event.target.openPopup();
+   //   setActiveStation(station);
+    }
+  };
+
+  const handleMarkerMouseOut = (station, event) => {
+    if (!isMobile) {
+      event.target.closePopup();
+   //   setActiveStation(station);
+    }
+  };
+  const handleSeeMoreClick = () => {
+    if (isMobile) {
+      setActiveStation(station)
+      setIsPanelOpen(true);
+      //onSeeMoreClicked();
+    }
+  };
   // Utility function to interpolate between two colors
   function interpolateColor(color1, color2, factor) {
     if (arguments.length < 3) {
@@ -26,8 +76,7 @@ const StationCircleComponent = ({
     }
     return result;
   }
-
-  // Convert HEX to RGB
+  // Convert HEX to RGBimport React, { useEffect } from 'reimport React, { useEffect } from 'react';act';
   function hexToRgb(hex) {
     var r = 0,
       g = 0,
@@ -43,20 +92,16 @@ const StationCircleComponent = ({
     }
     return [r, g, b];
   }
-
   // Convert RGB to HEX
   function rgbToHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   }
-
   const getFillColor = (stationCode) => {
     // If this station is the active station, make it gray
     if (activeStation && stationCode === activeStation.code) {
       return "#8D6B94"; // purple color for active station
     }
-
     let color = "#FFFFFF"; // Default color
-
     if (destination) {
       const hours = destination.min_time / 3600; // Convert seconds to hours
       const colors = [
@@ -71,7 +116,6 @@ const StationCircleComponent = ({
         { hours: 6, color: hexToRgb("#AFDDFF") },
         { hours: 10, color: hexToRgb("#bfbfbf") }, // Light gray
       ];
-
       // Find the current segment
       for (let i = 0; i < colors.length - 1; i++) {
         if (hours >= colors[i].hours && hours < colors[i + 1].hours) {
@@ -83,31 +127,24 @@ const StationCircleComponent = ({
           break;
         }
       }
-
       // If hours >= last threshold, use the last color
       if (hours >= colors[colors.length - 1].hours) {
         color = rgbToHex(...colors[colors.length - 1].color);
       }
     }
-
     if (originStation && originStation.code === stationCode) {
       color = "#353535"; // Override color for the origin station
     }
-
     return color;
   };
   // Function to format and display the minimum time to the destination
   const formatMinTime = (stationCode) => {
     if (!destination) return "N/A";
-
     const hours = Math.floor(destination.min_time / 3600);
     const minutes = Math.floor((destination.min_time % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
 
-  const onMarkerClick = (station) => {
-    setActiveStation(station);
-  };
 
   return (
     <>
@@ -115,25 +152,19 @@ const StationCircleComponent = ({
         key={`${station.code}-${getFillColor(station.code)}`}
         center={[station.lat, station.long]}
         fillColor={getFillColor(station.code)}
-        color={
-          station.code === originStation.code || destination ? null : "#AFDDFF"
-        }
+        color={station.code === originStation.code || destination ? null : "#AFDDFF"}
         weight={station.code === originStation.code || destination ? 0 : 2}
-        fillOpacity={originStation.code === station.code ? 0.9 : 0.8} // for the home station set it to .9, otherwise set it to .6
-        radius={radius} // Use the getRadius function to set the radius
+        fillOpacity={originStation.code === station.code ? 0.9 : 0.8}
+        radius={radius}
         eventHandlers={{
           click: (event) => {
-            console.log("station: ", station);
-            console.log("destination: ", destination);
-            onMarkerClick(station);
-            onSeeMoreClicked();
-            event.target.openPopup();
+            handleMarkerClick(station, event);
           },
           mouseover: (event) => {
-            event.target.openPopup();
+            handleMarkerMouseOver(station, event)
           },
           mouseout: (event) => {
-            event.target.closePopup();
+            handleMarkerMouseOut(station, event)
           },
         }}
       >
@@ -150,17 +181,12 @@ const StationCircleComponent = ({
               <h2>{station.name}</h2>
               <div className="popup-info">
                 <span>{formatMinTime(station.code)}</span>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsPanelOpen(true);
-                    onSeeMoreClicked();
-                  }}
-                  className="popup-link see-more"
-                >
+
+                {isMobile && (
+                <a href="#" onClick={handleSeeMoreClick} className="popup-link see-more">
                   see more
                 </a>
+              )}
               </div>
             </div>
           </div>

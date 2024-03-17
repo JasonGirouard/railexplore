@@ -1,6 +1,6 @@
 // InfoPanel.js
-import React, { useState, useEffect, useRef } from "react";
-//import axios from "axios";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { StationContext } from "./StationContext";
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
 import platformImage from "./images/platform.png"; // Adjust the path as needed
@@ -10,36 +10,15 @@ import trainImage from "./images/train.png"; // Adjust the path as needed
 import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./tool-tip.css";
 import "./InfoPanel.css";
-import stations from "./data/stations.json";
 import TrainPathFinder from "./TrainPathFinder";
-
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
-const getStationName = (stationCode) => {
-  const station = stations.find((station) => station.code === stationCode);
-  return station ? station.name : "";
-};
 
 const InfoPanel = ({
   originStation,
-  station,
-  isPanelOpen,
-  setIsPanelOpen,
   selectedStationDestinations,
 }) => {
- // const [everOpened, setEverOpened] = useState(false);
- // const isFirstRender = useRef(true);
-
-  // useEffect(() => {
-  //   if (isPanelOpen && isFirstRender.current) {
-  //     isFirstRender.current = false;
-  //     setEverOpened(true);
-  //   } else if (isPanelOpen) {
-  //     setEverOpened(true);
-  //   }
-  // }, [isPanelOpen]);
-
-  
+  const { activeStation, isPanelOpen, setIsPanelOpen } = useContext(StationContext);
 
   // Define CSS classes based on state
   let panelClass = "info-panel";
@@ -49,25 +28,24 @@ const InfoPanel = ({
     panelClass += " close";
   }
 
-
-
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   // Find the specific destination data for this station
   const destination = selectedStationDestinations?.destinations.find(
-    (d) => d.destination_station === station.code
+    (d) => d.destination_station === activeStation.code
   );
   // Function to navigate to the previous image
   const goToPreviousImage = () => {
     setCurrentImageIndex(
       (prevIndex) =>
-        (prevIndex - 1 + station.image_urls.length) % station.image_urls.length
+        (prevIndex - 1 + activeStation.image_urls.length) % activeStation.image_urls.length
     );
   };
   // Function to navigate to the next image
   const goToNextImage = () => {
     setCurrentImageIndex(
-      (prevIndex) => (prevIndex + 1) % station.image_urls.length
+      (prevIndex) => (prevIndex + 1) % activeStation.image_urls.length
     );
   };
   // Function to format and display the minimum time to the destination
@@ -93,13 +71,6 @@ const InfoPanel = ({
     const formattedHours = hours % 12 || 12;
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
-  };
-
-  // Function to format the elapsed time
-  const formatElapsedTime = (totalSeconds) => {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    return `${hours}h ${minutes}m`;
   };
 
   // Determine the image to display based on station type
@@ -149,11 +120,6 @@ const InfoPanel = ({
     e.target.src = placeholderImage; // Replace with placeholder image
   };
 
-  // If the panel has never been opened, don't render it
-  // if (!everOpened) {
-  //   return null;
-  // }
-
   return (
     <div className={panelClass}>
       <div className="info-header">
@@ -161,44 +127,44 @@ const InfoPanel = ({
           ﹥
         </div>
         <div className="station-info">
-          <h2>{station.name}</h2>
+          <h2>{activeStation.name}</h2>
           <div className="station-details">
-            {formatMinTime(station.code)}
+            {formatMinTime(activeStation.code)}
             <div className="tooltip">
               <img
-                src={getImageForStationType(station.station_type)}
-                alt={station.station_type}
+                src={getImageForStationType(activeStation.station_type)}
+                alt={activeStation.station_type}
                 className="station-icon"
               />
-              <span className="tooltiptext">{station.station_type}</span>
+              <span className="tooltiptext">{activeStation.station_type}</span>
             </div>
             <div className="tooltip">
               <img
-                src={getImageForShelterType(station.Shelter)}
-                alt={station.shelter}
+                src={getImageForShelterType(activeStation.Shelter)}
+                alt={activeStation.shelter}
                 className="station-icon"
               />
               <span className="tooltiptext">
-                {station.Shelter ? "Has shelter" : "No shelter"}
+                {activeStation.Shelter ? "Has shelter" : "No shelter"}
               </span>
             </div>
             <div className="tooltip">
               <img
-                src={getImageForMode(station.mode)}
-                alt={station.mode}
+                src={getImageForMode(activeStation.mode)}
+                alt={activeStation.mode}
                 className="station-icon"
               />
-              <span className="tooltiptext">{station.mode}</span>
+              <span className="tooltiptext">{activeStation.mode}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="image-container">
-        {station.image_urls && station.image_urls.length > 0 && (
+        {activeStation.image_urls && activeStation.image_urls.length > 0 && (
           <>
             <img
-              src={station.image_urls[currentImageIndex]}
+              src={activeStation.image_urls[currentImageIndex]}
               alt="Station"
               className="station-image"
               onError={handleImageError} // Error handling here
@@ -224,12 +190,12 @@ const InfoPanel = ({
           Book on Amtrak
         </a>
       </div>
-      <div className="station-description">{station.description}</div>
+      <div className="station-description">{activeStation.description}</div>
 
       <div>
         <TrainPathFinder
           originStation={originStation.code}
-          destinationStation={station.code}
+          destinationStation={activeStation.code}
         />
       </div>
       <div>&nbsp;</div>
