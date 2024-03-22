@@ -4,13 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StationProvider } from './StationContext';
+import { FiltersProvider } from './FiltersContext';
+import { LocationProvider } from './LocationContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <LocationProvider>
      <StationProvider>
+       <FiltersProvider>
     <App />
+    </FiltersProvider>
     </StationProvider>
+    </LocationProvider>
   </React.StrictMode>
 );
 

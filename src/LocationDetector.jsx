@@ -1,30 +1,27 @@
 
 
 // LocationDetector.js
-import React, { useEffect } from 'react';
-
-const IPGEOLOCATION_API_KEY = '2c8154a0b3bc4ac0a27c1a91b700fd41';
+import React, { useEffect , useContext } from 'react';
+import { LocationContext } from './LocationContext';
 
 const LocationDetector = ({ stations, setOriginStation }) => {
+  const { userLocation, setUserLocation } = useContext(LocationContext);
    
   useEffect(() => {
     const fetchUserLocation = async () => {
-
-        const locationDetected = localStorage.getItem('locationDetected');
-        if (locationDetected) return;
-
+      
+      if (userLocation) return;
 
       try {
-          console.log('pinging ip api')
-        const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${IPGEOLOCATION_API_KEY}`);
+        console.log('pinging ip api');
+        const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEOLOCATION_API_KEY}`);
         const data = await response.json();
         const { latitude, longitude } = data;
+        setUserLocation({ lat: latitude, long: longitude });
         findNearestStation(latitude, longitude);
-        // Set flag in local storage
-        localStorage.setItem('locationDetected', 'true');
-
+        console.log('just set users location')
+       // localStorage.setItem('locationDetected', 'true');
       } catch (error) {
-          //likely set the default origin in this case instead of just returning error FIX ME
         console.error('Error fetching user location:', error);
       }
     };
@@ -69,7 +66,7 @@ const LocationDetector = ({ stations, setOriginStation }) => {
     };
 
     fetchUserLocation();
-  }, [stations, setOriginStation]);
+  }, [stations, setOriginStation, setUserLocation]);
 
   return null; // This component doesn't render anything itself
 };

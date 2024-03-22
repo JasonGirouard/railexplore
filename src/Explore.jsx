@@ -5,6 +5,7 @@ import "./origin-button.css";
 import MapComponent from "./MapComponent";
 import InfoPanel from "./InfoPanel";
 import stationSummary from "./data/all_stations_paths.json";
+import AppHeader from "./ExploreHeader/AppHeader";
 import stations from "./data/stations.json";
 import LocationDetector from "./LocationDetector";
 import Search from "./Search"; // Adjust the path as needed
@@ -29,11 +30,14 @@ const Explore = ({ originStation, setOriginStation }) => {
 
   return (
     <div className="main-content-explore">
-      <Search
+
+      <AppHeader/>
+     
+      {/* <Search
         stations={stations}
         originStation={originStation}
         setOriginStation={setOriginStation}
-      />
+      /> */}
 
       <div className="map-container-explore">
         <InfoPanel

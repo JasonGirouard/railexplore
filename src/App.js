@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import stations from "./data/stations.json";
@@ -9,6 +9,8 @@ import TopNav from "./TopNav";
 import Explore from "./Explore";
 import Navigation from "./Navigation";
 import LocationDetector from "./LocationDetector";
+import { LocationContext } from './LocationContext';
+
 
 function App() {
   console.log("rerendering app");
@@ -29,8 +31,10 @@ function App() {
   };
   const [originStation, setOriginStation] = useState(defaultStation);
   const [activePage, setActivePage] = useState("Explore"); // Default active page
-  const locationDetected = localStorage.getItem("locationDetected");
+  const { userLocation } = useContext(LocationContext);
+  console.log ('user location',userLocation)
 
+ 
   return (
     <Router>
       <div className="App">
@@ -38,12 +42,18 @@ function App() {
           <Navigation activePage={activePage} setActivePage={setActivePage} />
 
           <div className="content">
-            {!locationDetected && (
+            {/* {!userLocation && (
               <LocationDetector
                 stations={stations}
                 setOriginStation={setOriginStation}
               />
-            )}
+            )} */}
+
+<LocationDetector
+                stations={stations}
+                setOriginStation={setOriginStation}
+              />
+
             <Routes>
               <Route
                 path="/"
