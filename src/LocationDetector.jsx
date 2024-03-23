@@ -9,8 +9,14 @@ const LocationDetector = ({ stations, setOriginStation }) => {
    
   useEffect(() => {
     const fetchUserLocation = async () => {
+      const storedUserLocation = localStorage.getItem('userIP');
       
-      if (userLocation) return;
+      if (storedUserLocation) {
+        const { lat, long } = JSON.parse(storedUserLocation);
+        setUserLocation({ lat, long });
+        findNearestStation(lat, long);
+        return;
+      }
 
       try {
         console.log('pinging ip api');
@@ -18,8 +24,9 @@ const LocationDetector = ({ stations, setOriginStation }) => {
         const data = await response.json();
         const { latitude, longitude } = data;
         setUserLocation({ lat: latitude, long: longitude });
+        localStorage.setItem('userIP', JSON.stringify({ lat: latitude, long: longitude }));
         findNearestStation(latitude, longitude);
-        console.log('just set users location')
+
        // localStorage.setItem('locationDetected', 'true');
       } catch (error) {
         console.error('Error fetching user location:', error);

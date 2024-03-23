@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { StationContext } from "./StationContext";
 import "./Explore.css";
-import "./origin-button.css";
+// import "./origin-button.css";
 import MapComponent from "./MapComponent";
 import InfoPanel from "./InfoPanel";
 import stationSummary from "./data/all_stations_paths.json";
@@ -30,8 +30,9 @@ const Explore = ({ originStation, setOriginStation }) => {
 
   return (
     <div className="main-content-explore">
-
       <AppHeader/>
+
+      
      
       {/* <Search
         stations={stations}
@@ -40,6 +41,9 @@ const Explore = ({ originStation, setOriginStation }) => {
       /> */}
 
       <div className="map-container-explore">
+      
+
+
         <InfoPanel
           originStation={originStation}
           selectedStationDestinations={selectedStationDestinations}

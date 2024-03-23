@@ -32,8 +32,6 @@ function App() {
   const [originStation, setOriginStation] = useState(defaultStation);
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const { userLocation } = useContext(LocationContext);
-  console.log ('user location',userLocation)
-
  
   return (
     <Router>
