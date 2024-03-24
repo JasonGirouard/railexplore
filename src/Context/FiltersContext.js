@@ -25,6 +25,8 @@ export const FiltersProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+
+    
     if (duration) {
         console.log('writing duration to local Storage') 
         localStorage.setItem('duration', JSON.stringify(duration));

@@ -9,7 +9,8 @@ const DestinationTypeModal = ({ buttonRef, onClose }) => {
   const modalRef = useRef(null);
 
   const handleDestinationTypeChange = (selectedType) => {
-    setDestinationType(selectedType === "All" ? null : selectedType);
+      console.log('setting destination type to:', selectedType)
+    setDestinationType(selectedType);
   };
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const DestinationTypeModal = ({ buttonRef, onClose }) => {
               <input
                 type="radio"
                 value="All"
-                checked={destinationType === null}
+                checked={destinationType === null || destinationType === "All"}
                 onChange={() => handleDestinationTypeChange("All")}
                 className="radio-button-class"
               />

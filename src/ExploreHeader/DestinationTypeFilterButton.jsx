@@ -16,7 +16,7 @@ const DestinationTypeFilterButton = () => {
 
   return (
     <div>
-      {destinationType ? (
+      {destinationType==="Popular" ? (
         <button
           ref={buttonRef}
           className="filter-button set"

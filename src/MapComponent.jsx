@@ -13,18 +13,12 @@ import LandingPage from "./LandingPage";
 const CenterMap = () => {
   const map = useMap();
   const { origin } = useContext(OriginContext);
-  // useEffect(() => {
-  //   if (originStation && originStation.lat && originStation.long) {
-  //     map.setView([originStation.lat, originStation.long], map.getZoom());
-  //   }
-  // }, [originStation]);
 
   useEffect(() => {
     if (origin && origin.center.lat && origin.center.long) {
       map.setView([origin.center.lat, origin.center.long], map.getZoom());
     }
   }, [origin]);
-
   return null;
 };
 
@@ -35,6 +29,7 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
   useEffect(() => {
     const handleZoomEnd = () => {
       onZoomLevelChange(map.getZoom());
+      console.log('zoom = ',map.getZoom());
     };
      map.on("zoomend", handleZoomEnd);
     return () => {
@@ -47,16 +42,11 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
 
 const Map = () => {
   console.log("📍 in the map");
-
   const { origin } = useContext(OriginContext);
-  //  const { originStation , selectedStationsDestinations } = useContext(OriginStationContext);
-
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData);
-
   // note that one optimization could be logging the users zoom level in localStorage to reduce their need to zoom in to their desired level each time
   const [zoomLevel, setZoomLevel] = useState(7);
-
    // Function to calculate the radius based on the zoom level
    const getRadius = () => {
     if (zoomLevel <= 6) {
@@ -87,7 +77,6 @@ const Map = () => {
 
   return origin ? (
     <MapContainer
-     // center={[originStation.lat, originStation.long]}
       center={[origin.center.lat, origin.center.long]}
       zoom={7}
       maxBounds={northAmericaBounds}
@@ -97,7 +86,6 @@ const Map = () => {
       className="map-container"
     >
       <ZoomHandler onZoomLevelChange={setZoomLevel} />
-
       {stations
         .filter((station) => station.mode === "TRAIN")
         .map((station) => {
@@ -106,8 +94,6 @@ const Map = () => {
               key={station.code}
               station={station}
               radius={getRadius()} 
-              // originStation={originStation}
-              // selectedStationDestinations={selectedStationDestinations}
             />
           );
         })}
@@ -124,7 +110,6 @@ const Map = () => {
         />
       )}
       <TileComponent />
-      {/* <CenterMap originStation={originStation} /> */}
       <CenterMap />
       <Legend />
       {!isMobile && <ZoomControl position="bottomleft" />}

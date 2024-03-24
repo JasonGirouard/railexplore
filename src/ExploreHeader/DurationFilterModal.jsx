@@ -30,7 +30,7 @@ const DurationFilterModal = ({ buttonRef, onClose }) => {
 
   const handleDurationChange = (value) => {
     if (value >= 24) {
-      setDuration(null);
+      setDuration(1000);
     } else {
       setDuration(value);
     }
@@ -43,14 +43,15 @@ const DurationFilterModal = ({ buttonRef, onClose }) => {
     {origin ? (
       <>
         <div className="duration-text">
-          Travel duration: {duration === null || duration === 24 ? "Any" : `Under ${duration} hrs`}
+          Travel duration: {duration === null || duration >= 24 ? "Any" : `Under ${duration} hrs`}
         </div>
         <Slider
           min={0}
           max={24}
-          value={duration === null ? 24 : duration}
+          value={duration === null || duration > 24 ? 24 : duration}
           onChange={handleDurationChange}
-          tooltipVisible={false}
+          // tooltipVisible={false}
+          // tooltip={{ open: true }} // Updated prop here
           step={1}
         />
       </>

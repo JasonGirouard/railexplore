@@ -64,6 +64,7 @@
   .filter-button {
     display: flex;
     justify-content: center;
+    overflow-x: visible;
     align-items: center;
     padding: 8px 16px;
     margin: 10px 5px;
@@ -91,7 +92,19 @@
     box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4); /* Adjust values as needed */
   }
   
-
+  .filters-container {
+    display: flex;
+    /* overflow-x: scroll; */
+    /* overflow-y: scroll; */
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+  
+  .filters-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
 
   
   .filters-modal {
@@ -102,6 +115,28 @@
     border-radius: 4px;
     padding: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 360px;
+  } 
+
+  /* mobile */
+@media (max-width: 770px) {
+
+    .filters-modal {
+     left: 0px;
+     width: calc(100% - 40px)
+     
+    }
+   
+  }
+
+  .origin-search-modal{
+    position: absolute;
+    z-index: 3;
+    background-color: white;
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    padding: 0px;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
     width: 360px;
   }
 

@@ -4,18 +4,20 @@ import { OriginContext } from "../Context/OriginContext";
 import MapboxClient from "@mapbox/mapbox-sdk/services/geocoding";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import OriginButtonResults from "./OriginButtonResults";
 import "./OriginButton.css";
 
 const mapboxClient = MapboxClient({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
 });
 
-const OriginButton = () => {
+const OriginButton2 = () => {
     // note that I might evolve this button to behave more like the other buttons and therefore move the setOrigin into the modal rather than the button
   const {origin, setOrigin, userLocation } = useContext(OriginContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const buttonRef = useRef(null);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -135,12 +137,11 @@ const OriginButton = () => {
     }
   }, [origin]);
 
-
-  const handleSelect = (result) => {
-    setOrigin(result);
-    setSearchTerm(result.place_name);
-    setShowResults(false);
+  const handleClick = () => {
+    setShowResults(!showResults);
   };
+
+  
 
   const handleInputFocus = () => {
     setShowResults(true);
@@ -153,14 +154,15 @@ const OriginButton = () => {
   };
 
   return (
-    <div className="search-container">
-      <div className="search">
+    <div className="search-container origin">
+      <div className="search origin">
         <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
         <form className="search-form">
           <div className="div-search-form">
             <input
+            ref={buttonRef}
               type="text"
-              className="search-input"
+              className="search-input origin"
               value={searchTerm}
               //  onChange={handleSearchChange}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -170,18 +172,9 @@ const OriginButton = () => {
             />
 
             {showResults && (
-              <div className="search-results">
-                {searchResults.map((result) => (
-                  <div
-                    key={result.id}
-                    className="autocomplete-option"
-                    onClick={() => handleSelect(result)}
-                  >
-                    {result.place_name}
-                  </div>
-                ))}
-              </div>
+             <OriginButtonResults buttonRef={buttonRef} searchResults={searchResults} setSearchTerm={setSearchTerm} setShowResults={setShowResults} onClose={handleClick}/>
             )}
+
           </div>
         </form>
       </div>
@@ -189,4 +182,4 @@ const OriginButton = () => {
   );
 };
 
-export default OriginButton;
+export default OriginButton2;
