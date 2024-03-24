@@ -1,38 +1,49 @@
 .search-container {
     position: relative;
+    
    /*  z-index: 2; */
   }
   
   .search {
     position: relative;
+   
    /* z-index: 2; /* Ensures the button stays on top of the map */
     padding: 0px;
     width: 300px; /* Example width - adjust as needed */
     margin: 5px;
     box-sizing: border-box;
+    
   }
   
   .search-form {
     width: 100%;
+   
+    
+   
   }
   
   .search-input {
   width: 100%;
+
   /* top right bottom left */
   padding: 10px 10px 10px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  padding-left: 40px;
+ 
   }
   
   .search-results {
   position: relative;
-   z-index: 2; 
+   /* z-index: 2;  */
   background-color: white;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border: 1px solid #ccc;
+  
+ 
   }
   
   .autocomplete-option {
@@ -47,6 +58,7 @@
   justify-items: left;
   box-sizing: border-box;
   width: 100%;
+ 
   }
   
   .autocomplete-option:hover {
@@ -67,6 +79,7 @@
     justify-content: start;
     width: 100%;
     padding-left: 5px;
+   
   
   }
   
@@ -78,6 +91,7 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
+  
   }
   /* this styles the individual option components */
   .top-row {
@@ -110,6 +124,7 @@
       margin: 10px;
       box-sizing: border-box;
      
+     
   
     }
   
@@ -125,6 +140,7 @@
       /* border-top: 1px solid #eee; */
       border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
+      
       /* margin-top: 60px; */
     }
   
@@ -148,4 +164,6 @@
   
   }
   
-  
+  .search-icon-destination {
+    color: #888888; /* Mid-range gray */
+  }

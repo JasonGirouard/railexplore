@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { StationContext } from "./StationContext";
+//import { StationContext } from "./StationContext";
 import "./Explore.css";
-// import "./origin-button.css";
 import MapComponent from "./MapComponent";
 import InfoPanel from "./InfoPanel";
 import stationSummary from "./data/all_stations_paths.json";
 import AppHeader from "./ExploreHeader/AppHeader";
-import stations from "./data/stations.json";
-import LocationDetector from "./LocationDetector";
-import Search from "./Search"; // Adjust the path as needed
+//import stations from "./data/stations.json";
+
+//import Search from "./Search"; // Adjust the path as needed
 
 const Explore = ({ originStation, setOriginStation }) => {
  // const {  setSelectedStationDestinations } = useContext(StationContext);

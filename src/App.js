@@ -4,8 +4,8 @@ import "./App.css";
 import stations from "./data/stations.json";
 import About from "./About"; //
 import Donate from "./Donate";
-import TopNav from "./TopNav";
-// import LeftNav from "./LeftNav";
+//import TopNav from "./TopNav"; // note that when I remove TopNav the formatting goes off. 
+
 import Explore from "./Explore";
 import Navigation from "./Navigation";
 import LocationDetector from "./LocationDetector";

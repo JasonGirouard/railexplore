@@ -1,0 +1,19 @@
+.logistics-container{
+    position: relative;
+    display: flex;
+    direction: row;
+}
+
+
+  /* desktop */
+  @media (min-width: 770px) {
+    
+    .logistics-container{
+        justify-content: center;
+        align-items: center;
+    }
+    
+ 
+ }
+ 
+ 
