@@ -1,0 +1,99 @@
+.landing-page {
+    background-color: white;
+    display: flex;
+   
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    padding-top: 40px;
+    margin-top: 0px;
+    padding-bottom: 00px;
+  
+  }
+
+ 
+  .landing-page-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+    justify-content: center;
+    align-items: center;
+    max-width: 750px;
+    padding: 20px;
+  }
+  
+  .landing-page-text {
+    flex: 1;
+    min-width: 350px; /* Maintain a minimum width for text content */
+    text-align: left;
+    padding-right: 20px;
+  }
+  
+  .landing-page-text h4 {
+    font-size: 14px;
+    margin-bottom: 0.5em;
+    margin-left: 8px;
+    font-weight: normal;
+  }
+  
+  .landing-page-text h1 {
+    font-size: 48px;
+    margin-bottom: 0.5em;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+  
+  .landing-page-text p {
+    font-size: 24px;
+    margin-left: 8px;
+    color: darkgray;
+    font-weight: bold;
+  }
+  
+  .landing-page-image {
+    flex: 1;
+    min-width: 300px; 
+    text-align: center; 
+    padding: 20px;
+  }
+  
+  .landing-page-image img {
+    width: 100%;
+     max-width: 400px; 
+     max-height: 400px; 
+    object-fit: cover; 
+
+  }
+
+  .landing-page-logo {
+      max-width: 100px;
+      max-height: 100px;
+      
+}
+
+
+
+@media (max-width: 770px) {
+
+    .landing-page-image {
+      flex: 1;
+      min-width: 300px; /* Maintain a minimum width for image content */
+      text-align: center; /* Center the image horizontally */
+      padding: 10px;
+      padding-bottom: 0px;
+    }
+   
+    .landing-page-image img {
+      width: 100%;
+      max-width: 320px;
+      max-height: 320px;
+      object-fit: cover; /* Fill the available space while maintaining aspect ratio */
+   
+    }
+  }
+  
+  

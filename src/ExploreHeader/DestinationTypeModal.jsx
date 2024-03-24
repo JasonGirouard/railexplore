@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { FiltersContext } from "../FiltersContext";
+import { FiltersContext } from "../Context/FiltersContext";
+import { OriginContext } from "../Context/OriginContext";
 import "./Filters.css";
 
 const DestinationTypeModal = ({ buttonRef, onClose }) => {
-  const { origin, destinationType, setDestinationType } = useContext(FiltersContext);
+  const {  destinationType, setDestinationType } = useContext(FiltersContext);
+  const { origin } = useContext(OriginContext);
   const modalRef = useRef(null);
 
   const handleDestinationTypeChange = (selectedType) => {
@@ -32,7 +34,7 @@ const DestinationTypeModal = ({ buttonRef, onClose }) => {
 
   return (
     <div ref={modalRef} className="filters-modal">
-    <div className="section-header origin">Duration</div>
+    <div className="section-header origin">Destination Type</div>
   
     {origin ? (
         <>

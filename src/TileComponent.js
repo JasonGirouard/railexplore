@@ -3,7 +3,7 @@ import React from 'react';
 import { TileLayer } from 'react-leaflet';
 
 const TileComponent = () => {
-  console.log('tile layer')
+  console.log('🔴 Tile Layer 🔴')
   return (
     <TileLayer
       url="https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}"

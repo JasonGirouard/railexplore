@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext } from "react";
+import { OriginContext } from "./Context/OriginContext";
 import { MapContainer, GeoJSON, useMap, ZoomControl } from "react-leaflet";
 import TileComponent from "./TileComponent";
 import StationCircleComponent from "./StationCircleComponent";
@@ -6,18 +7,27 @@ import stations from "./data/stations.json";
 import Legend from "./Legend";
 import amtrakSimplifiedData from "./data/amtrak_simplified.json"; // Import the GeoJSON data
 import "./MapComponent.css";
+import LandingPage from "./LandingPage";
 
 // separate  handler so that useMap can be used
-const CenterMap = ({ originStation }) => {
+const CenterMap = () => {
   const map = useMap();
+  const { origin } = useContext(OriginContext);
+  // useEffect(() => {
+  //   if (originStation && originStation.lat && originStation.long) {
+  //     map.setView([originStation.lat, originStation.long], map.getZoom());
+  //   }
+  // }, [originStation]);
+
   useEffect(() => {
-    if (originStation && originStation.lat && originStation.long) {
-      map.setView([originStation.lat, originStation.long], map.getZoom());
+    if (origin && origin.center.lat && origin.center.long) {
+      map.setView([origin.center.lat, origin.center.long], map.getZoom());
     }
-  }, [originStation]);
+  }, [origin]);
 
   return null;
 };
+
 // separate handler so that useMap can be used
 const ZoomHandler = ({ onZoomLevelChange }) => {
   const map = useMap();
@@ -35,11 +45,11 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
   return null;
 };
 
-const Map = ({
-  originStation,
-  selectedStationDestinations
-}) => {
-  console.log("in the map");
+const Map = () => {
+  console.log("📍 in the map");
+
+  const { origin } = useContext(OriginContext);
+  //  const { originStation , selectedStationsDestinations } = useContext(OriginStationContext);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData);
@@ -65,9 +75,7 @@ const Map = ({
     const handleResize = () => {
       setIsMobile(window.innerWidth < 770);
     };
-  
     window.addEventListener("resize", handleResize);
-  
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -77,16 +85,16 @@ const Map = ({
     [83, -52], // Northeast coordinates
   ];
 
-  return (
+  return origin ? (
     <MapContainer
-      center={[originStation.lat, originStation.long]}
+     // center={[originStation.lat, originStation.long]}
+      center={[origin.center.lat, origin.center.long]}
       zoom={7}
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
       scrollWheelZoom={false} // Disable scroll-to-zoom
       zoomControl={false} // Disable default zoom control
       className="map-container"
-      
     >
       <ZoomHandler onZoomLevelChange={setZoomLevel} />
 
@@ -98,11 +106,12 @@ const Map = ({
               key={station.code}
               station={station}
               radius={getRadius()} 
-              originStation={originStation}
-              selectedStationDestinations={selectedStationDestinations}
+              // originStation={originStation}
+              // selectedStationDestinations={selectedStationDestinations}
             />
           );
         })}
+
       {geoJsonData && (
         <GeoJSON
           data={geoJsonData}
@@ -115,11 +124,12 @@ const Map = ({
         />
       )}
       <TileComponent />
-      <CenterMap originStation={originStation} />
+      {/* <CenterMap originStation={originStation} /> */}
+      <CenterMap />
       <Legend />
       {!isMobile && <ZoomControl position="bottomleft" />}
     </MapContainer>
-  );
+  ) : (<LandingPage/>);
 };
 
 export default Map;

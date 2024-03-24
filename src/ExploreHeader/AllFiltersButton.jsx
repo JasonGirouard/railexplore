@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
-import { FiltersContext } from "../FiltersContext";
+import React, { useState, useRef } from "react";
 import AllFiltersModal from "./AllFiltersModal";
 import "./Filters.css";
 import filterSettingsIcon from '../images/filter-settings.svg';

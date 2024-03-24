@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
-import { FiltersContext } from "../FiltersContext";
+import React, { useState, useContext, useRef } from "react";
+import { OriginStationContext } from "../Context/OriginStationContext";
 import StationsFilterModal from "./StationsFilterModal";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
 import filledDownCaretIconBlack from "../images/down-caret-filled black.svg";
 
 const StationsFilterButton = () => {
-  const { originStation } = useContext(FiltersContext);
+  const { originStation } = useContext(OriginStationContext);
   const [showModal, setShowModal] = useState(false);
   const buttonRef = useRef(null);
 

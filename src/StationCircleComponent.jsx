@@ -1,19 +1,48 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StationContext } from "./StationContext";
+import { StationContext } from "./Context/StationContext";
+import { OriginStationContext } from './Context/OriginStationContext';
 import { CircleMarker, Popup , useMap} from "react-leaflet";
-import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
+import placeholderImage from "./images/placeholder.png";
+import stationSummary from "./data/all_stations_paths.json";
 import "./StationCircleComponent.css";
 
 const StationCircleComponent = ({
   station,
-  radius,
-  originStation,
-  selectedStationDestinations
-
+  radius
 }) => {
   // note that, here, station is just the individual station from the stations.json 
   const { activeStation, setActiveStation, setIsPanelOpen } = useContext(StationContext);
+  const { originStation, selectedStationDestinations } = useContext(OriginStationContext)
+ 
+
   const map = useMap();
+
+   // this is necessary to re-render the map
+  //  useEffect(() => {
+  //   setSelectedStationDestinations(
+  //     stationSummary.find(
+  //       (entry) => entry.origin_station === originStation.code
+  //     )
+  //   );
+  // }, [originStation]);
+
+  // WRITE THE VALUES TO LOCAL STORAGE AS THEY CHANGE
+  // useEffect(() => {
+
+  //   if (originStation) {
+  //       setSelectedStationDestinations(
+  //     stationSummary.find(
+  //       (entry) => entry.origin_station === originStation.code
+  //     )
+  //   );
+  //   }
+  // }, [originStation]);
+
+  // useEffect(() => {
+  //   console.log('attempting a re-render of station circle...orign station:',originStation,'selectedStationDestination:',selectedStationDestinations)
+  //   // This effect will run whenever originStation or selectedStationDestinations change
+  //   // You can perform any necessary updates or side effects here
+  // }, [originStation, selectedStationDestinations]);
 
 
   // find the distance associated with this specific station. 
@@ -145,6 +174,13 @@ const handleMarkerMouseOver = (station, event) => {
     return `${hours}h ${minutes}m`;
   };
 
+  if (!originStation ) {
+    return null; // Render nothing if originStation is undefined
+  }
+
+  if (!selectedStationDestinations ) {
+    return null; // Render nothing if originStation is undefined
+  }
 
   return (
     <>

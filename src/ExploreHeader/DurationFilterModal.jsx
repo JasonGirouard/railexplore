@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { FiltersContext } from "../FiltersContext";
+import { FiltersContext } from "../Context/FiltersContext";
+import { OriginContext } from "../Context/OriginContext";
 import { Slider } from "antd";
 import "./Filters.css";
 
 const DurationFilterModal = ({ buttonRef, onClose }) => {
-  const { origin, duration, setDuration } = useContext(FiltersContext);
+  const { duration, setDuration } = useContext(FiltersContext);
+  const {origin} = useContext(OriginContext);
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -19,9 +21,6 @@ const DurationFilterModal = ({ buttonRef, onClose }) => {
         onClose();
       }
     };
-
-   
-  
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {

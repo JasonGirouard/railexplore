@@ -1,22 +1,16 @@
-import { ConsoleSqlOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { FiltersContext } from "../FiltersContext";
+import { OriginStationContext } from "../Context/OriginStationContext";
+import { OriginContext } from "../Context/OriginContext";
 import "./Filters.css";
 
 const AllFiltersModal = ({ buttonRef, onClose }) => {
-  const { origin, nearestStations, originStation, setOriginStation } =
-    useContext(FiltersContext);
+  const { nearestStations, originStation, setOriginStation } = useContext(OriginStationContext);
+  const { origin } = useContext(OriginContext);
   const [showAllStations, setShowAllStations] = useState(false); // acts when you click 'Show next 5 closest stations'
-  const [isOriginSelected, setIsOriginSelected] = useState(true);
   const modalRef = useRef(null);
 
   const handleStationChange = (station) => {
-    console.log("nearest station", originStation);
     setOriginStation(station);
-  };
-
-  const handleOriginDestinationClick = (isOrigin) => {
-    setIsOriginSelected(isOrigin);
   };
 
   useEffect(() => {
@@ -40,28 +34,10 @@ const AllFiltersModal = ({ buttonRef, onClose }) => {
 
   return (
     <div ref={modalRef} className="filters-modal">
-      <div className="section-header">Stations</div>
+      <div className="section-header">Origin Station</div>
 
       {origin ? (
       <>
-
-      <div className="origin-destination">
-        <div
-          className={isOriginSelected ? "selected" : ""}
-          onClick={() => handleOriginDestinationClick(true)}
-        >
-          Origin
-        </div>
-        <div
-          className={!isOriginSelected ? "selected" : ""}
-          onClick={() => handleOriginDestinationClick(false)}
-        >
-          Destination
-        </div>
-      </div>
-
-      {isOriginSelected ? (
-        <>
           <div className="placename">{origin.place_name}</div>
           <div className="station-list">
             {nearestStations
@@ -95,18 +71,11 @@ const AllFiltersModal = ({ buttonRef, onClose }) => {
               + Show next {nearestStations.length - 5} closest stations...
             </div>
           )}
-        </>
-      ) : (
-        <div>
-          <div className="placename">Anywhere</div>
-        </div>
-      )}
-
 </>
     ) : (
       <div className = "placename"> Please set an origin before choosing your stations</div>
     )}
-    
+
     </div>
   );
 };

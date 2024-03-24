@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { FiltersContext } from "../FiltersContext";
+import { FiltersContext } from "../Context/FiltersContext";
 import DurationFilterModal from "./DurationFilterModal";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";

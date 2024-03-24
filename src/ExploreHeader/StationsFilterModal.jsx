@@ -1,22 +1,20 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { FiltersContext } from "../FiltersContext";
+import { OriginStationContext } from "../Context/OriginStationContext";
+import {OriginContext} from "../Context/OriginContext";
 import "./Filters.css";
 
 const StationsFilterModal = ({ buttonRef, onClose }) => {
-  const { origin, nearestStations, originStation, setOriginStation } =
-    useContext(FiltersContext);
+  const { nearestStations, originStation, setOriginStation } =
+    useContext(OriginStationContext);
+    const {origin} = useContext(OriginContext);
   const [showAllStations, setShowAllStations] = useState(false); // acts when you click 'Show next 5 closest stations'
-  const [isOriginSelected, setIsOriginSelected] = useState(true);
   const modalRef = useRef(null);
 
   const handleStationChange = (station) => {
-    console.log("nearest station", originStation);
     setOriginStation(station);
   };
 
-  const handleOriginDestinationClick = (isOrigin) => {
-    setIsOriginSelected(isOrigin);
-  };
+ 
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -40,8 +38,7 @@ const StationsFilterModal = ({ buttonRef, onClose }) => {
   return (
     <div ref={modalRef} className="filters-modal">
       <div className="section-header origin">Origin Station</div>
-      {isOriginSelected ? (
-  <>
+      
     {origin ? (
       <>
         <div className="placename">{origin.place_name}</div>
@@ -84,12 +81,7 @@ const StationsFilterModal = ({ buttonRef, onClose }) => {
     ) : (
       <div className = "placename"> Please set an origin before choosing your stations</div>
     )}
-  </>
-) : (
-  <div>
-    <div className="placename">Anywhere</div>
-  </div>
-)}
+
     </div>
   );
 };

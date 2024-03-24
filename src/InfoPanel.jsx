@@ -1,6 +1,7 @@
 // InfoPanel.js
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { StationContext } from "./StationContext";
+import React, { useContext, useState, useEffect } from "react";
+import { StationContext } from "./Context/StationContext";
+import { OriginStationContext } from "./Context/OriginStationContext";
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
 import platformImage from "./images/platform.png"; // Adjust the path as needed
@@ -13,11 +14,11 @@ import TrainPathFinder from "./TrainPathFinder";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
 
-const InfoPanel = ({
-  originStation,
-  selectedStationDestinations,
-}) => {
+const InfoPanel = () => {
+  console.log('📚 in info panel')
   const { activeStation, isPanelOpen, setIsPanelOpen } = useContext(StationContext);
+  const { originStation, selectedStationDestinations } = useContext(OriginStationContext);
+
 
   // Define CSS classes based on state
   let panelClass = "info-panel";

@@ -1,22 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { StationProvider } from './StationContext';
-import { FiltersProvider } from './FiltersContext';
-import { LocationProvider } from './LocationContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { OriginProvider } from "./Context/OriginContext";
+import { OriginStationProvider } from "./Context/OriginStationContext";
+import { FiltersProvider } from "./Context/FiltersContext";
+import { StationProvider } from "./Context/StationContext";
+// import { LocationProvider } from './LocationContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <LocationProvider>
-     <StationProvider>
-       <FiltersProvider>
-    <App />
-    </FiltersProvider>
-    </StationProvider>
-    </LocationProvider>
+    <OriginProvider>
+      <OriginStationProvider>
+        <StationProvider>
+          <FiltersProvider>
+            <App />
+          </FiltersProvider>
+        </StationProvider>
+      </OriginStationProvider>
+    </OriginProvider>
   </React.StrictMode>
 );
 

@@ -2,22 +2,30 @@
 
 // LocationDetector.js
 import React, { useEffect , useContext } from 'react';
-import { LocationContext } from './LocationContext';
+// import { LocationContext } from './LocationContext';
+import { OriginContext } from './OriginContext';
 
 const LocationDetector = ({ stations, setOriginStation }) => {
-  const { userLocation, setUserLocation } = useContext(LocationContext);
+  const { userLocation, setUserLocation } = useContext(OriginContext);
+
+
+  // this finds the nearest STATION and then updates it. 
+  // WHAT IT SHOULD DO: IF origin is empty: find user location, set that as the Origin. 
    
   useEffect(() => {
     const fetchUserLocation = async () => {
+      // get the local storage for userIP
       const storedUserLocation = localStorage.getItem('userIP');
       
+      // if local storage for userIP exists, set the nearest 10 based on this lat/long. 
+
       if (storedUserLocation) {
         const { lat, long } = JSON.parse(storedUserLocation);
         setUserLocation({ lat, long });
-        findNearestStation(lat, long);
+        findNearestStation(lat, long); // this also sets the originStation
         return;
       }
-
+      // If the local storage dos not exist, ping the api to get the location. 
       try {
         console.log('pinging ip api');
         const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEOLOCATION_API_KEY}`);
@@ -47,8 +55,9 @@ const LocationDetector = ({ stations, setOriginStation }) => {
 
       if (nearestStation) {
           console.log('nearest station found, setting origin & coords ',nearestStation.name)
-        setOriginStation(nearestStation);
-        // note that I might need to set the searchTerm here -- e.g. setSearchTerm(station.name). But then again, the search.jsx listens to changes in originStation on its own. 
+        setOriginStation(nearestStation);  // this also sets the originStation
+
+      
       //  setCoords([parseFloat(nearestStation.lat), parseFloat(nearestStation.long)]);
       
       }
