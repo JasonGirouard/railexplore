@@ -5,10 +5,13 @@
 
 
 .top-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
-    height: 60px;
+    height: 60px !important;
     background-color: #fff;
-    z-index: 3; /* just above the search */
+    z-index: 1000; /* just above the search */
     margin: 0px;
     padding: 0px;
     border: 0px;
@@ -18,6 +21,8 @@
 .top-nav-header{
 display: flex;
 align-items: center;
+justify-content: center;
+height: 100%;
 }
 
 /* menu icon is always shown in the left-nav */ 
@@ -33,6 +38,15 @@ align-items: center;
     display: flex;
     align-items: center;
     cursor: pointer;
+  }
+  
+  .logo-text {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .logo-image {
+    height: 40px;
   }
 
  

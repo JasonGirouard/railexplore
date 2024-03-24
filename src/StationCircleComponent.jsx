@@ -1,19 +1,63 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { StationContext } from "./StationContext";
-import { CircleMarker, Popup , useMap} from "react-leaflet";
-import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
+import React, { useContext, useEffect, useState , useMemo} from 'react';
+import { StationContext } from "./Context/StationContext";
+import { OriginStationContext } from './Context/OriginStationContext';
+import { FiltersContext } from './Context/FiltersContext';
+import { CircleMarker, Popup , useMap, Tooltip} from "react-leaflet";
+import placeholderImage from "./images/placeholder.png";
+import stationSummary from "./data/all_stations_paths.json";
 import "./StationCircleComponent.css";
 
 const StationCircleComponent = ({
   station,
-  radius,
-  originStation,
-  selectedStationDestinations
-
+  radius
 }) => {
   // note that, here, station is just the individual station from the stations.json 
   const { activeStation, setActiveStation, setIsPanelOpen } = useContext(StationContext);
+  const { duration, destinationType } = useContext(FiltersContext);
+  const { originStation, selectedStationDestinations } = useContext(OriginStationContext);
+  
   const map = useMap();
+  const [mapZoom, setMapZoom] = useState(map.getZoom());
+  const [mapMoved, setMapMoved] = useState(false);
+
+  useEffect(() => {
+    const handleMoveEnd = () => {
+      setMapMoved((prevState) => !prevState);
+    };
+  
+    map.on('moveend', handleMoveEnd);
+  
+    return () => {
+      map.off('moveend', handleMoveEnd);
+    };
+  }, [map]);
+
+  const isStationInBounds = React.useMemo(() => {
+    const bounds = map.getBounds();
+    const latLng = [station.lat, station.long];
+    return bounds.contains(latLng);
+  }, [mapZoom, station.lat, station.long, mapMoved]);
+
+  useEffect(() => {
+    const handleZoomEnd = () => {
+      setMapZoom(map.getZoom());
+    };
+  
+    map.on('zoomend', handleZoomEnd);
+  
+    return () => {
+      map.off('zoomend', handleZoomEnd);
+    };
+  }, [map]);
+
+  const shouldOpenPopup = (tourismTier, zoomLevel) => {
+    if (tourismTier === 4) return true;
+    if (tourismTier === 3 && zoomLevel > 7) return true;
+    if (tourismTier === 2 && zoomLevel > 8) return true;
+    if (tourismTier === 1 && zoomLevel > 9) return true;
+    return false;
+  };
+
 
 
   // find the distance associated with this specific station. 
@@ -35,7 +79,7 @@ const StationCircleComponent = ({
   }, []);
 
 const handleMarkerClick = (station, event) => {
-        event.target.openPopup();
+       // event.target.openPopup();
         // desktop only
         if (!isMobile) {
          // open the info panel
@@ -47,24 +91,28 @@ const handleMarkerClick = (station, event) => {
 const handleMarkerMouseOver = (station, event) => {
     // only for desktop
     if (!isMobile) {
-      event.target.openPopup();
+      event.target.getElement().classList.add('hover');
+     // event.target.openPopup();
    //   setActiveStation(station);
     }
   };
 
   const handleMarkerMouseOut = (station, event) => {
     if (!isMobile) {
-      event.target.closePopup();
+      event.target.getElement().classList.remove('hover');
+    //  event.target.closePopup();
    //   setActiveStation(station);
     }
   };
-  const handleSeeMoreClick = () => {
-    if (isMobile) {
-      setActiveStation(station)
-      setIsPanelOpen(true);
-      //onSeeMoreClicked();
-    }
-  };
+
+  // const handleSeeMoreClick = () => {
+  //   if (isMobile) {
+  //     setActiveStation(station)
+  //     setIsPanelOpen(true);
+  //     //onSeeMoreClicked();
+  //   }
+  // };
+  
   // Utility function to interpolate between two colors
   function interpolateColor(color1, color2, factor) {
     if (arguments.length < 3) {
@@ -145,10 +193,25 @@ const handleMarkerMouseOver = (station, event) => {
     return `${hours}h ${minutes}m`;
   };
 
+  if (!originStation ) {
+    return null; // Render nothing if originStation is undefined
+  }
+
+  if (!selectedStationDestinations ) {
+    return null; // Render nothing if originStation is undefined
+  }
+  
+if (duration && destination && (destination.min_time / 3600) > duration) {
+  return null; // Don't render the CircleMarker if the condition is met
+}
+
+if (destinationType && destinationType == "Popular" && (station.tourism_tier <4 ) ) {
+  return null; // Don't render the CircleMarker if the tourism_tier is less than 4
+}
 
   return (
     <>
-      <CircleMarker
+       {isStationInBounds && (<CircleMarker
         key={`${station.code}-${getFillColor(station.code)}`}
         center={[station.lat, station.long]}
         fillColor={getFillColor(station.code)}
@@ -156,6 +219,7 @@ const handleMarkerMouseOver = (station, event) => {
         weight={station.code === originStation.code || destination ? 0 : 2}
         fillOpacity={originStation.code === station.code ? 0.9 : 0.8}
         radius={radius}
+
         eventHandlers={{
           click: (event) => {
             handleMarkerClick(station, event);
@@ -168,30 +232,40 @@ const handleMarkerMouseOver = (station, event) => {
           },
         }}
       >
-        <Popup autoPan={false}>
+
+{shouldOpenPopup(station.tourism_tier, mapZoom) && (
+    <Tooltip permanent direction="top">
+      <div className="custom-tooltip">
+        <div className="tooltip-content">
+          <h2>{station.name}</h2>
+          <div className="tooltip-info">
+            <span>{formatMinTime(station.code)}</span>
+          </div>
+        </div>
+      </div>
+    </Tooltip>
+ )}
+
+        {/* <Popup 
+        autoPan={false}
+        closeButton = {false}
+        autoClose={false}
+        className={isPopupVisible ? 'visible' : 'hidden'}
+        >
           <div className="custom-popup">
-            <div className="popup-image-container">
-              <img
-                src={station.image_urls[0]}
-                alt="Image of the city"
-                onError={(e) => (e.target.src = placeholderImage)} // Fallback to placeholder image on error
-              />
-            </div>
+
             <div className="popup-content">
               <h2>{station.name}</h2>
               <div className="popup-info">
                 <span>{formatMinTime(station.code)}</span>
-
-                {isMobile && (
-                <a href="#" onClick={handleSeeMoreClick} className="popup-link see-more">
-                  see more
-                </a>
-              )}
               </div>
             </div>
+
           </div>
-        </Popup>
+        </Popup> */}
+      
       </CircleMarker>
+       )}
     </>
   );
 };

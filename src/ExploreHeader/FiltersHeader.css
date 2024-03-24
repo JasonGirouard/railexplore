@@ -1,0 +1,19 @@
+.filters-container{
+    position: relative;
+    display: flex;
+    direction: row;
+}
+
+
+  /* desktop */
+  @media (min-width: 770px) {
+    
+    .filters-container{
+        justify-content: center;
+        align-items: center;
+    }
+    
+ 
+ }
+ 
+ 
