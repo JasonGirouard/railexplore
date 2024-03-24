@@ -169,7 +169,14 @@
 .station-name-top {
     font-size: 14px;
     font-weight: bold;
+    display: flex;
+    display: row;
 }
+.station-name-top-code {
+    
+    font-weight: normal;
+}
+
 .station-address {
     font-size: 10px;
     color: gray;

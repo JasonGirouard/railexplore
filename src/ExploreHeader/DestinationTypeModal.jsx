@@ -1,0 +1,71 @@
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { FiltersContext } from "../FiltersContext";
+import "./Filters.css";
+
+const DestinationTypeModal = ({ buttonRef, onClose }) => {
+  const { origin, destinationType, setDestinationType } = useContext(FiltersContext);
+  const modalRef = useRef(null);
+
+  const handleDestinationTypeChange = (selectedType) => {
+    setDestinationType(selectedType === "All" ? null : selectedType);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        //check if the clicked target is outside both the modal (modalRef.current) and the button (buttonRef.current).
+        //If it is, we call the onClose function to close the modal.
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [buttonRef, onClose]);
+
+
+  return (
+    <div ref={modalRef} className="filters-modal">
+    <div className="section-header origin">Duration</div>
+  
+    {origin ? (
+        <>
+          <div className="radio-group">
+            <label>
+              <input
+                type="radio"
+                value="All"
+                checked={destinationType === null}
+                onChange={() => handleDestinationTypeChange("All")}
+                className="radio-button-class"
+              />
+              All
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Popular"
+                checked={destinationType === "Popular"}
+                onChange={() => handleDestinationTypeChange("Popular")}
+                className="radio-button-class"
+              />
+              Popular
+            </label>
+          </div>
+        </>
+      ) : (
+        <div className="placename">
+          Please set an origin before choosing your destination type
+        </div>
+      )}
+  </div>
+  );
+};
+
+export default DestinationTypeModal;

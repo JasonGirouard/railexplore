@@ -28,7 +28,7 @@ const OriginButton = () => {
             .forwardGeocode({
               query: searchTerm,
               limit: 5,
-              countries: ["us"],
+              countries: ["us","ca"],
               types: [
                 "address",
                 "locality",

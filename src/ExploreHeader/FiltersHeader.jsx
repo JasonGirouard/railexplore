@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AllFiltersButton from "./AllFiltersButton.jsx";
 import StationsFilterButton from "./StationsFilterButton.jsx";
 import DurationFilterButton from "./DurationFilterButton.jsx";
+import DestinationTypeFilterButton from "./DestinationTypeFilterButton.jsx";
 import "./FiltersHeader.css"; // Ensure your CSS styles are defined here
 
 
@@ -13,6 +14,7 @@ const FiltersHeader = () => {
            <AllFiltersButton/>
            <StationsFilterButton/>
            <DurationFilterButton/>
+           <DestinationTypeFilterButton/>
        </div>
      );
    };

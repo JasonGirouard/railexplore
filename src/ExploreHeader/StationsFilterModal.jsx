@@ -58,7 +58,11 @@ const StationsFilterModal = ({ buttonRef, onClose }) => {
                     className="radio-button-class"
                   />
                   <div className="station-name-body">
-                    <div className="station-name-top">{station.name}</div>
+                    <div className="station-name-top">
+                        <div className = "station-name-top-name">{station.name}</div>
+                        <div className = "station-name-top-code">&nbsp;{station.code}</div>
+                    
+                    </div>
                     <div className="station-address">{station.address1}</div>
                   </div>
                 </div>
