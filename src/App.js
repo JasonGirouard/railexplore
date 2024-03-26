@@ -21,6 +21,7 @@ function App() {
                 path="/"
                 element={
                   <Explore
+                   setActivePage={setActivePage}
                   />
                 }
               />
@@ -28,11 +29,12 @@ function App() {
                 path="/explore"
                 element={
                   <Explore
+                   setActivePage={setActivePage}
                   />
                 }
               />
-              <Route path="/about" element={<About />} />
-              <Route path="/donate" element={<Donate />} />
+              <Route path="/about" element={<About  setActivePage={setActivePage} />} />
+              <Route path="/donate" element={<Donate  setActivePage={setActivePage} />} />
             </Routes>
           </div>
         </div>

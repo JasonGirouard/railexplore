@@ -4,7 +4,7 @@
     align-items: center;
     /* top&bottom right&left */
     padding: 8px 16px;
-    margin: 10px 5px;
+    margin: 0px 5px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 4px;
@@ -31,7 +31,7 @@
     justify-content: center;
     align-items: center;
     padding: 8px 16px;
-    margin: 10px 5px;
+    margin: 0px 5px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 4px;
@@ -67,7 +67,7 @@
     overflow-x: visible;
     align-items: center;
     padding: 8px 16px;
-    margin: 10px 5px;
+    margin: 0px 5px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 4px;
@@ -94,6 +94,7 @@
   
   .filters-container {
     display: flex;
+    padding-top: 5px;
     /* overflow-x: scroll; */
     /* overflow-y: scroll; */
     white-space: nowrap;

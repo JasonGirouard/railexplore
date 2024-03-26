@@ -12,12 +12,12 @@ import logo from "./images/Trainy2.png";
 const Navigation = ({ activePage, setActivePage }) => {
   const [collapsedTop, setCollapsedTop] = useState(true);
   const [collapsedLeft, setCollapsedLeft] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 769);
+      setIsMobile(window.innerWidth < 770);
     };
 
     window.addEventListener("resize", handleResize);
@@ -51,7 +51,7 @@ const Navigation = ({ activePage, setActivePage }) => {
     
     <>
       {isMobile ? (
-        //   if mobile then use the top-nav
+        //   if mobile then use the top-nav only
         <div className={`top-nav ${collapsedTop ? "collapsed-top" : "open-top"}`}>
           <div className="nav-container">
             <div className = "top-nav-header">
@@ -127,7 +127,9 @@ const Navigation = ({ activePage, setActivePage }) => {
           </div>
         </div>
       ) : (
-        // otherwise its not mobile and use the left nav
+         // otherwise its desktop and use the left nav
+        <div>
+       
         <div className={`left-nav ${collapsedLeft ? "collapsed-left" : "open-left"}`}>
           <div className="left-nav-header">
             <MenuOutlined
@@ -190,6 +192,9 @@ const Navigation = ({ activePage, setActivePage }) => {
               )}
             </div>
           </div>
+        </div>
+        
+
         </div>
       )}
     </>

@@ -3,9 +3,12 @@ import "./About.css";
 import womanReadingImage from "./images/womanReadingImage.png";
 import Trainy2 from "./images/Trainy2.png";
 import { Link } from "react-router-dom";
-
-const About = () => {
+import TopNav from "./TopNav";
+const About = ({ setActivePage }) => {
   return (
+    <div>
+            <TopNav  setActivePage={setActivePage}/>
+    
     <div className="about-page">
       <div className="about-container">
         <div className="about-text">
@@ -69,6 +72,8 @@ const About = () => {
           </div>
         </div>
       </div>
+    </div>
+
     </div>
   );
 };

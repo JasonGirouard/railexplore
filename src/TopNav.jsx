@@ -1,61 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./Navigation.css";
 import { useNavigate } from "react-router-dom";
-import { MenuOutlined, GlobalOutlined, InfoCircleOutlined, HeartOutlined } from "@ant-design/icons";
-import "./TopNav.css";
 import logo from "./images/Trainy2.png";
 
-const TopNav = ({ activePage, setActivePage }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+const TopNav = ({ setActivePage }) => {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
 
-  const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 770);
+    };
 
-  const handleNavItemClick = (path) => {
-    navigate(`/${path.toLowerCase()}`);
-    setActivePage(path);
-    setMenuOpen(false);
-  };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleLogoClick = () => {
     navigate("/explore");
     setActivePage("Explore");
   };
 
+  if (isMobile) {
+    return null; // Return nothing if isMobile is true
+  }
+
   return (
-    <div className="top-nav">
-      <div className="nav-container">
-        <MenuOutlined className="menu-icon" onClick={handleMenuClick} />
-        <div className="logo-container" onClick={handleLogoClick}>
-          <span className="logo-text">TrainGang</span>
-          <img src={logo} alt="Logo" className="logo-image" />
-        </div>
-        <div className={`nav-items ${menuOpen ? "open" : ""}`}>
-          <div
-            className={`nav-item ${activePage === "Explore" ? "active" : ""}`}
-            onClick={() => handleNavItemClick("Explore")}
-          >
-            <GlobalOutlined className="nav-icon" />
-            <span className={`nav-text ${activePage === "Explore" ? "active" : ""}`}>Explore</span>
-          </div>
-          <div
-            className={`nav-item ${activePage === "About" ? "active" : ""}`}
-            onClick={() => handleNavItemClick("About")}
-          >
-            <InfoCircleOutlined className="nav-icon" />
-            <span className={`nav-text ${activePage === "About" ? "active" : ""}`}>About</span>
-          </div>
-          <div
-            className={`nav-item ${activePage === "Donate" ? "active" : ""}`}
-            onClick={() => handleNavItemClick("Donate")}
-          >
-            <HeartOutlined className="nav-icon" />
-            <span className={`nav-text ${activePage === "Donate" ? "active" : ""}`}>Donate</span>
-          </div>
-        </div>
+
+    <div className="top-nav-desktop">
+          <div className="nav-container">
+            <div className = "top-nav-header-desktop">
+            <div className="" onClick={handleLogoClick}>
+              <span className="logo-text">TrainGang</span>
+              <img src={logo} alt="Logo" className="logo-image" />
+            </div>
+            </div>
       </div>
     </div>
+
   );
 };
 
