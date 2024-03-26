@@ -5,8 +5,6 @@ import DurationFilterButton from "./DurationFilterButton.jsx";
 import DestinationTypeFilterButton from "./DestinationTypeFilterButton.jsx";
 import "./FiltersHeader.css"; // Ensure your CSS styles are defined here
 
-
-
 const FiltersHeader = () => {
    
      return (
