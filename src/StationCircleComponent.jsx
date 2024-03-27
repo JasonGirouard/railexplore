@@ -102,11 +102,7 @@ const StationCircleComponent = ({ station, radius }) => {
   }
   const getFillColor = (stationCode) => {
     let color = "#FFFFFF"; // Default color
-    // If this station is the active station, make it gray
-    if (activeStation && stationCode === activeStation.code) {
-      return "#bfbfbf"; // purple color for active station
-    }
-
+   
     if (destination) {
       const hours = destination.min_time / 3600; // Convert seconds to hours
       const colors = [
@@ -140,8 +136,30 @@ const StationCircleComponent = ({ station, radius }) => {
     if (originStation && originStation.code === stationCode) {
       color = "#353535"; // Override color for the origin station
     }
+
     return color;
   };
+
+const getOutlineColor = (stationCode) => {
+  if (activeStation && stationCode === activeStation.code) {
+    return "#000000";
+  } else if (destination) {
+    return null;
+  } else {
+    return "#AFDDFF";
+  }
+}
+
+const getOutlineWeight = (stationCode) => {
+  if (activeStation && stationCode === activeStation.code) {
+    return 0;
+  } else if (destination) {
+    return 0;
+  } else {
+    return 2;
+  }
+};
+
   // Function to format and display the minimum time to the destination
   const formatMinTime = (stationCode) => {
     if (!destination) return "N/A";
@@ -173,26 +191,23 @@ const StationCircleComponent = ({ station, radius }) => {
   ) {
     return null;
   }
-
   const isSelected = activeStation && activeStation.code === station.code;
 
   return (
     <>
       {isStationInBounds && (
         <CircleMarker
-          key={`${station.code}-${getFillColor(station.code)}`}
+          key={`${station.code}-${getFillColor(station.code)}-${isSelected}`}
           center={[station.lat, station.long]}
           fillColor={getFillColor(station.code)}
-          color={
-            station.code === originStation.code || destination
-              ? null
-              : "#AFDDFF"
-          }
-          weight={station.code === originStation.code || destination ? 0 : 2}
+          color={getOutlineColor(station.code)}
+          weight={getOutlineWeight(station.code)}
           fillOpacity={originStation.code === station.code ? 0.9 : 0.8}
           radius={radius}
           eventHandlers={{
             click: (event) => handleMarkerClick(station, event),
+            mouseover: () => setShowTooltip(true),
+            mouseout: () => setShowTooltip(false),
           }}
         >
           {station.code === originStation.code ? (
@@ -210,7 +225,7 @@ const StationCircleComponent = ({ station, radius }) => {
               </div>
             </Tooltip>
           ) : (
-            shouldOpenPopup(station.tourism_tier, mapZoom) && (
+            (shouldOpenPopup(station.tourism_tier, mapZoom) || (showTooltip && !isMobile) || isSelected) && (
               <Tooltip
                 permanent
                 direction="top"
