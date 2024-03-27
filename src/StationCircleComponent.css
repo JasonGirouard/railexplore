@@ -1,40 +1,70 @@
 
-
+/* 
 .custom-tooltip {
-  padding: 6px;
+  padding: 0px;
   border: 0px;
   font-family: Arial, sans-serif;
   margin: 0; 
   padding: 0px;
-  min-width: 50px;
   border-radius: 8px;
   pointer-events: none;
+} 
+*/
 
- 
-}
-
-.custom-tooltip:hover {
+/* .custom-tooltip:hover {
   box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4);
   border-color: blue;
-}
+} */
 
-.tooltip-content {
+/* .tooltip-content {
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
   padding: 0px;
   margin: 0px;
-  /* margin-top: -9px; */
+ 
+} 
+*/
 
-}
-
+/* Adds margin at the top to separate from the image */
 .tooltip-content h2 {
-  margin: 0px 0px 0px 0px; /* Adds margin at the top to separate from the image */
+  margin: 0px 0px 0px 0px; 
   font-size: 12px;
   margin: 0px;
   padding: 0px;
 }
+
+.leaflet-popup-content-wrapper:hover {
+  box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4);
+}
+
+.leaflet-popup-tip:hover {
+  /* padding: 0px; */
+}
+
+
+.leaflet-tooltip:hover { 
+  border: 2px solid #2479E9;
+}
+
+.selected {
+  border: 2px solid #2479E9;
+}
+
+.tooltip-content.origin {
+  justify-content: center;
+  align-items: center;
+}
+
+.leaflet-tooltip {
+  max-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 /* .tooltip-info {
   margin-top: 4px;
@@ -45,38 +75,34 @@
 
 
 /* POPUP FILES */
-.leaflet-popup {
+/* .leaflet-popup {
   padding: 0px;
   border: 0px;
-  /* margin: 0px; */
-}
+  
+} */
 
-.leaflet-popup-content-wrapper:hover {
-  box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4);
-}
 
+/* 
 .leaflet-popup-content-wrapper {
   box-shadow: 0 2px 4px rgba(0,0,0, 0.4);
-  height: 40px;
+  height: 30px;
   box-sizing: border-box;
   padding: 1px;
   margin: 0px;
   min-width: 50px;
   padding-left: 0px;
   
-}
+} */
 
-.leaflet-popup-tip:hover {
-  /* padding: 0px; */
-}
 
-.custom-popup {
+
+/* .custom-popup {
     font-family: Arial, sans-serif;
     margin: 0; 
     padding: 0px;
     min-width: 50px;
 
-  }
+  } */
   
   /*
   .popup-image-container img {
@@ -91,7 +117,7 @@
   }
   */
 
-  .popup-content {
+  /* .popup-content {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -104,12 +130,12 @@
   }
   
   .popup-content h2 {
-    margin: 0px 0px 0px 0px; /* Adds margin at the top to separate from the image */
+    margin: 0px 0px 0px 0px; 
     font-size: 12px;
     margin: 0px;
     padding: 0px;
   }
-  
+   */
   /*
   .popup-info {
     display: flex;
@@ -135,14 +161,3 @@
   
   */
 
-
-  .leaflet-tooltip:hover {
-    
-    border: 2px solid #2479E9;
-  }
-
-
-  .selected {
-    
-    border: 2px solid #2479E9;
-  }

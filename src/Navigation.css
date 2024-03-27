@@ -140,7 +140,7 @@ height: 100%;
 
 /* LEFT NAV for desktop */ 
 .left-nav {
-    width: 200px;
+    width: 160px;
     height: 100vh;
     background-color: #fff;
     transition: width 0.3s;

@@ -11,7 +11,7 @@ import logo from "./images/Trainy2.png";
 
 const Navigation = ({ activePage, setActivePage }) => {
   const [collapsedTop, setCollapsedTop] = useState(true);
-  const [collapsedLeft, setCollapsedLeft] = useState(false);
+  const [collapsedLeft, setCollapsedLeft] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const navigate = useNavigate();
 
@@ -136,11 +136,11 @@ const Navigation = ({ activePage, setActivePage }) => {
               className="menu-icon-left"
               onClick={handleCollapseClickLeft}
             />
-            {!collapsedLeft && (
+            {/* {!collapsedLeft && (
               <div className="logo-container-left" onClick={handleLogoClick}>
                 <img src={logo} alt="Logo" className="logo-image" />
               </div>
-            )}
+            )} */}
           </div>
           <div className="nav-items-container-left">
             <div

@@ -20,6 +20,14 @@ const InfoPanel = () => {
   const { originStation, selectedStationDestinations } = useContext(OriginStationContext);
 
 
+
+  const handleInfoPanel = () => {
+    console.log("setting if panel is open");
+    setIsPanelOpen(!isPanelOpen); // Close the panel
+  };
+
+
+
   // Define CSS classes based on state
   let panelClass = "info-panel";
   if (isPanelOpen) {
@@ -33,7 +41,7 @@ const InfoPanel = () => {
 
   // Find the specific destination data for this station
   const destination = selectedStationDestinations?.destinations.find(
-    (d) => d.destination_station === activeStation.code
+    (d) => activeStation && d.destination_station === activeStation.code
   );
   // Function to navigate to the previous image
   const goToPreviousImage = () => {
@@ -110,15 +118,20 @@ const InfoPanel = () => {
     }
   };
 
-  const handleInfoPanel = () => {
-    console.log("setting if panel is open");
-    setIsPanelOpen(!isPanelOpen); // Close the panel
-  };
+ 
 
   // Function to handle image load error
   const handleImageError = (e) => {
     e.target.src = placeholderImage; // Replace with placeholder image
   };
+
+  if (!activeStation) {
+    return null;
+  }
+
+  if (!originStation) {
+    return null;
+  }
 
   return (
     <div className={panelClass}>

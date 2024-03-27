@@ -6,37 +6,13 @@ import React, { createContext, useState, useEffect , useContext} from 'react';
 // import stations from "../data/stations.json"; 
 export const OriginStationContext = createContext();
 export const OriginStationProvider = ({ children }) => {
-
      const {origin } = useContext(OriginContext);
-
-    const defaultStation = {
-        name: "New York, NY",
-        is_recommended: true,
-        code: "NYP",
-        city: "New York",
-        state: "NY",
-        address1: "351 West 31st Street",
-        zipcode: "10001",
-        lat: "40.7503352640001",
-        long: "-73.9944604469999",
-        Shelter: true,
-        station_type: "Station Building",
-        mode: "TRAIN",
-        description: "",
-      };
-  const [originStation, setOriginStation] = useState(defaultStation);
+  const [originStation, setOriginStation] = useState(null);
   const [nearestStations, setNearestStations] = useState(null);
   const [selectedStationDestinations, setSelectedStationDestinations] = useState(null);
 
   // WRITE THE VALUS DURING INITIALIZATION WHERE THEY EXIST
   useEffect(() => {
-    // const storedUserIP = localStorage.getItem('userIP');
-    // if (storedUserIP) {
-    //   const { lat, long } = JSON.parse(storedUserIP);
-    //   if (lat !== undefined && long !== undefined) {
-    //     setUserLocation({ lat, long });
-    //   }
-    // }
 
     const storedNearestStations = localStorage.getItem('nearestStations');
     if (storedNearestStations) {

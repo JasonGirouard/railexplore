@@ -5,3 +5,9 @@
 .app-header-bottom{
     margin-bottom: 5px;
 }
+
+.app-header-container {
+
+    box-shadow: 4px 1px 8px rgba(0, 0, 0, 0.3); 
+    z-index: 4;
+} 
