@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, Fragment } from "react";
 import { StationContext } from "./Context/StationContext";
 import { OriginStationContext } from "./Context/OriginStationContext";
 import { FiltersContext } from "./Context/FiltersContext";
-import { CircleMarker, Popup, Tooltip, useMap } from "react-leaflet";
+import { CircleMarker, Popup, Tooltip, useMap,useMapEvents } from "react-leaflet";
 import StationTooltip from "./StationToolTip";
 import { StarFilled } from "@ant-design/icons";
 
@@ -22,19 +22,29 @@ const StationCircleComponent = ({ station, radius }) => {
   const [mapZoom, setMapZoom] = useState(map.getZoom());
   const [mapMoved, setMapMoved] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  
 
   // find the distance associated with this specific station.
   const destination = selectedStationDestinations?.destinations.find(
     (d) => d.destination_station === station.code
   );
 
+   //handle click away from a selected station...it works, but it also rerenders the circles at a high rate
+   useMapEvents({
+    click: (event) => {
+      if (!event.originalEvent.target.closest('.leaflet-interactive')) {
+        setActiveStation(null);
+        setIsPanelOpen(false);
+      }
+    },
+  });
+
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 770);
     };
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -192,6 +202,8 @@ const getOutlineWeight = (stationCode) => {
     return null;
   }
   const isSelected = activeStation && activeStation.code === station.code;
+
+ 
 
   return (
     <>

@@ -291,7 +291,7 @@
       "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,g_xy_center,h_422,q_65,w_450,x_2525,y_1996/v1/clients/virginia/NV20081203P_006_44f04096-357f-4d2f-9078-7fa732f7951a.jpg"
     ],
     "tourism_rank": 75,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Albany, OR",
@@ -354,7 +354,7 @@
       "https://imageio.forbes.com/i-forbesimg/media/lists/places/anaheim-ca_416x416.jpg?format=jpg&height=416&width=416&fit=bounds"
     ],
     "tourism_rank": 84,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Ann Arbor, MI",
@@ -396,7 +396,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/d/da/Ardmore_post_office.jpg"
     ],
     "tourism_rank": 72,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Arkadelphia, AR",
@@ -627,7 +627,7 @@
       "https://media.nomadicmatt.com/2023/bostonitinerary.jpeg"
     ],
     "tourism_rank": 85,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Burke Centre, VA",
@@ -711,7 +711,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Berlin_Turnpike_Map.svg/1200px-Berlin_Turnpike_Map.svg.png"
     ],
     "tourism_rank": 60,
-    "tourism_tier": 3
+    "tourism_tier": 2
   },
   {
     "name": "Bakersfield, CA",
@@ -753,7 +753,7 @@
       "https://images.squarespace-cdn.com/content/v1/54e201c7e4b00d4519b30502/a653f08c-7d5c-49f9-968b-ece0afd5674a/303Pasquale_006+copy.jpg"
     ],
     "tourism_rank": 73,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Birmingham, AL",
@@ -795,7 +795,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Berkeley_cityscape.jpg/800px-Berkeley_cityscape.jpg"
     ],
     "tourism_rank": 89,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Bellows Falls, VT",
@@ -900,7 +900,7 @@
       "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100064805373634"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Bennington, VT",
@@ -942,7 +942,7 @@
       "https://media.nomadicmatt.com/2023/bostonitinerary.jpeg"
     ],
     "tourism_rank": 82,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Boston, MA",
@@ -983,8 +983,8 @@
       "https://images.squarespace-cdn.com/content/v1/53dd6676e4b0fedfbc26ea91/b4ab86a5-4b3b-45d4-a0a3-0be42aeb712f/HIstoric+Downtown_Greg+Lesch.JPG",
       "https://d15zjc2r4e8kr7.cloudfront.net/6154/Brattleboro%20VT.png"
     ],
-    "tourism_rank": 58,
-    "tourism_tier": 3
+    "tourism_rank": 75,
+    "tourism_tier": 4
   },
   {
     "name": "Brookhaven, MS",
@@ -1047,7 +1047,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/BurlingtonIA_Skyline_cropped.jpg/800px-BurlingtonIA_Skyline_cropped.jpg"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Browning, MT",
@@ -1152,7 +1152,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/f/fe/Burbank_media_district_from_Griffith_Park_2015-11-07.jpg"
     ],
     "tourism_rank": 75,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "BWI Marshall Airport, MD",
@@ -1173,7 +1173,7 @@
       "https://upload.wikimedia.org/wikipedia/en/8/87/Baltimore_Washington_International_Thurgood_Marshall_Airport_%28logo%29.svg"
     ],
     "tourism_rank": 78,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Bryan, OH",
@@ -1341,7 +1341,7 @@
       "https://urbanaillinois.us/sites/default/files/styles/large/public/images/Urbanalove_Main_Sky_2.jpg?itok=RacxgmCR"
     ],
     "tourism_rank": 45,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Charleston, SC",
@@ -1383,7 +1383,7 @@
       "https://transforms.mckinleycarter.com/production/locations/charleston.jpg?w=1035&h=669&q=75&auto=format%2Cavif&fit=crop&dm=1598285080&s=1764f95c125e36976306ca99ee030bf9"
     ],
     "tourism_rank": 35,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Chico, CA",
@@ -1425,7 +1425,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/f/f3/Downtown_Cincinnati_viewed_from_Mt._Adams_%28cropped%29.jpg"
     ],
     "tourism_rank": 65,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Claremont, NH",
@@ -1488,7 +1488,7 @@
       "https://www.redfin.com/blog/wp-content/uploads/2023/05/GettyImages-1030367132.jpg"
     ],
     "tourism_rank": 45,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Clifton Forge, VA",
@@ -1761,7 +1761,7 @@
       "https://photos.zillowstatic.com/fp/5e743c79a6f8fcf2a07f88680f6800bb-cc_ft_960.jpg"
     ],
     "tourism_rank": 72,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Crawfordsville, IN",
@@ -1908,7 +1908,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Cumberland_Aerial_2022.jpg/640px-Cumberland_Aerial_2022.jpg"
     ],
     "tourism_rank": 65,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Cut Bank, MT",
@@ -2181,7 +2181,7 @@
       "https://www.michigan.org/sites/default/files/styles/large/public/2022-04/dtw_22_ss_camp_Week1_Visit_Detroit_Growing_Skyline_S_Ferguson.jpg?itok=9-3lMdtM"
     ],
     "tourism_rank": 50,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Deerfield Beach, FL",
@@ -2769,7 +2769,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Erie_PA_skyline_from_tower_observation_deck.png/800px-Erie_PA_skyline_from_tower_observation_deck.png"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Essex, MT",
@@ -2790,7 +2790,7 @@
       "https://www.visitmt.com/binaries/content/gallery/MTOT/photos/cities-and-towns/essex-1_dsc4541.jpg/essex-1_dsc4541.jpg/MTOT%3Alandscape"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Essex Junction-Burlington, VT",
@@ -2810,8 +2810,8 @@
       "https://vermontbiz.com/sites/default/files/resize/amtrak_essex_jct_station_rendering_july_2021-770x347.png",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Essex_Junction%2C_Vermont_Amtrak.jpg/300px-Essex_Junction%2C_Vermont_Amtrak.jpg"
     ],
-    "tourism_rank": 12,
-    "tourism_tier": 1
+    "tourism_rank": 68,
+    "tourism_tier": 4
   },
   {
     "name": "Eugene, OR",
@@ -2937,7 +2937,7 @@
       "https://imageio.forbes.com/i-forbesimg/media/lists/places/fargo-nd_416x416.jpg?format=jpg&height=416&width=416&fit=bounds"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Fayetteville, NC",
@@ -3063,7 +3063,7 @@
       "https://i.guim.co.uk/img/media/42bc10abb21d6b52271596c0ef64c1628e05b21d/0_197_5897_3539/master/5897.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=f8f11a590096ae4ebc4422217588e42d"
     ],
     "tourism_rank": 34,
-    "tourism_tier": 1
+    "tourism_tier": 4
   },
   {
     "name": "Florence, SC",
@@ -3168,7 +3168,7 @@
       "https://www.tpl.org/wp-content/uploads/2019/05/FresnoCA.jpg"
     ],
     "tourism_rank": 65,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Framingham, MA",
@@ -3231,7 +3231,7 @@
       "https://www.lakechamplainregion.com/f/styles/standard_header_image_large/public/Story/84062/header_image/top-10-things-to-do-in-ticonderoga-ny_0.jpg?itok=QYtXyktt"
     ],
     "tourism_rank": 23,
-    "tourism_tier": 1
+    "tourism_tier": 4
   },
   {
     "name": "Fort Lauderdale, FL",
@@ -3315,7 +3315,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/1/13/Fullerton_police_headquarter_%28cropped%29.jpg"
     ],
     "tourism_rank": 78,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Santa Clara, CA",
@@ -3441,7 +3441,7 @@
       "https://www.glendaleca.gov/home/showpublishedimage/38814/636957533662570000"
     ],
     "tourism_rank": 75,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Greenfield, MA",
@@ -3609,7 +3609,7 @@
       "https://www.visitgallup.com/imager/cmsimages/573743/downtown-gallup-drone-preview_26e0b9aeeaf756a39a565edb1a58484e.jpg"
     ],
     "tourism_rank": 42,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Grimsby, ON",
@@ -3840,7 +3840,7 @@
       "https://www.cityofgoleta.org/home/showpublishedimage/10855/638107600410300000"
     ],
     "tourism_rank": 85,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Guadalupe, CA",
@@ -4113,7 +4113,7 @@
       "https://biglanguage.com/wp-content/uploads/2021/11/How-Hartford-CT-Became-the-Insurance-Capital-of-the-World.jpg"
     ],
     "tourism_rank": 60,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Harpers Ferry, WV",
@@ -4533,7 +4533,7 @@
       "https://cdn.britannica.com/78/76678-050-B44743D1/Downtown-Indianapolis-Indiana.jpg"
     ],
     "tourism_rank": 63,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Irvine, CA",
@@ -4722,7 +4722,7 @@
       "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_856,q_65,w_640/v1/clients/kalamazoo/964c665529462241c793237c86c40d5095cc557bd6f9529e68d6ee47d501af49_d66ec68f-1e0d-47ba-81f3-fabbf310534f.jpg"
     ],
     "tourism_rank": 56,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Kannapolis, NC",
@@ -4995,7 +4995,7 @@
       "https://cdn.britannica.com/53/116653-050-1EA8D4E5/Lafayette-Ind.jpg"
     ],
     "tourism_rank": 18,
-    "tourism_tier": 1
+    "tourism_tier": 4
   },
   {
     "name": "La Grange, IL",
@@ -5226,7 +5226,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ltownsquare1.jpg/300px-Ltownsquare1.jpg"
     ],
     "tourism_rank": 43,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Lexington Barbeque Festival, NC",
@@ -5541,7 +5541,7 @@
       "https://www.southernliving.com/thmb/AnyxP-xxqiUBzvO8JhMyEC6C4Hk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1301787586-4938231cc72b47a5ba439aca33685775.jpg"
     ],
     "tourism_rank": 54,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "La Crosse, WI",
@@ -6108,7 +6108,7 @@
       "https://www.greatamericanstations.com/wp-content/uploads/2016/09/milwaukeeairport.jpg"
     ],
     "tourism_rank": 78,
-    "tourism_tier": 4
+    "tourism_tier": 2
   },
   {
     "name": "Milwaukee-Downtown, WI",
@@ -6255,7 +6255,7 @@
       "https://q-xx.bstatic.com/xdata/images/hotel/max500/325529633.jpg?k=63570974eb7826ea9290a394913be4141464e48b87a126d4efd7834b7c0570bb&o="
     ],
     "tourism_rank": 35,
-    "tourism_tier": 2
+    "tourism_tier": 3
   },
   {
     "name": "Martinsburg, WV",
@@ -6948,7 +6948,7 @@
       "https://nysfair.ny.gov/wp-content/uploads/2018/05/main-gate-day-slider-960x320.jpg"
     ],
     "tourism_rank": 55,
-    "tourism_tier": 2
+    "tourism_tier": 1
   },
   {
     "name": "New York, NY",
@@ -6990,7 +6990,7 @@
       "https://media.cntraveler.com/photos/5b9965e47009626e21e1e1aa/master/w_1600%2Cc_limit/Oakland_GettyImages-895763946.jpg"
     ],
     "tourism_rank": 68,
-    "tourism_tier": 4
+    "tourism_tier": 2
   },
   {
     "name": "Oklahoma City, OK",
@@ -7095,7 +7095,7 @@
       "https://www.sandiego.org/-/media/images/sdta-site/articles/about-sd/1233x860/sdta-articles-11917-1230x860-0000s-0000-about-sd.jpg?bc=white&h=500&w=700&c=1"
     ],
     "tourism_rank": 85,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Olympia-Lacey, WA",
@@ -7326,7 +7326,7 @@
       "https://agent123.com/images/blogimages/38c05e51-ab94-4d47-a9c2-12b50fa4e776.jpg"
     ],
     "tourism_rank": 72,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Palatka, FL",
@@ -7515,7 +7515,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/8/8f/Montgomery_n_18th_Philly.JPG"
     ],
     "tourism_rank": 83,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Picayune, MS",
@@ -7641,7 +7641,7 @@
       "https://visittrivalley.com/wp-content/uploads/2018/04/Webp.net-resizeimage.jpg"
     ],
     "tourism_rank": 75,
-    "tourism_tier": 4
+    "tourism_tier": 2
   },
   {
     "name": "Pontiac, MI",
@@ -7788,7 +7788,7 @@
       "https://media2.chronogram.com/chronogram/imager/u/original/9898642/03_pok_main-st_as_011620_001.jpg"
     ],
     "tourism_rank": 58,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Paso Robles, CA",
@@ -7956,7 +7956,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/9/98/Port_Huron_%28March_2019%29.jpg"
     ],
     "tourism_rank": 55,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Purcell, OK",
@@ -7998,7 +7998,7 @@
       "https://media.architecturaldigest.com/photos/55e79181cd709ad62e900d51/16:9/w_1280,c_limit/dam-images-travel-providence-rhode-island-providence-rhode-island-guide-01-thomas-street-college-hill-h670.jpg"
     ],
     "tourism_rank": 52,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Pauls Valley, OK",
@@ -8250,7 +8250,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/RockvilleMarylandNortheast.jpg/220px-RockvilleMarylandNortheast.jpg"
     ],
     "tourism_rank": 68,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Rocklin, CA",
@@ -8460,7 +8460,7 @@
       "https://www.todoista.com/content/images/2023/01/Most-Beautiful-Things-to-Do-in-Roseville-CA.jpg"
     ],
     "tourism_rank": 82,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Route 128, MA",
@@ -8565,7 +8565,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/A_downtown_view_of_Richmond%2C_VA.jpg/800px-A_downtown_view_of_Richmond%2C_VA.jpg"
     ],
     "tourism_rank": 65,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Richmond, VA",
@@ -8880,7 +8880,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Santa_Clara%2C_CA_USA_-_Santa_Clara_University%2C_Mission_Santa_Clara_de_Asis_-_panoramio_%282%29_%28cropped%29.jpg/800px-Santa_Clara%2C_CA_USA_-_Santa_Clara_University%2C_Mission_Santa_Clara_de_Asis_-_panoramio_%282%29_%28cropped%29.jpg"
     ],
     "tourism_rank": 72,
-    "tourism_tier": 4
+    "tourism_tier": 2
   },
   {
     "name": "St. Cloud, MN",
@@ -8901,7 +8901,7 @@
       "https://www.sctimes.com/gcdn/presto/2018/10/05/PSTC/06dca9a9-f0b4-4c25-9fd0-78d2bd548e19-St._Cloud_1.jpg"
     ],
     "tourism_rank": 45,
-    "tourism_tier": 2
+    "tourism_tier": 4
   },
   {
     "name": "Schriever, LA",
@@ -9090,7 +9090,7 @@
       "https://www.michiganbeachtowns.com/wp-content/uploads/2019/04/St.-Jospeph-all.jpg"
     ],
     "tourism_rank": 68,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Stockton, CA",
@@ -9384,7 +9384,7 @@
       "https://www.pierfishing.com/wp-content/uploads/2018/07/SCP_2015_9_Pier8.xx_.jpg"
     ],
     "tourism_rank": 75,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Salinas, CA",
@@ -9426,7 +9426,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Downtown_South_Bend.jpg/800px-Downtown_South_Bend.jpg"
     ],
     "tourism_rank": 25,
-    "tourism_tier": 1
+    "tourism_tier": 4
   },
   {
     "name": "Solana Beach, CA",
@@ -9447,7 +9447,7 @@
       "https://www.escobailbonds.com/wp-content/uploads/2023/09/9-reasons-why-west-solana-beach-great-place-to-live.jpg"
     ],
     "tourism_rank": 78,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Southern Pines, NC",
@@ -9531,7 +9531,7 @@
       "https://files.idss.com/C116/778817fe-10c4-4600-88e6-6bbab0762f3c.png"
     ],
     "tourism_rank": 63,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Spokane, WA",
@@ -9846,7 +9846,7 @@
       "https://imageio.forbes.com/i-forbesimg/media/lists/places/syracuse-ny_416x416.jpg?format=jpg&height=416&width=416&fit=bounds"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 4
   },
   {
     "name": "Tacoma, WA",
@@ -10581,7 +10581,7 @@
       "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_615,q_75,w_640/v1/clients/pwmva/Stonebridge_332ab9ca-ff20-45fb-8f8c-0e76f81c7e71.jpg"
     ],
     "tourism_rank": 69,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Wisconsin Dells, WI",
@@ -10770,7 +10770,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Wilmington_Delaware_skyline.jpg/288px-Wilmington_Delaware_skyline.jpg"
     ],
     "tourism_rank": 52,
-    "tourism_tier": 2
+    "tourism_tier": 3
   },
   {
     "name": "Winona, MN",
@@ -10875,7 +10875,7 @@
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/26/9b/3f/watch-hill-inn-is-in.jpg?w=600&h=400&s=1"
     ],
     "tourism_rank": 75,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Williams, AZ",
@@ -10896,7 +10896,7 @@
       "https://www.visitarizona.com/imager/files_idss_com/C375/AccountFiles/xsuvtxluzs81ooaeuejj_70e0b117ab6f15d516450a3495868467.jpg"
     ],
     "tourism_rank": 82,
-    "tourism_tier": 4
+    "tourism_tier": 3
   },
   {
     "name": "Windsor, CT",
@@ -10917,7 +10917,7 @@
       "https://cdn.townweb.com/windsorlocksct.org/wp-content/uploads/2021/02/image006.png"
     ],
     "tourism_rank": 72,
-    "tourism_tier": 4
+    "tourism_tier": 2
   },
   {
     "name": "Windsor Locks, CT",
@@ -10938,7 +10938,7 @@
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Windsor_Locks_Canal_Company_by_Elias_Friedman.JPG/1200px-Windsor_Locks_Canal_Company_by_Elias_Friedman.JPG"
     ],
     "tourism_rank": 62,
-    "tourism_tier": 3
+    "tourism_tier": 2
   },
   {
     "name": "Windsor-Mt. Ascutney, VT",

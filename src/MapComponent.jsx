@@ -49,16 +49,18 @@ const Map = () => {
   const [zoomLevel, setZoomLevel] = useState(7);
    // Function to calculate the radius based on the zoom level
    const getRadius = () => {
-    if (zoomLevel <= 6) {
+    if (zoomLevel < 6) {
+      return 6;
+    } else if (zoomLevel === 6) {
       return 8;
     } else if (zoomLevel === 7) {
-      return 11;
+      return 10;
     } else if (zoomLevel === 8) {
-      return 14;
+      return 11;
     } else if (zoomLevel === 9) {
-      return 16;
+      return 11;
     } else {
-      return 18;
+      return 11;
     }
   };
   useEffect(() => {
