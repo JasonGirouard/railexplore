@@ -1,17 +1,17 @@
 import React, { useState, useContext, useRef } from "react";
 import { OriginStationContext } from "../Context/OriginStationContext";
-import StationsFilterModal from "./StationsFilterModal";
+import StationsFilterPopover from "./StationsFilterPopover";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
 import filledDownCaretIconBlack from "../images/down-caret-filled black.svg";
 
 const StationsFilterButton = () => {
   const { originStation } = useContext(OriginStationContext);
-  const [showModal, setShowModal] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
-    setShowModal(!showModal);
+    setShowPopover(!showPopover);
   };
 
   return (
@@ -38,8 +38,8 @@ const StationsFilterButton = () => {
           </button>
         </div>
       )}
-      {showModal && (
-        <StationsFilterModal buttonRef={buttonRef} onClose={handleClick} />
+      {showPopover && (
+        <StationsFilterPopover buttonRef={buttonRef} onClose={handleClick} />
       )}
     </div>
   );

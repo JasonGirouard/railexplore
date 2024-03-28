@@ -3,11 +3,11 @@ import { OriginStationContext } from "../Context/OriginStationContext";
 import { OriginContext } from "../Context/OriginContext";
 import "./Filters.css";
 
-const AllFiltersModal = ({ buttonRef, onClose }) => {
+const AllFiltersPopover = ({ buttonRef, onClose }) => {
   const { nearestStations, originStation, setOriginStation } = useContext(OriginStationContext);
   const { origin } = useContext(OriginContext);
   const [showAllStations, setShowAllStations] = useState(false); // acts when you click 'Show next 5 closest stations'
-  const modalRef = useRef(null);
+  const PopoverRef = useRef(null);
 
   const handleStationChange = (station) => {
     setOriginStation(station);
@@ -16,10 +16,10 @@ const AllFiltersModal = ({ buttonRef, onClose }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        //check if the clicked target is outside both the modal (modalRef.current) and the button (buttonRef.current).
-        //If it is, we call the onClose function to close the modal.
-        modalRef.current &&
-        !modalRef.current.contains(event.target) &&
+        //check if the clicked target is outside both the Popover (PopoverRef.current) and the button (buttonRef.current).
+        //If it is, we call the onClose function to close the Popover.
+        PopoverRef.current &&
+        !PopoverRef.current.contains(event.target) &&
         !buttonRef.current.contains(event.target)
       ) {
         onClose();
@@ -33,7 +33,7 @@ const AllFiltersModal = ({ buttonRef, onClose }) => {
   }, [buttonRef, onClose]);
 
   return (
-    <div ref={modalRef} className="filters-modal">
+    <div ref={PopoverRef} className="filters-Popover">
       <div className="section-header">Origin Station</div>
 
       {origin ? (
@@ -80,4 +80,4 @@ const AllFiltersModal = ({ buttonRef, onClose }) => {
   );
 };
 
-export default AllFiltersModal;
+export default AllFiltersPopover;

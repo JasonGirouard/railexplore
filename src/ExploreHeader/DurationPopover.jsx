@@ -1,18 +1,18 @@
-// DurationModal.jsx
+// DurationPopover.jsx
 import React, { useEffect, useRef, useContext } from "react";
 import { FiltersContext } from "../Context/FiltersContext";
 import { OriginContext } from "../Context/OriginContext";
 import { Slider } from "antd";
 import "./Filters.css";
 
-const DurationModal = ({ onClose }) => {
+const DurationPopover = ({ onClose }) => {
   const { duration, setDuration } = useContext(FiltersContext);
   const { origin } = useContext(OriginContext);
-  const modalRef = useRef(null);
+  const PopoverRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+      if (PopoverRef.current && !PopoverRef.current.contains(event.target)) {
         onClose();
       }
     };
@@ -31,7 +31,7 @@ const DurationModal = ({ onClose }) => {
   };
 
   return (
-    <div ref={modalRef} className="filters-modal">
+    <div ref={PopoverRef} className="filters-Popover">
       <div className="section-header origin">Duration</div>
       {origin ? (
         <>
@@ -56,4 +56,4 @@ const DurationModal = ({ onClose }) => {
   );
 };
 
-export default DurationModal;
+export default DurationPopover;

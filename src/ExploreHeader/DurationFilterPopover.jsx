@@ -4,24 +4,23 @@ import { OriginContext } from "../Context/OriginContext";
 import { Slider } from "antd";
 import "./Filters.css";
 
-const DurationFilterModal = ({ buttonRef, onClose }) => {
+const DurationFilterPopover = ({ buttonRef, onClose }) => {
   const { duration, setDuration } = useContext(FiltersContext);
   const {origin} = useContext(OriginContext);
-  const modalRef = useRef(null);
+  const PopoverRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        //check if the clicked target is outside both the modal (modalRef.current) and the button (buttonRef.current).
-        //If it is, we call the onClose function to close the modal.
-        modalRef.current &&
-        !modalRef.current.contains(event.target) &&
+        //check if the clicked target is outside both the Popover (PopoverRef.current) and the button (buttonRef.current).
+        //If it is, we call the onClose function to close the Popover.
+        PopoverRef.current &&
+        !PopoverRef.current.contains(event.target) &&
         !buttonRef.current.contains(event.target)
       ) {
         onClose();
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -37,9 +36,9 @@ const DurationFilterModal = ({ buttonRef, onClose }) => {
   };
 
   return (
-    <div ref={modalRef} className="filters-modal">
+    <div ref={PopoverRef} className="filters-Popover">
     <div className="section-header origin">Duration</div>
-  
+
     {origin ? (
       <>
         <div className="duration-text">
@@ -50,8 +49,6 @@ const DurationFilterModal = ({ buttonRef, onClose }) => {
           max={24}
           value={duration === null || duration > 24 ? 24 : duration}
           onChange={handleDurationChange}
-          // tooltipVisible={false}
-          // tooltip={{ open: true }} // Updated prop here
           step={1}
         />
       </>
@@ -64,4 +61,4 @@ const DurationFilterModal = ({ buttonRef, onClose }) => {
   );
 };
 
-export default DurationFilterModal;
+export default DurationFilterPopover;

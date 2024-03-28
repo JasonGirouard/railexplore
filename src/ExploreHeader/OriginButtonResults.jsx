@@ -10,16 +10,16 @@ const OriginButton2results = ({
   setShowResults,
 }) => {
   const { origin, setOrigin } = useContext(OriginContext);
-  const [showModal, setShowModal] = useState(false);
-  const modalRef = useRef(null);
+  const [showPopover, setShowPopover] = useState(false);
+  const PopoverRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        //check if the clicked target is outside both the modal (modalRef.current) and the button (buttonRef.current).
-        //If it is, we call the onClose function to close the modal.
-        modalRef.current &&
-        !modalRef.current.contains(event.target) &&
+        //check if the clicked target is outside both the Popover (PopoverRef.current) and the button (buttonRef.current).
+        //If it is, we call the onClose function to close the Popover.
+        PopoverRef.current &&
+        !PopoverRef.current.contains(event.target) &&
         !buttonRef.current.contains(event.target)
       ) {
         onClose();
@@ -39,11 +39,11 @@ const OriginButton2results = ({
   };
 
   const handleClick = () => {
-    setShowModal(!showModal);
+    setShowPopover(!showPopover);
   };
 
   return (
-    <div ref={modalRef} className="origin-search-modal">
+    <div ref={PopoverRef} className="origin-search-Popover">
       <div className="search-results">
         {searchResults.map((result) => (
           <div

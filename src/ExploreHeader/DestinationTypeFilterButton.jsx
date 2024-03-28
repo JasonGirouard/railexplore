@@ -1,17 +1,17 @@
 import React, { useState, useContext, useRef } from "react";
 import { FiltersContext } from "../Context/FiltersContext";
-import DestinationTypeModal from "./DestinationTypeModal";
+import DestinationTypePopover from "./DestinationTypePopover";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
 import filledDownCaretIconBlack from "../images/down-caret-filled black.svg";
 
 const DestinationTypeFilterButton = () => {
   const { destinationType } = useContext(FiltersContext);
-  const [showModal, setShowModal] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
-    setShowModal(!showModal);
+    setShowPopover(!showPopover);
   };
 
   return (
@@ -37,8 +37,8 @@ const DestinationTypeFilterButton = () => {
           </button>
         </div>
       )}
-      {showModal && (
-        <DestinationTypeModal buttonRef={buttonRef} onClose={handleClick} />
+      {showPopover && (
+        <DestinationTypePopover buttonRef={buttonRef} onClose={handleClick} />
       )}
     </div>
   );

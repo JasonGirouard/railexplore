@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { FiltersContext } from "../Context/FiltersContext";
-import DurationFilterModal from "./DurationFilterModal";
+import DurationFilterPopover from "./DurationFilterPopover";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
 import filledDownCaretIconBlack from "../images/down-caret-filled black.svg";
 
-const DurationFilterButton = ({ toggleDurationModal }) => {
+const DurationFilterButton = ({ toggleDurationPopover }) => {
   const { duration, setDuration } = useContext(FiltersContext);
-  const [showModal, setShowModal] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
   const handleClick = () => {
-    setShowModal(!showModal);
+    setShowPopover(!showPopover);
   };
 
   return (
@@ -38,8 +38,8 @@ const DurationFilterButton = ({ toggleDurationModal }) => {
           <img src={filledDownCaretIcon} alt="Down Caret Icon" />
         </button>
       )}
-      {showModal && (
-        <DurationFilterModal buttonRef={buttonRef} onClose={handleClick} />
+      {showPopover && (
+        <DurationFilterPopover buttonRef={buttonRef} onClose={handleClick} />
       )}
     </div>
 
@@ -47,13 +47,13 @@ const DurationFilterButton = ({ toggleDurationModal }) => {
 //  <div>
 // {duration === null || duration >= 24 ? (
 //   <div>
-//     <button className="filter-button" onClick={toggleDurationModal}>
+//     <button className="filter-button" onClick={toggleDurationPopover}>
 //       <div>Duration</div>
 //       <img src={filledDownCaretIconBlack} alt="Down Caret Icon" />
 //     </button>
 //   </div>
 // ) : (
-//   <button className="filter-button set" onClick={toggleDurationModal}>
+//   <button className="filter-button set" onClick={toggleDurationPopover}>
 //     <div className="from">Under&nbsp;</div>
 //     <div>{duration}</div>
 //     <div className="from">&nbsp;hrs</div>

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import LogisticsHeader from "./LogisticsHeader";
 import FiltersHeader from "./FiltersHeader";
-import DurationModal from "./DurationModal";
+import DurationPopover from "./DurationPopover";
 import "./AppHeader.css"; // Ensure your CSS styles are defined here
 
 const AppHeader = () => {
-  const [showDurationModal, setShowDurationModal] = useState(false);
+  const [showDurationPopover, setShowDurationPopover] = useState(false);
 
-  const toggleDurationModal = () => {
-    setShowDurationModal(!showDurationModal);
+  const toggleDurationPopover = () => {
+    setShowDurationPopover(!showDurationPopover);
   };
 
      return (
@@ -17,8 +17,8 @@ const AppHeader = () => {
                <LogisticsHeader/>
            </div>
            <div className = "app-header-bottom">
-           <FiltersHeader toggleDurationModal={toggleDurationModal} />
-              {showDurationModal && <DurationModal onClose={toggleDurationModal} />}
+           <FiltersHeader toggleDurationPopover={toggleDurationPopover} />
+              {showDurationPopover && <DurationPopover onClose={toggleDurationPopover} />}
            </div>
        </div>
      );

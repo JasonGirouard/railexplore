@@ -1,16 +1,16 @@
 import React, { useState, useRef } from "react";
-import AllFiltersModal from "./AllFiltersModal";
+import AllFiltersPopover from "./AllFiltersPopover";
 import "./Filters.css";
 import filterSettingsIcon from '../images/filter-settings.svg';
 
 
 const AllFiltersButton = () => {
  
-  const [showModal, setShowModal] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
-    setShowModal(!showModal);
+    setShowPopover(!showPopover);
   };
 
   return (
@@ -25,8 +25,8 @@ const AllFiltersButton = () => {
        <img src={filterSettingsIcon} alt="Filter Settings Icon" />
         All Filters
       </button>
-      {showModal && (
-        <AllFiltersModal buttonRef={buttonRef} onClose={handleClick} />
+      {showPopover && (
+        <AllFiltersPopover buttonRef={buttonRef} onClose={handleClick} />
       )}
     </div>
   );

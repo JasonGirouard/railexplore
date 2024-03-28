@@ -108,7 +108,7 @@
   }
 
   
-  .filters-modal {
+  .filters-Popover {
     position: absolute;
     z-index: 3;
     background-color: white;
@@ -122,7 +122,7 @@
   /* mobile */
 @media (max-width: 770px) {
 
-    .filters-modal {
+    .filters-Popover {
      left: 0px;
      width: calc(100% - 40px)
      
@@ -130,7 +130,7 @@
    
   }
 
-  .origin-search-modal{
+  .origin-search-Popover{
     position: absolute;
     z-index: 3;
     background-color: white;

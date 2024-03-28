@@ -3,10 +3,10 @@ import { FiltersContext } from "../Context/FiltersContext";
 import { OriginContext } from "../Context/OriginContext";
 import "./Filters.css";
 
-const DestinationTypeModal = ({ buttonRef, onClose }) => {
+const DestinationTypePopover = ({ buttonRef, onClose }) => {
   const {  destinationType, setDestinationType } = useContext(FiltersContext);
   const { origin } = useContext(OriginContext);
-  const modalRef = useRef(null);
+  const PopoverRef = useRef(null);
 
   const handleDestinationTypeChange = (selectedType) => {
       console.log('setting destination type to:', selectedType)
@@ -16,10 +16,10 @@ const DestinationTypeModal = ({ buttonRef, onClose }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        //check if the clicked target is outside both the modal (modalRef.current) and the button (buttonRef.current).
-        //If it is, we call the onClose function to close the modal.
-        modalRef.current &&
-        !modalRef.current.contains(event.target) &&
+        //check if the clicked target is outside both the Popover (PopoverRef.current) and the button (buttonRef.current).
+        //If it is, we call the onClose function to close the Popover.
+        PopoverRef.current &&
+        !PopoverRef.current.contains(event.target) &&
         !buttonRef.current.contains(event.target)
       ) {
         onClose();
@@ -34,7 +34,7 @@ const DestinationTypeModal = ({ buttonRef, onClose }) => {
 
 
   return (
-    <div ref={modalRef} className="filters-modal">
+    <div ref={PopoverRef} className="filters-Popover">
     <div className="section-header origin">Destination Type</div>
   
     {origin ? (
@@ -71,4 +71,4 @@ const DestinationTypeModal = ({ buttonRef, onClose }) => {
   );
 };
 
-export default DestinationTypeModal;
+export default DestinationTypePopover;
