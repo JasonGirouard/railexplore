@@ -76,7 +76,9 @@ const StationCircleComponent = ({ station, radius }) => {
 
   const handleMarkerClick = (station, event) => {
     setActiveStation(station);
-    setIsPanelOpen(true);
+    setTimeout(() => {
+      setIsPanelOpen(true);
+    }, 10); // Adjust the delay (in milliseconds) as needed
   };
 
   // Utility function to interpolate between two colors

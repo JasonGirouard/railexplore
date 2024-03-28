@@ -5,13 +5,13 @@ import DurationFilterButton from "./DurationFilterButton.jsx";
 import DestinationTypeFilterButton from "./DestinationTypeFilterButton.jsx";
 import "./FiltersHeader.css"; // Ensure your CSS styles are defined here
 
-const FiltersHeader = () => {
+const FiltersHeader = ({ toggleDurationModal }) => {
    
      return (
        <div className="filters-container">
            <AllFiltersButton/>
            <StationsFilterButton/>
-           <DurationFilterButton/>
+           <DurationFilterButton toggleDurationModal={toggleDurationModal} />
            <DestinationTypeFilterButton/>
        </div>
      );

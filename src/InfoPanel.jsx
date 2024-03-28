@@ -13,20 +13,17 @@ import "./InfoPanel.css";
 import TrainPathFinder from "./TrainPathFinder";
 import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
 
-
 const InfoPanel = () => {
-  console.log('📚 in info panel')
-  const { activeStation, isPanelOpen, setIsPanelOpen } = useContext(StationContext);
-  const { originStation, selectedStationDestinations } = useContext(OriginStationContext);
-
-
+  console.log("📚 in info panel");
+  const { activeStation, isPanelOpen, setIsPanelOpen } =
+    useContext(StationContext);
+  const { originStation, selectedStationDestinations } =
+    useContext(OriginStationContext);
 
   const handleInfoPanel = () => {
     console.log("setting if panel is open");
     setIsPanelOpen(!isPanelOpen); // Close the panel
   };
-
-
 
   // Define CSS classes based on state
   let panelClass = "info-panel";
@@ -47,7 +44,8 @@ const InfoPanel = () => {
   const goToPreviousImage = () => {
     setCurrentImageIndex(
       (prevIndex) =>
-        (prevIndex - 1 + activeStation.image_urls.length) % activeStation.image_urls.length
+        (prevIndex - 1 + activeStation.image_urls.length) %
+        activeStation.image_urls.length
     );
   };
   // Function to navigate to the next image
@@ -118,8 +116,6 @@ const InfoPanel = () => {
     }
   };
 
- 
-
   // Function to handle image load error
   const handleImageError = (e) => {
     e.target.src = placeholderImage; // Replace with placeholder image
@@ -149,7 +145,9 @@ const InfoPanel = () => {
                 alt={activeStation.station_type}
                 className="station-icon"
               />
-              <span className="tooltiptext-header">{activeStation.station_type}</span>
+              <span className="tooltiptext-header">
+                {activeStation.station_type}
+              </span>
             </div>
             <div className="tooltip-header">
               <img
@@ -167,7 +165,9 @@ const InfoPanel = () => {
                 alt={activeStation.mode}
                 className="station-icon"
               />
-              <span className="tooltiptext-header">{activeStation.mode === 'TRAIN' ? 'Train' : 'Bus'}</span>
+              <span className="tooltiptext-header">
+                {activeStation.mode === "TRAIN" ? "Train" : "Bus"}
+              </span>
             </div>
           </div>
         </div>
@@ -203,7 +203,21 @@ const InfoPanel = () => {
           Book on Amtrak
         </a>
       </div>
-      <div className="station-description">{activeStation.description}</div>
+      <div className="station-description">
+      
+          <h3>Things to Do in {activeStation.name}</h3>
+          {activeStation.things_to_do &&
+            activeStation.things_to_do.map((thing, index) => (
+              <div key={index} className="thing-to-do">
+                <p className="activity">
+                  <span className="activity-number">{index + 1}.</span>{" "}
+                  <strong>{thing.activity}</strong>
+                </p>
+                <p className="description">{thing.description}</p>
+              </div>
+            ))}
+ 
+      </div>
 
       <div>
         <TrainPathFinder
@@ -219,11 +233,6 @@ const InfoPanel = () => {
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>&nbsp;</div>
-      
-      
-     
-     
-    
     </div>
   );
 };

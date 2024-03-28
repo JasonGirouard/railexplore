@@ -214,3 +214,24 @@
 .tooltip-header:hover .tooltiptext-header {
   visibility: visible;
 }
+
+
+
+.description {
+  padding: 0px;
+  margin: 5px 0px;
+}
+
+.activity {
+margin: 0px;
+}
+
+.activity-number {
+  font-weight: bold;
+}
+
+h3 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
