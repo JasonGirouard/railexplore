@@ -1,3 +1,5 @@
+/* filtersheader css */
+
 .filters-container{
     position: relative;
     display: flex;
@@ -17,7 +19,7 @@
  }
  
  .filters-container {
-  /* overflow-x: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
-  z-index: 1000000; */
+  
  }
