@@ -7,6 +7,7 @@ import Explore from "./Explore";
 import Navigation from "./Navigation";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import GoogleAnalytics from './GoogleAnalytics';
 
 function App() {
   console.log("1️⃣ in app ");
@@ -54,6 +55,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <GoogleAnalytics />
         <SpeedInsights/>
         <Analytics />
       </div>

@@ -5,7 +5,6 @@ import { FiltersContext } from "./Context/FiltersContext";
 import { CircleMarker, Popup, Tooltip, useMap,useMapEvents } from "react-leaflet";
 import StationTooltip from "./StationToolTip";
 import { StarFilled } from "@ant-design/icons";
-import * as fathom from 'fathom-client';
 
 import stationSummary from "./data/all_stations_paths.json";
 import "./StationCircleComponent.css";
@@ -78,10 +77,6 @@ const StationCircleComponent = ({ station, radius }) => {
   const handleMarkerClick = (station, event) => {
     setActiveStation(station);
     setIsPanelOpen(true);
-
-    fathom.trackEvent('Marker Select',{
-      _value: station.name,
-    });
 
   };
 
