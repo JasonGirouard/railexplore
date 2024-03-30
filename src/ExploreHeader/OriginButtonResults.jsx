@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { OriginContext } from "../Context/OriginContext";
 import "./Filters.css";
+import * as fathom from 'fathom-client';
 
 const OriginButton2results = ({
   buttonRef,
@@ -36,6 +37,12 @@ const OriginButton2results = ({
     setOrigin(result);
     setSearchTerm(result.place_name);
     setShowResults(false);
+
+
+     fathom.trackEvent('Origin Button Select',{
+       _value: result.place_name
+     });
+
   };
 
   const handleClick = () => {
