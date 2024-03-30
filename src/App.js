@@ -6,6 +6,7 @@ import Donate from "./Donate";
 import Explore from "./Explore";
 import Navigation from "./Navigation";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   console.log("1️⃣ in app ");
@@ -53,6 +54,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <SpeedInsights/>
         <Analytics />
       </div>
     </Router>
