@@ -4,19 +4,21 @@ import "./Filters.css";
 import filterSettingsIcon from '../images/filter-settings.svg';
 
 
-const AllFiltersButton = () => {
+const AllFiltersButton = ({isMobile, showFiltersPortal, setShowFiltersPortal}) => {
  
   const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
-    setShowPopover(!showPopover);
+    if (isMobile && isMobile.isMobile) {
+      setShowFiltersPortal(!showFiltersPortal);
+    } else {
+      setShowPopover(!showPopover);
+    }
   };
 
   return (
     <div>
-
-
       <button
         ref={buttonRef}
         className="all-filters-button"
@@ -25,6 +27,7 @@ const AllFiltersButton = () => {
        <img src={filterSettingsIcon} alt="Filter Settings Icon" />
         All Filters
       </button>
+
       {showPopover && (
         <AllFiltersPopover buttonRef={buttonRef} onClose={handleClick} />
       )}

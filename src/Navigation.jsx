@@ -9,23 +9,11 @@ import {
 import "./Navigation.css";
 import logo from "./images/Trainy2.png";
 
-const Navigation = ({ activePage, setActivePage }) => {
+const Navigation = ({ activePage, setActivePage, isMobile }) => {
   const [collapsedTop, setCollapsedTop] = useState(true);
   const [collapsedLeft, setCollapsedLeft] = useState(true);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
+
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 770);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const handleCollapseClickTop = () => {
     setCollapsedTop(!collapsedTop);

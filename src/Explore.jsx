@@ -5,12 +5,12 @@ import InfoPanel from "./InfoPanel";
 import AppHeader from "./ExploreHeader/AppHeader";
 import TopNav from "./TopNav";
 
-const Explore = ({ setActivePage }) => {
+const Explore = ({ setActivePage, isMobile }) => {
  console.log('2️⃣ in explore');
   return (
     <div className="main-content-explore">
       <TopNav  setActivePage={setActivePage}/>
-      <AppHeader/>
+      <AppHeader isMobile={isMobile} />
       
       <div className="map-container-explore">
         <InfoPanel/>

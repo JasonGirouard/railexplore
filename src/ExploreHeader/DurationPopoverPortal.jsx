@@ -5,6 +5,7 @@ import { FiltersContext } from "../Context/FiltersContext";
 import { OriginContext } from "../Context/OriginContext";
 import { Slider } from "antd";
 import "./Filters.css";
+import DurationFilterPopoverContent from './DurationFilterPopoverContent';
 
 const DurationPopoverPortal = ({ onClose, buttonRect }) => {
   const { duration, setDuration } = useContext(FiltersContext);
@@ -56,26 +57,7 @@ const DurationPopoverPortal = ({ onClose, buttonRect }) => {
       }}
       className="filters-Popover"
     >
-      <div className="section-header origin">Duration</div>
-      {origin ? (
-        <>
-          <div className="duration-text">
-            Travel duration:{" "}
-            {duration === null || duration >= 24 ? "Any" : `Under ${duration} hrs`}
-          </div>
-          <Slider
-            min={0}
-            max={24}
-            value={duration === null || duration > 24 ? 24 : duration}
-            onChange={handleDurationChange}
-            step={1}
-          />
-        </>
-      ) : (
-        <div className="placename">
-          Please set an origin before choosing your duration
-        </div>
-      )}
+      <DurationFilterPopoverContent/>
     </div>,
     document.body
   );

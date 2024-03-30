@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext , useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import About from "./About"; //
@@ -9,12 +9,25 @@ import Navigation from "./Navigation";
 function App() {
   console.log("1️⃣ in app ");
   const [activePage, setActivePage] = useState("Explore"); // Default active page
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 770);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Router>
       <div className="App">
         <div className="flex-container">
-          <Navigation activePage={activePage} setActivePage={setActivePage} />
+          <Navigation activePage={activePage} setActivePage={setActivePage} isMobile={isMobile}/>
           <div className="content">
             <Routes>
               <Route
@@ -22,6 +35,7 @@ function App() {
                 element={
                   <Explore
                    setActivePage={setActivePage}
+                   isMobile={isMobile}
                   />
                 }
               />

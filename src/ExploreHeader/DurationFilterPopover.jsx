@@ -1,64 +1,35 @@
-// import React, { useEffect, useRef, useState, useContext } from "react";
-// import { FiltersContext } from "../Context/FiltersContext";
-// import { OriginContext } from "../Context/OriginContext";
-// import { Slider } from "antd";
-// import "./Filters.css";
+import React, { useEffect, useRef  } from "react";
+import DurationFilterPopoverContent from "./DurationFilterPopoverContent";
+import "./Filters.css";
 
-// const DurationFilterPopover = ({ buttonRef, onClose }) => {
-//   const { duration, setDuration } = useContext(FiltersContext);
-//   const {origin} = useContext(OriginContext);
-//   const PopoverRef = useRef(null);
+const DurationFilterPopover = ({ buttonRef, onClose }) => {
+  const PopoverRef = useRef(null);
 
-//   useEffect(() => {
-//     const handleClickOutside = (event) => {
-//       if (
-//         //check if the clicked target is outside both the Popover (PopoverRef.current) and the button (buttonRef.current).
-//         //If it is, we call the onClose function to close the Popover.
-//         PopoverRef.current &&
-//         !PopoverRef.current.contains(event.target) &&
-//         !buttonRef.current.contains(event.target)
-//       ) {
-//         onClose();
-//       }
-//     };
-//     document.addEventListener("mousedown", handleClickOutside);
-//     return () => {
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, [buttonRef, onClose]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        //check if the clicked target is outside both the Popover (PopoverRef.current) and the button (buttonRef.current).
+        //If it is, we call the onClose function to close the Popover.
+        PopoverRef.current &&
+        !PopoverRef.current.contains(event.target) &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        onClose();
+      }
+    };
 
-//   const handleDurationChange = (value) => {
-//     if (value >= 24) {
-//       setDuration(1000);
-//     } else {
-//       setDuration(value);
-//     }
-//   };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [buttonRef, onClose]);
 
-//   return (
-//     <div ref={PopoverRef} className="filters-Popover">
-//     <div className="section-header origin">Duration</div>
 
-//     {origin ? (
-//       <>
-//         <div className="duration-text">
-//           Travel duration: {duration === null || duration >= 24 ? "Any" : `Under ${duration} hrs`}
-//         </div>
-//         <Slider
-//           min={0}
-//           max={24}
-//           value={duration === null || duration > 24 ? 24 : duration}
-//           onChange={handleDurationChange}
-//           step={1}
-//         />
-//       </>
-//     ) : (
-//       <div className="placename">
-//         Please set an origin before choosing your duration
-//       </div>
-//     )}
-//   </div>
-//   );
-// };
+  return (
+    <div ref={PopoverRef} className="filters-Popover">
+   <DurationFilterPopoverContent/>
+  </div>
+  );
+};
 
-// export default DurationFilterPopover;
+export default DurationFilterPopover;

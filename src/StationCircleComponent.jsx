@@ -192,8 +192,8 @@ const getOutlineWeight = (stationCode) => {
     return null;
   }
 
-  if (duration && destination && destination.min_time / 3600 > duration) {
-    return null;
+  if ( (duration && destination && destination.min_time / 3600 > duration) || (duration && duration<1000 && !destination)) { 
+    return null; 
   }
 
   if (
@@ -204,8 +204,6 @@ const getOutlineWeight = (stationCode) => {
     return null;
   }
   const isSelected = activeStation && activeStation.code === station.code;
-
- 
 
   return (
     <>

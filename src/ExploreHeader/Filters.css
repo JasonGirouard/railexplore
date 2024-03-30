@@ -1,246 +1,285 @@
 /* filters.css */
 
 .all-filters-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* top&bottom right&left */
-    padding: 8px 16px;
-    margin: 0px 5px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #2479E9;
-    font-weight: bold;
-    background-color: white;
-    border: 1px solid #ddd;
-  }
-
-  .all-filters-button:hover {
-    background-color: #F7F8F8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* top&bottom right&left */
+  padding: 8px 16px;
+  margin: 0px 5px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #2479e9;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #ddd;
 }
 
+.all-filters-button:hover {
+  background-color: #f7f8f8;
+}
 
-  .all-filters-button img {
-    margin-right: 5px;
-    height: 18px;
-    width: 18px;
-  }
-  
-  .stations-filter-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-    margin: 0px 5px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: white;
-    border: 1px solid #ddd;
-  }
+.all-filters-button img {
+  margin-right: 5px;
+  height: 18px;
+  width: 18px;
+}
 
-  .stations-filter-button.set{
-    color: #2479E9;
-    background-color: #E8F0FE;
-    border: 1px solid #E8F0FE;
-  }
+.stations-filter-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 0px 5px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #ddd;
+}
 
-  .stations-filter-button img {
-    height: 18px;
-    width: 18px;
-  }
-  .stations-filter-button:hover{
-      /* horizontal offset, then vertical offset, then blur radius, then color in this case black, followed by opacity */
-    box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4); /* Adjust values as needed */
-  }
+.stations-filter-button.set {
+  color: #2479e9;
+  background-color: #e8f0fe;
+  border: 1px solid #e8f0fe;
+}
 
-  .stations-filter-button .from {
-      font-weight: normal;
-  }
-  
+.stations-filter-button img {
+  height: 18px;
+  width: 18px;
+}
+.stations-filter-button:hover {
+  /* horizontal offset, then vertical offset, then blur radius, then color in this case black, followed by opacity */
+  box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4); /* Adjust values as needed */
+}
 
-  .filter-button {
-    display: flex;
-    justify-content: center;
-    overflow-x: visible;
-    align-items: center;
-    padding: 8px 16px;
-    margin: 0px 5px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    background-color: white;
-    border: 1px solid #ddd;
-  }
+.stations-filter-button .from {
+  font-weight: normal;
+}
 
-  .filter-button.set{
-    color: #2479E9;
-    background-color: #E8F0FE;
-    border: 1px solid #E8F0FE;
-  }
+.filter-button {
+  display: flex;
+  justify-content: center;
+  overflow-x: visible;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 0px 5px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #ddd;
+}
 
-  .filter-button img {
-    height: 18px;
-    width: 18px;
-  }
-  .filter-button:hover{
-      /* horizontal offset, then vertical offset, then blur radius, then color in this case black, followed by opacity */
-    box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4); /* Adjust values as needed */
-  }
-  
-  .filters-container {
-    display: flex;
-    padding-top: 5px;
-    /* overflow-x: scroll; */
-    /* overflow-y: scroll; */
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
-  }
-  
-  .filters-container::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-  }
+.filter-button.set {
+  color: #2479e9;
+  background-color: #e8f0fe;
+  border: 1px solid #e8f0fe;
+}
 
-  
-  .filters-Popover {
-    position: absolute;
-    z-index: 3;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    width: 360px;
+.filter-button img {
+  height: 18px;
+  width: 18px;
+}
+.filter-button:hover {
+  /* horizontal offset, then vertical offset, then blur radius, then color in this case black, followed by opacity */
+  box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4); /* Adjust values as needed */
+}
 
-  } 
+.filters-container {
+  display: flex;
+  padding-top: 5px;
+  /* overflow-x: scroll; */
+  /* overflow-y: scroll; */
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
 
-  /* mobile */
+.filters-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.filters-Popover {
+  position: absolute;
+  z-index: 3;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 360px;
+}
+
+.filters-Popover-Portal {
+  position: absolute;
+  /* width: calc(100% - 90px); */
+    height: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* mobile */
 @media (max-width: 770px) {
-
-    .filters-Popover {
-     left: 0px;
-     width: calc(100% - 40px)
-     
-    }
+  .filters-Popover {
+    left: 0px;
    
   }
-
-  .origin-search-Popover{
-    position: absolute;
-    z-index: 3;
-    background-color: white;
-    /* border: 1px solid #ccc; */
-    border-radius: 4px;
-    padding: 0px;
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
-    width: 360px;
-  }
-
-  .section-header {
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px;
-  }
-  .section-header.origin {
-    font-weight: bold;
-    font-size: 18px;
-    padding-bottom: 0px;
 }
 
-  .placename {
-      font-size: 14px;
-      padding: 10px;
-      color: gray;
-  }
+.origin-search-Popover {
+  position: absolute;
+  z-index: 3;
+  background-color: white;
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  padding: 0px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
+  width: 360px;
+}
 
-  .origin-destination {
-      display: flex;
-      justify-content: space-between;
-      font-size: 16px;
-      padding-left: 20px;
-      padding-right: 20px;
-    border-bottom: 1px solid gray;
-  }
+.section-header {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+}
+.section-header.origin {
+  font-weight: bold;
+  font-size: 18px;
+  padding-bottom: 0px;
+}
 
-  .origin-destination .selected {
-    font-weight: bold;
-    border-bottom: 2px solid black;
-  }
+.placename {
+  font-size: 14px;
+  padding: 10px;
+  color: gray;
+}
 
+.origin-destination {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-bottom: 1px solid gray;
+}
 
-/* stations card here */ 
+.origin-destination .selected {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
 
-.station-item{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-   padding: 5px;
-   border-radius: 8px;
-   border: 1px solid #dddd;
-   margin: 5px;
+/* stations card here */
+
+.station-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid #dddd;
+  margin: 5px;
 }
 
 .left-two-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+}
 
+.radio-group {
+  padding: 10px;
 }
 
 .radio-button-class {
-    width: 18px;
-    margin-right: 10px;
+  width: 18px;
+  margin-right: 10px;
 }
 
 .station-name-body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .station-name-top {
-    font-size: 14px;
-    font-weight: bold;
-    display: flex;
-    display: row;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  display: row;
 }
 .station-name-top-code {
-    
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .station-address {
-    font-size: 10px;
-    color: gray;
+  font-size: 10px;
+  color: gray;
 }
-
 
 .station-distance {
-    display: flex;
-    flex-direction: column;
-    width: 65px;
+  display: flex;
+  flex-direction: column;
+  width: 65px;
 }
 .station-distance-top {
-    font-size: 14px;
-    font-weight: bold;
+  font-size: 14px;
+  font-weight: bold;
 }
 .station-distance-bottom {
-    font-size: 12px;
-    color: gray;
+  font-size: 12px;
+  color: gray;
 }
 
+.show-more {
+  padding: 5px;
+  color: #2479e9;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+}
 
-  .show-more {
-      padding: 5px;
-      color: #2479E9;
-      font-size: 14px;
-      font-weight: bold;
-      padding-left: 10px;
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.duration-text {
+  padding: 10px;
+}
+
+.filters-portal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font-weight: bold;
+  font-size: 18px;
+  }
+  
+  .filters-portal-header .filters-label {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+  font-size: 18px;
+  }
+
+  .filters-portal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 10px;
+    font-weight: bold;
+  font-size: 18px;
   }

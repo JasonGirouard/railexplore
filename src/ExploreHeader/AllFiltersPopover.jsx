@@ -1,18 +1,9 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
-import { OriginStationContext } from "../Context/OriginStationContext";
-import { OriginContext } from "../Context/OriginContext";
+import React, { useEffect, useRef } from "react";
 import "./Filters.css";
+import AllFiltersPopoverContent from "./AllFiltersPopoverContent";
 
 const AllFiltersPopover = ({ buttonRef, onClose }) => {
-  const { nearestStations, originStation, setOriginStation } = useContext(OriginStationContext);
-  const { origin } = useContext(OriginContext);
-  const [showAllStations, setShowAllStations] = useState(false); // acts when you click 'Show next 5 closest stations'
-  const PopoverRef = useRef(null);
-
-  const handleStationChange = (station) => {
-    setOriginStation(station);
-  };
-
+   const PopoverRef = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -34,48 +25,7 @@ const AllFiltersPopover = ({ buttonRef, onClose }) => {
 
   return (
     <div ref={PopoverRef} className="filters-Popover">
-      <div className="section-header">Origin Station</div>
-
-      {origin ? (
-      <>
-          <div className="placename">{origin.place_name}</div>
-          <div className="station-list">
-            {nearestStations
-              .slice(0, showAllStations ? nearestStations.length : 5)
-              .map((station) => (
-                <div key={station.code} className="station-item">
-                    <div className="left-two-container">
-                  <input
-                    type="radio"
-                    checked={originStation.code === station.code}
-                    onChange={() => handleStationChange(station)}
-                    className="radio-button-class"
-                  />
-                  <div className="station-name-body">
-                    <div className="station-name-top">{station.name}</div>
-                    <div className="station-address">{station.address1}</div>
-                  </div>
-                  </div>
-
-                  <div className="station-distance">
-                    <div className="station-distance-top">
-                      {Math.floor(station.distance_from_origin)}{' miles'}
-                    </div>
-                    <div className="station-distance-bottom">from origin</div>
-                  </div>
-                </div>
-              ))}
-          </div>
-          {!showAllStations && nearestStations.length > 5 && (
-            <div className="show-more" onClick={() => setShowAllStations(true)}>
-              + Show next {nearestStations.length - 5} closest stations...
-            </div>
-          )}
-</>
-    ) : (
-      <div className = "placename"> Please set an origin before choosing your stations</div>
-    )}
-
+      <AllFiltersPopoverContent/>
     </div>
   );
 };

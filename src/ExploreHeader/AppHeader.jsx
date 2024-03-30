@@ -1,36 +1,54 @@
 // AppHeader.jsx
-import React, { useState, useRef } from "react";
-import LogisticsHeader from "./LogisticsHeader";
-import FiltersHeader from "./FiltersHeader";
-import DurationPopoverPortal from "./DurationPopoverPortal";
+import React, { useState, useRef, useEffect } from "react";
+import AllFiltersPopoverPortal from "./AllFiltersPopoverPortal";
 import "./AppHeader.css";
 
-const AppHeader = () => {
-  const [showDurationPopover, setShowDurationPopover] = useState(false);
-  const [durationButtonRect, setDurationButtonRect] = useState(null);
-  const durationButtonRef = useRef(null);
+import OriginButton from "./OriginButton";
+import DestinationButton from "./DestinationButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-  const toggleDurationPopover = (buttonRect) => {
-    setShowDurationPopover((prevState) => !prevState);
-    setDurationButtonRect(buttonRect);
+
+import AllFiltersButton from "./AllFiltersButton.jsx";
+import StationsFilterButton from "./StationsFilterButton.jsx";
+import DurationFilterButton from "./DurationFilterButton.jsx";
+import DestinationTypeFilterButton from "./DestinationTypeFilterButton.jsx";
+
+const AppHeader = (isMobile) => {
+  const [showFiltersPortal, setShowFiltersPortal] = useState(false);
+  const appHeaderRef = useRef(null);
+
+  // const filterButtonRef = useRef(null);
+
+  //const durationButtonRef = useRef(null);
+  const toggleFiltersPortal = () => {
+    // on the click, display it, and let it know where to render it
+    setShowFiltersPortal(!showFiltersPortal);
   };
 
   return (
-    <div className="app-header-container">
+    <div ref={appHeaderRef} className="app-header-container">
       <div className="app-header-top">
-        <LogisticsHeader />
+
+      <div className="logistics-container">
+           <OriginButton/>
+           <FontAwesomeIcon icon={faArrowRight} />
+           <DestinationButton/>
+       </div>
+
       </div>
       <div className="app-header-bottom">
-        <FiltersHeader
-          toggleDurationPopover={toggleDurationPopover}
-          durationButtonRef={durationButtonRef}
-        />
+        <div className="filters-container">
+          <AllFiltersButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal}/>
+          <StationsFilterButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal}/>
+          <DurationFilterButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal}/>
+          <DestinationTypeFilterButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal} />
+        </div>
       </div>
-      {showDurationPopover && (
-        <DurationPopoverPortal
-          onClose={toggleDurationPopover}
-          buttonRect={durationButtonRect}
-          showDurationPopover={showDurationPopover}
+
+      {showFiltersPortal && (
+        <AllFiltersPopoverPortal
+          setShowFiltersPortal={setShowFiltersPortal}
         />
       )}
     </div>

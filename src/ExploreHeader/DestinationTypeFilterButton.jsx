@@ -5,15 +5,18 @@ import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
 import filledDownCaretIconBlack from "../images/down-caret-filled black.svg";
 
-const DestinationTypeFilterButton = () => {
+const DestinationTypeFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal}) => {
   const { destinationType } = useContext(FiltersContext);
   const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
 
   const handleClick = () => {
-    setShowPopover(!showPopover);
+    if (isMobile && isMobile.isMobile) {
+      setShowFiltersPortal(!showFiltersPortal);
+    } else {
+      setShowPopover(!showPopover);
+    }
   };
-
   return (
     <div>
       {destinationType==="Popular" ? (
