@@ -5,7 +5,6 @@ import { FiltersContext } from "./Context/FiltersContext";
 import { CircleMarker, Popup, Tooltip, useMap,useMapEvents } from "react-leaflet";
 import StationTooltip from "./StationToolTip";
 import { StarFilled } from "@ant-design/icons";
-import ReactGA from 'react-ga4';
 
 import stationSummary from "./data/all_stations_paths.json";
 import "./StationCircleComponent.css";
@@ -78,12 +77,6 @@ const StationCircleComponent = ({ station, radius }) => {
   const handleMarkerClick = (station, event) => {
     setActiveStation(station);
     setIsPanelOpen(true);
-
-    ReactGA.event({
-      category: 'Marker',
-      action: 'Click',
-      label: station.name, // Replace with the actual marker name or identifier
-    });
 
   };
 
