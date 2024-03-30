@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import gtag from 'gatsby-plugin-gtag';
+import ReactGA from 'react-ga4';
 
 const GoogleAnalytics = () => {
-  const location = useLocation();
-
   useEffect(() => {
-    gtag('config', 'G-K8KTLE1LDF', {
-      page_path: location.pathname,
-    });
-  }, [location]);
+    ReactGA.initialize('G-K8KTLE1LDF');
+    ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
+  }, []);
 
   return null;
 };
