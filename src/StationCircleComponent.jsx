@@ -80,7 +80,7 @@ const StationCircleComponent = ({ station, radius }) => {
     setIsPanelOpen(true);
 
     fathom.trackEvent('Marker Select',{
-      _value: station.name
+      _value: station.name,
     });
 
   };

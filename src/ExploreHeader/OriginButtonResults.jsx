@@ -40,7 +40,7 @@ const OriginButton2results = ({
 
 
      fathom.trackEvent('Origin Button Select',{
-       _value: result.place_name
+       _value: result.place_name,
      });
 
   };
