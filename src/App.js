@@ -5,6 +5,7 @@ import About from "./About"; //
 import Donate from "./Donate";
 import Explore from "./Explore";
 import Navigation from "./Navigation";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   console.log("1️⃣ in app ");
@@ -52,6 +53,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <Analytics />
       </div>
     </Router>
   );
