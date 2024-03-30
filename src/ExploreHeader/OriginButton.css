@@ -28,6 +28,7 @@
 
   .search-container.destination{
     overflow-x: hidden; /* the destination button overhangs a small tad, like 2px, this is tech debt */ 
+    overflow-y: hidden;
   }
    /* mobile */
   @media (max-width: 770px) {

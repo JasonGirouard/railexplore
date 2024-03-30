@@ -121,15 +121,18 @@
 .filters-Popover-Portal {
   position: absolute;
   /* width: calc(100% - 90px); */
-    height: 100%;
-  left: 0;
+ /* height: 100vh;  */
+ height: calc(100% - 18px);
+  top: 0;
+ left: 0;
   right: 0;
   z-index: 1000;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 0px;
+  padding-top: 16px;
+  padding-right: 16px;
+  padding-left: 16px;
 }
 
 /* mobile */
@@ -282,4 +285,8 @@
     padding: 10px;
     font-weight: bold;
   font-size: 18px;
+  }
+
+  .divider {
+    border-top: 1px solid #e0e0e0
   }

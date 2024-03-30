@@ -17,13 +17,7 @@ const AllFiltersPopoverPortal = ({ setShowFiltersPortal }) => {
   return ReactDOM.createPortal(
     <div
       ref={PopoverRef}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-      }}
+      
       className="filters-Popover-Portal"
     >
       <div className="filters-portal-header">
