@@ -76,9 +76,7 @@ const StationCircleComponent = ({ station, radius }) => {
 
   const handleMarkerClick = (station, event) => {
     setActiveStation(station);
-    setTimeout(() => {
-      setIsPanelOpen(true);
-    }, 10); // Adjust the delay (in milliseconds) as needed
+    setIsPanelOpen(true)
   };
 
   // Utility function to interpolate between two colors
@@ -237,7 +235,7 @@ const getOutlineWeight = (stationCode) => {
               </div>
             </Tooltip>
           ) : (
-            (shouldOpenPopup(station.tourism_tier, mapZoom) || (showTooltip && !isMobile) || isSelected) && (
+            (shouldOpenPopup(station.tourism_tier, mapZoom) || (showTooltip ) || isSelected) && (
               <Tooltip
                 permanent
                 direction="top"
