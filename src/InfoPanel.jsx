@@ -269,25 +269,6 @@ const InfoPanel = () => {
           ))}
       </div>
 
-      <div className="amtrak-iframe-container">
-    <iframe
-      src={`https://www.amtrak.com/services/journeysearch?wdf_origin=${originStation.code}&wdf_destination=${activeStation.code}&wdf_TripType=Return&/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date=${getDepartureDate().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })}&/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date=${getReturnDate().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })}&wdf_person_type1=Adult`}
-      title="Amtrak Journey Search"
-      width="100%"
-      height="600px"
-      frameBorder="0"
-      allowFullScreen
-    ></iframe>
-  </div>
-
       <div>
         <TrainPathFinder
           originStation={originStation.code}
