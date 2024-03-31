@@ -11,9 +11,12 @@ import trainImage from "./images/train.png"; // Adjust the path as needed
 import busImage from "./images/bus.png"; // Adjust the path as needed
 import "./InfoPanel.css";
 import TrainPathFinder from "./TrainPathFinder";
-import placeholderImage from "./images/placeholder.png"; // Adjust the path as needed
+import placeholderImage from "./images/placeholder.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-const InfoPanel = () => {
+const InfoPanel = ({ isMobile }) => {
   console.log("📚 in info panel");
   const { activeStation, isPanelOpen, setIsPanelOpen } =
     useContext(StationContext);
@@ -158,7 +161,11 @@ const InfoPanel = () => {
     <div className={panelClass}>
       <div className="info-header">
         <div className="collapse-button" onClick={handleInfoPanel}>
-          ﹥
+          {isMobile ? (
+            <FontAwesomeIcon icon={faArrowLeft} onClick={handleInfoPanel} />
+          ) : (
+            <FontAwesomeIcon icon={faArrowRight} onClick={handleInfoPanel} />
+          )}
         </div>
         <div className="station-info">
           <h2>{activeStation.name}</h2>
@@ -250,7 +257,10 @@ const InfoPanel = () => {
             })}
           />
           <input type="hidden" name="wdf_person_type1" value="Adult" />
-          <button type="submit" className="book-button plausible-event-name=Book">
+          <button
+            type="submit"
+            className="book-button plausible-event-name=Book"
+          >
             Book on Amtrak
           </button>
         </form>
@@ -275,14 +285,24 @@ const InfoPanel = () => {
           destinationStation={activeStation.code}
         />
       </div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
-      <div>&nbsp;</div>
+
+      {originStation.code === activeStation.code && (
+        <div className="station-description">
+          <p>
+            {activeStation.name} is set as your origin. You can change this by
+            adjusting the origin station, or city/address.
+          </p>
+        </div>
+      )}
+
+      {isMobile && (
+        <div className="info-panel-footer">
+          <button className="filter-button set" onClick={handleInfoPanel}>
+            <div>Go back</div>
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };

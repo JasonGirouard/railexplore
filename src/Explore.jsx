@@ -13,7 +13,7 @@ const Explore = ({ setActivePage, isMobile }) => {
       <AppHeader isMobile={isMobile} />
       
       <div className="map-container-explore">
-        <InfoPanel/>
+        <InfoPanel isMobile={isMobile}/>
         <div className="map-div">
           <MapComponent/>
         </div>
