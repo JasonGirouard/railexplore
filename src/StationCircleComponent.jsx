@@ -78,7 +78,7 @@ const StationCircleComponent = ({ station, radius }) => {
   }, [map, station.lat, station.long, mapMoved]);
 
   const handleMarkerClick = (station, event) => {
-    window.scrollTo(0, 0);
+   
     setActiveStation(station);
     setIsPanelOpen(true);
   

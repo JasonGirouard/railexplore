@@ -24,7 +24,7 @@ const InfoPanel = ({ isMobile }) => {
     useContext(OriginStationContext);
 
     const handleInfoPanel = () => {
-      window.scrollTo(0, 0);
+      
       setIsPanelOpen(!isPanelOpen); // Close the panel
       
     };
@@ -36,8 +36,6 @@ const InfoPanel = ({ isMobile }) => {
   } else {
     panelClass += " close";
   }
-
-  
 
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
