@@ -7,22 +7,34 @@ import styled from "styled-components";
 const MapContainerStyled = styled(MapContainer)`
   border-radius: 10px;
   overflow: hidden;
+  max-width: min(511px, 100%);
+  .leaflet-container {
+    touch-action: none;
+  }
 `;
 
 const UpdateMapCenter = ({ center }) => {
     const map = useMap();
     useEffect(() => {
       map.setView(center);
+      //map.zoomControl.remove();
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.boxZoom.disable();
+      map.keyboard.disable();
+      if (map.tap) map.tap.disable();
     }, [map, center]);
     return null;
   };
-
+  
 const StationMap = ({ activeStation }) => {
   return (
     <MapContainerStyled
       center={[activeStation.lat, activeStation.long]}
       zoom={15}
-      style={{ height: "512px", width: "100%" }}
+      style={{ height: "511px", width: "100%" }}
       zoomControl={false}
       dragging={false}
       doubleClickZoom={false}
