@@ -222,8 +222,10 @@ const getOutlineWeight = (stationCode) => {
           radius={radius}
           eventHandlers={{
             click: (event) => handleMarkerClick(station, event),
-            mouseover: () => setShowTooltip(true),
-            mouseout: () => setShowTooltip(false),
+            ...(isMobile ? {} : {
+              mouseover: () => setShowTooltip(true),
+              mouseout: () => setShowTooltip(false),
+            }),
           }}
           className = "plausible-event-name=Marker-click"
         >
