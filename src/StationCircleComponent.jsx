@@ -5,7 +5,7 @@ import { FiltersContext } from "./Context/FiltersContext";
 import { CircleMarker, Popup, Tooltip, useMap,useMapEvents } from "react-leaflet";
 import StationTooltip from "./StationToolTip";
 import { StarFilled } from "@ant-design/icons";
-import Plausible from 'plausible-tracker';
+
 import stationSummary from "./data/all_stations_paths.json";
 import "./StationCircleComponent.css";
 
@@ -77,14 +77,7 @@ const StationCircleComponent = ({ station, radius }) => {
   const handleMarkerClick = (station, event) => {
     setActiveStation(station);
     setIsPanelOpen(true);
-     // Track the marker click event with Plausible
-     Plausible({
-      domain: 'yourdomain.com',
-    })('Marker Clicked', {
-      props: {
-        station_name: station.name,
-      },
-    });
+  
 
   };
 
