@@ -7,6 +7,8 @@ import Explore from "./Explore";
 import Navigation from "./Navigation";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import Plausible from "plausible-tracker";
+
 
 function App() {
   console.log("1️⃣ in app ");
@@ -25,9 +27,20 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const { enableAutoPageviews } = Plausible({
+      domain: "railexplore.vercel.app",
+    });
+
+    enableAutoPageviews();
+  }, []);
+
+
   return (
     <Router>
+
       <div className="App">
+
         <div className="flex-container">
           <Navigation activePage={activePage} setActivePage={setActivePage} isMobile={isMobile}/>
           <div className="content">
@@ -54,9 +67,11 @@ function App() {
             </Routes>
           </div>
         </div>
+
         <SpeedInsights/>
         <Analytics />
       </div>
+
     </Router>
   );
 }
