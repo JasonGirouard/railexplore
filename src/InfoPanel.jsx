@@ -116,6 +116,31 @@ const InfoPanel = () => {
     }
   };
 
+  function getDepartureDate() {
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    
+    if (dayOfWeek === 6) {
+      // If today is Saturday, set the departure date to the next Saturday
+      const nextSaturday = new Date(today);
+      nextSaturday.setDate(today.getDate() + 7);
+      return nextSaturday;
+    } else {
+      // If today is not Saturday, set the departure date to the nearest Saturday
+      const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
+      const nearestSaturday = new Date(today);
+      nearestSaturday.setDate(today.getDate() + daysUntilSaturday);
+      return nearestSaturday;
+    }
+  }
+  
+  function getReturnDate() {
+    const departureDate = getDepartureDate();
+    const returnDate = new Date(departureDate);
+    returnDate.setDate(departureDate.getDate() + 1);
+    return returnDate;
+  }
+
   // Function to handle image load error
   const handleImageError = (e) => {
     e.target.src = placeholderImage; // Replace with placeholder image
@@ -194,29 +219,52 @@ const InfoPanel = () => {
           </button>
         </div>
 
-        <a
-          href="https://www.amtrak.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="book-button"
-        >
-          Book on Amtrak
-        </a>
+
+        <form
+  action="https://www.amtrak.com/services/journeysearch"
+  method="post"
+  target="_blank"
+>
+  <input type="hidden" name="wdf_origin" value={originStation.code} />
+  <input type="hidden" name="wdf_destination" value={activeStation.code} />
+  <input type="hidden" name="wdf_TripType" value="Return" />
+  <input
+    type="hidden"
+    name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
+    value={getDepartureDate().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })}
+  />
+  <input
+    type="hidden"
+    name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
+    value={getReturnDate().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })}
+  />
+  <input type="hidden" name="wdf_person_type1" value="Adult" />
+  <button type="submit" className="book-button">
+    Book on Amtrak
+  </button>
+</form>
+
       </div>
       <div className="station-description">
-      
-          <h3>Things to Do in {activeStation.name}</h3>
-          {activeStation.things_to_do &&
-            activeStation.things_to_do.map((thing, index) => (
-              <div key={index} className="thing-to-do">
-                <p className="activity">
-                  <span className="activity-number">{index + 1}.</span>{" "}
-                  <strong>{thing.activity}</strong>
-                </p>
-                <p className="description">{thing.description}</p>
-              </div>
-            ))}
- 
+        <h3>Things to Do in {activeStation.name}</h3>
+        {activeStation.things_to_do &&
+          activeStation.things_to_do.map((thing, index) => (
+            <div key={index} className="thing-to-do">
+              <p className="activity">
+                <span className="activity-number">{index + 1}.</span>{" "}
+                <strong>{thing.activity}</strong>
+              </p>
+              <p className="description">{thing.description}</p>
+            </div>
+          ))}
       </div>
 
       <div>
