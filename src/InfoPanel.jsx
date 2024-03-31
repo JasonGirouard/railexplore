@@ -250,7 +250,7 @@ const InfoPanel = () => {
             })}
           />
           <input type="hidden" name="wdf_person_type1" value="Adult" />
-          <button type="submit" className="book-button">
+          <button type="submit" className="book-button plausible-event-name=Book">
             Book on Amtrak
           </button>
         </form>
