@@ -221,15 +221,16 @@ const getOutlineWeight = (stationCode) => {
             mouseover: () => setShowTooltip(true),
             mouseout: () => setShowTooltip(false),
           }}
+          className = "plausible-event-name=Marker-click"
         >
           {station.code === originStation.code ? (
              <Tooltip
              permanent
              direction="top"
              interactive
-             className={`${isSelected ? "selected" : ""}`}
+             className={`${isSelected ? "selected" : ""} plausible-event-name=Marker-click`}
            >
-              <div className="custom-tooltip origin">
+              <div className="custom-tooltip origin ">
                 <div className="tooltip-content origin">
                   <h2><StarFilled /></h2>
                   
@@ -242,7 +243,7 @@ const getOutlineWeight = (stationCode) => {
                 permanent
                 direction="top"
                 interactive
-                className={`${isSelected ? "selected" : ""}`}
+                className={`${isSelected ? "selected" : ""} plausible-event-name=Marker-click`}
                 offset={[0, 0]}
               >
                 <div className="custom-tooltip">
