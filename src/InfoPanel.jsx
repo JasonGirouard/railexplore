@@ -119,7 +119,7 @@ const InfoPanel = () => {
   function getDepartureDate() {
     const today = new Date();
     const dayOfWeek = today.getDay();
-    
+
     if (dayOfWeek === 6) {
       // If today is Saturday, set the departure date to the next Saturday
       const nextSaturday = new Date(today);
@@ -133,7 +133,7 @@ const InfoPanel = () => {
       return nearestSaturday;
     }
   }
-  
+
   function getReturnDate() {
     const departureDate = getDepartureDate();
     const returnDate = new Date(departureDate);
@@ -219,39 +219,41 @@ const InfoPanel = () => {
           </button>
         </div>
 
-
         <form
-  action="https://www.amtrak.com/services/journeysearch"
-  method="post"
-  target="_blank"
->
-  <input type="hidden" name="wdf_origin" value={originStation.code} />
-  <input type="hidden" name="wdf_destination" value={activeStation.code} />
-  <input type="hidden" name="wdf_TripType" value="Return" />
-  <input
-    type="hidden"
-    name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
-    value={getDepartureDate().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    })}
-  />
-  <input
-    type="hidden"
-    name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
-    value={getReturnDate().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    })}
-  />
-  <input type="hidden" name="wdf_person_type1" value="Adult" />
-  <button type="submit" className="book-button">
-    Book on Amtrak
-  </button>
-</form>
-
+          action="https://www.amtrak.com/services/journeysearch"
+          method="post"
+          target="_blank"
+        >
+          <input type="hidden" name="wdf_origin" value={originStation.code} />
+          <input
+            type="hidden"
+            name="wdf_destination"
+            value={activeStation.code}
+          />
+          <input type="hidden" name="wdf_TripType" value="Return" />
+          <input
+            type="hidden"
+            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
+            value={getDepartureDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          />
+          <input
+            type="hidden"
+            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
+            value={getReturnDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          />
+          <input type="hidden" name="wdf_person_type1" value="Adult" />
+          <button type="submit" className="book-button">
+            Book on Amtrak
+          </button>
+        </form>
       </div>
       <div className="station-description">
         <h3>Things to Do in {activeStation.name}</h3>
@@ -266,6 +268,25 @@ const InfoPanel = () => {
             </div>
           ))}
       </div>
+
+      <div className="amtrak-iframe-container">
+    <iframe
+      src={`https://www.amtrak.com/services/journeysearch?wdf_origin=${originStation.code}&wdf_destination=${activeStation.code}&wdf_TripType=Return&/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date=${getDepartureDate().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })}&/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date=${getReturnDate().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })}&wdf_person_type1=Adult`}
+      title="Amtrak Journey Search"
+      width="100%"
+      height="600px"
+      frameBorder="0"
+      allowFullScreen
+    ></iframe>
+  </div>
 
       <div>
         <TrainPathFinder
