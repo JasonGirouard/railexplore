@@ -175,4 +175,32 @@
 
 .donate-column.coffee {
   min-width: 350px;
+  
+}
+
+.feedback-page {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 00px;
+}
+.feedback-container {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  padding: 10px;
+  height: 800px;
+}
+
+.googleform {
+  width: 100%;
+  /* width: 640px; */
+  min-width: 350px;
+  max-width: min(calc(100%), 800px);
+
 }

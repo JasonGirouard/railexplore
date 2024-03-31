@@ -5,6 +5,7 @@ import About from "./About"; //
 import Donate from "./Donate";
 import Explore from "./Explore";
 import Navigation from "./Navigation";
+import Feedback from "./Feedback";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Plausible from "plausible-tracker";
@@ -64,6 +65,7 @@ function App() {
               />
               <Route path="/about" element={<About  setActivePage={setActivePage} />} />
               <Route path="/donate" element={<Donate  setActivePage={setActivePage} />} />
+              <Route path="/feedback" element={<Feedback  setActivePage={setActivePage} />} />
             </Routes>
           </div>
         </div>
