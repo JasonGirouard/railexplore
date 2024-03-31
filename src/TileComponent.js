@@ -37,21 +37,6 @@ import "mapbox-gl-leaflet";
 
 //  export default TileComponent;
 
-//maptiler's map is probably a good in-between. 
-
-// const TileComponent = () => {
-//   console.log('🔴 Tile Layer 🔴');
-//   return (
-//     <TileLayer
-//       url="https://api.maptiler.com/maps/streets-v2-light/{z}/{x}/{y}.png?key={apiKey}"
-//       apiKey={process.env.REACT_APP_MAPTILER_API_KEY}
-//       attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-//     />
-//   );
-// };
-
-// export default TileComponent;
-
 //mapbox gl 
 
 const TileComponent = () => {
