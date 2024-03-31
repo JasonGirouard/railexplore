@@ -83,7 +83,7 @@ const Map = () => {
       zoom={7}
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
-      scrollWheelZoom={false} // Disable scroll-to-zoom
+     // scrollWheelZoom={false} // Disable scroll-to-zoom
       zoomControl={false} // Disable default zoom control
       className="map-container"
     >

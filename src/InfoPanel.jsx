@@ -15,6 +15,7 @@ import placeholderImage from "./images/placeholder.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import StationMap from "./StationMap";
 
 const InfoPanel = ({ isMobile }) => {
   console.log("📚 in info panel");
@@ -298,7 +299,13 @@ const InfoPanel = ({ isMobile }) => {
         </div>
       )}
 
-      {isMobile && (
+    
+      <div className="info-panel-map">
+        <p>{activeStation.address1}{', '}{activeStation.city}{', '}{activeStation.state}{', '}{activeStation.zipcode}</p>
+        <StationMap activeStation={activeStation} /> 
+        </div>
+
+        {isMobile && (
         <div className="info-panel-footer">
           <button className="filter-button set" onClick={handleInfoPanel}>
             <div>Go back</div>
@@ -308,6 +315,8 @@ const InfoPanel = ({ isMobile }) => {
 
 {!isMobile && (
         <div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>&nbsp;</div>

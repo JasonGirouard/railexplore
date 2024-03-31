@@ -277,3 +277,22 @@ font-size: 18px;
   background-color: #e8f0fe;
   border: 1px solid #e8f0fe;
 }
+
+.info-panel-map {
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  margin: 10px;
+  padding: 10px;
+  padding-top: 0px;
+  margin-top: 0px;
+  font-size: 15px;
+  text-align: left;
+ /* border: 1px solid #d3d3d3; /* Light gray border */
+  height: 512px;
+  padding-bottom: 30px;
+}
+
+.info-panel-map p {
+  font-style: italic;
+}

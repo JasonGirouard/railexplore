@@ -17,6 +17,8 @@
     "axios": "^1.6.8",
     "fathom-client": "^3.6.0",
     "leaflet": "^1.9.4",
+    "mapbox-gl": "^3.2.0",
+    "mapbox-gl-leaflet": "^0.0.16",
     "plausible-tracker": "^0.3.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +27,7 @@
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
