@@ -23,10 +23,11 @@ const InfoPanel = ({ isMobile }) => {
   const { originStation, selectedStationDestinations } =
     useContext(OriginStationContext);
 
-  const handleInfoPanel = () => {
-    console.log("setting if panel is open");
-    setIsPanelOpen(!isPanelOpen); // Close the panel
-  };
+    const handleInfoPanel = () => {
+      window.scrollTo(0, 0);
+      setIsPanelOpen(!isPanelOpen); // Close the panel
+      
+    };
 
   // Define CSS classes based on state
   let panelClass = "info-panel";
@@ -35,6 +36,8 @@ const InfoPanel = ({ isMobile }) => {
   } else {
     panelClass += " close";
   }
+
+  
 
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -51,6 +54,8 @@ const InfoPanel = ({ isMobile }) => {
         activeStation.image_urls.length
     );
   };
+
+  
   // Function to navigate to the next image
   const goToNextImage = () => {
     setCurrentImageIndex(
@@ -302,6 +307,19 @@ const InfoPanel = ({ isMobile }) => {
           </button>
         </div>
       )}
+
+{!isMobile && (
+        <div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        </div>
+      )}
+
+     
 
     </div>
   );

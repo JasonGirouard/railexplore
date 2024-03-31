@@ -81,6 +81,10 @@
   text-align: left;
 }
 
+.station-info h2 {
+  padding-top: 5px;
+}
+
 
 /* BODY INFO */
 .image-container {

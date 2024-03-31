@@ -33,6 +33,9 @@ const StationCircleComponent = ({ station, radius }) => {
    useMapEvents({
     click: (event) => {
       if (!event.originalEvent.target.closest('.leaflet-interactive')) {
+
+        // Scroll to the top of the page instantly
+       
         setActiveStation(null);
         setIsPanelOpen(false);
       }
@@ -75,6 +78,7 @@ const StationCircleComponent = ({ station, radius }) => {
   }, [map, station.lat, station.long, mapMoved]);
 
   const handleMarkerClick = (station, event) => {
+    window.scrollTo(0, 0);
     setActiveStation(station);
     setIsPanelOpen(true);
   
