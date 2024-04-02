@@ -1,4 +1,4 @@
-import React, { useState, useContext , useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import About from "./About"; //
@@ -9,7 +9,6 @@ import Feedback from "./Feedback";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Plausible from "plausible-tracker";
-
 
 function App() {
   console.log("1️⃣ in app ");
@@ -36,44 +35,54 @@ function App() {
     enableAutoPageviews();
   }, []);
 
-
   return (
     <Router>
-
       <div className="App">
-
         <div className="flex-container">
-          <Navigation activePage={activePage} setActivePage={setActivePage} isMobile={isMobile}/>
+          <Navigation
+            activePage={activePage}
+            setActivePage={setActivePage}
+            isMobile={isMobile}
+          />
           <div className="content">
             <Routes>
               <Route
-                path="/"
-                element={
-                  <Explore
-                   setActivePage={setActivePage}
-                   isMobile={isMobile}
-                  />
-                }
+                path="/explore/:originId/:originStationCode"
+                element={<Explore setActivePage={setActivePage} />}
+              />
+              <Route
+                path="/explore/:originId"
+                element={<Explore setActivePage={setActivePage} />}
               />
               <Route
                 path="/explore"
+                element={<Explore setActivePage={setActivePage} />}
+              />
+              <Route
+                path="/"
                 element={
-                  <Explore
-                   setActivePage={setActivePage}
-                  />
+                  <Explore setActivePage={setActivePage} isMobile={isMobile} />
                 }
               />
-              <Route path="/about" element={<About  setActivePage={setActivePage} />} />
-              <Route path="/donate" element={<Donate  setActivePage={setActivePage} />} />
-              <Route path="/feedback" element={<Feedback  setActivePage={setActivePage} />} />
+              <Route
+                path="/about"
+                element={<About setActivePage={setActivePage} />}
+              />
+              <Route
+                path="/donate"
+                element={<Donate setActivePage={setActivePage} />}
+              />
+              <Route
+                path="/feedback"
+                element={<Feedback setActivePage={setActivePage} />}
+              />
             </Routes>
           </div>
         </div>
 
-        <SpeedInsights/>
+        <SpeedInsights />
         <Analytics />
       </div>
-
     </Router>
   );
 }

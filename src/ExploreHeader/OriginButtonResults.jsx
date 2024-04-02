@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { OriginContext } from "../Context/OriginContext";
 import "./Filters.css";
 
@@ -9,7 +10,8 @@ const OriginButton2results = ({
   setSearchTerm,
   setShowResults,
 }) => {
-  const { origin, setOrigin } = useContext(OriginContext);
+  const { setOrigin } = useContext(OriginContext);
+  const navigate = useNavigate();
   const [showPopover, setShowPopover] = useState(false);
   const PopoverRef = useRef(null);
 
@@ -36,6 +38,7 @@ const OriginButton2results = ({
     setOrigin(result);
     setSearchTerm(result.place_name);
     setShowResults(false);
+    navigate(`/explore/${result.id}`);
 
 
   };

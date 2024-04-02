@@ -6,19 +6,56 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import OriginButtonResults from "./OriginButtonResults";
 import "./OriginButton.css";
+import { useParams } from "react-router-dom";
 
 const mapboxClient = MapboxClient({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
 });
 
 const OriginButton2 = () => {
-    // note that I might evolve this button to behave more like the other buttons and therefore move the setOrigin into the modal rather than the button
-  const {origin, setOrigin, userLocation } = useContext(OriginContext);
+  const { origin, setOrigin } = useContext(OriginContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const buttonRef = useRef(null);
   const inputRef = useRef(null);
+  const { originId } = useParams();
+
+  useEffect(() => {
+    const fetchOrigin = async () => {
+      if (originId) {
+        try {
+          const response = await mapboxClient
+            .forwardGeocode({
+              query: originId,
+              limit: 1,
+              countries: ["us", "ca"],
+              types: ["address", "locality", "poi", "place", "postcode", "neighborhood"]
+            })
+            .send();
+
+          if (response.body.features.length > 0) {
+            const feature = response.body.features[0];
+            const formattedName = feature.place_name
+            const center = { lat: feature.center[1], long: feature.center[0] };
+
+            const newOrigin = {
+              ...feature,
+              place_name: formattedName,
+              center: center,
+            };
+
+            setOrigin(newOrigin);
+            setSearchTerm(formattedName);
+          }
+        } catch (error) {
+          console.error("Error fetching origin:", error);
+        }
+      }
+    };
+
+    fetchOrigin();
+  }, [originId, setOrigin]);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -28,92 +65,19 @@ const OriginButton2 = () => {
             .forwardGeocode({
               query: searchTerm,
               limit: 5,
-              countries: ["us","ca"],
-              types: [
-                "address",
-                "locality",
-                "poi",
-                "place",
-                "postcode",
-                "neighborhood",
-              ],
-              proximity: userLocation
-                ? [userLocation.long, userLocation.lat]
-                : undefined,
+              countries: ["us", "ca"],
+              types: ["address", "locality", "poi", "place", "postcode", "neighborhood"]
             })
             .send();
 
           const formattedResults = response.body.features.map((feature) => {
+            const formattedName = formatName(feature);
+            const center = { lat: feature.center[1], long: feature.center[0] };
 
-            let center = { lat: feature.center[1], long: feature.center[0] }
-            let formattedName = "";
-            let address = "";
-            let city = "";
-            let state = "";
-           
-            if (feature.place_type[0] === "address") {
-              address = feature.place_name.split(",")[0].trim();
-              city =
-                feature.context.find((ctx) => ctx.id.includes("place"))?.text ||
-                "";
-              state =
-                feature.context
-                  .find((ctx) => ctx.id.includes("region"))
-                  ?.short_code.slice(-2) || "";
-            } else if (feature.place_type[0] === "locality") {
-              address = feature.text;
-              state =
-                feature.context
-                  .find((ctx) => ctx.id.includes("region"))
-                  ?.short_code.slice(-2) || "";
-            } else if (feature.place_type[0] === "poi") {
-              address = feature.text;
-              city =
-                feature.context.find((ctx) => ctx.id.includes("place"))?.text ||
-                "";
-              state =
-                feature.context
-                  .find((ctx) => ctx.id.includes("region"))
-                  ?.short_code.slice(-2) || "";
-            } else if (feature.place_type[0] === "place") {
-              address = feature.text;
-              city =
-                feature.context.find((ctx) => ctx.id.includes("place"))?.text ||
-                "";
-              state =
-                feature.context
-                  .find((ctx) => ctx.id.includes("region"))
-                  ?.short_code.slice(-2) || "";
-            } else if (feature.place_type[0] === "postcode") {
-              address = feature.text;
-              city =
-                feature.context.find((ctx) => ctx.id.includes("place"))?.text ||
-                "";
-              state =
-                feature.context
-                  .find((ctx) => ctx.id.includes("region"))
-                  ?.short_code.slice(-2) || "";
-            } else if (feature.place_type[0] === "neighborhood") {
-              address = feature.text;
-              city =
-                feature.context.find((ctx) => ctx.id.includes("place"))?.text ||
-                "";
-              state =
-                feature.context
-                  .find((ctx) => ctx.id.includes("region"))
-                  ?.short_code.slice(-2) || "";
-            }
-
-            formattedName = `${address}${city ? `, ${city}` : ""}${
-              state ? `, ${state}` : ""
-            }`;
-
-
-            // console.log('feature = ',feature, 'formattedname :', formattedName)
             return {
               ...feature,
               place_name: formattedName,
-              center: center
+              center: center,
             };
           });
 
@@ -129,20 +93,52 @@ const OriginButton2 = () => {
     fetchResults();
   }, [searchTerm]);
 
-
   useEffect(() => {
     if (origin !== null) {
-        console.log('setting the search term')
       setSearchTerm(origin.place_name);
     }
   }, [origin]);
 
-  const handleClick = () => {
-    setShowResults(!showResults);
-  
+  const formatName = (feature) => {
+    let center = { lat: feature.center[1], long: feature.center[0] }
+    let formattedName = "";
+    let address = "";
+    let city = "";
+    let state = "";
+
+    if (feature.place_type[0] === "address") {
+      address = feature.place_name.split(",")[0].trim();
+      city = feature.context.find((ctx) => ctx.id.includes("place"))?.text || "";
+      state = feature.context.find((ctx) => ctx.id.includes("region"))?.short_code.slice(-2) || "";
+    } else if (feature.place_type[0] === "locality") {
+      address = feature.text;
+      state = feature.context.find((ctx) => ctx.id.includes("region"))?.short_code.slice(-2) || "";
+    } else if (feature.place_type[0] === "poi") {
+      address = feature.text;
+      city = feature.context.find((ctx) => ctx.id.includes("place"))?.text || "";
+      state = feature.context.find((ctx) => ctx.id.includes("region"))?.short_code.slice(-2) || "";
+    } else if (feature.place_type[0] === "place") {
+      address = feature.text;
+      city = feature.context.find((ctx) => ctx.id.includes("place"))?.text || "";
+      state = feature.context.find((ctx) => ctx.id.includes("region"))?.short_code.slice(-2) || "";
+    } else if (feature.place_type[0] === "postcode") {
+      address = feature.text;
+      city = feature.context.find((ctx) => ctx.id.includes("place"))?.text || "";
+      state = feature.context.find((ctx) => ctx.id.includes("region"))?.short_code.slice(-2) || "";
+    } else if (feature.place_type[0] === "neighborhood") {
+      address = feature.text;
+      city = feature.context.find((ctx) => ctx.id.includes("place"))?.text || "";
+      state = feature.context.find((ctx) => ctx.id.includes("region"))?.short_code.slice(-2) || "";
+    }
+
+    formattedName = `${address}${city ? `, ${city}` : ""}${state ? `, ${state}` : ""}`;
+
+    return formattedName;
   };
 
-  
+  const handleClick = () => {
+    setShowResults(!showResults);
+  };
 
   const handleInputFocus = () => {
     setShowResults(true);
@@ -161,21 +157,24 @@ const OriginButton2 = () => {
         <form className="search-form">
           <div className="div-search-form">
             <input
-            ref={buttonRef}
+              ref={buttonRef}
               type="text"
               className="search-input origin"
               value={searchTerm}
-              //  onChange={handleSearchChange}
               onChange={(e) => setSearchTerm(e.target.value)}
               onFocus={handleInputFocus}
-              //onBlur={handleInputBlur}
               placeholder="Enter city or address"
             />
 
             {showResults && (
-             <OriginButtonResults buttonRef={buttonRef} searchResults={searchResults} setSearchTerm={setSearchTerm} setShowResults={setShowResults} onClose={handleClick}/>
+              <OriginButtonResults
+                buttonRef={buttonRef}
+                searchResults={searchResults}
+                setSearchTerm={setSearchTerm}
+                setShowResults={setShowResults}
+                onClose={handleClick}
+              />
             )}
-
           </div>
         </form>
       </div>

@@ -5,20 +5,9 @@ export const OriginContext = createContext();
 
 export const OriginProvider = ({ children }) => {
 
-// const [userLocation, setUserLocation] = useState(null);
   const [origin, setOrigin] = useState(null);
 
-
-  // JSON.parse(localStorage.getItem('userIP'))
-
   useEffect(() => {
-    // const storedUserIP = localStorage.getItem('userIP');
-    // if (storedUserIP) {
-    //   const { lat, long } = JSON.parse(storedUserIP);
-    //   if (lat !== undefined && long !== undefined) {
-    //     setUserLocation({ lat, long });
-    //   }
-    // }
 
     const origin = localStorage.getItem('origin');
     if (origin) {
