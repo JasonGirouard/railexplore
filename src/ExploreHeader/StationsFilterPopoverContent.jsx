@@ -2,34 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 import { OriginStationContext } from "../Context/OriginStationContext";
 import {OriginContext} from "../Context/OriginContext";
 import "./Filters.css";
-import { useParams, useNavigate } from "react-router-dom";
-import stations from "../data/stations.json";
+import { useNavigate } from "react-router-dom";
 
 const StationsFilterPopoverContent = () => {
   const { nearestStations, originStation, setOriginStation } =
     useContext(OriginStationContext);
     const {origin} = useContext(OriginContext);
   const [showAllStations, setShowAllStations] = useState(false); // acts when you click 'Show next 5 closest stations'
-  const { originId, originStationCode } = useParams();
   const navigate = useNavigate();
 
-  // set the originStation based on url params
-  useEffect(() => {
-    if (originStationCode) {
-      const selectedStation = stations.find(
-        (station) => station.code === originStationCode
-      );
-      if (selectedStation) {
-        setOriginStation(selectedStation);
-      }
-    }
-  }, [originStationCode, setOriginStation]);
-  // remove the setOriginStation from the use effect above? 
-
-
-
-
   const handleStationChange = (station) => {
+    //  console.log('handling station change',station.code)
     setOriginStation(station);
     navigate(`/explore/${origin.id}/${station.code}`);
   };

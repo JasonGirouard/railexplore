@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { OriginProvider } from "./Context/OriginContext";
+import { DestinationProvider } from "./Context/DestinationContext";
 import { OriginStationProvider } from "./Context/OriginStationContext";
 import { FiltersProvider } from "./Context/FiltersContext";
 import { StationProvider } from "./Context/StationContext";
@@ -12,15 +13,22 @@ import { StationProvider } from "./Context/StationContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <OriginProvider>
-      <OriginStationProvider>
+
+<OriginProvider>
+     
         <StationProvider>
+          <DestinationProvider>
           <FiltersProvider>
+          <OriginStationProvider>
+          
             <App />
+            
+            </OriginStationProvider>
           </FiltersProvider>
+          </DestinationProvider>
         </StationProvider>
-      </OriginStationProvider>
-    </OriginProvider>
+      
+        </OriginProvider>
   </React.StrictMode>
 );
 

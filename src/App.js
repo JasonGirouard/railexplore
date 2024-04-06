@@ -9,11 +9,26 @@ import Feedback from "./Feedback";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import Plausible from "plausible-tracker";
+// import { OriginProvider } from './Context/OriginContext';
+// import { DestinationProvider } from './Context/DestinationContext';
+// import { OriginStationProvider } from './Context/OriginStationContext';
+// import { FiltersProvider } from './Context/FiltersContext';
+// import { StationProvider } from './Context/StationContext';
 
 function App() {
   console.log("1️⃣ in app ");
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating an asynchronous operation
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 10);
+  }, []);
+
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,8 +50,19 @@ function App() {
     enableAutoPageviews();
   }, []);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
+
+    
     <Router>
+       {/* <OriginProvider>
+      <OriginStationProvider>
+        <StationProvider>
+          <DestinationProvider>
+            <FiltersProvider> */}
       <div className="App">
         <div className="flex-container">
           <Navigation
@@ -48,15 +74,15 @@ function App() {
             <Routes>
               <Route
                 path="/explore/:originId/:originStationCode"
-                element={<Explore setActivePage={setActivePage} />}
+                element={<Explore setActivePage={setActivePage} isMobile={isMobile}/>}
               />
               <Route
                 path="/explore/:originId"
-                element={<Explore setActivePage={setActivePage} />}
+                element={<Explore setActivePage={setActivePage} isMobile={isMobile}/>}
               />
               <Route
                 path="/explore"
-                element={<Explore setActivePage={setActivePage} />}
+                element={<Explore setActivePage={setActivePage}isMobile={isMobile} />}
               />
               <Route
                 path="/"
@@ -66,15 +92,15 @@ function App() {
               />
               <Route
                 path="/about"
-                element={<About setActivePage={setActivePage} />}
+                element={<About setActivePage={setActivePage} isMobile={isMobile}/>}
               />
               <Route
                 path="/donate"
-                element={<Donate setActivePage={setActivePage} />}
+                element={<Donate setActivePage={setActivePage}isMobile={isMobile} />}
               />
               <Route
                 path="/feedback"
-                element={<Feedback setActivePage={setActivePage} />}
+                element={<Feedback setActivePage={setActivePage} isMobile={isMobile}/>}
               />
             </Routes>
           </div>
@@ -83,6 +109,11 @@ function App() {
         <SpeedInsights />
         <Analytics />
       </div>
+      {/* </FiltersProvider>
+          </DestinationProvider>
+        </StationProvider>
+      </OriginStationProvider>
+    </OriginProvider> */}
     </Router>
   );
 }

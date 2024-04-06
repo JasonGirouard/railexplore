@@ -1,14 +1,32 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef , useEffect} from "react";
 import { OriginStationContext } from "../Context/OriginStationContext";
 import StationsFilterPopover from "./StationsFilterPopover";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
 import filledDownCaretIconBlack from "../images/down-caret-filled black.svg";
+import { useParams } from "react-router-dom";
+import stations from "../data/stations.json";
 
 const StationsFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal}) => {
-  const { originStation } = useContext(OriginStationContext);
+  const { originStation , setOriginStation} = useContext(OriginStationContext);
   const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
+  const { originId, originStationCode } = useParams();
+
+
+  // set the originStation based on url params
+  useEffect(() => {
+      
+    if (originStationCode) {
+      const selectedStation = stations.find(
+        (station) => station.code === originStationCode
+      );
+      if (selectedStation) {
+          console.log('Setting origin station based on params:',selectedStation.name)
+        setOriginStation(selectedStation);
+      }
+    }
+  }, [originStationCode, setOriginStation]);
 
   const handleClick = () => {
     if (isMobile && isMobile.isMobile) {

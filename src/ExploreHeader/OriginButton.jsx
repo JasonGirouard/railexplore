@@ -1,19 +1,22 @@
 // OriginButton.js
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { OriginContext } from "../Context/OriginContext";
+//import { OriginStationContext } from "../Context/OriginStationContext";
 import MapboxClient from "@mapbox/mapbox-sdk/services/geocoding";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import OriginButtonResults from "./OriginButtonResults";
 import "./OriginButton.css";
 import { useParams } from "react-router-dom";
+//import stations from "../data/stations.json";
 
 const mapboxClient = MapboxClient({
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
 });
 
-const OriginButton2 = () => {
+const OriginButton2 = ({setOriginDataLoaded}) => {
   const { origin, setOrigin } = useContext(OriginContext);
+ // const {  setOriginStation, setNearestStations } = useContext(OriginStationContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
@@ -21,9 +24,11 @@ const OriginButton2 = () => {
   const inputRef = useRef(null);
   const { originId } = useParams();
 
+  // set the origin based on the url params 
   useEffect(() => {
+    if (originId) {
     const fetchOrigin = async () => {
-      if (originId) {
+      
         try {
           const response = await mapboxClient
             .forwardGeocode({
@@ -33,29 +38,38 @@ const OriginButton2 = () => {
               types: ["address", "locality", "poi", "place", "postcode", "neighborhood"]
             })
             .send();
-
+  
           if (response.body.features.length > 0) {
             const feature = response.body.features[0];
-            const formattedName = feature.place_name
+            const formattedName = feature.place_name;
             const center = { lat: feature.center[1], long: feature.center[0] };
-
+  
             const newOrigin = {
               ...feature,
               place_name: formattedName,
               center: center,
             };
-
+        //    console.log('setting the origin based on the params', newOrigin.place_name);
             setOrigin(newOrigin);
             setSearchTerm(formattedName);
+            setOriginDataLoaded(true);
+          //  console.log('finished setting origin based on params');
           }
         } catch (error) {
           console.error("Error fetching origin:", error);
         }
-      }
-    };
-
+    }
     fetchOrigin();
-  }, [originId, setOrigin]);
+  }
+
+  //if there is no originId in the url but an origin exists, then send the user to the homepage
+  if (!originId && origin) {
+ //   console.log('no origin id in params, so setting origin data loaded to true')
+    setOriginDataLoaded(true);
+  }
+  
+    
+  }, [originId, setOrigin, setOriginDataLoaded]);
 
   useEffect(() => {
     const fetchResults = async () => {

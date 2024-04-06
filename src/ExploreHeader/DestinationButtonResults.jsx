@@ -1,20 +1,25 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { OriginContext } from "../Context/OriginContext";
+import { OriginStationContext } from "../Context/OriginStationContext";
+import { useNavigate } from "react-router-dom";
+import { DestinationContext } from "../Context/DestinationContext";
 import "./Filters.css";
 
-const OriginButton2results = ({
+const DestinationButtonResults = ({
   buttonRef,
   onClose,
   searchResults,
   setSearchTerm,
   setShowResults,
 }) => {
-  const { setOrigin } = useContext(OriginContext);
+  const { setDestination } = useContext(DestinationContext);
+  const { origin } = useContext(OriginContext);
+  const { originStation } = useContext(OriginStationContext);
   const navigate = useNavigate();
   const [showPopover, setShowPopover] = useState(false);
   const PopoverRef = useRef(null);
 
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -34,11 +39,13 @@ const OriginButton2results = ({
     };
   }, [buttonRef, onClose]);
 
+  //FIX ME: SET THE PARAMS 
+  // set to /anywhere and handle this appropriately if an origin station is set but nothing else 
   const handleSelect = (result) => {
-    setOrigin(result);
+    setDestination(result);
     setSearchTerm(result.place_name);
     setShowResults(false);
-    navigate(`/explore/${result.id}`);
+    navigate(`/explore/${origin.id}/${originStation.code}/${result.id}`);
   };
 
   const handleClick = () => {
@@ -51,7 +58,7 @@ const OriginButton2results = ({
         {searchResults.map((result) => (
           <div
             key={result.id}
-            className="autocomplete-option plausible-event-name=Origin+Select"
+            className="autocomplete-option"
             onClick={() => handleSelect(result)}
           >
             {result.place_name}
@@ -62,4 +69,4 @@ const OriginButton2results = ({
   );
 };
 
-export default OriginButton2results;
+export default DestinationButtonResults;
