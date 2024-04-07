@@ -4,6 +4,8 @@ import MapComponent from "./MapComponent";
 import InfoPanel from "./InfoPanel";
 import AppHeader from "./ExploreHeader/AppHeader";
 import TopNav from "./TopNav";
+
+
 //import { useParams } from 'react-router-dom';
 
 const Explore = ({ setActivePage, isMobile }) => {
@@ -20,6 +22,7 @@ const Explore = ({ setActivePage, isMobile }) => {
         <div className="map-div">
           <MapComponent/>
         </div>
+       
       </div>
     </div>
   );

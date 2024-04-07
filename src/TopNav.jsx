@@ -20,8 +20,10 @@ const TopNav = ({ setActivePage }) => {
   }, []);
 
   const handleLogoClick = () => {
-    navigate("/explore");
-    setActivePage("Explore");
+    window.location.href = '/';
+    //navigate("/");
+   // setActivePage("Explore");
+
   };
 
   if (isMobile) {

@@ -49,7 +49,7 @@ const OriginButton2 = ({setOriginDataLoaded}) => {
               place_name: formattedName,
               center: center,
             };
-        //    console.log('setting the origin based on the params', newOrigin.place_name);
+            console.log('setting the origin based on the params', newOrigin.place_name);
             setOrigin(newOrigin);
             setSearchTerm(formattedName);
             setOriginDataLoaded(true);

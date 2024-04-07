@@ -7,6 +7,7 @@ import OriginButton from "./OriginButton";
 import DestinationButton from "./DestinationButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import UrlUpdate from "./UrlUpdate";
 
 import AllFiltersButton from "./AllFiltersButton.jsx";
 import StationsFilterButton from "./StationsFilterButton.jsx";
@@ -17,11 +18,15 @@ import { OriginContext } from "../Context/OriginContext";
 import { OriginStationContext } from "../Context/OriginStationContext";
 
 const AppHeader = (isMobile) => {
+
+ 
+
   const [originDataLoaded, setOriginDataLoaded] = useState(false);
   const [showFiltersPortal, setShowFiltersPortal] = useState(false);
   const appHeaderRef = useRef(null);
   const { origin } = useContext(OriginContext);
   const { originStation } = useContext(OriginStationContext);
+
 
   // const filterButtonRef = useRef(null);
 
@@ -58,6 +63,10 @@ const AppHeader = (isMobile) => {
           setShowFiltersPortal={setShowFiltersPortal}
         />
       )}
+      {originDataLoaded && (
+      <UrlUpdate />
+      )}
+
     </div>
   );
 };

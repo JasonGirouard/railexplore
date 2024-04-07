@@ -30,8 +30,8 @@ const Navigation = ({ activePage, setActivePage, isMobile }) => {
   };
 
   const handleLogoClick = () => {
-    navigate("/explore");
-    setActivePage("Explore");
+    window.location.href = '/';
+  //  setActivePage("Explore");
   };
 
   return (

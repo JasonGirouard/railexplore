@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StationContext } from "./Context/StationContext";
 import { OriginStationContext } from "./Context/OriginStationContext";
+import { OriginContext } from "./Context/OriginContext";
 import stationImage from "./images/station.png"; // Adjust the path as needed
 import busStopImage from "./images/busstop.png"; // Adjust the path as needed
 import platformImage from "./images/platform.png"; // Adjust the path as needed
@@ -16,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import StationMap from "./StationMap";
+import { useNavigate } from "react-router-dom";
 
 const InfoPanel = ({ isMobile }) => {
   console.log("📚 in info panel");
@@ -23,6 +25,8 @@ const InfoPanel = ({ isMobile }) => {
     useContext(StationContext);
   const { originStation, selectedStationDestinations } =
     useContext(OriginStationContext);
+  const { origin } = useContext(OriginContext);
+
 
     const handleInfoPanel = () => {
       
