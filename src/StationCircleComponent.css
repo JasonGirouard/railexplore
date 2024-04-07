@@ -48,9 +48,7 @@
   border: 2px solid #2479E9;
 }
 
-.selected {
-  border: 2px solid #2479E9;
-}
+
 
 .tooltip-content.origin {
   justify-content: center;
@@ -161,3 +159,6 @@
   
   */
 
+  .leaflet-tooltip.selected {
+    border: 2px solid #2479E9;
+  }
