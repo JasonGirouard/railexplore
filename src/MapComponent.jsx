@@ -8,6 +8,7 @@ import Legend from "./Legend";
 import amtrakSimplifiedData from "./data/amtrak_simplified.json"; // Import the GeoJSON data
 import "./MapComponent.css";
 import LandingPage from "./LandingPage";
+import TileComponentGoogle from "./TileComponentGoogle";
 
 // separate  handler so that useMap can be used
 const CenterMap = () => {
@@ -21,6 +22,7 @@ const CenterMap = () => {
   }, [origin]);
   return null;
 };
+
 
 // separate handler so that useMap can be used
 const ZoomHandler = ({ onZoomLevelChange }) => {
@@ -48,21 +50,23 @@ const Map = () => {
   // note that one optimization could be logging the users zoom level in localStorage to reduce their need to zoom in to their desired level each time
   const [zoomLevel, setZoomLevel] = useState(7);
    // Function to calculate the radius based on the zoom level
-   const getRadius = () => {
-    if (zoomLevel < 6) {
-      return 6;
-    } else if (zoomLevel === 6) {
-      return 8;
-    } else if (zoomLevel === 7) {
-      return 10;
-    } else if (zoomLevel === 8) {
-      return 11;
-    } else if (zoomLevel === 9) {
-      return 11;
-    } else {
-      return 11;
-    }
-  };
+
+  //  const getRadius = () => {
+  //   if (zoomLevel < 6) {
+  //     return 6;
+  //   } else if (zoomLevel === 6) {
+  //     return 8;
+  //   } else if (zoomLevel === 7) {
+  //     return 10;
+  //   } else if (zoomLevel === 8) {
+  //     return 11;
+  //   } else if (zoomLevel === 9) {
+  //     return 11;
+  //   } else {
+  //     return 11;
+  //   }
+  // };
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 770);
@@ -78,6 +82,7 @@ const Map = () => {
   ];
 
   return origin ? (
+  
     <MapContainer
       center={[origin.center.lat, origin.center.long]}
       zoom={7}
@@ -95,7 +100,7 @@ const Map = () => {
             <StationCircleComponent
               key={station.code}
               station={station}
-              radius={getRadius()} 
+              radius={8} 
             />
           );
         })}
@@ -111,11 +116,15 @@ const Map = () => {
           })}
         />
       )}
-      <TileComponent />
+      {/* <TileComponent /> */}
+    <TileComponentGoogle/>
+
+     
       <CenterMap />
-      <Legend />
+      {/* <Legend /> */}
       {!isMobile && <ZoomControl position="bottomleft" />}
     </MapContainer>
+
   ) : (<LandingPage/>);
 };
 

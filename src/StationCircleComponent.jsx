@@ -117,38 +117,38 @@ const StationCircleComponent = ({ station, radius }) => {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   }
   const getFillColor = (stationCode) => {
-    let color = "#FFFFFF"; // Default color
+    let color = "#353535"; // Default color
    
-    if (destination) {
-      const hours = destination.min_time / 3600; // Convert seconds to hours
-      const colors = [
-        //0 to 2 solid dark blue
-        { hours: 0, color: hexToRgb("#008DF3") },
-        { hours: 2, color: hexToRgb("#008DF3") },
-        // 2 to 4 fade from dark blue to light blue
-        { hours: 4, color: hexToRgb("#AFDDFF") }, // light blue
-        //4 to 6 solid light blue
-        { hours: 6, color: hexToRgb("#AFDDFF") }, // light blue
-        // 6 to 10 fade from light blue to light gray
-        { hours: 6, color: hexToRgb("#AFDDFF") },
-        { hours: 10, color: hexToRgb("#bfbfbf") }, // Light gray
-      ];
-      // Find the current segment
-      for (let i = 0; i < colors.length - 1; i++) {
-        if (hours >= colors[i].hours && hours < colors[i + 1].hours) {
-          const factor =
-            (hours - colors[i].hours) / (colors[i + 1].hours - colors[i].hours);
-          color = rgbToHex(
-            ...interpolateColor(colors[i].color, colors[i + 1].color, factor)
-          );
-          break;
-        }
-      }
-      // If hours >= last threshold, use the last color
-      if (hours >= colors[colors.length - 1].hours) {
-        color = rgbToHex(...colors[colors.length - 1].color);
-      }
-    }
+    // if (destination) {
+    //   const hours = destination.min_time / 3600; // Convert seconds to hours
+    //   const colors = [
+    //     //0 to 2 solid dark blue
+    //     { hours: 0, color: hexToRgb("#008DF3") },
+    //     { hours: 2, color: hexToRgb("#008DF3") },
+    //     // 2 to 4 fade from dark blue to light blue
+    //     { hours: 4, color: hexToRgb("#AFDDFF") }, // light blue
+    //     //4 to 6 solid light blue
+    //     { hours: 6, color: hexToRgb("#AFDDFF") }, // light blue
+    //     // 6 to 10 fade from light blue to light gray
+    //     { hours: 6, color: hexToRgb("#AFDDFF") },
+    //     { hours: 10, color: hexToRgb("#bfbfbf") }, // Light gray
+    //   ];
+    //   // Find the current segment
+    //   for (let i = 0; i < colors.length - 1; i++) {
+    //     if (hours >= colors[i].hours && hours < colors[i + 1].hours) {
+    //       const factor =
+    //         (hours - colors[i].hours) / (colors[i + 1].hours - colors[i].hours);
+    //       color = rgbToHex(
+    //         ...interpolateColor(colors[i].color, colors[i + 1].color, factor)
+    //       );
+    //       break;
+    //     }
+    //   }
+    //   // If hours >= last threshold, use the last color
+    //   if (hours >= colors[colors.length - 1].hours) {
+    //     color = rgbToHex(...colors[colors.length - 1].color);
+    //   }
+    // }
     if (originStation && originStation.code === stationCode) {
       color = "#353535"; // Override color for the origin station
     }
