@@ -6,9 +6,10 @@ const TrainPathFinder = ({ originStation, destinationStation }) => {
   const [paths, setPaths] = useState([]);
 
   useEffect(() => {
+    
     const fetchTrainData = async () => {
       try {
-        const response = await fetch('train_data.json');
+        const response = await fetch('/train_data.json');
         const df = await response.json();
         const calculatedPaths = dijkstra(originStation, destinationStation, df);
         setPaths(JSON.parse(calculatedPaths));
@@ -138,11 +139,13 @@ const TrainPathFinder = ({ originStation, destinationStation }) => {
     }
 
     const filteredPaths = [];
-    const startTimeDict = {};
-    for (const path of paths) {
-      const startTime = path.start_time;
-      const elapsedTime = path.elapsed_time;
+  const startTimeDict = {};
+  for (const path of paths) {
+    const startTime = path.start_time;
+    const endTime = path.end_time;
+    const elapsedTime = path.elapsed_time;
 
+    if (new Date(endTime) > new Date(startTime)) {
       if (!startTimeDict[startTime] || elapsedTime < startTimeDict[startTime].elapsed_time) {
         startTimeDict[startTime] = {
           elapsed_time: elapsedTime,
@@ -150,6 +153,7 @@ const TrainPathFinder = ({ originStation, destinationStation }) => {
         };
       }
     }
+  }
 
     for (const pathInfo of Object.values(startTimeDict)) {
       filteredPaths.push(pathInfo.path);
@@ -185,6 +189,7 @@ const formatElapsedTime = (totalMilliseconds) => {
 
 // Function to get the station name from the station code
 const getStationName = (stationCode) => {
+  
     const station = stations.find((station) => station.code === stationCode);
     return station ? station.name : "";
   };
