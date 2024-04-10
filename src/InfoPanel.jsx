@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import StationMap from "./StationMap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const InfoPanel = ({ isMobile }) => {
   console.log("📚 in info panel");
@@ -26,7 +26,6 @@ const InfoPanel = ({ isMobile }) => {
   const { originStation, selectedStationDestinations } =
     useContext(OriginStationContext);
   const { origin } = useContext(OriginContext);
-
 
     const handleInfoPanel = () => {
       
@@ -292,6 +291,46 @@ const InfoPanel = ({ isMobile }) => {
           originStation={originStation.code}
           destinationStation={activeStation.code}
         />
+
+<form
+          action="https://www.amtrak.com/services/journeysearch"
+          method="post"
+          target="_blank"
+        >
+          <input type="hidden" name="wdf_origin" value={originStation.code} />
+          <input
+            type="hidden"
+            name="wdf_destination"
+            value={activeStation.code}
+          />
+          <input type="hidden" name="wdf_TripType" value="Return" />
+          <input
+            type="hidden"
+            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
+            value={getDepartureDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          />
+          <input
+            type="hidden"
+            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
+            value={getReturnDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          />
+          <input type="hidden" name="wdf_person_type1" value="Adult" />
+          <button
+            type="submit"
+            className="book-button2 plausible-event-name=Book2"
+          >
+            View all trains on Amtrak.com
+          </button>
+        </form>
+
       </div>
 
       {originStation.code === activeStation.code && (
