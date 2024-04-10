@@ -33,9 +33,7 @@ const StationCircleComponent = ({ station, radius }) => {
    useMapEvents({
     click: (event) => {
       if (!event.originalEvent.target.closest('.leaflet-interactive')) {
-
         // Scroll to the top of the page instantly
-       
         setActiveStation(null);
         setIsPanelOpen(false);
       }
@@ -78,7 +76,6 @@ const StationCircleComponent = ({ station, radius }) => {
   }, [map, station.lat, station.long, mapMoved]);
 
   const handleMarkerClick = (station, event) => {
-   
     setActiveStation(station);
     setIsPanelOpen(true);
   
@@ -86,36 +83,36 @@ const StationCircleComponent = ({ station, radius }) => {
   };
 
   // Utility function to interpolate between two colors
-  function interpolateColor(color1, color2, factor) {
-    if (arguments.length < 3) {
-      factor = 0.5;
-    }
-    var result = color1.slice();
-    for (var i = 0; i < 3; i++) {
-      result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
-    }
-    return result;
-  }
+  // function interpolateColor(color1, color2, factor) {
+  //   if (arguments.length < 3) {
+  //     factor = 0.5;
+  //   }
+  //   var result = color1.slice();
+  //   for (var i = 0; i < 3; i++) {
+  //     result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+  //   }
+  //   return result;
+  // }
   // Convert HEX to RGBimport React, { useEffect } from 'reimport React, { useEffect } from 'react';act';
-  function hexToRgb(hex) {
-    var r = 0,
-      g = 0,
-      b = 0;
-    if (hex.length === 4) {
-      r = parseInt(hex[1] + hex[1], 16);
-      g = parseInt(hex[2] + hex[2], 16);
-      b = parseInt(hex[3] + hex[3], 16);
-    } else if (hex.length === 7) {
-      r = parseInt(hex[1] + hex[2], 16);
-      g = parseInt(hex[3] + hex[4], 16);
-      b = parseInt(hex[5] + hex[6], 16);
-    }
-    return [r, g, b];
-  }
+  // function hexToRgb(hex) {
+  //   var r = 0,
+  //     g = 0,
+  //     b = 0;
+  //   if (hex.length === 4) {
+  //     r = parseInt(hex[1] + hex[1], 16);
+  //     g = parseInt(hex[2] + hex[2], 16);
+  //     b = parseInt(hex[3] + hex[3], 16);
+  //   } else if (hex.length === 7) {
+  //     r = parseInt(hex[1] + hex[2], 16);
+  //     g = parseInt(hex[3] + hex[4], 16);
+  //     b = parseInt(hex[5] + hex[6], 16);
+  //   }
+  //   return [r, g, b];
+  // }
   // Convert RGB to HEX
-  function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  }
+  // function rgbToHex(r, g, b) {
+  //   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  // }
   const getFillColor = (stationCode) => {
     let color = "#353535"; // Default color
    
@@ -167,6 +164,8 @@ const getOutlineColor = (stationCode) => {
 }
 
 const getOutlineWeight = (stationCode) => {
+  return 0;
+  
   if (activeStation && stationCode === activeStation.code) {
     return 0;
   } else if (destination) {

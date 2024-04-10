@@ -1,6 +1,6 @@
 import React, { useState, useEffect , useContext } from "react";
 import { OriginContext } from "./Context/OriginContext";
-import { MapContainer, GeoJSON, useMap, ZoomControl } from "react-leaflet";
+import { MapContainer, GeoJSON, useMap, ZoomControl, TileLayer } from "react-leaflet";
 import TileComponent from "./TileComponent";
 import StationCircleComponent from "./StationCircleComponent";
 import stations from "./data/stations.json";
@@ -8,7 +8,7 @@ import Legend from "./Legend";
 import amtrakSimplifiedData from "./data/amtrak_simplified.json"; // Import the GeoJSON data
 import "./MapComponent.css";
 import LandingPage from "./LandingPage";
-import TileComponentGoogle from "./TileComponentGoogle";
+
 
 // separate  handler so that useMap can be used
 const CenterMap = () => {
@@ -51,21 +51,21 @@ const Map = () => {
   const [zoomLevel, setZoomLevel] = useState(7);
    // Function to calculate the radius based on the zoom level
 
-  //  const getRadius = () => {
-  //   if (zoomLevel < 6) {
-  //     return 6;
-  //   } else if (zoomLevel === 6) {
-  //     return 8;
-  //   } else if (zoomLevel === 7) {
-  //     return 10;
-  //   } else if (zoomLevel === 8) {
-  //     return 11;
-  //   } else if (zoomLevel === 9) {
-  //     return 11;
-  //   } else {
-  //     return 11;
-  //   }
-  // };
+   const getRadius = () => {
+    if (zoomLevel < 6) {
+      return 4;
+    } else if (zoomLevel === 6) {
+      return 5;
+    } else if (zoomLevel === 7) {
+      return 6;
+    } else if (zoomLevel === 8) {
+      return 8;
+    } else if (zoomLevel === 9) {
+      return 10;
+    } else {
+      return 11;
+    }
+  };
   
   useEffect(() => {
     const handleResize = () => {
@@ -86,6 +86,7 @@ const Map = () => {
     <MapContainer
       center={[origin.center.lat, origin.center.long]}
       zoom={7}
+      minZoom={7} // Set the maximum zoom out level
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
      // scrollWheelZoom={false} // Disable scroll-to-zoom
@@ -100,7 +101,7 @@ const Map = () => {
             <StationCircleComponent
               key={station.code}
               station={station}
-              radius={8} 
+              radius={getRadius()} 
             />
           );
         })}
@@ -116,8 +117,7 @@ const Map = () => {
           })}
         />
       )}
-      {/* <TileComponent /> */}
-    <TileComponentGoogle/>
+      <TileComponent />
 
      
       <CenterMap />
