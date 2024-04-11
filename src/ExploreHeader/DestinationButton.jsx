@@ -122,20 +122,21 @@ const DestinationButton = () => {
   };
 
   return (
-    <div className="search-container destination">
-      <div className="search destination">
-        <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon search-icon-destination"  />
+    <div className={`search-container destination ${(origin === undefined || origin === null) ? 'disabled' : ''}`}>
+      <div className={`search destination ${(origin === undefined || origin === null) ? 'disabled' : ''}`}>
+        <FontAwesomeIcon icon={faMapMarkerAlt} className={`search-icon search-icon-destination ${(origin === undefined || origin === null) ? 'disabled' : ''}`}  />
         <form className="search-form">
            <div className="div-search-form">
             <input
               ref={buttonRef}
               type="text"
-              className="search-input destination"
+              className={`search-input destination ${ (origin === undefined || origin === null) ? 'disabled' : ''}`}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onFocus={handleInputFocus}
               placeholder="Anywhere"
-              disabled={origin === undefined}
+              disabled={origin === undefined || origin === null}
+              // SET A DISABLED CLASS TO UPDATE THE STYLING
             />
 
             {showResults && (

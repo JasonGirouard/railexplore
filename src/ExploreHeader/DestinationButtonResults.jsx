@@ -12,9 +12,7 @@ const DestinationButtonResults = ({
   setSearchTerm,
   setShowResults,
 }) => {
-  const { setDestination } = useContext(DestinationContext);
-  const { origin } = useContext(OriginContext);
-  const { originStation } = useContext(OriginStationContext);
+  const { setSelectedDestination } = useContext(DestinationContext);
   const navigate = useNavigate();
   const [showPopover, setShowPopover] = useState(false);
   const PopoverRef = useRef(null);
@@ -42,10 +40,10 @@ const DestinationButtonResults = ({
   //FIX ME: SET THE PARAMS 
   // set to /anywhere and handle this appropriately if an origin station is set but nothing else 
   const handleSelect = (result) => {
-    setDestination(result);
+    setSelectedDestination(result);
     setSearchTerm(result.place_name);
     setShowResults(false);
-    navigate(`/explore/${origin.id}/${originStation.code}/${result.id}`);
+   // navigate(`/explore/${origin.id}/${originStation.code}/${result.id}`);
   };
 
   const handleClick = () => {
@@ -53,12 +51,12 @@ const DestinationButtonResults = ({
   };
 
   return (
-    <div ref={PopoverRef} className="origin-search-Popover">
-      <div className="search-results">
+    <div ref={PopoverRef} className="origin-search-Popover destination">
+      <div className="search-results destination">
         {searchResults.map((result) => (
           <div
             key={result.id}
-            className="autocomplete-option"
+            className="autocomplete-option destination"
             onClick={() => handleSelect(result)}
           >
             {result.place_name}
