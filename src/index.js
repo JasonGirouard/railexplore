@@ -15,9 +15,9 @@ root.render(
   <React.StrictMode>
 
 <OriginProvider>
-     
+      <DestinationProvider>
         <StationProvider>
-          <DestinationProvider>
+         
           <FiltersProvider>
           <OriginStationProvider>
           
@@ -25,9 +25,9 @@ root.render(
             
             </OriginStationProvider>
           </FiltersProvider>
-          </DestinationProvider>
+         
         </StationProvider>
-      
+       </DestinationProvider>
         </OriginProvider>
   </React.StrictMode>
 );

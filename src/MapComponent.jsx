@@ -1,6 +1,7 @@
 import React, { useState, useEffect , useContext } from "react";
 import { OriginContext } from "./Context/OriginContext";
-import { MapContainer, GeoJSON, useMap, ZoomControl, TileLayer } from "react-leaflet";
+import { DestinationContext } from "./Context/DestinationContext";
+import { MapContainer, GeoJSON, useMap, ZoomControl, TileLayer , Rectangle} from "react-leaflet";
 import TileComponent from "./TileComponent";
 import StationCircleComponent from "./StationCircleComponent";
 import stations from "./data/stations.json";
@@ -42,14 +43,64 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
   return null;
 };
 
+// this zoom pans to center the destination
+// const ZoomToBounds = () => {
+//   const map = useMap();
+//   const { selectedDestination } = useContext(DestinationContext);
+
+//   useEffect(() => {
+//     if (selectedDestination && selectedDestination.bbox) {
+//       const bounds = [
+//         [selectedDestination.bbox[1], selectedDestination.bbox[0]],
+//         [selectedDestination.bbox[3], selectedDestination.bbox[2]],
+//       ];
+//       // map.fitBounds(bounds);
+//       map.panInsideBounds(bounds);
+//     }
+//   }, [selectedDestination]);
+
+//   return null;
+// };
+
+
+const ZoomToBounds = () => {
+  const map = useMap();
+  const { selectedDestination } = useContext(DestinationContext);
+  const { origin } = useContext(OriginContext);
+
+  useEffect(() => {
+    if (
+      selectedDestination &&
+      selectedDestination.center &&
+      origin &&
+      origin.center
+    ) {
+      const destinationCenter = [
+        selectedDestination.center.lat,
+        selectedDestination.center.long,
+      ];
+      const originCenter = [origin.center.lat, origin.center.long];
+
+      const centerLat = (destinationCenter[0] + originCenter[0]) / 2;
+      const centerLong = (destinationCenter[1] + originCenter[1]) / 2;
+      map.panTo([centerLat, centerLong]);
+    }
+  }, [selectedDestination, origin]);
+
+  return null;
+};
+
 const Map = () => {
   console.log("📍 in the map");
   const { origin } = useContext(OriginContext);
+  const { selectedDestination } = useContext(DestinationContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [geoJsonData, setGeoJsonData] = useState(amtrakSimplifiedData);
   // note that one optimization could be logging the users zoom level in localStorage to reduce their need to zoom in to their desired level each time
   const [zoomLevel, setZoomLevel] = useState(7);
    // Function to calculate the radius based on the zoom level
+
+
 
    const getRadius = () => {
     if (zoomLevel < 6) {
@@ -105,6 +156,21 @@ const Map = () => {
             />
           );
         })}
+
+{/* {selectedDestination && selectedDestination.bbox && (
+        <Rectangle
+          bounds={[
+            [selectedDestination.bbox[1], selectedDestination.bbox[0]],
+            [selectedDestination.bbox[3], selectedDestination.bbox[2]],
+          ]}
+          color="gray"
+          weight={2}
+          fillOpacity={0.1}
+        />
+      )} */}
+
+
+      <ZoomToBounds />
 
       {geoJsonData && (
         <GeoJSON
