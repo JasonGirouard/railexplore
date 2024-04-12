@@ -1,9 +1,8 @@
 import React, { useEffect, useRef} from "react";
-
-import StationsFilterPopoverContent from "./StationsFilterPopoverContent";
+import DestinationStationsFilterPopoverContent from "./DestinationStationsFilterPopoverContent";
 import "./Filters.css";
 
-const StationsFilterPopover = ({ buttonRef, onClose }) => {
+const DestinationStationsFilterPopover = ({ buttonRef, onClose }) => {
    const PopoverRef = useRef(null);
 
   useEffect(() => {
@@ -27,9 +26,9 @@ const StationsFilterPopover = ({ buttonRef, onClose }) => {
 
   return (
     <div ref={PopoverRef} className="filters-Popover long">
-      <StationsFilterPopoverContent/>
+      <DestinationStationsFilterPopoverContent/>
     </div>
   );
 };
 
-export default StationsFilterPopover;
+export default DestinationStationsFilterPopover;

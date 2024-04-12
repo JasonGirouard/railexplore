@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState, Fragment } from "react";
+import { DestinationContext } from "./Context/DestinationContext";
 import { StationContext } from "./Context/StationContext";
 import { OriginStationContext } from "./Context/OriginStationContext";
 import { FiltersContext } from "./Context/FiltersContext";
@@ -16,6 +17,7 @@ const StationCircleComponent = ({ station, radius }) => {
   const { duration, destinationType } = useContext(FiltersContext);
   const { originStation, selectedStationDestinations } =
     useContext(OriginStationContext);
+    const { selectedDestination } = useContext(DestinationContext);
 
   const map = useMap();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
@@ -33,9 +35,13 @@ const StationCircleComponent = ({ station, radius }) => {
    useMapEvents({
     click: (event) => {
       if (!event.originalEvent.target.closest('.leaflet-interactive')) {
-        // Scroll to the top of the page instantly
-        setActiveStation(null);
-        setIsPanelOpen(false);
+        // only allow unsetting the activeStation if the selectedDestination is not defined and/or null 
+        if (selectedDestination === null || selectedDestination === undefined) {
+          console.log('CLICKING AWAY, SELECTED DESTINATION:', selectedDestination)
+          // Scroll to the top of the page instantly
+          setActiveStation(null);
+          setIsPanelOpen(false);
+        }
       }
     },
   });
@@ -165,7 +171,6 @@ const getOutlineColor = (stationCode) => {
 
 const getOutlineWeight = (stationCode) => {
   return 0;
-  
   if (activeStation && stationCode === activeStation.code) {
     return 0;
   } else if (destination) {

@@ -24,7 +24,7 @@ const AllFiltersPopover = ({ buttonRef, onClose }) => {
   }, [buttonRef, onClose]);
 
   return (
-    <div ref={PopoverRef} className="filters-Popover">
+    <div ref={PopoverRef} className="filters-Popover long">
       <AllFiltersPopoverContent/>
     </div>
   );

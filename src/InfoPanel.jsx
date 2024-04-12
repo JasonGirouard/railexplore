@@ -20,18 +20,25 @@ import StationMap from "./StationMap";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const InfoPanel = ({ isMobile }) => {
+
   console.log("📚 in info panel");
   const { activeStation, isPanelOpen, setIsPanelOpen } =
     useContext(StationContext);
   const { originStation, selectedStationDestinations } =
     useContext(OriginStationContext);
   const { origin } = useContext(OriginContext);
+  const navigate = useNavigate();
 
-    const handleInfoPanel = () => {
-      
-      setIsPanelOpen(!isPanelOpen); // Close the panel
-      
-    };
+  useEffect(() => {
+    if (isPanelOpen && origin && originStation && activeStation) {
+      console.log('setting params in infopanel')
+      navigate(`/explore/${origin.id}/${originStation.code}/${activeStation.code}`);
+    }
+  }, [isPanelOpen, originStation, activeStation]);
+
+  const handleInfoPanel = () => {
+    setIsPanelOpen(!isPanelOpen);
+  };
 
   // Define CSS classes based on state
   let panelClass = "info-panel";
@@ -163,6 +170,7 @@ const InfoPanel = ({ isMobile }) => {
   if (!originStation) {
     return null;
   }
+  
 
   return (
     <div className={panelClass}>

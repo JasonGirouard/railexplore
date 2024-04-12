@@ -2,14 +2,17 @@
 import { createContext, useState , useEffect, useContext } from 'react';
 import { DestinationContext } from './DestinationContext';
 import stations from "../data/stations.json"; 
+import { useNavigate } from "react-router-dom";
 
 export const StationContext = createContext();
 
 export const StationProvider = ({ children }) => {
   const { selectedDestination } = useContext(DestinationContext);
+
   const [activeStation, setActiveStation] = useState(null);
   const [nearestStationsDestination, setNearestStationsDestination] = useState(null);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  
 
   // set the nearest stations for destination
   useEffect(() => {
@@ -47,6 +50,7 @@ export const StationProvider = ({ children }) => {
       console.log('set the nearest and origin stations, origin:', nearestTenStationsDestination[0].name);
       const closestStation = nearestTenStationsDestination[0];
       setActiveStation(closestStation);
+    
       setIsPanelOpen(true);
       console.log('selectedDestination:',selectedDestination)
       console.log('nearestTentoDest:',nearestTenStationsDestination)

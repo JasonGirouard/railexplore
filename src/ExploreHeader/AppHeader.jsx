@@ -11,22 +11,22 @@ import UrlUpdate from "./UrlUpdate";
 
 import AllFiltersButton from "./AllFiltersButton.jsx";
 import StationsFilterButton from "./StationsFilterButton.jsx";
+import DestinationStationsFilterButton from "./DestinationStationsFilterButton";
 import DurationFilterButton from "./DurationFilterButton.jsx";
 import DestinationTypeFilterButton from "./DestinationTypeFilterButton.jsx";
 
 import { OriginContext } from "../Context/OriginContext";
+import { DestinationContext } from "../Context/DestinationContext";
 import { OriginStationContext } from "../Context/OriginStationContext";
 
 const AppHeader = (isMobile) => {
-
- 
 
   const [originDataLoaded, setOriginDataLoaded] = useState(false);
   const [showFiltersPortal, setShowFiltersPortal] = useState(false);
   const appHeaderRef = useRef(null);
   const { origin } = useContext(OriginContext);
+  const { selectedDestination } = useContext(DestinationContext);
   const { originStation } = useContext(OriginStationContext);
-
 
   // const filterButtonRef = useRef(null);
 
@@ -48,14 +48,39 @@ const AppHeader = (isMobile) => {
 
       </div>
       <div className="app-header-bottom">
+
       {origin && originStation && originDataLoaded && (
-        <div className="filters-container">
-          <AllFiltersButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal}/>
-          <StationsFilterButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal}/>
-          <DurationFilterButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal}/>
-          <DestinationTypeFilterButton isMobile={isMobile} showFiltersPortal={showFiltersPortal} setShowFiltersPortal={setShowFiltersPortal} />
-        </div>
-         )}
+  <div className="filters-container">
+    <AllFiltersButton
+      isMobile={isMobile}
+      showFiltersPortal={showFiltersPortal}
+      setShowFiltersPortal={setShowFiltersPortal}
+    />
+    <StationsFilterButton
+      isMobile={isMobile}
+      showFiltersPortal={showFiltersPortal}
+      setShowFiltersPortal={setShowFiltersPortal}
+    />
+    {selectedDestination && (
+      <DestinationStationsFilterButton
+        isMobile={isMobile}
+        showFiltersPortal={showFiltersPortal}
+        setShowFiltersPortal={setShowFiltersPortal}
+      />
+    )}
+    <DurationFilterButton
+      isMobile={isMobile}
+      showFiltersPortal={showFiltersPortal}
+      setShowFiltersPortal={setShowFiltersPortal}
+    />
+    <DestinationTypeFilterButton
+      isMobile={isMobile}
+      showFiltersPortal={showFiltersPortal}
+      setShowFiltersPortal={setShowFiltersPortal}
+    />
+  </div>
+)}
+
       </div>
 
       {showFiltersPortal && (

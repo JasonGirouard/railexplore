@@ -72,6 +72,12 @@ function App() {
           />
           <div className="content">
             <Routes>
+
+            <Route
+                path="/explore/:originId/:originStationCode/:destinationStationCode"
+                element={<Explore setActivePage={setActivePage} isMobile={isMobile}/>}
+              />
+
               <Route
                 path="/explore/:originId/:originStationCode"
                 element={<Explore setActivePage={setActivePage} isMobile={isMobile}/>}
@@ -82,7 +88,7 @@ function App() {
               />
               <Route
                 path="/explore"
-                element={<Explore setActivePage={setActivePage}isMobile={isMobile} />}
+                element={<Explore setActivePage={setActivePage} isMobile={isMobile} />}
               />
               <Route
                 path="/"

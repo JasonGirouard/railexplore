@@ -1,5 +1,6 @@
 import React, { useState, useContext, useRef , useEffect} from "react";
 import { OriginStationContext } from "../Context/OriginStationContext";
+import { StationContext } from "../Context/StationContext";
 import StationsFilterPopover from "./StationsFilterPopover";
 import "./Filters.css";
 import filledDownCaretIcon from "../images/down-caret-filled.svg";
@@ -9,14 +10,14 @@ import stations from "../data/stations.json";
 
 const StationsFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal}) => {
   const { originStation , setOriginStation} = useContext(OriginStationContext);
+  const { activeStation , setActiveStation, setIsPanelOpen } = useContext(StationContext);
   const [showPopover, setShowPopover] = useState(false);
   const buttonRef = useRef(null);
-  const { originId, originStationCode } = useParams();
+  const { originId, originStationCode, destinationStationCode } = useParams();
 
 
   // set the originStation based on url params
   useEffect(() => {
-      
     if (originStationCode) {
       const selectedStation = stations.find(
         (station) => station.code === originStationCode
@@ -27,6 +28,21 @@ const StationsFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal
       }
     }
   }, [originStationCode, setOriginStation]);
+
+  // set the activeStation based on url params
+  useEffect(() => {
+    if (destinationStationCode) {
+      const selectedStation = stations.find(
+        (station) => station.code === destinationStationCode
+      );
+      if (selectedStation) {
+          console.log('Setting destination station based on params:',selectedStation.name)
+        setActiveStation(selectedStation);
+        setIsPanelOpen(true);
+        
+      }
+    }
+  }, [destinationStationCode]);
 
   const handleClick = () => {
     if (isMobile && isMobile.isMobile) {
