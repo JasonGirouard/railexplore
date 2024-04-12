@@ -26,7 +26,7 @@ const DestinationTypeFilterButton = ({isMobile, showFiltersPortal, setShowFilter
           onClick={handleClick}
         >
           <div>Popular Destinations</div>
-          <img src={filledDownCaretIcon} alt="Down Caret Icon" />
+          <img src={filledDownCaretIcon} alt="Down Caret Icon"className={showPopover ? 'rotate-180' : ''} />
         </button>
       ) : (
         <div>
@@ -36,7 +36,7 @@ const DestinationTypeFilterButton = ({isMobile, showFiltersPortal, setShowFilter
             onClick={handleClick}
           >
             <div>Destination Type</div>
-            <img src={filledDownCaretIconBlack} alt="Down Caret Icon" />
+            <img src={filledDownCaretIconBlack} alt="Down Caret Icon"className={showPopover ? 'rotate-180' : ''} />
           </button>
         </div>
       )}

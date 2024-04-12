@@ -40,6 +40,7 @@
   font-weight: bold;
   background-color: white;
   border: 1px solid #ddd;
+  padding-right: 8px;
 }
 
 .stations-filter-button.set {
@@ -75,6 +76,7 @@
   font-weight: bold;
   background-color: white;
   border: 1px solid #ddd;
+  padding-right: 8px;
 }
 
 .filter-button.set {
@@ -296,3 +298,4 @@
     max-height: 500px;
     overflow-y: auto;
   }
+

@@ -35,7 +35,7 @@ const DestinationStationsFilterButton = ({isMobile, showFiltersPortal, setShowFi
         >
           <div className="from">To:&nbsp;</div>
           <div>{activeStation.name}</div>
-          <img src={filledDownCaretIcon} alt="Down Caret Icon" />
+          <img src={filledDownCaretIcon} alt="Down Caret Icon" className={showPopover ? 'rotate-180' : ''}/>
         </button>
       ) : (
         <div>
@@ -45,7 +45,7 @@ const DestinationStationsFilterButton = ({isMobile, showFiltersPortal, setShowFi
             onClick={handleClick}
           >
             <div>Destination Station</div>
-            <img src={filledDownCaretIconBlack} alt="Down Caret Icon" />
+            <img src={filledDownCaretIconBlack} alt="Down Caret Icon" className={showPopover ? 'rotate-180' : ''} />
           </button>
         </div>
       )}
