@@ -45,7 +45,7 @@
 
 
 .leaflet-tooltip:hover { 
-  border: 2px solid #2479E9;
+  border: 2px solid var(--blue);
 }
 
 
@@ -160,5 +160,5 @@
   */
 
   .leaflet-tooltip.selected {
-    border: 2px solid #2479E9;
+    border: 2px solid var(--blue);
   }

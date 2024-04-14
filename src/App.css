@@ -36,7 +36,7 @@
   /* overflow: hidden;  */
 }
 
-/* target devices with a minimum width of 768 aka desktop*/
+/* desktop*/
 @media (min-width: 770px) {
   .flex-container {
     flex-direction: row;
@@ -83,3 +83,16 @@ body {
     padding-top: 60px;
   }
 } */
+
+
+:root {
+  --off-white: #f0f0f0;
+  --very-light-gray: #f5f5f5;
+  --medium-light-gray: #dddddd;
+  --gray-border: #ddd;
+  --dark-gray: #767676;
+  --disabled: #888888;
+  --very-light-blue: #EEF8FF;
+  --light-blue: #e8f0fe;
+  --blue: #2479e9;
+}

@@ -19,7 +19,7 @@
     background-color: white;
     
     border-radius: 0px;
-    color: #333;
+    color: black;
 
     /* Apply a box shadow to the element with the following properties:
    - Horizontal offset: 0
@@ -31,24 +31,24 @@
     transition: background-color 0.3s;
   }
   .leaflet-control-zoom a:hover {
-    background-color: #f4f4f4;
+    background-color: var(--very-light-gray);
   }
   
   .leaflet-control-zoom-in,
   .leaflet-control-zoom-out {
     font-weight: bold;
-    border-color: 1px solid #ccc;
+    border-color: 1px solid var(--gray-border);
   }
   
   .leaflet-control-zoom-in {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--gray-border);
   }
 
   .leaflet-touch .leaflet-control-zoom a {
     width: 44px;
     height: 44px;
     line-height: 44px;
-    border-color: 1px solid #ccc;
+    border-color: 1px solid var(--gray-border);
   }
 
  /* mobile */

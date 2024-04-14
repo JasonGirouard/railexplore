@@ -296,8 +296,8 @@ const InfoPanel = ({ isMobile }) => {
 
       <div>
         <TrainPathFinder
-          originStation={originStation.code}
-          destinationStation={activeStation.code}
+          origin={originStation}
+          destination={activeStation}
         />
 
 <form

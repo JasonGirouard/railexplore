@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import stations from "./data/stations.json";
 import "./TrainPathFinder.css";
 
-const TrainPathFinder = ({ originStation, destinationStation }) => {
+const TrainPathFinder = ({ origin, destination }) => {
   const [paths, setPaths] = useState([]);
+  const originStation = origin.code;
+  const destinationStation = destination.code;
 
   useEffect(() => {
     
@@ -198,7 +200,7 @@ const getStationName = (stationCode) => {
     <div>
       {originStation !== destinationStation && (
         <div className="trains-container">
-          <div className="trains-title">Today's trains</div>
+          <div className="trains-title">Today's trains: {origin.name} →{" "} {destination.name}</div>
 
           {paths ? (
             paths.length > 0 ? (

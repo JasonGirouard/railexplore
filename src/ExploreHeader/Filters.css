@@ -7,14 +7,13 @@
   /* top&bottom right&left */
   padding: 8px 16px;
   margin: 0px 5px;
-  background-color: #f0f0f0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   color: #2479e9;
   font-weight: bold;
   background-color: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border);
 }
 
 .all-filters-button:hover {
@@ -33,20 +32,20 @@
   align-items: center;
   padding: 8px 16px;
   margin: 0px 5px;
-  background-color: #f0f0f0;
+  background-color: var(--off-white);
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
   background-color: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border);
   padding-right: 8px;
 }
 
 .stations-filter-button.set {
   color: #2479e9;
-  background-color: #e8f0fe;
-  border: 1px solid #e8f0fe;
+  background-color: var(--light-blue);
+  border: 1px solid var(--light-blue);
 }
 
 .stations-filter-button img {
@@ -69,20 +68,20 @@
   align-items: center;
   padding: 8px 16px;
   margin: 0px 5px;
-  background-color: #f0f0f0;
+  background-color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
   background-color: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border);;
   padding-right: 8px;
 }
 
 .filter-button.set {
-  color: #2479e9;
-  background-color: #e8f0fe;
-  border: 1px solid #e8f0fe;
+  color: var(--blue);
+  background-color: white;
+  border: 1px solid var(--gray-border);;
 }
 
 .filter-button img {
@@ -113,7 +112,7 @@
   position: absolute;
   z-index: 3;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-border);;
   border-radius: 4px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -130,7 +129,7 @@
   right: 0;
   z-index: 1000;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-border);
   border-radius: 0px;
   padding-top: 16px;
   padding-right: 16px;
@@ -170,7 +169,7 @@
 .placename {
   font-size: 14px;
   padding: 10px;
-  color: gray;
+  color: #767676;
 }
 
 .origin-destination {
@@ -179,7 +178,7 @@
   font-size: 16px;
   padding-left: 20px;
   padding-right: 20px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--very-light-gray);
 }
 
 .origin-destination .selected {
@@ -196,7 +195,7 @@
   align-items: center;
   padding: 5px;
   border-radius: 8px;
-  border: 1px solid #dddd;
+  border: 1px solid var(--gray-border);
   margin: 5px;
 }
 
@@ -231,7 +230,7 @@
 
 .station-address {
   font-size: 10px;
-  color: gray;
+  color: var(--dark-gray);
 }
 
 .station-distance {
@@ -245,12 +244,12 @@
 }
 .station-distance-bottom {
   font-size: 12px;
-  color: gray;
+  color: var(--dark-gray);
 }
 
 .show-more {
   padding: 5px;
-  color: #2479e9;
+  color: var(--blue);
   font-size: 14px;
   font-weight: bold;
   padding-left: 10px;
@@ -290,7 +289,7 @@
   }
 
   .divider {
-    border-top: 1px solid #e0e0e0
+    border-top: 1px solid var(--gray-border);
   }
 
   .filters-Popover.long {
