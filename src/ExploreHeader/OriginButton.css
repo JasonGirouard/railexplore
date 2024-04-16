@@ -53,8 +53,8 @@
   
   /* controls the selected text color */ 
   .search-input {
-    background-color: white;
-    border: 0px ;
+    /* background-color: white;
+    border: 0px ; */
   }
     .origin-search-Popover.destination{
       width: 95%;
