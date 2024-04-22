@@ -18,9 +18,18 @@
   color: white;
 } */
 
+
+.App {
+  height: 100vh; /* Fallback for browsers that don't support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
+}
+
+
 .flex-container {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  height: 100%;
   
 }
 
