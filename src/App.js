@@ -20,7 +20,7 @@ function App() {
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [isLoading, setIsLoading] = useState(true);
-  const appRef = useRef(null);
+  
 
   useEffect(() => {
     // Simulating an asynchronous operation
@@ -52,22 +52,7 @@ function App() {
   }, []);
 
   
-  function setAppHeight() {
-    const app = appRef.current;
-    if (app) {
-      const windowHeight = window.innerHeight;
-      app.style.height = `${windowHeight}px`;
-    }
-  }
 
-  useEffect(() => {
-    setAppHeight();
-    window.addEventListener('resize', setAppHeight);
-
-    return () => {
-      window.removeEventListener('resize', setAppHeight);
-    };
-  }, []);
   
 
   if (isLoading) {
