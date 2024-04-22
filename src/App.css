@@ -5,6 +5,19 @@
 
  */
 
+ /* Default styles */
+.app {
+  height: 100vh;
+}
+
+/* Styles for landscape orientation */
+@media screen and (orientation: landscape) {
+  .app {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+}
+
 
 /* 
 .App-header {

@@ -57,7 +57,7 @@
       flex: 1;
       /* changing to vh makes it worse ...  */
      height: 100%;
-     height: calc(100vh -150px); /* the height of the nav */ 
+  /*   height: calc(100vh -150px);  the height of the nav */ 
       z-index: 1;
     } 
 }

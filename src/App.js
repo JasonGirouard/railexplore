@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import About from "./About"; //
@@ -20,6 +20,7 @@ function App() {
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [isLoading, setIsLoading] = useState(true);
+  const appRef = useRef(null);
 
   useEffect(() => {
     // Simulating an asynchronous operation
@@ -49,6 +50,25 @@ function App() {
 
     enableAutoPageviews();
   }, []);
+
+  
+  function setAppHeight() {
+    const app = appRef.current;
+    if (app) {
+      const windowHeight = window.innerHeight;
+      app.style.height = `${windowHeight}px`;
+    }
+  }
+
+  useEffect(() => {
+    setAppHeight();
+    window.addEventListener('resize', setAppHeight);
+
+    return () => {
+      window.removeEventListener('resize', setAppHeight);
+    };
+  }, []);
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
