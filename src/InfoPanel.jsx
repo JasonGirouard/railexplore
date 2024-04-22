@@ -51,10 +51,14 @@ const InfoPanel = ({ isMobile }) => {
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Find the specific destination data for this station
-  const destination = selectedStationDestinations?.destinations.find(
-    (d) => activeStation && d.destination_station === activeStation.code
-  );
+  // Find the specific destination data for this station with all_stations_paths
+  // const destination = selectedStationDestinations?.destinations.find(
+  //   (d) => activeStation && d.destination_station === activeStation.code
+  // );
+
+  //for optimized_stations_paths, find the minTime a little differently. 
+  const minTime = activeStation && activeStation.code && selectedStationDestinations ? selectedStationDestinations[activeStation.code] : 0;
+
   // Function to navigate to the previous image
   const goToPreviousImage = () => {
     setCurrentImageIndex(
@@ -72,11 +76,17 @@ const InfoPanel = ({ isMobile }) => {
     );
   };
   // Function to format and display the minimum time to the destination
-  const formatMinTime = (stationCode) => {
-    if (!destination) return "N/A";
+  // const formatMinTime = (stationCode) => {
+  //   if (!destination) return "N/A";
+  //   const hours = Math.floor(destination.min_time / 3600);
+  //   const minutes = Math.floor((destination.min_time % 3600) / 60);
+  //   return `${hours}h ${minutes}m`;
+  // };
 
-    const hours = Math.floor(destination.min_time / 3600);
-    const minutes = Math.floor((destination.min_time % 3600) / 60);
+  const formatMinTime2 = (minTime) => {
+    if (minTime === undefined || minTime === null) return "N/A";
+    const hours = Math.floor(minTime / 3600);
+    const minutes = Math.floor((minTime % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
 
@@ -95,6 +105,8 @@ const InfoPanel = ({ isMobile }) => {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
+
+ 
 
   // Determine the image to display based on station type
   const getImageForStationType = (stationType) => {
@@ -185,7 +197,8 @@ const InfoPanel = ({ isMobile }) => {
         <div className="station-info">
           <h2>{activeStation.name}</h2>
           <div className="station-details">
-            {formatMinTime(activeStation.code)}
+            {/* {formatMinTime(activeStation.code)} */}
+            {formatMinTime2(minTime)}
             <div className="tooltip-header">
               <img
                 src={getImageForStationType(activeStation.station_type)}
@@ -241,7 +254,7 @@ const InfoPanel = ({ isMobile }) => {
           </button>
         </div>
 
-        <form
+        {/* <form
           action="https://www.amtrak.com/services/journeysearch"
           method="post"
           target="_blank"
@@ -278,7 +291,7 @@ const InfoPanel = ({ isMobile }) => {
           >
             Book on Amtrak
           </button>
-        </form>
+        </form> */}
       </div>
       <div className="station-description">
         <h3>Things to Do in {activeStation.name}</h3>

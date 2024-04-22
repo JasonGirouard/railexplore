@@ -2,14 +2,36 @@
 import React, { createContext, useState, useEffect , useContext} from 'react';
  import { OriginContext } from './OriginContext';
  import stations from "../data/stations.json"; 
- import stationSummary from "../data/all_stations_paths.json";
+ //import stationSummary from "../data/all_stations_paths.json";
 // import stations from "../data/stations.json"; 
 export const OriginStationContext = createContext();
+
 export const OriginStationProvider = ({ children }) => {
+
      const {origin } = useContext(OriginContext);
+const [stationSummary, setStationSummary] = useState(null);
   const [originStation, setOriginStation] = useState(null);
   const [nearestStations, setNearestStations] = useState(null);
   const [selectedStationDestinations, setSelectedStationDestinations] = useState(null);
+
+  useEffect(() => {
+    const fetchStationSummary = async () => {
+      try {
+      //  const response = await fetch('https://traingang.s3.amazonaws.com/all_stations_paths.json');
+       // const response = await fetch('/all_stations_paths.json');
+        const response = await fetch('/optimized_stations_paths.json');
+       
+        const data = await response.json();
+        setStationSummary(data);
+        console.log('setting111')
+      } catch (error) {
+        console.error('Error fetching station summary:', error);
+      }
+    };
+  
+    fetchStationSummary();
+  }, []);
+
 
   useEffect(() => {
     if (origin && origin.center) {
@@ -93,19 +115,19 @@ export const OriginStationProvider = ({ children }) => {
 
    // WRITE THE VALUES TO LOCAL STORAGE AS THEY CHANGE
    useEffect(() => {
-    if (originStation) {
-      //  console.log('writing originStation to local Storage', originStation) 
-       // localStorage.setItem('originStation', JSON.stringify(originStation));
+    if (originStation && stationSummary) {
 
-       // console.log('in set selected stations destinations:',selectedStationDestinations);
-        setSelectedStationDestinations(
-      stationSummary.find(
-        (entry) => entry.origin_station === originStation.code
-      )
-    );
+        // optimized all_stations_paths
+        setSelectedStationDestinations(stationSummary[originStation.code]);
+
+        //old all_stations_paths
+    //   setSelectedStationDestinations(
+    //     stationSummary.find(
+    //       (entry) => entry.origin_station === originStation.code
+    //     )
+    //   );
     }
-
-  }, [originStation]);
+  }, [originStation, stationSummary]);
 
 
   return (

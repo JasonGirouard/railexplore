@@ -11,7 +11,10 @@ const TrainPathFinder = ({ origin, destination }) => {
     
     const fetchTrainData = async () => {
       try {
-        const response = await fetch('/train_data.json');
+      //  const response = await fetch('/train_data.json');
+      const response = await fetch('https://traingang.s3.amazonaws.com/trains_data_most_recent.json');
+     //   const response = await fetch('/trains_data_p7.json');
+       // const response = await fetch('https://traingang.s3.amazonaws.com/trains_data_p7.json');
         const df = await response.json();
         const calculatedPaths = dijkstra(originStation, destinationStation, df);
         setPaths(JSON.parse(calculatedPaths));
@@ -29,26 +32,32 @@ const TrainPathFinder = ({ origin, destination }) => {
   }
 
   function dijkstra(originStation, destinationStation, df) {
-    if (originStation === destinationStation) {
-      const originStationName = df.find(row => row.from_station === originStation).from_station_name;
-      return JSON.stringify([{
-        route_names: [],
-        start_time: '',
-        end_time: '',
-        elapsed_time: 0,
-        transfers: [],
-        stops: [{
-          station: originStation,
-          station_name: originStationName,
-          route_name: '',
-          train_number: '',
-          arrival_time: '',
-          departure_time: '',
-          next_stop: null
-        }]
-      }]);
-    }
-
+    // If the origin and destination stations are the same, return a single stop path
+    // with no route names, transfer information, and zero elapsed time
+    // if (originStation === destinationStation) {
+    //   const originStationName = df.find(row => row.from_station === originStation).from_station_name;
+    //   return JSON.stringify([{
+    //     route_names: [],
+    //     start_time: '',
+    //     end_time: '',
+    //     elapsed_time: 0,
+    //     transfers: [],
+    //     stops: [{
+    //       station: originStation,
+    //       station_name: originStationName,
+    //       route_name: '',
+    //       train_number: '',
+    //       arrival_time: '',
+    //       departure_time: '',
+    //       next_stop: null
+    //     }]
+    //   }]);
+    // }
+  
+    // Build the graph from the DataFrame
+    // Create an adjacency list representation of the graph
+    // Each station is a key in the graph object, and the value is an array of its neighboring stations
+    // Along with the neighboring station, store the route name, train number, departure time, and arrival time
     const graph = {};
     for (const row of df) {
       const fromStation = row.from_station;
@@ -59,37 +68,48 @@ const TrainPathFinder = ({ origin, destination }) => {
       const trainNumber = row.train_number;
       const departureTime = new Date(row.departure);
       const arrivalTime = new Date(row.arrival);
-
+  
       if (!graph[fromStation]) {
         graph[fromStation] = [];
       }
       graph[fromStation].push([toStation, fromStationName, toStationName, routeName, trainNumber, departureTime, arrivalTime]);
     }
-
+  
+    // Initialize variables for Dijkstra's algorithm
+    // paths: an array to store all the valid paths from origin to destination
+    // visited: a set to keep track of visited stations and their arrival times to avoid revisiting the same station at the same time
+    // pq: a priority queue to store the stations to visit, initialized with the origin station
     const paths = [];
     const visited = new Set();
     let pq = [[0, originStation, [], null, null, null, null]];
-
+  
+    // Run Dijkstra's algorithm
     while (pq.length > 0) {
+      // Extract the station with the lowest cost from the priority queue
       let [cost, currentStation, path, routeNames, trainNumbers, departureTimes, arrivalTimes] = pq.shift();
-
+  
+      // Skip if the current station and arrival time combination has already been visited
+      // This is to avoid revisiting the same station at the same time and prevent infinite loops
       if (visited.has(JSON.stringify([currentStation, arrivalTimes ? arrivalTimes[arrivalTimes.length - 1] : null]))) {
         continue;
       }
-
+  
+      // Mark the current station and arrival time combination as visited
       visited.add(JSON.stringify([currentStation, arrivalTimes ? arrivalTimes[arrivalTimes.length - 1] : null]));
       path = [...path, currentStation];
-
+  
+      // If the current station is the destination, construct the path information and add it to the paths array
       if (currentStation === destinationStation) {
         const pathInfo = {
-          route_names: [...new Set(routeNames)],
+          route_names: [...new Set(routeNames)], // Remove duplicate route names
           start_time: departureTimes[0].toISOString(),
           end_time: arrivalTimes[arrivalTimes.length - 1].toISOString(),
           elapsed_time: calculateElapsedTime(departureTimes[0], arrivalTimes[arrivalTimes.length - 1]),
           transfers: [],
           stops: []
         };
-
+  
+        // Construct the stop information for each station in the path
         for (let i = 0; i < path.length - 1; i++) {
           const stopInfo = {
             station: path[i],
@@ -101,7 +121,8 @@ const TrainPathFinder = ({ origin, destination }) => {
             next_stop: path[i + 1]
           };
           pathInfo.stops.push(stopInfo);
-
+  
+          // Add transfer information if there is a route change between the current and next station
           if (i < routeNames.length - 1 && routeNames[i] !== routeNames[i + 1]) {
             pathInfo.transfers.push({
               station: path[i + 1],
@@ -112,7 +133,8 @@ const TrainPathFinder = ({ origin, destination }) => {
             });
           }
         }
-
+  
+        // Add the destination station information to the stops array
         pathInfo.stops.push({
           station: path[path.length - 1],
           station_name: graph[path[path.length - 1]][0][2],
@@ -122,13 +144,16 @@ const TrainPathFinder = ({ origin, destination }) => {
           departure_time: departureTimes[departureTimes.length - 1].toISOString(),
           next_stop: null
         });
-
+  
+        console.log('PATH FOUND:', pathInfo);
         paths.push(pathInfo);
         continue;
       }
-
+  
+      // Explore the neighbors of the current station
       if (graph[currentStation]) {
         for (const [neighbor, fromStationName, toStationName, routeName, trainNumber, departureTime, arrivalTime] of graph[currentStation]) {
+          // Only consider the neighbor if its departure time is later than or equal to the current station's arrival time
           if (!arrivalTimes || departureTime >= arrivalTimes[arrivalTimes.length - 1]) {
             const newRouteNames = routeNames ? [...routeNames, routeName] : [routeName];
             const newTrainNumbers = trainNumbers ? [...trainNumbers, trainNumber] : [trainNumber];
@@ -139,28 +164,34 @@ const TrainPathFinder = ({ origin, destination }) => {
         }
       }
     }
-
+  
+    // Filter paths to keep only the ones with the earliest start time and shortest elapsed time for each unique start time
     const filteredPaths = [];
-  const startTimeDict = {};
-  for (const path of paths) {
-    const startTime = path.start_time;
-    const endTime = path.end_time;
-    const elapsedTime = path.elapsed_time;
-
-    if (new Date(endTime) > new Date(startTime)) {
-      if (!startTimeDict[startTime] || elapsedTime < startTimeDict[startTime].elapsed_time) {
-        startTimeDict[startTime] = {
-          elapsed_time: elapsedTime,
-          path: path
-        };
+    const startTimeDict = {};
+    for (const path of paths) {
+      const startTime = path.start_time;
+      const endTime = path.end_time;
+      const elapsedTime = path.elapsed_time;
+  
+      // Only consider paths where the end time is later than the start time
+      if (new Date(endTime) > new Date(startTime)) {
+        // If the start time is not in the dictionary or the current path has a shorter elapsed time,
+        // update the dictionary with the current path
+        if (!startTimeDict[startTime] || elapsedTime < startTimeDict[startTime].elapsed_time) {
+          startTimeDict[startTime] = {
+            elapsed_time: elapsedTime,
+            path: path
+          };
+        }
       }
     }
-  }
-
+  
+    // Add the filtered paths to the result array
     for (const pathInfo of Object.values(startTimeDict)) {
       filteredPaths.push(pathInfo.path);
     }
-
+  
+    // Return the filtered paths as a JSON string with proper indentation
     return JSON.stringify(filteredPaths, null, 2);
   }
   //end of dijkstra's 
@@ -181,6 +212,30 @@ const TrainPathFinder = ({ origin, destination }) => {
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
 
+  const formatDate = (timeString) => {
+    if (typeof timeString !== "string") {
+      console.error("Invalid timeString:", timeString);
+      return "";
+    }
+  
+    const date = new Date(timeString);
+    const month = date.getMonth() + 1; // Month is zero-indexed, so we add 1
+    const day = date.getDate();
+    return `${month}/${day}`;
+  };
+
+  const formatDayOfWeek = (timeString) => {
+    if (typeof timeString !== "string") {
+      console.error("Invalid timeString:", timeString);
+      return "";
+    }
+  
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const date = new Date(timeString);
+    const dayIndex = date.getDay();
+    return daysOfWeek[dayIndex];
+  };
+
  // Function to format the elapsed time (in milliseconds)
 const formatElapsedTime = (totalMilliseconds) => {
     const totalSeconds = Math.floor(totalMilliseconds / 1000);
@@ -188,6 +243,8 @@ const formatElapsedTime = (totalMilliseconds) => {
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
+
+
 
 // Function to get the station name from the station code
 const getStationName = (stationCode) => {
@@ -200,7 +257,8 @@ const getStationName = (stationCode) => {
     <div>
       {originStation !== destinationStation && (
         <div className="trains-container">
-          <div className="trains-title">Today's trains: {origin.name} →{" "} {destination.name}</div>
+          <div className="trains-title">{origin.name} →{" "} {destination.name}</div>
+          <div>Recent trains. For a full set of trains, view those on Amtrak.com </div>
 
           {paths ? (
             paths.length > 0 ? (
@@ -214,7 +272,13 @@ const getStationName = (stationCode) => {
                       </span>
                     </div>
                     <div className="card-body">
+                      
                       <div className="time-range">
+                        <div className="date"> 
+                        {formatDate(path.start_time)}{" "}
+                        {formatDayOfWeek(path.start_time)}
+                        </div>
+
                         {formatTime(path.start_time)} -{" "}
                         {formatTime(path.end_time)}
                       </div>

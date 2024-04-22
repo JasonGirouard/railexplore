@@ -7,7 +7,7 @@ import styled from "styled-components";
 const MapContainerStyled = styled(MapContainer)`
   border-radius: 10px;
   overflow: hidden;
-  max-width: min(511px, 100%);
+//   max-width: min(511px, 100%);
   .leaflet-container {
     touch-action: none;
   }
@@ -34,7 +34,7 @@ const StationMap = ({ activeStation }) => {
     <MapContainerStyled
       center={[activeStation.lat, activeStation.long]}
       zoom={15}
-      style={{ height: "511px", width: "100%" }}
+      style={{ height: "350px", width: "100%" }}
     //   zoomControl={false}
     //   dragging={false}
     //   doubleClickZoom={false}

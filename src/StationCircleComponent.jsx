@@ -7,7 +7,7 @@ import { CircleMarker, Popup, Tooltip, useMap,useMapEvents } from "react-leaflet
 import StationTooltip from "./StationToolTip";
 import { StarFilled } from "@ant-design/icons";
 
-import stationSummary from "./data/all_stations_paths.json";
+//import stationSummary from "./data/all_stations_paths.json";
 import "./StationCircleComponent.css";
 
 const StationCircleComponent = ({ station, radius }) => {
@@ -26,10 +26,13 @@ const StationCircleComponent = ({ station, radius }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   
 
-  // find the distance associated with this specific station.
-  const destination = selectedStationDestinations?.destinations.find(
-    (d) => d.destination_station === station.code
-  );
+  // find the distance associated with this specific station for all_stations_paths
+  // const destination = selectedStationDestinations?.destinations.find(
+  //   (d) => d.destination_station === station.code
+  // );
+
+  //minTime works for optimized_stations_paths
+  const minTime = selectedStationDestinations && selectedStationDestinations[station.code];
 
    //handle click away from a selected station...it works, but it also rerenders the circles at a high rate
    useMapEvents({
@@ -37,7 +40,7 @@ const StationCircleComponent = ({ station, radius }) => {
       if (!event.originalEvent.target.closest('.leaflet-interactive')) {
         // only allow unsetting the activeStation if the selectedDestination is not defined and/or null 
         if (selectedDestination === null || selectedDestination === undefined) {
-          console.log('CLICKING AWAY, SELECTED DESTINATION:', selectedDestination)
+        //  console.log('CLICKING AWAY, SELECTED DESTINATION:', selectedDestination)
           // Scroll to the top of the page instantly
           setActiveStation(null);
           setIsPanelOpen(false);
@@ -162,9 +165,11 @@ const StationCircleComponent = ({ station, radius }) => {
 const getOutlineColor = (stationCode) => {
   if (activeStation && stationCode === activeStation.code) {
     return "#000000";
-  } else if (destination) {
-    return null;
-  } else {
+   } 
+   //else if (destination) {
+  //   return null;
+  // } 
+  else {
     return "#AFDDFF";
   }
 }
@@ -173,20 +178,31 @@ const getOutlineWeight = (stationCode) => {
   return 0;
   if (activeStation && stationCode === activeStation.code) {
     return 0;
-  } else if (destination) {
-    return 0;
-  } else {
+  } 
+  // else if (destination) {
+  //   return 0;
+  // } 
+  else {
     return 2;
   }
 };
 
   // Function to format and display the minimum time to the destination
-  const formatMinTime = (stationCode) => {
-    if (!destination) return "N/A";
-    const hours = Math.floor(destination.min_time / 3600);
-    const minutes = Math.floor((destination.min_time % 3600) / 60);
+  // const formatMinTime = (stationCode) => {
+  //   if (!destination) return "N/A";
+  //   const hours = Math.floor(destination.min_time / 3600);
+  //   const minutes = Math.floor((destination.min_time % 3600) / 60);
+  //   return `${hours}h ${minutes}m`;
+  // };
+
+  const formatMinTime2 = (minTime) => {
+    if (minTime === undefined || minTime === null) return "N/A";
+    const hours = Math.floor(minTime / 3600);
+    const minutes = Math.floor((minTime % 3600) / 60);
     return `${hours}h ${minutes}m`;
   };
+
+  
 
   const shouldOpenPopup = (tourismTier, zoomLevel) => {
     if (tourismTier === 4) return true;
@@ -200,7 +216,13 @@ const getOutlineWeight = (stationCode) => {
     return null;
   }
 
-  if ( (duration && destination && destination.min_time / 3600 > duration) || (duration && duration<1000 && !destination)) { 
+  //for all-stations_paths
+  // if ( (duration && destination && destination.min_time / 3600 > duration) || (duration && duration<1000 && !destination)) { 
+  //   return null; 
+  // }
+
+  //for optimized_stations_paths
+  if ( (duration && minTime && minTime / 3600 > duration) || (duration && duration<1000 && !minTime)) { 
     return null; 
   }
 
@@ -261,7 +283,8 @@ const getOutlineWeight = (stationCode) => {
                   <div className="tooltip-content">
                     <h2>{station.city}</h2>
                     <div className="tooltip-info">
-                      <span>{formatMinTime(station.code)}</span>
+                      {/* <span>{formatMinTime(station.code)}</span> */}
+                      <span>{formatMinTime2(minTime)}</span>
                     </div>
                   </div>
                 </div>
