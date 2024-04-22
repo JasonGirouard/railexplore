@@ -13,6 +13,7 @@ const TrainPathFinder = ({ origin, destination }) => {
       try {
       //  const response = await fetch('/train_data.json');
       const response = await fetch('https://traingang.s3.amazonaws.com/trains_data_most_recent.json');
+    //  const response = await fetch('/trains_data_p2.json');
      //   const response = await fetch('/trains_data_p7.json');
        // const response = await fetch('https://traingang.s3.amazonaws.com/trains_data_p7.json');
         const df = await response.json();

@@ -314,8 +314,8 @@ font-size: 18px;
   font-size: 15px;
   text-align: left;
  /* border: 1px solid #d3d3d3; /* Light gray border */
-  height: 511px;
-  padding-bottom: 30px;
+  /* height: 511px; */
+  padding-bottom: 0px;
  background: white;
 }
 
@@ -323,3 +323,6 @@ font-size: 18px;
   font-style: italic;
 }
 
+.leaflet-control-zoom {
+  padding-top: 25px;
+}
