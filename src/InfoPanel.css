@@ -166,26 +166,6 @@
   background-color: #0056b3; /* Darker shade for hover state */
 }
 
-.book-button2 {
-  position: relative;
-  background-color: var(--blue); /* Amtrak's brand color or any color you prefer */
-  color: white;
-  padding: 10px 20px;
-  margin: 10px 20px;
-  margin-top: 0px;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer; /* Indicates that the element is clickable */
-
-  font-weight: bold; /* Optional: makes the text bold */
-}
-
-.book-button2:hover {
-  background-color: #0056b3; /* Darker shade for hover state */
-}
-
 .station-icon {
   width: 30px; /* Adjust the size as needed */
   height: 30px; /* Adjust the size as needed */

@@ -1,0 +1,182 @@
+
+/* DATE PICKER */
+
+.custom-range-picker {
+    background-color: var(--very-light-gray);
+    color: black;
+    border: none;
+    border: 1px solid var(--gray-border);
+    height: 40px;
+    font-size: 16px;
+    width: 350px;
+  }
+
+  .ant-picker-input {
+      font-size: 16px;
+  }
+  
+  /* adjust the calendar icon to the left */
+  .custom-range-picker .ant-picker-suffix {
+    order: -1;
+    margin-right: 8px;
+    color: black;
+  }
+  
+  /* set the separator color */ 
+  .custom-range-picker .ant-picker-range-separator {
+    color: var(--gray-border);
+  }
+  
+  .ant-picker:hover {
+    color: black;
+    border: 1px solid var(--gray-border);
+
+  }
+  .ant-picker-range:hover {
+    color: black;
+  }
+  .custom-range-picker:hover{
+    background-color: var(--hover-gray);
+    color: black;
+  }
+  .custom-range-picker .ant-picker-suffix:hover {
+    color: black;
+    display: inline-block;
+  }
+  
+  .custom-range-picker .ant-picker-input:hover .ant-picker-suffix {
+    color: black;
+    display: inline-block;
+  }
+  
+  
+  /* RADIO BUTTONS */
+  
+  .custom-radio-group {
+    color: black;
+    /* width: 500px; */
+    /* height: 10px; */
+  }
+
+  .ant-radio-button-wrapper {
+    font-size: 10px;
+    /* height: 10px; */
+  }
+
+  .ant-radio-button {
+      /* height: 10px; */
+  }
+  
+  .ant-radio-button-checked {
+    background-color: var(--very-light-gray);
+    border-color: var(--gray-border);
+    color: black;
+  }
+  
+  .custom-radio-group .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    background-color: var(--very-light-gray);
+    border-color: var(--gray-border);
+    color: black;
+    font-weight: 600; /* Semi-bold */
+  }
+  
+  .custom-radio-group .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+    background-color: var(--very-light-gray);
+    font-weight: 600; /* Semi-bold */
+  }
+  
+  /* selected one */
+  .custom-radio-group .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+    color: black;
+    font-weight: 600; /* Semi-bold */
+    box-shadow: none;
+    border: 1px solid var(--gray-border);
+  }
+  
+  /* not selected one */
+  .custom-radio-group .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-checked):hover {
+    color: black;
+  }
+  
+
+  /* BOOK BUTTON */ 
+
+  .book-button2 {
+    /* position: relative; */
+    background-color: var(--blue); /* Amtrak's brand color or any color you prefer */
+    color: white;
+    padding: 10px 20px;
+    /* margin: 10px 20px; */
+    /* margin-top: 0px; */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
+    cursor: pointer; /* Indicates that the element is clickable */
+    font-weight: bold; /* Optional: makes the text bold */
+    height: 40px;
+  }
+  
+  .book-button2:hover {
+    background-color: #0056b3; /* Darker shade for hover state */
+  }
+
+
+  /* TRAVELERS */ 
+
+  .party {
+      padding-left: 4px;
+      font-size: 10px;
+  }
+  .travelers-text {
+      font-weight: 600; /* semi bold */
+  }
+
+  .button-plus {
+      border-radius: 4px;
+      border: 1px solid var(--gray-border);
+      background-color: white;
+      cursor: pointer; 
+  }
+
+  .button-minus {
+    border-radius: 4px;
+    border: 1px solid var(--gray-border);
+    background-color: white;
+    cursor: pointer; 
+}
+
+.button-minus.disabled {
+    color: var(--disabled);        /* Light grey color to indicate disabled state */
+   /*  cursor: not-allowed;  Cursor shows the action is not allowed */
+  }
+
+
+  /* CONTAINERS */ 
+
+  .booking {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      padding: 10px;
+      margin-top: 0px;
+      padding-top: 0px;
+  }
+
+  .booking-bottom {
+      padding-top: 4px;
+  }
+
+  .booking-top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+  }
+
+  .booking-bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+  }

@@ -18,21 +18,24 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import StationMap from "./StationMap";
 import { useNavigate, useLocation } from "react-router-dom";
+import Booking from "./Booking";
 
 const InfoPanel = ({ isMobile }) => {
-
   console.log("📚 in info panel");
   const { activeStation, isPanelOpen, setIsPanelOpen } =
     useContext(StationContext);
   const { originStation, selectedStationDestinations } =
     useContext(OriginStationContext);
   const { origin } = useContext(OriginContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isPanelOpen && origin && originStation && activeStation) {
-      console.log('setting params in infopanel')
-      navigate(`/explore/${origin.id}/${originStation.code}/${activeStation.code}`);
+      console.log("setting params in infopanel");
+      navigate(
+        `/explore/${origin.id}/${originStation.code}/${activeStation.code}`
+      );
     }
   }, [isPanelOpen, originStation, activeStation]);
 
@@ -51,13 +54,11 @@ const InfoPanel = ({ isMobile }) => {
   // Add a state to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Find the specific destination data for this station with all_stations_paths
-  // const destination = selectedStationDestinations?.destinations.find(
-  //   (d) => activeStation && d.destination_station === activeStation.code
-  // );
-
-  //for optimized_stations_paths, find the minTime a little differently. 
-  const minTime = activeStation && activeStation.code && selectedStationDestinations ? selectedStationDestinations[activeStation.code] : 0;
+  //for optimized_stations_paths, find the minTime a little differently.
+  const minTime =
+    activeStation && activeStation.code && selectedStationDestinations
+      ? selectedStationDestinations[activeStation.code]
+      : 0;
 
   // Function to navigate to the previous image
   const goToPreviousImage = () => {
@@ -68,20 +69,12 @@ const InfoPanel = ({ isMobile }) => {
     );
   };
 
-  
   // Function to navigate to the next image
   const goToNextImage = () => {
     setCurrentImageIndex(
       (prevIndex) => (prevIndex + 1) % activeStation.image_urls.length
     );
   };
-  // Function to format and display the minimum time to the destination
-  // const formatMinTime = (stationCode) => {
-  //   if (!destination) return "N/A";
-  //   const hours = Math.floor(destination.min_time / 3600);
-  //   const minutes = Math.floor((destination.min_time % 3600) / 60);
-  //   return `${hours}h ${minutes}m`;
-  // };
 
   const formatMinTime2 = (minTime) => {
     if (minTime === undefined || minTime === null) return "N/A";
@@ -105,8 +98,6 @@ const InfoPanel = ({ isMobile }) => {
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
-
- 
 
   // Determine the image to display based on station type
   const getImageForStationType = (stationType) => {
@@ -145,31 +136,6 @@ const InfoPanel = ({ isMobile }) => {
     }
   };
 
-  function getDepartureDate() {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-
-    if (dayOfWeek === 6) {
-      // If today is Saturday, set the departure date to the next Saturday
-      const nextSaturday = new Date(today);
-      nextSaturday.setDate(today.getDate() + 7);
-      return nextSaturday;
-    } else {
-      // If today is not Saturday, set the departure date to the nearest Saturday
-      const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
-      const nearestSaturday = new Date(today);
-      nearestSaturday.setDate(today.getDate() + daysUntilSaturday);
-      return nearestSaturday;
-    }
-  }
-
-  function getReturnDate() {
-    const departureDate = getDepartureDate();
-    const returnDate = new Date(departureDate);
-    returnDate.setDate(departureDate.getDate() + 1);
-    return returnDate;
-  }
-
   // Function to handle image load error
   const handleImageError = (e) => {
     e.target.src = placeholderImage; // Replace with placeholder image
@@ -182,7 +148,6 @@ const InfoPanel = ({ isMobile }) => {
   if (!originStation) {
     return null;
   }
-  
 
   return (
     <div className={panelClass}>
@@ -253,45 +218,6 @@ const InfoPanel = ({ isMobile }) => {
             &#10095; {/* This is a Unicode right-pointing angle bracket */}
           </button>
         </div>
-
-        {/* <form
-          action="https://www.amtrak.com/services/journeysearch"
-          method="post"
-          target="_blank"
-        >
-          <input type="hidden" name="wdf_origin" value={originStation.code} />
-          <input
-            type="hidden"
-            name="wdf_destination"
-            value={activeStation.code}
-          />
-          <input type="hidden" name="wdf_TripType" value="Return" />
-          <input
-            type="hidden"
-            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
-            value={getDepartureDate().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          />
-          <input
-            type="hidden"
-            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
-            value={getReturnDate().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          />
-          <input type="hidden" name="wdf_person_type1" value="Adult" />
-          <button
-            type="submit"
-            className="book-button plausible-event-name=Book"
-          >
-            Book on Amtrak
-          </button>
-        </form> */}
       </div>
       <div className="station-description">
         <h3>Things to Do in {activeStation.name}</h3>
@@ -308,50 +234,9 @@ const InfoPanel = ({ isMobile }) => {
       </div>
 
       <div>
-        <TrainPathFinder
-          origin={originStation}
-          destination={activeStation}
-        />
+        <TrainPathFinder origin={originStation} destination={activeStation} />
 
-<form
-          action="https://www.amtrak.com/services/journeysearch"
-          method="post"
-          target="_blank"
-        >
-          <input type="hidden" name="wdf_origin" value={originStation.code} />
-          <input
-            type="hidden"
-            name="wdf_destination"
-            value={activeStation.code}
-          />
-          <input type="hidden" name="wdf_TripType" value="Return" />
-          <input
-            type="hidden"
-            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
-            value={getDepartureDate().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          />
-          <input
-            type="hidden"
-            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
-            value={getReturnDate().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          />
-          <input type="hidden" name="wdf_person_type1" value="Adult" />
-          <button
-            type="submit"
-            className="book-button2 plausible-event-name=Book2"
-          >
-            View all trains on Amtrak.com
-          </button>
-        </form>
-
+        
       </div>
 
       {originStation.code === activeStation.code && (
@@ -363,13 +248,24 @@ const InfoPanel = ({ isMobile }) => {
         </div>
       )}
 
-    
-      <div className="info-panel-map">
-        <p>{activeStation.address1}{', '}{activeStation.city}{', '}{activeStation.state}{', '}{activeStation.zipcode}</p>
-        <StationMap activeStation={activeStation} /> 
-        </div>
+<Booking originStation={originStation} activeStation={activeStation} />
 
-        {isMobile && (
+      
+
+      <div className="info-panel-map">
+        <p>
+          {activeStation.address1}
+          {", "}
+          {activeStation.city}
+          {", "}
+          {activeStation.state}
+          {", "}
+          {activeStation.zipcode}
+        </p>
+        <StationMap activeStation={activeStation} />
+      </div>
+
+      {isMobile && (
         <div className="info-panel-footer">
           <button className="filter-button set" onClick={handleInfoPanel}>
             <div>Go back</div>
@@ -377,21 +273,18 @@ const InfoPanel = ({ isMobile }) => {
         </div>
       )}
 
-{!isMobile && (
+      {!isMobile && (
         <div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
         </div>
       )}
-
-     
-
     </div>
   );
 };
