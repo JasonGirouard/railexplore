@@ -248,7 +248,7 @@ const InfoPanel = ({ isMobile }) => {
         </div>
       )}
 
-<Booking originStation={originStation} activeStation={activeStation} />
+<Booking originStation={originStation} activeStation={activeStation} isMobile={isMobile} />
 
       
 
