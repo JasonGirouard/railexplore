@@ -29,13 +29,13 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
     const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
     const nearestSaturday = new Date(today);
     nearestSaturday.setDate(today.getDate() + daysUntilSaturday);
-  
+
     const defaultDepartureDate = new Date(nearestSaturday);
     defaultDepartureDate.setDate(nearestSaturday.getDate() + 14); // Add 2 weeks
-  
+
     return defaultDepartureDate;
   }
-  
+
   function getReturnDate(departureDate) {
     if (!departureDate) {
       departureDate = getDepartureDate();
@@ -65,20 +65,16 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
 
   const handleButtonClick = () => {
     // Console log some data
-    console.log('Departure date old:', getDepartureDateold());
-    console.log('Departure date new:', getDepartureDate());
-    console.log('Return date new:', getReturnDate());
+    console.log("Departure date old:", getDepartureDateold());
+    console.log("Departure date new:", getDepartureDate());
+    console.log("Return date new:", getReturnDate());
 
-    console.log('Return date value:', returnDate.$d);
-    console.log('departure date value:', departureDate.$d);
+    console.log("Return date value:", returnDate.$d);
+    console.log("departure date value:", departureDate.$d);
 
-
-    
     // You can also trigger other actions or functions here
     // For example, submitting the form or making an API call
   };
-
-
 
   return (
     <div className="booking">
@@ -150,62 +146,18 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
         </div>
         <div className="book-button-div">
 
-               {/* ORIGINAL FORM WHICH WORKS 
-        <form
-          action="https://www.amtrak.com/services/journeysearch"
-          method="post"
-          target="_blank"
-        >
-          <input type="hidden" name="wdf_origin" value={originStation.code} />
-          <input
-            type="hidden"
-            name="wdf_destination"
-            value={activeStation.code}
-          />
-          <input type="hidden" name="wdf_TripType" value="Return" />
-          <input
-            type="hidden"
-            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
-            value={getDepartureDate().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          />
-          <input
-            type="hidden"
-            name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
-            value={getReturnDate().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-            })}
-          />
-          <input type="hidden" name="wdf_person_type1" value="Adult" />
-          <button
-            type="submit"
-            className="book-button plausible-event-name=Book"
-          >
-            Book on Amtrak
-          </button>
-        </form>  */}
-
-
-
-
           <form
             action="https://www.amtrak.com/services/journeysearch"
             method="post"
             target="_blank"
           >
-            
             <input type="hidden" name="wdf_origin" value={originStation.code} />
             <input
               type="hidden"
               name="wdf_destination"
               value={activeStation.code}
             />
-            
+
             <input type="hidden" name="wdf_TripType" value={tripType} />
 
             <input
@@ -252,21 +204,21 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
               value="Adult"
             />
 
-<button
-  type="submit"
-  className="book-button2 plausible-event-name=Book2"
-  onClick={() => handleButtonClick()}
->
-  {isMobile ? (
-    <>
-      <SearchOutlined /> Amtrak.com
-    </>
-  ) : (
-    <>
-      <SearchOutlined /> Search on Amtrak.com
-    </>
-  )}
-</button>
+            <button
+              type="submit"
+              className="book-button2 plausible-event-name=Book2"
+              onClick={() => handleButtonClick()}
+            >
+              {isMobile ? (
+                <>
+                  <SearchOutlined /> Amtrak.com
+                </>
+              ) : (
+                <>
+                  <SearchOutlined /> Search on Amtrak.com
+                </>
+              )}
+            </button>
           </form>
         </div>
       </div>
