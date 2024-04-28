@@ -1,19 +1,48 @@
 // Booking.jsx
-import React, { useState } from "react";
-import { Radio, DatePicker } from "antd";
+import React, { useContext } from "react";
+import { Radio } from "antd";
+
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TextField } from '@mui/material';
+
 import dayjs from "dayjs";
+import { FiltersContext } from "./Context/FiltersContext";
 import "./Booking.css";
-import { CalendarOutlined, SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
+
 
 const Booking = ({ originStation, activeStation, isMobile }) => {
-  const [tripType, setTripType] = useState("Return");
-  const [departureDate, setDepartureDate] = useState(getDepartureDate());
-  const [returnDate, setReturnDate] = useState(getReturnDate());
-  const [travelers, setTravelers] = useState(1);
+    const {
+      tripType,
+      setTripType,
+      departureDate,
+      setDepartureDate,
+      returnDate,
+      setReturnDate,
+      travelers,
+      setTravelers,
+    } = useContext(FiltersContext);
 
   const handleTripTypeChange = (value) => {
     setTripType(value);
   };
+
+  const handleDateChange = (date) => {
+    setDepartureDate(date);
+  };
+
+  const handleRangeChange = (dates) => {
+    if (dates[0] && dates[1]) {
+      setDepartureDate(dates[0].toDate());
+      setReturnDate(dates[1].toDate());
+    } else if (dates[0]) {
+      setDepartureDate(dates[0].toDate());
+    }
+  };
+
 
   function incrementTravelers() {
     setTravelers((prev) => prev + 1);
@@ -22,6 +51,12 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
   function decrementTravelers() {
     setTravelers((prev) => (prev > 1 ? prev - 1 : 1));
   }
+
+  const handleClick = () => {
+    console.log("Departure Date:", departureDate);
+    console.log("Return Date:", returnDate);
+  };
+
 
   function getDepartureDate() {
     const today = new Date();
@@ -44,37 +79,6 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
     returnDate.setDate(departureDate.getDate() + 1); // Add 1 day
     return returnDate;
   }
-
-  function getDepartureDateold() {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-
-    if (dayOfWeek === 6) {
-      // If today is Saturday, set the departure date to the next Saturday
-      const nextSaturday = new Date(today);
-      nextSaturday.setDate(today.getDate() + 7);
-      return nextSaturday;
-    } else {
-      // If today is not Saturday, set the departure date to the nearest Saturday
-      const daysUntilSaturday = (6 - dayOfWeek + 7) % 7;
-      const nearestSaturday = new Date(today);
-      nearestSaturday.setDate(today.getDate() + daysUntilSaturday);
-      return nearestSaturday;
-    }
-  }
-
-  const handleButtonClick = () => {
-    // Console log some data
-    console.log("Departure date old:", getDepartureDateold());
-    console.log("Departure date new:", getDepartureDate());
-    console.log("Return date new:", getReturnDate());
-
-    console.log("Return date value:", returnDate.$d);
-    console.log("departure date value:", departureDate.$d);
-
-    // You can also trigger other actions or functions here
-    // For example, submitting the form or making an API call
-  };
 
   return (
     <div className="booking">
@@ -107,45 +111,40 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
       </div>
 
       <div className="booking-bottom">
-        <div className="date-picker">
-          {tripType === "OneWay" ? (
-            <DatePicker
-              defaultValue={dayjs(departureDate || getDepartureDate())}
-              onChange={(date) => setDepartureDate(date)}
-              disabledDate={(current) =>
-                current && current < dayjs().endOf("day")
-              }
-              format="ddd, M/D"
-              className="custom-range-picker"
-              suffixIcon={<CalendarOutlined />}
-              allowClear={false}
-            />
-          ) : (
-            <DatePicker.RangePicker
-              value={[
-                dayjs(departureDate || getDepartureDate()),
-                dayjs(
-                  returnDate ||
-                    getReturnDate(departureDate || getDepartureDate())
-                ),
-              ]}
-              onChange={(dates) => {
-                setDepartureDate(dates[0]);
-                setReturnDate(dates[1]);
-              }}
-              disabledDate={(current) =>
-                current && current < dayjs().endOf("day")
-              }
-              format="ddd, M/D"
-              separator="|"
-              className="custom-range-picker"
-              suffixIcon={<CalendarOutlined />}
-              allowClear={false}
-            />
-          )}
+      <div className="date-picker">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {tripType === "OneWay" ? (
+              <DatePicker
+                value={dayjs(departureDate)}
+                onChange={handleDateChange}
+                disablePast
+                format="ddd, M/D"
+                className="custom-range-picker"
+              />
+            ) : (
+              <DateRangePicker
+                value={[dayjs(departureDate), dayjs(returnDate)]}
+                onChange={handleRangeChange}
+                disablePast
+                format="ddd, M/D"
+                className="custom-range-picker"
+              />
+            )}
+          </LocalizationProvider>
         </div>
-        <div className="book-button-div">
 
+        {/* {isDatePickerOpen && (
+        <div className="datepicker-popup-background">
+          <div className="close-button" onClick={handleDatePickerClose}>
+            <CloseOutlined />
+          </div>
+          <div className="select-dates-button" onClick={handleSelectDates}>
+            Select These Dates
+          </div>
+        </div>
+      )} */}
+
+<div className="book-button-div">
           <form
             action="https://www.amtrak.com/services/journeysearch"
             method="post"
@@ -163,51 +162,43 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
             <input
               type="hidden"
               name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
-              value={
-                departureDate && departureDate.$d
-                  ? departureDate.$d.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })
-                  : getDepartureDate().toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })
-              }
+            //  value={departureDate.toISOString().split("T")[0]}
+              
+              value={departureDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
+
+                
             />
             <input
               type="hidden"
               name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
-              value={
-                returnDate && returnDate.$d
-                  ? returnDate.$d.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })
-                  : getReturnDate().toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    })
-              }
+             // value={returnDate.toISOString().split("T")[0]}
+              
+              value={returnDate.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
+
+
             />
 
-            {/* NOTE TO SELF - I JUST NEED THE DATE TO BE FORMATTED IN THE CORRECT WAY 
-            AND REPLACE getDepartureDateold() with departureDate etc  */}
-
-            <input
-              type="hidden"
-              name={`wdf_person_type${travelers}`}
-              value="Adult"
-            />
+{Array.from({ length: travelers }, (_, index) => (
+      <input
+        key={index}
+        type="hidden"
+        name={`wdf_person_type${index + 1}`}
+        value="Adult"
+      />
+    ))}
 
             <button
               type="submit"
               className="book-button2 plausible-event-name=Book2"
-              onClick={() => handleButtonClick()}
+              onClick={handleClick}
             >
               {isMobile ? (
                 <>

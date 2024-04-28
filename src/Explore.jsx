@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 import "./Explore.css";
 import MapComponent from "./MapComponent";
 import InfoPanel from "./InfoPanel";

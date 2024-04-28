@@ -1,54 +1,128 @@
 
 /* DATE PICKER */
 
-.custom-range-picker {
+
+/* .custom-range-picker {
     background-color: var(--very-light-gray);
     color: black;
     border: none;
-    border: 1px solid var(--gray-border);
     height: 40px;
     font-size: 16px;
     width: 350px;
-  }
+  } */
 
-  .ant-picker-input {
-      font-size: 16px;
-  }
+  /* Reduce the space between the start and end input fields */
+.MuiOutlinedInput-root {
+  margin-right: 0px;
+}
+
+/* Remove the default margin on the last input field */
+.MuiOutlinedInput-root:last-child {
+  margin-right: 0;
+}
+
+/* Adjust the separator style */
+.MuiPickersDateRangePickerInput-separator {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+/* Customize the input field styles */
+.MuiOutlinedInput-root {
+  font-size: 14px;
+  padding: 0px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--very-light-gray);
+}
+
+.MuiMultiInputDateRangeField-root {
+  margin-left: 0px !important;
+}
+
+.MuiInputBase-root {
+  margin-right: 0px; 
+  font-size: 12px;
+}
+
+.custom-range-picker {
+  margin: 0px;
+  padding: 0px;
+}
+
+.MuiInputAdornment-root {
+  display: none;
+}
+
+.MuiOutlinedInput-input {
+  padding: 5px !important;
+}
+
+ .css-1nvbjtv-MuiStack-root-MuiMultiInputDateRangeField-root>:not(style)~:not(style) {
+   margin: 0px !important;
+
+}
+
+.MuiFormLabel-root {
+  /* display: none !important; */
+}
+
+.MuiOutlinedInput-input {
   
+  border-radius: 4px;
+  border: 1px solid #ddd !important;
+  min-width: 65px !important;
+  /* max-width: 135px !important; */
+  font-size: 14px !important;
+  height: 30px !important;
+  padding: 5px 10px !important;
+  /* border: none !important; */
+  /* border: 1px solid lightgray !important; */
+} 
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  border: none !important;
+}
+.MuiMultiInputDateRangeField-separator {
+  /* display: none !important; */
+  color: gray !important;
+
+}
+
+/* .css-1x58qyc-MuiTypography-root-MuiMultiInputDateRangeField-separator {
+display: none !important;
+} */
+
+/* MuiInputBase-input-MuiOutlinedInput-input */
+
+  /* adjust calendar icon to the left */
+  /* .custom-range-picker .MuiInputAdornment-root {
+    order: -1;
+    margin-right: 8px;
+    color: black;
+  } */
+
+  /* .date-range-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  } */
+  
+ 
+
+
+
+
   /* adjust the calendar icon to the left */
-  .custom-range-picker .ant-picker-suffix {
+  /* .custom-range-picker .ant-picker-suffix {
     order: -1;
     margin-right: 8px;
     color: black;
   }
-  
-  /* set the separator color */ 
-  .custom-range-picker .ant-picker-range-separator {
-    color: var(--gray-border);
-  }
-  
-  .ant-picker:hover {
-    color: black;
-    border: 1px solid var(--gray-border);
+   */
 
-  }
-  .ant-picker-range:hover {
-    color: black;
-  }
-  .custom-range-picker:hover{
-    background-color: var(--hover-gray);
-    color: black;
-  }
-  .custom-range-picker .ant-picker-suffix:hover {
-    color: black;
-    display: inline-block;
-  }
-  
-  .custom-range-picker .ant-picker-input:hover .ant-picker-suffix {
-    color: black;
-    display: inline-block;
-  }
-  
+  /* remember to set the hover */
+
   
   /* RADIO BUTTONS */
   
@@ -59,7 +133,7 @@
   }
 
   .ant-radio-button-wrapper {
-    font-size: 10px;
+    font-size: 12px;
     /* height: 10px; */
   }
 
@@ -126,7 +200,7 @@
 
   .party {
       padding-left: 4px;
-      font-size: 10px;
+      font-size: 12px;
   }
   .travelers-text {
       font-weight: 600; /* semi bold */
@@ -153,7 +227,6 @@
 
 
   /* CONTAINERS */ 
-
   .booking {
       display: flex;
       flex-direction: column;
@@ -164,7 +237,7 @@
   }
 
   .booking-bottom {
-      padding-top: 5px;
+      padding-top: 8px;
   }
 
   .booking-top {
@@ -184,11 +257,8 @@
   /* mobile */
 @media (max-width: 770px) {
     .custom-range-picker {
-      /* min-width: 200px;
-      max-width: 300px; */
-      /* width: 200px; */
       width: 100%;
-    /*  right: -100%; /* Start the panel off-screen to the right on mobile */
+      font-size: 12px;
     }
     
     .book-button2 {
@@ -197,45 +267,6 @@
         min-width: 115px;
     } 
 
-    /* Datepicker styles for mobile */
-  /* Datepicker styles for mobile */
-  .ant-picker-dropdown,
-  .ant-picker-dropdown-range {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    transform: none !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 9999 !important;
   }
 
-  .ant-picker-panel,
-  .ant-picker-panel-container,
-  .ant-picker-datetime-panel,
-  .ant-picker-time-panel {
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 0 !important;
-  }
-
-  .ant-picker-content {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .ant-picker-header {
-    border-radius: 0 !important;
-  }
-
-  .ant-picker-ranges {
-    margin-bottom: 20px !important;
-  }
-
-  .ant-picker-range-arrow {
-    display: none !important;
-  }
-
-  }
+  /* adjust the calendar icon to the left */
