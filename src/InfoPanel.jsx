@@ -21,10 +21,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Booking from "./Booking";
 import { min } from "moment";
 import DrivingDirections from "./DrivingDirections";
-import Neighborhood from "./Neighborhood";
 
 const InfoPanel = ({ isMobile }) => {
-  console.log("📚 in info panel");
+ // console.log("📚 in info panel");
   const { activeStation, isPanelOpen, setIsPanelOpen } =
     useContext(StationContext);
   const { originStation, selectedStationDestinations } =
@@ -35,7 +34,7 @@ const InfoPanel = ({ isMobile }) => {
 
   useEffect(() => {
     if (isPanelOpen && origin && originStation && activeStation) {
-      console.log("setting params in infopanel");
+     
       navigate(
         `/explore/${origin.id}/${originStation.code}/${activeStation.code}`
       );

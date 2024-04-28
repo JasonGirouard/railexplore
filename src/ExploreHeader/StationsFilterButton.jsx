@@ -23,7 +23,7 @@ const StationsFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal
         (station) => station.code === originStationCode
       );
       if (selectedStation) {
-          console.log('Setting origin station based on params:',selectedStation.name)
+       //   console.log('Setting origin station based on params:',selectedStation.name)
         setOriginStation(selectedStation);
       }
     }
@@ -36,7 +36,7 @@ const StationsFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal
         (station) => station.code === destinationStationCode
       );
       if (selectedStation) {
-          console.log('Setting destination station based on params:',selectedStation.name)
+      //    console.log('Setting destination station based on params:',selectedStation.name)
         setActiveStation(selectedStation);
         setIsPanelOpen(true);
         

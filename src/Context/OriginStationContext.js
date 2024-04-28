@@ -23,9 +23,9 @@ const [stationSummary, setStationSummary] = useState(null);
        
         const data = await response.json();
         setStationSummary(data);
-        console.log('setting111')
+       // console.log('setting111')
       } catch (error) {
-        console.error('Error fetching station summary:', error);
+       // console.error('Error fetching station summary:', error);
       }
     };
   
@@ -67,7 +67,7 @@ const [stationSummary, setStationSummary] = useState(null);
       });
   
       setNearestStations(nearestTenStations);
-      console.log('set the nearest and origin stations, origin:', nearestTenStations[0].name);
+     // console.log('set the nearest and origin stations, origin:', nearestTenStations[0].name);
       const closestStation = nearestTenStations[0];
       setOriginStation(closestStation);
   

@@ -17,7 +17,7 @@ import Plausible from "plausible-tracker";
 // import { StationProvider } from './Context/StationContext';
 
 function App() {
-  console.log("1️⃣ in app ");
+ // console.log("1️⃣ in app ");
   const [activePage, setActivePage] = useState("Explore"); // Default active page
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [isLoading, setIsLoading] = useState(true);

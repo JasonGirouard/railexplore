@@ -1,5 +1,5 @@
 // TileComponent.js
-import React, { useEffect } from 'react';
+import React from 'react';
 import { TileLayer } from 'react-leaflet';
 import { useMap } from "react-leaflet";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -9,7 +9,7 @@ import "mapbox-gl-leaflet";
 
 //MAPBOX GL, first option given efficient loads 
 const TileComponent = () => {
-  console.log("🔴 Tile Layer 🔴");
+ // console.log("🔴 Tile Layer 🔴");
   const map = useMap();
 
   React.useEffect(() => {

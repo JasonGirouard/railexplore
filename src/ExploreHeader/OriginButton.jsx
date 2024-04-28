@@ -49,11 +49,10 @@ const OriginButton2 = ({setOriginDataLoaded}) => {
               place_name: formattedName,
               center: center,
             };
-            console.log('setting the origin based on the params', newOrigin.place_name);
+          
             setOrigin(newOrigin);
             setSearchTerm(formattedName);
             setOriginDataLoaded(true);
-          //  console.log('finished setting origin based on params');
           }
         } catch (error) {
           console.error("Error fetching origin:", error);
@@ -67,7 +66,6 @@ const OriginButton2 = ({setOriginDataLoaded}) => {
  //   console.log('no origin id in params, so setting origin data loaded to true')
     setOriginDataLoaded(true);
   }
-  
     
   }, [originId, setOrigin, setOriginDataLoaded]);
 

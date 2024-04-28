@@ -17,7 +17,7 @@ export const StationProvider = ({ children }) => {
   // set the nearest stations for destination
   useEffect(() => {
     if (selectedDestination && selectedDestination.center) {
-      console.log('selectedDestination:',selectedDestination)
+    //  console.log('selectedDestination:',selectedDestination)
   
       const { lat: selectedDestinationLat, long: selectedDestinationLong } = selectedDestination.center;
       // Define a threshold for the difference in latitude and longitude
@@ -47,15 +47,15 @@ export const StationProvider = ({ children }) => {
       });
   
       setNearestStationsDestination(nearestTenStationsDestination);
-      console.log('set the nearest and origin stations, origin:', nearestTenStationsDestination[0].name);
+     // console.log('set the nearest and origin stations, origin:', nearestTenStationsDestination[0].name);
       
       const closestStation = nearestTenStationsDestination[0];
 
       setActiveStation(closestStation);
     
       setIsPanelOpen(true);
-      console.log('selectedDestination:',selectedDestination)
-      console.log('nearestTentoDest:',nearestTenStationsDestination)
+     // console.log('selectedDestination:',selectedDestination)
+     // console.log('nearestTentoDest:',nearestTenStationsDestination)
   
     }
   }, [selectedDestination]);

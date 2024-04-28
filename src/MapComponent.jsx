@@ -32,7 +32,7 @@ const ZoomHandler = ({ onZoomLevelChange }) => {
   useEffect(() => {
     const handleZoomEnd = () => {
       onZoomLevelChange(map.getZoom());
-      console.log('zoom = ',map.getZoom());
+   //   console.log('zoom = ',map.getZoom());
     };
      map.on("zoomend", handleZoomEnd);
     return () => {
@@ -91,7 +91,7 @@ const ZoomToBounds = () => {
 };
 
 const Map = () => {
-  console.log("📍 in the map");
+ // console.log("📍 in the map");
   const { origin } = useContext(OriginContext);
   const { selectedDestination } = useContext(DestinationContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
@@ -140,7 +140,7 @@ const Map = () => {
       minZoom={isMobile ? 5 : 7} // Set the minimum zoom level based on isMobile
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
-      scrollWheelZoom={false} // Disable scroll-to-zoom
+     // scrollWheelZoom={false} // Disable scroll-to-zoom
       zoomControl={false} // Disable default zoom control
       className="map-container"
     >

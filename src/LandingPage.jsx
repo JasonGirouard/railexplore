@@ -8,11 +8,11 @@ const LandingPage = () => {
     <div className="landing-page">
       <div className="landing-page-container">
         <div className="landing-page-text">
-          <img
+          {/* <img
             src={Trainy2}
             className="landing-page-logo"
             alt="landing page map"
-          />
+          /> */}
           <h1>Travel by Train.</h1>
           <p className="travel-by-train-desc">
             Enter a city or address to see everywhere you can travel by train.

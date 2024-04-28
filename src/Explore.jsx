@@ -9,7 +9,7 @@ import TopNav from "./TopNav";
 
 const Explore = ({ setActivePage, isMobile }) => {
   // const { originId } = useParams();
- console.log('2️⃣ in explore');
+// console.log('2️⃣ in explore');
  //console.log('originId in Explore component:', originId);
   return (
     <div className="main-content-explore">

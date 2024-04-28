@@ -15,11 +15,11 @@ const { originStation  } =
 const { origin } = useContext(OriginContext);
 
   useEffect(() => {
-    console.log('IN URL UPDATE')
+  //  console.log('IN URL UPDATE')
     if (origin && originStation) {
       const { pathname } = location;
       if (pathname === '/' || pathname === '/explore') {
-        console.log('URL, ORIGIN ID',origin.id, ' originStation: ', originStation.code)
+        //console.log('URL, ORIGIN ID',origin.id, ' originStation: ', originStation.code)
         navigate(`/explore/${origin.id}/${originStation.code}`);
       }
     }
