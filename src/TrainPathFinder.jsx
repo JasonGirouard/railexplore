@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import stations from "./data/stations.json";
+import { OriginStationContext } from "./Context/OriginStationContext";
 import "./TrainPathFinder.css";
 
-const TrainPathFinder = ({ origin, destination }) => {
+const TrainPathFinder = ({ origin, destination, dist , distSeconds}) => {
   const [paths, setPaths] = useState([]);
+  const { selectedStationDestinations } = useContext(OriginStationContext);
   const originStation = origin.code;
   const destinationStation = destination.code;
+
+  const distSeconds2 = destinationStation && selectedStationDestinations
+      ? selectedStationDestinations[destinationStation]
+      : 0;
+
 
   useEffect(() => {
     
@@ -146,9 +153,16 @@ const TrainPathFinder = ({ origin, destination }) => {
           next_stop: null
         });
   
-        console.log('PATH FOUND:', pathInfo);
-        paths.push(pathInfo);
-        continue;
+        // Check if the elapsed time of the path is at most 30% greater than distSeconds
+  const elapsedTimeSeconds = pathInfo.elapsed_time / 1000; // Convert milliseconds to seconds
+  const maxAllowedTime = distSeconds2 * 1.40; // Calculate the maximum allowed time (40% greater than distSeconds)
+//console.log('elapsedTimeSeconds', elapsedTimeSeconds, 'maxallowed:',maxAllowedTime)
+  if (elapsedTimeSeconds <= maxAllowedTime) {
+  //  console.log('PATH FOUND:', pathInfo);
+    paths.push(pathInfo);
+  }
+
+  continue;
       }
   
       // Explore the neighbors of the current station
@@ -258,8 +272,18 @@ const getStationName = (stationCode) => {
     <div>
       {originStation !== destinationStation && (
         <div className="trains-container">
-          <div className="trains-title">{origin.name} →{" "} {destination.name}</div>
-          <div>Recent trains. For a full set of trains, view those on Amtrak.com </div>
+          <div className="trains-title"> Trains </div>
+          <div>
+  {origin.code} → {destination.code} is typically {dist}.
+  {paths.length > 0 ? (
+    " Today's trains are shown below. For complete schedules, visit Amtrak below."
+  ) : (
+    " For complete schedules, visit Amtrak below."
+  )}
+</div>
+
+          {/* <div className="trains-title">{origin.name} →{" "} {destination.name}</div> */}
+          {/* <div>Recent trains. For a full set of trains, view those on Amtrak.com </div> */}
 
           {paths ? (
             paths.length > 0 ? (
@@ -307,7 +331,7 @@ const getStationName = (stationCode) => {
                   </div>
                 ))
             ) : (
-              <p>No trains scheduled today</p>
+               <p></p>
             )
           ) : (
             <p>Loading paths...</p>

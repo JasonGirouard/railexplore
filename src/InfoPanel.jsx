@@ -19,6 +19,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import StationMap from "./StationMap";
 import { useNavigate, useLocation } from "react-router-dom";
 import Booking from "./Booking";
+import { min } from "moment";
 
 const InfoPanel = ({ isMobile }) => {
   console.log("📚 in info panel");
@@ -234,7 +235,7 @@ const InfoPanel = ({ isMobile }) => {
       </div>
 
       <div>
-        <TrainPathFinder origin={originStation} destination={activeStation} />
+        <TrainPathFinder origin={originStation} destination={activeStation} dist = {formatMinTime2(minTime)} distSeconds = {minTime}/>
 
         
       </div>
