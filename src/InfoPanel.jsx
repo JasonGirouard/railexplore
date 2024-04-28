@@ -267,8 +267,12 @@ const InfoPanel = ({ isMobile }) => {
       <div className="info-panel-map">
   <p>
     <a
+      // href={`https://www.google.com/maps/search/?api=1&query=things+to+do+near+${encodeURIComponent(
+      //   `${activeStation.address1}, ${activeStation.city}, ${activeStation.state} ${activeStation.zipcode}`
+      // )}`}
+
       href={`https://www.google.com/maps/search/?api=1&query=things+to+do+near+${encodeURIComponent(
-        `${activeStation.address1}, ${activeStation.city}, ${activeStation.state} ${activeStation.zipcode}`
+        `${activeStation.name}`
       )}`}
       target="_blank"
       rel="noopener noreferrer"

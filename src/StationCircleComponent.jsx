@@ -67,7 +67,7 @@ const StationCircleComponent = ({ station, radius }) => {
     };
 
     const handleMoveEnd = () => {
-      setMapMoved((prevState) => !prevState);
+      setMapMoved(Date.now());
     };
 
     map.on("zoomend", handleZoomEnd);
