@@ -42,6 +42,7 @@ const StationCircleComponent = ({ station, radius }) => {
         if (selectedDestination === null || selectedDestination === undefined) {
         //  console.log('CLICKING AWAY, SELECTED DESTINATION:', selectedDestination)
           // Scroll to the top of the page instantly
+          
           setActiveStation(null);
           setIsPanelOpen(false);
         }
@@ -85,6 +86,7 @@ const StationCircleComponent = ({ station, radius }) => {
   }, [map, station.lat, station.long, mapMoved]);
 
   const handleMarkerClick = (station, event) => {
+    console.log('activeStation',station);
     setActiveStation(station);
     setIsPanelOpen(true);
   
@@ -196,7 +198,7 @@ const getOutlineWeight = (stationCode) => {
   // };
 
   const formatMinTime2 = (minTime) => {
-    if (minTime === undefined || minTime === null) return "N/A";
+    if (minTime === undefined || minTime === null) return " -";
     const hours = Math.floor(minTime / 3600);
     const minutes = Math.floor((minTime % 3600) / 60);
     return `${hours}h ${minutes}m`;

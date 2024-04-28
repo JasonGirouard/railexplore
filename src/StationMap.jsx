@@ -18,7 +18,7 @@ const UpdateMapCenter = ({ center }) => {
     map.setView(center);
     // map.zoomControl.remove();
     //   map.dragging.disable();
-    map.touchZoom.disable();
+   // map.touchZoom.disable();
     //   map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
     map.boxZoom.disable();

@@ -137,7 +137,7 @@ const Map = () => {
     <MapContainer
       center={[origin.center.lat, origin.center.long]}
       zoom={7}
-      minZoom={isMobile ? 4 : 7} // Set the minimum zoom level based on isMobile
+      minZoom={isMobile ? 5 : 7} // Set the minimum zoom level based on isMobile
       maxBounds={northAmericaBounds}
       maxBoundsViscosity={1.0}
       scrollWheelZoom={false} // Disable scroll-to-zoom

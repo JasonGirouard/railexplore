@@ -20,6 +20,8 @@ import StationMap from "./StationMap";
 import { useNavigate, useLocation } from "react-router-dom";
 import Booking from "./Booking";
 import { min } from "moment";
+import DrivingDirections from "./DrivingDirections";
+import Neighborhood from "./Neighborhood";
 
 const InfoPanel = ({ isMobile }) => {
   console.log("📚 in info panel");
@@ -253,8 +255,29 @@ const InfoPanel = ({ isMobile }) => {
 
       
 
+      
+
+      <div className="info-panel-map2">
+        {/* <p>
+          Tell me how this compares to driving!
+        </p> */}
+        <DrivingDirections />
+      </div>
+
       <div className="info-panel-map">
-        <p>
+  <p>
+    <a
+      href={`https://www.google.com/maps/search/?api=1&query=things+to+do+near+${encodeURIComponent(
+        `${activeStation.address1}, ${activeStation.city}, ${activeStation.state} ${activeStation.zipcode}`
+      )}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Explore more things to do in {activeStation.name}
+    </a>
+  </p>
+  <StationMap activeStation={activeStation} />
+  <p>
           {activeStation.address1}
           {", "}
           {activeStation.city}
@@ -263,8 +286,7 @@ const InfoPanel = ({ isMobile }) => {
           {", "}
           {activeStation.zipcode}
         </p>
-        <StationMap activeStation={activeStation} />
-      </div>
+</div>
 
       {isMobile && (
         <div className="info-panel-footer">

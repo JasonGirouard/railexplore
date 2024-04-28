@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { LoadScript } from "@react-google-maps/api";
 import "./App.css";
 import About from "./About"; //
 import Donate from "./Donate";
@@ -77,6 +78,7 @@ function App() {
 
     
     <Router>
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
        {/* <OriginProvider>
       <OriginStationProvider>
         <StationProvider>
@@ -139,6 +141,7 @@ function App() {
         </StationProvider>
       </OriginStationProvider>
     </OriginProvider> */}
+    </LoadScript>
     </Router>
   );
 }

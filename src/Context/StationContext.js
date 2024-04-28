@@ -48,7 +48,9 @@ export const StationProvider = ({ children }) => {
   
       setNearestStationsDestination(nearestTenStationsDestination);
       console.log('set the nearest and origin stations, origin:', nearestTenStationsDestination[0].name);
+      
       const closestStation = nearestTenStationsDestination[0];
+
       setActiveStation(closestStation);
     
       setIsPanelOpen(true);
