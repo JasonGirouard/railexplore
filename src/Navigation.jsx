@@ -50,7 +50,7 @@ const Navigation = ({ activePage, setActivePage, isMobile }) => {
 
               <div className="logo-container-top" onClick={handleLogoClick}>
                 <span className="logo-text">TrainGang</span>
-                <img src={logo} alt="Logo" className="logo-image" />
+                {/* <img src={logo} alt="Logo" className="logo-image" /> */}
               </div>
             </div>
 

@@ -53,7 +53,7 @@ const About = ({ setActivePage }) => {
           <div className="value-row">
             <div className="value-column">
               <div className="trainy">
-                <img src={Trainy2} alt="Train Logo" />
+                {/* <img src={Trainy2} alt="Train Logo" /> */}
               </div>
 
               <p>

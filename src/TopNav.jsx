@@ -37,7 +37,7 @@ const TopNav = ({ setActivePage }) => {
             <div className = "top-nav-header-desktop">
             <div className="" onClick={handleLogoClick}>
               <span className="logo-text">TrainGang</span>
-              <img src={logo} alt="Logo" className="logo-image" />
+              {/* <img src={logo} alt="Logo" className="logo-image" /> */}
             </div>
             </div>
       </div>

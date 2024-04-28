@@ -187,6 +187,8 @@ display: none !important;
       border: 1px solid var(--gray-border);
       background-color: white;
       cursor: pointer; 
+      min-height: 20px;
+    min-width: 20px;
   }
 
   .button-minus {
@@ -194,6 +196,8 @@ display: none !important;
     border: 1px solid var(--gray-border);
     background-color: white;
     cursor: pointer; 
+    min-height: 20px;
+    min-width: 20px;
 }
 
 .button-minus.disabled {
@@ -213,7 +217,7 @@ display: none !important;
   }
 
   .booking-bottom {
-      padding-top: 8px;
+      padding-top: 10px;
   }
 
   .booking-top {
