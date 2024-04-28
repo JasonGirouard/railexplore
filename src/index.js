@@ -8,6 +8,8 @@ import { DestinationProvider } from "./Context/DestinationContext";
 import { OriginStationProvider } from "./Context/OriginStationContext";
 import { FiltersProvider } from "./Context/FiltersContext";
 import { StationProvider } from "./Context/StationContext";
+import LogRocket from 'logrocket';
+LogRocket.init('rwfd3i/traingang');
 // import { LocationProvider } from './LocationContext';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

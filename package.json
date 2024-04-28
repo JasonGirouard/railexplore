@@ -26,6 +26,7 @@
     "fathom-client": "^3.6.0",
     "leaflet": "^1.9.4",
     "leaflet.gridlayer.googlemutant": "^0.14.1",
+    "logrocket": "^8.1.0",
     "mapbox-gl": "^3.2.0",
     "mapbox-gl-leaflet": "^0.0.16",
     "moment": "^2.30.1",
