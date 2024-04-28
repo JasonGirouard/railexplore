@@ -6,32 +6,33 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TextField } from '@mui/material';
+import { TextField } from "@mui/material";
 
 import dayjs from "dayjs";
 import { FiltersContext } from "./Context/FiltersContext";
 import "./Booking.css";
 import { SearchOutlined } from "@ant-design/icons";
 
-
 const Booking = ({ originStation, activeStation, isMobile }) => {
-    const {
-      tripType,
-      setTripType,
-      departureDate,
-      setDepartureDate,
-      returnDate,
-      setReturnDate,
-      travelers,
-      setTravelers,
-    } = useContext(FiltersContext);
+  const {
+    tripType,
+    setTripType,
+    departureDate,
+    setDepartureDate,
+    returnDate,
+    setReturnDate,
+    travelers,
+    setTravelers,
+  } = useContext(FiltersContext);
 
   const handleTripTypeChange = (value) => {
     setTripType(value);
   };
 
   const handleDateChange = (date) => {
-    setDepartureDate(date);
+    if (date) {
+      setDepartureDate(date.toDate());
+    }
   };
 
   const handleRangeChange = (dates) => {
@@ -42,7 +43,6 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
       setDepartureDate(dates[0].toDate());
     }
   };
-
 
   function incrementTravelers() {
     setTravelers((prev) => prev + 1);
@@ -56,7 +56,6 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
     console.log("Departure Date:", departureDate);
     console.log("Return Date:", returnDate);
   };
-
 
   function getDepartureDate() {
     const today = new Date();
@@ -111,7 +110,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
       </div>
 
       <div className="booking-bottom">
-      <div className="date-picker">
+        <div className="date-picker">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             {tripType === "OneWay" ? (
               <DatePicker
@@ -144,7 +143,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
         </div>
       )} */}
 
-<div className="book-button-div">
+        <div className="book-button-div">
           <form
             action="https://www.amtrak.com/services/journeysearch"
             method="post"
@@ -162,38 +161,34 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
             <input
               type="hidden"
               name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[1]/departDate.date"
-            //  value={departureDate.toISOString().split("T")[0]}
-              
+              //  value={departureDate.toISOString().split("T")[0]}
+
               value={departureDate.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
               })}
-
-                
             />
             <input
               type="hidden"
               name="/sessionWorkflow/productWorkflow[@product='Rail']/tripRequirements/journeyRequirements[2]/departDate.date"
-             // value={returnDate.toISOString().split("T")[0]}
-              
+              // value={returnDate.toISOString().split("T")[0]}
+
               value={returnDate.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
               })}
-
-
             />
 
-{Array.from({ length: travelers }, (_, index) => (
-      <input
-        key={index}
-        type="hidden"
-        name={`wdf_person_type${index + 1}`}
-        value="Adult"
-      />
-    ))}
+            {Array.from({ length: travelers }, (_, index) => (
+              <input
+                key={index}
+                type="hidden"
+                name={`wdf_person_type${index + 1}`}
+                value="Adult"
+              />
+            ))}
 
             <button
               type="submit"
