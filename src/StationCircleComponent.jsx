@@ -71,11 +71,11 @@ const StationCircleComponent = ({ station, radius }) => {
     };
 
     map.on("zoomend", handleZoomEnd);
-    map.on("moveend", handleMoveEnd);
+    map.on("move", handleMoveEnd);
 
     return () => {
       map.off("zoomend", handleZoomEnd);
-      map.off("moveend", handleMoveEnd);
+      map.off("move", handleMoveEnd);
     };
   }, [map]);
 
