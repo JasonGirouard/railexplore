@@ -157,7 +157,8 @@ const StationCircleComponent = ({ station, radius }) => {
     //   }
     // }
     if (originStation && originStation.code === stationCode) {
-      color = "#353535"; // Override color for the origin station
+     // color = "#353535"; // Override color for the origin station
+     color = '#F43AA0';
     }
 
     return color;
