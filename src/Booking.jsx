@@ -167,7 +167,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
             action="https://www.amtrak.com/services/journeysearch"
             method="post"
             target="_blank"
-            className="plausible-event-name=BookTrip"
+            className={`plausible-event-name=BookTrip plausible-event-departureDate=${departureDate.toISOString().split('T')[0]} plausible-event-returnDate=${returnDate.toISOString().split('T')[0]} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.name} plausible-event-destination=${activeStation.name}`}
           >
             <input type="hidden" name="wdf_origin" value={originStation.code} />
             <input
@@ -212,7 +212,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
 
             <button
               type="submit"
-              className="book-button2 plausible-event-name=BookTrip"
+              className={`book-button2 plausible-event-name=BookTrip plausible-event-departureDate=${departureDate} plausible-event-returnDate=${returnDate} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.name} plausible-event-destination=${activeStation.name}`}
               onClick={handleClick}
             >
               {isMobile ? (
