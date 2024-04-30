@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import { FiltersContext } from "./Context/FiltersContext";
 import "./Booking.css";
 import { SearchOutlined } from "@ant-design/icons";
+import Plausible from 'plausible-tracker'
 
 const Booking = ({ originStation, activeStation, isMobile }) => {
   const {
@@ -53,8 +54,26 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
   }
 
   const handleClick = () => {
-    console.log("Departure Date:", departureDate);
-    console.log("Return Date:", returnDate);
+   // console.log("Departure Date:", departureDate);
+   // console.log("Return Date:", returnDate);
+
+   // Get the current date
+  const currentDate = new Date().toISOString().split('T')[0];
+
+   // Log the event using Plausible with tagged events
+ // Log the event using Plausible with tagged events
+ Plausible('Book Button Clicked', {
+  props: {
+    origin: originStation.code,
+    destination: activeStation.code,
+    departureDate: departureDate.toISOString().split('T')[0],
+    returnDate: returnDate.toISOString().split('T')[0],
+    currentDate: currentDate,
+    tripType: tripType,
+    travelers: travelers,
+  },
+});
+
   };
 
   function getDepartureDate() {
@@ -192,7 +211,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
 
             <button
               type="submit"
-              className="book-button2 plausible-event-name=Book2"
+              className="book-button2"
               onClick={handleClick}
             >
               {isMobile ? (
