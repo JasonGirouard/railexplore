@@ -51,7 +51,7 @@ const OriginButton2results = ({
         {searchResults.map((result) => (
           <div
             key={result.id}
-            className="autocomplete-option plausible-event-name=Origin+Select"
+            className={`autocomplete-option plausible-event-name=Origin+Select plausible-event-Origin+Select=${result.place_name} `}
             onClick={() => handleSelect(result)}
           >
             {result.place_name}
