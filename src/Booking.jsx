@@ -224,8 +224,9 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
 
             <button
               type="submit"
-              className={`book-button2 plausible-event-name=BookTrip plausible-event-departureDate=${departureDate.toISOString().split('T')[0]} plausible-event-returnDate=${returnDate.toISOString().split('T')[0]} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.code} plausible-event-destination=${activeStation.code} plausible-event-originDestinationPair=${originStation.code}-${activeStation.code} plausible-event-daysOut=${daysOut}`}
-              onClick={handleClick}
+             // className={`book-button2 plausible-event-name=BookTrip plausible-event-departureDate=${departureDate.toISOString().split('T')[0]} plausible-event-returnDate=${returnDate.toISOString().split('T')[0]} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.code} plausible-event-destination=${activeStation.code} plausible-event-originDestinationPair=${originStation.code}-${activeStation.code} plausible-event-daysOut=${daysOut}`}
+             className={`book-button2`}
+             onClick={handleClick}
             >
               {isMobile ? (
                 <>
