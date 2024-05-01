@@ -1,5 +1,5 @@
 // Booking.jsx
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Radio } from "antd";
 
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -25,6 +25,15 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
     travelers,
     setTravelers,
   } = useContext(FiltersContext);
+
+  const [daysOut, setDaysOut] = useState(0);
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const timeDiff = departureDate.getTime() - currentDate.getTime();
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    setDaysOut(daysDiff);
+  }, [departureDate]);
 
   const handleTripTypeChange = (value) => {
     setTripType(value);
@@ -56,6 +65,9 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
   const handleClick = () => {
    // console.log("Departure Date:", departureDate);
    // console.log("Return Date:", returnDate);
+   console.log('active station',activeStation)
+   console.log('origin station',originStation)
+   console.log('daysOut',daysOut)
 
    // Get the current date
   const currentDate = new Date().toISOString().split('T')[0];
@@ -167,7 +179,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
             action="https://www.amtrak.com/services/journeysearch"
             method="post"
             target="_blank"
-            className={`plausible-event-name=BookTrip plausible-event-departureDate=${departureDate.toISOString().split('T')[0]} plausible-event-returnDate=${returnDate.toISOString().split('T')[0]} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.name} plausible-event-destination=${activeStation.name}`}
+            className={`plausible-event-name=BookTrip plausible-event-departureDate=${departureDate.toISOString().split('T')[0]} plausible-event-returnDate=${returnDate.toISOString().split('T')[0]} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.code} plausible-event-destination=${activeStation.code} plausible-event-originDestinationPair=${originStation.code}-${activeStation.code} plausible-event-daysOut=${daysOut}`}
           >
             <input type="hidden" name="wdf_origin" value={originStation.code} />
             <input
@@ -212,7 +224,7 @@ const Booking = ({ originStation, activeStation, isMobile }) => {
 
             <button
               type="submit"
-              className={`book-button2 plausible-event-name=BookTrip plausible-event-departureDate=${departureDate} plausible-event-returnDate=${returnDate} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.name} plausible-event-destination=${activeStation.name}`}
+              className={`book-button2 plausible-event-name=BookTrip plausible-event-departureDate=${departureDate.toISOString().split('T')[0]} plausible-event-returnDate=${returnDate.toISOString().split('T')[0]} plausible-event-travelers=${travelers} plausible-event-origin=${originStation.code} plausible-event-destination=${activeStation.code} plausible-event-originDestinationPair=${originStation.code}-${activeStation.code} plausible-event-daysOut=${daysOut}`}
               onClick={handleClick}
             >
               {isMobile ? (
