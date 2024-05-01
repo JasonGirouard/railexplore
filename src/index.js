@@ -9,6 +9,12 @@ import { OriginStationProvider } from "./Context/OriginStationContext";
 import { FiltersProvider } from "./Context/FiltersContext";
 import { StationProvider } from "./Context/StationContext";
 import LogRocket from 'logrocket';
+import { LicenseInfo } from '@mui/x-license';
+
+// Set the Pro license key
+
+LicenseInfo.setLicenseKey('940ae98c2bdfef56d07b7c64c380ba47Tz04OTU0OSxFPTE3NDYxODk4MzMwMDAsUz1wcm8sTE09c3Vic2NyaXB0aW9uLEtWPTI=');
+
 LogRocket.init('rwfd3i/traingang');
 // import { LocationProvider } from './LocationContext';
 
