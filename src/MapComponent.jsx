@@ -146,7 +146,7 @@ const Map = () => {
     >
       <ZoomHandler onZoomLevelChange={setZoomLevel} />
       {stations
-        .filter((station) => station.mode === "TRAIN")
+       // .filter((station) => station.mode === "TRAIN")
         .map((station) => {
           return (
             <StationCircleComponent
