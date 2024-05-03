@@ -165,7 +165,7 @@ const TrainPathFinder = ({ origin, destination, dist , distSeconds}) => {
   continue;
       }
   
-      // Explore the neighbors of the current station
+    //  Explore the neighbors of the current station
       if (graph[currentStation]) {
         for (const [neighbor, fromStationName, toStationName, routeName, trainNumber, departureTime, arrivalTime] of graph[currentStation]) {
           // Only consider the neighbor if its departure time is later than or equal to the current station's arrival time
@@ -178,6 +178,25 @@ const TrainPathFinder = ({ origin, destination, dist , distSeconds}) => {
           }
         }
       }
+
+      // only direct 
+
+      // Explore the neighbors of the current station
+// if (graph[currentStation]) {
+//   for (const [neighbor, fromStationName, toStationName, routeName, trainNumber, departureTime, arrivalTime] of graph[currentStation]) {
+//     // Only consider the neighbor if its departure time is later than or equal to the current station's arrival time
+//     // and the route name is the same as the current station's route name
+//     if ((!arrivalTimes || departureTime >= arrivalTimes[arrivalTimes.length - 1]) && routeName === (routeNames ? routeNames[routeNames.length - 1] : null)) {
+//       const newRouteNames = routeNames ? [...routeNames, routeName] : [routeName];
+//       const newTrainNumbers = trainNumbers ? [...trainNumbers, trainNumber] : [trainNumber];
+//       const newDepartureTimes = departureTimes ? [...departureTimes, departureTime] : [departureTime];
+//       const newArrivalTimes = arrivalTimes ? [...arrivalTimes, arrivalTime] : [arrivalTime];
+//       pq.push([cost + 1, neighbor, path, newRouteNames, newTrainNumbers, newDepartureTimes, newArrivalTimes]);
+//       console.log([cost + 1, neighbor, path, newRouteNames, newTrainNumbers, newDepartureTimes, newArrivalTimes])
+//     }
+//   }
+//}
+
     }
   
     // Filter paths to keep only the ones with the earliest start time and shortest elapsed time for each unique start time
@@ -187,9 +206,12 @@ const TrainPathFinder = ({ origin, destination, dist , distSeconds}) => {
       const startTime = path.start_time;
       const endTime = path.end_time;
       const elapsedTime = path.elapsed_time;
+      const transfers = path.transfers;
+    //  console.log('path:',path)
   
       // Only consider paths where the end time is later than the start time
-      if (new Date(endTime) > new Date(startTime)) {
+     // if (new Date(endTime) > new Date(startTime)) {
+        if (new Date(endTime) > new Date(startTime) && transfers.length === 0) {
         // If the start time is not in the dictionary or the current path has a shorter elapsed time,
         // update the dictionary with the current path
         if (!startTimeDict[startTime] || elapsedTime < startTimeDict[startTime].elapsed_time) {
