@@ -68,7 +68,25 @@ const [stationSummary, setStationSummary] = useState(null);
   
       setNearestStations(nearestTenStations);
      // console.log('set the nearest and origin stations, origin:', nearestTenStations[0].name);
-      const closestStation = nearestTenStations[0];
+      // Check if the origin is within a 10-mile radius of Boston
+const bostonStation = stations.find((station) => station.code === "BBY");
+if (bostonStation) {
+  const distanceToBoston = getEuclideanDistanceInMiles(
+    originLat,
+    originLong,
+    bostonStation.lat,
+    bostonStation.long
+  );
+  if (distanceToBoston <= 10) {
+    setOriginStation(bostonStation);
+    return;
+  }
+}
+
+const closestStation = nearestTenStations[0];
+
+  //    console.log('closestStation',nearestTenStations)
+    //  console.log('origin',origin)
       setOriginStation(closestStation);
   
     //  const endTime = performance.now(); // Get the end time in milliseconds

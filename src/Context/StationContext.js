@@ -49,6 +49,21 @@ export const StationProvider = ({ children }) => {
       setNearestStationsDestination(nearestTenStationsDestination);
      // console.log('set the nearest and origin stations, origin:', nearestTenStationsDestination[0].name);
       
+      // Check if the selected destination is within a 10-mile radius of Boston
+      const bostonStation = stations.find((station) => station.code === "BBY");
+      if (bostonStation) {
+        const distanceToBoston = getEuclideanDistanceInMiles(
+          selectedDestinationLat,
+          selectedDestinationLong,
+          bostonStation.lat,
+          bostonStation.long
+        );
+        if (distanceToBoston <= 10) {
+          setActiveStation(bostonStation);
+          setIsPanelOpen(true);
+          return;
+        }
+      }
       const closestStation = nearestTenStationsDestination[0];
 
       setActiveStation(closestStation);
