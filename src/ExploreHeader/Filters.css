@@ -93,6 +93,10 @@
   box-shadow: 0 2px 4px rgba(77, 146, 237, 0.4); /* Adjust values as needed */
 }
 
+.code {
+    font-weight: normal;
+}
+
 .filters-container {
   display: flex;
   padding-top: 5px;

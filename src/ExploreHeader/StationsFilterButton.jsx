@@ -61,7 +61,8 @@ const StationsFilterButton = ({isMobile, showFiltersPortal, setShowFiltersPortal
           onClick={handleClick}
         >
           <div className="from">From:&nbsp;</div>
-          <div>{originStation.name}</div>
+          <div> {originStation.name}</div>
+          <div className="code">&nbsp;{originStation.code}</div>
           <img src={filledDownCaretIcon} alt="Down Caret Icon" className={showPopover ? 'rotate-180' : ''}/>
         </button>
       ) : (
