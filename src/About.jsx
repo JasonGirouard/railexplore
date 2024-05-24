@@ -68,6 +68,19 @@ const About = ({ setActivePage }) => {
                 </Link>{" "}
                 if you can.
               </p>
+
+              <p style={{ fontStyle: 'italic' }}>
+                I wrote about what it was like to make this site {" "}
+                <Link
+                to="https://jasontgirouard.medium.com/how-i-built-traingang-com-9e91d89c0574"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "underline", color: "inherit" }}
+              >
+                  here on Medium
+                </Link>
+                .
+              </p>
             </div>
             <div className="value-column">
               <h2>Please donate if you can.</h2>
